@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import {avatarComponent} from '../../shared/avatar/avatar';
+
 
 const userComponent = Vue.component('user', {
     data: function(){
@@ -7,7 +9,7 @@ const userComponent = Vue.component('user', {
     props: ['user'],
     template: `
         <div class="user">
-            <div class="avatar" v-bind:style="{ 'background-image': 'url(' + user.thumbnail + ')' }"></div>
+            <avatar v-bind:user="user"></avatar>
             {{user.getFullName()}}
         </div>
     `

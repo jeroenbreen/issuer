@@ -927,7 +927,43 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"bootstrapVue\", function() { return bootstrapVue; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _components_welcome_screen_welcome_screen__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/welcome-screen/welcome-screen */ \"./src/vue/components/welcome-screen/welcome-screen.js\");\n\n\n\n\nconst bootstrapVue = function (model) {\n    new vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n        el: '#app',\n        data: {\n            model: model\n        },\n        template: '<welcome-screen v-bind:model=\"model\"></welcome-screen>'\n    });\n};\n\n\n\n//# sourceURL=webpack:///./src/vue/bootstrap.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"bootstrapVue\", function() { return bootstrapVue; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _components_welcome_screen_welcome_screen__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/welcome-screen/welcome-screen */ \"./src/vue/components/welcome-screen/welcome-screen.js\");\n/* harmony import */ var _components_page_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/page/page */ \"./src/vue/components/page/page.js\");\n\n\n\n\nconst bootstrapVue = function (model) {\n    new vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n        el: '#app',\n        data: {\n            model: model\n        },\n        template: `\n            <div class=\"main\">\n                <page v-if=\"model.currentUser\" v-bind:model=\"model\"></page>\n                <welcome-screen v-bind:model=\"model\"></welcome-screen>\n            </div>\n        `\n    });\n};\n\n\n\n//# sourceURL=webpack:///./src/vue/bootstrap.js?");
+
+/***/ }),
+
+/***/ "./src/vue/components/page/page.js":
+/*!*****************************************!*\
+  !*** ./src/vue/components/page/page.js ***!
+  \*****************************************/
+/*! exports provided: pageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pageComponent\", function() { return pageComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _topbar_topbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./topbar/topbar */ \"./src/vue/components/page/topbar/topbar.js\");\n\n\n\nconst pageComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('page', {\n    data: function () {\n        return {\n            currentUser: null\n        };\n    },\n    methods: {},\n    props: ['model'],\n    template: `\n        <div class=\"content\">\n            <topbar v-bind:model=\"model\"></topbar>\n            <div class=\"content\">\n                This is the application\n            </div>\n        </div>\n        \n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/page/page.js?");
+
+/***/ }),
+
+/***/ "./src/vue/components/page/topbar/topbar.js":
+/*!**************************************************!*\
+  !*** ./src/vue/components/page/topbar/topbar.js ***!
+  \**************************************************/
+/*! exports provided: topbarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"topbarComponent\", function() { return topbarComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _shared_avatar_avatar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/avatar/avatar */ \"./src/vue/components/shared/avatar/avatar.js\");\n\n\n\nconst topbarComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('topbar', {\n    data: function () {\n        return {\n            currentUser: null\n        };\n    },\n    methods: {},\n    props: ['model'],\n    template: `\n        <div class=\"topbar\">\n            Welcome\n            <avatar v-bind:user=\"model.currentUser\"></avatar>\n        </div>\n        \n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/page/topbar/topbar.js?");
+
+/***/ }),
+
+/***/ "./src/vue/components/shared/avatar/avatar.js":
+/*!****************************************************!*\
+  !*** ./src/vue/components/shared/avatar/avatar.js ***!
+  \****************************************************/
+/*! exports provided: avatarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"avatarComponent\", function() { return avatarComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\n\nconst avatarComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('avatar', {\n    data: function () {\n        return {};\n    },\n    props: ['user'],\n    template: `\n        <div class=\"avatar\" v-bind:style=\"{ 'background-image': 'url(' + user.thumbnail + ')' }\"></div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/shared/avatar/avatar.js?");
 
 /***/ }),
 
@@ -939,7 +975,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"userComponent\", function() { return userComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\n\nconst userComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('user', {\n    data: function () {\n        return {};\n    },\n    props: ['user'],\n    template: `\n        <div class=\"user\">\n            <div class=\"avatar\" v-bind:style=\"{ 'background-image': 'url(' + user.thumbnail + ')' }\"></div>\n            {{user.getFullName()}}\n        </div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/welcome-screen/user/user.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"userComponent\", function() { return userComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _shared_avatar_avatar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/avatar/avatar */ \"./src/vue/components/shared/avatar/avatar.js\");\n\n\n\nconst userComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('user', {\n    data: function () {\n        return {};\n    },\n    props: ['user'],\n    template: `\n        <div class=\"user\">\n            <avatar v-bind:user=\"user\"></avatar>\n            {{user.getFullName()}}\n        </div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/welcome-screen/user/user.js?");
 
 /***/ }),
 

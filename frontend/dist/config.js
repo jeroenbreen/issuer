@@ -1,6 +1,6 @@
 const config = {
     backend: 'http://localhost:3000/',
-    framework: 'react'
+    framework: 'vue'
 };
 
 // this is used as a module by webpack.config,

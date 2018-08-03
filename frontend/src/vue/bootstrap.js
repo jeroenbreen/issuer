@@ -1,6 +1,6 @@
 import Vue from 'vue';
-
 import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
+import {pageComponent} from './components/page/page';
 
 
 const bootstrapVue = function(model) {
@@ -9,7 +9,12 @@ const bootstrapVue = function(model) {
         data: {
             model: model
         },
-        template: '<welcome-screen v-bind:model="model"></welcome-screen>'
+        template: `
+            <div class="main">
+                <page v-if="model.currentUser" v-bind:model="model"></page>
+                <welcome-screen v-bind:model="model"></welcome-screen>
+            </div>
+        `
     });
 };
 
