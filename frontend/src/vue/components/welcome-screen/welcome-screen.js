@@ -1,17 +1,18 @@
 import Vue from 'vue';
-import $ from 'jquery';
 import {userComponent} from './user/user';
 
+
 const welcomeScreenComponent = Vue.component('welcome-screen', {
-    data: function(){
-        return {
-            currentUser: null
-        };
-    },
     methods: {
-        selectUser: function(user) {
-            this.model.setCurrentUser(user);
-            $(this.$el).fadeOut(500);
+        setCurrentUser: function(user) {
+            this.$store.commit('users/setCurrentUser', user);
+        },
+        // todo user getters
+        getUsers: function() {
+            return this.$store.state.users.all;
+        },
+        getCurrentUser: function() {
+            return this.$store.state.users.currentUser;
         },
         getGreeting: function() {
             let date = new Date(),
@@ -26,16 +27,15 @@ const welcomeScreenComponent = Vue.component('welcome-screen', {
 
         }
     },
-    props: ['model'],
     template: `
         <div class="welcome-screen">
             <h3>{{getGreeting()}}</h3>
             <user 
-                v-for="user in model.users" 
-                v-on:click.native="selectUser(user)" 
+                v-for="user in getUsers()" 
+                v-on:click.native="setCurrentUser(user)" 
                 v-bind:key="user.id"
                 v-bind:user="user"
-                v-bind:class="{'user--current': (user === model.currentUser)}"></user>
+                v-bind:class="{'user--current': (user === getCurrentUser())}"></user>
         </div>
     `
 });

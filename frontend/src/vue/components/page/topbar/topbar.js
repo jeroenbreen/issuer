@@ -3,21 +3,17 @@ import {avatarComponent} from '../../shared/avatar/avatar';
 
 
 const topbarComponent = Vue.component('topbar', {
-    data: function(){
-        return {
-            currentUser: null
-        };
-    },
     methods: {
-
+        getCurrentUser() {
+            return this.$store.state.users.currentUser;
+        }
     },
     props: ['model'],
     template: `
         <div class="topbar">
             Welcome
-            <avatar v-bind:user="model.currentUser"></avatar>
+            <avatar v-bind:user="getCurrentUser()"></avatar>
         </div>
-        
     `
 });
 
