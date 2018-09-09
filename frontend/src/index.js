@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import {App} from "./models/App";
 
 
 import {bootstrapVue} from './vue/bootstrap';
@@ -12,15 +11,9 @@ $.ajax({
         'Accept': 'application/json'
     }
 }).done(function(response){
-    let model = new App();
-    window.app = model;
-    app.bootstrap(response);
-
-    console.log(window.app);
-
     switch (config.framework) {
         case 'vue':
-            bootstrapVue(model);
+            bootstrapVue(response);
             break;
         case 'react':
             bootstrapReact(model);

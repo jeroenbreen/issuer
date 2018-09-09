@@ -3,6 +3,7 @@ var router = express.Router();
 
 var company_id = 1;
 
+// TODO
 // https://stackoverflow.com/questions/43592826/how-to-return-multiple-mongodb-collections-in-one-app-get-request
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
 router.get('/', function(req, res) {
@@ -26,13 +27,7 @@ router.get('/', function(req, res) {
                 });
             });
         }
-
-
     });
-
-
-
-
 });
 
 module.exports = router;

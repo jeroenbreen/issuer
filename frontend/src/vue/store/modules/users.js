@@ -1,3 +1,5 @@
+import {User} from './../models/User';
+
 // initial state
 const state = {
     all: [],
@@ -12,18 +14,14 @@ const getters = {
 };
 
 // actions
-const actions = {
-    // getAllProducts ({ commit }) {
-    //     // api.getProducts(products => {
-    //     //     commit('setProducts', products)
-    //     // })
-    // }
-};
+const actions = {};
 
 // mutations
 const mutations = {
     init(state, users) {
-        state.all = users;
+        for (let user of users) {
+            state.all.push(new User(user));
+        }
     },
 
     setCurrentUser(state, currentUser) {

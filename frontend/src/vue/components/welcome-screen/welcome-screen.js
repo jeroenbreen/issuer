@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {userComponent} from './user/user';
+import {userComponent} from './../shared/user/user';
 
 
 const welcomeScreenComponent = Vue.component('welcome-screen', {

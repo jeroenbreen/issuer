@@ -831,31 +831,7 @@ eval("module.exports = function(originalModule) {\n\tif (!originalModule.webpack
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _models_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./models/App */ \"./src/models/App.js\");\n/* harmony import */ var _vue_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vue/bootstrap */ \"./src/vue/bootstrap.js\");\n/* harmony import */ var _react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./react/bootstrap */ \"./src/react/bootstrap.js\");\n/* harmony import */ var _react_bootstrap__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n\n\n\n\njquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({\n    'url' : (config.backend + 'bootstrap'),\n    'headers': {\n        'Accept': 'application/json'\n    }\n}).done(function(response){\n    let model = new _models_App__WEBPACK_IMPORTED_MODULE_1__[\"App\"]();\n    window.app = model;\n    app.bootstrap(response);\n\n    console.log(window.app);\n\n    switch (config.framework) {\n        case 'vue':\n            Object(_vue_bootstrap__WEBPACK_IMPORTED_MODULE_2__[\"bootstrapVue\"])(model);\n            break;\n        case 'react':\n            Object(_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__[\"bootstrapReact\"])(model);\n            break;\n    }\n});\n\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/models/App.js":
-/*!***************************!*\
-  !*** ./src/models/App.js ***!
-  \***************************/
-/*! exports provided: App */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"App\", function() { return App; });\n/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./User */ \"./src/models/User.js\");\n\n\nclass App {\n\n    constructor() {\n        this.users = [];\n        this.currentUser = null;\n    }\n\n    bootstrap(data) {\n        for (let  user of data.users) {\n            this.addUser(user);\n        }\n    }\n\n    addUser(user) {\n        this.users.push(\n            new _User__WEBPACK_IMPORTED_MODULE_0__[\"User\"](user)\n        );\n    }\n\n    setCurrentUser(user) {\n        this.currentUser = user;\n    }\n\n}\n\n\n\n//# sourceURL=webpack:///./src/models/App.js?");
-
-/***/ }),
-
-/***/ "./src/models/User.js":
-/*!****************************!*\
-  !*** ./src/models/User.js ***!
-  \****************************/
-/*! exports provided: User */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"User\", function() { return User; });\nclass User {\n\n    constructor(user) {\n        this.id = user.id;\n        this.firstName = user.firstName;\n        this.lastName = user.lastName;\n        this.thumbnail = user.thumbnail;\n    }\n\n    getFullName() {\n        return this.firstName + ' ' + this.lastName;\n    }\n\n}\n\n\n\n//# sourceURL=webpack:///./src/models/User.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _vue_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vue/bootstrap */ \"./src/vue/bootstrap.js\");\n/* harmony import */ var _react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./react/bootstrap */ \"./src/react/bootstrap.js\");\n/* harmony import */ var _react_bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n\n\n\njquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({\n    'url' : (config.backend + 'bootstrap'),\n    'headers': {\n        'Accept': 'application/json'\n    }\n}).done(function(response){\n    switch (config.framework) {\n        case 'vue':\n            Object(_vue_bootstrap__WEBPACK_IMPORTED_MODULE_1__[\"bootstrapVue\"])(response);\n            break;\n        case 'react':\n            Object(_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__[\"bootstrapReact\"])(model);\n            break;\n    }\n});\n\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -951,7 +927,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"bootstrapVue\", function() { return bootstrapVue; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ \"./node_modules/vue-router/dist/vue-router.esm.js\");\n/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ \"./src/vue/store/index.js\");\n/* harmony import */ var _components_topbar_topbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/topbar/topbar */ \"./src/vue/components/topbar/topbar.js\");\n/* harmony import */ var _components_menu_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/menu/menu */ \"./src/vue/components/menu/menu.js\");\n/* harmony import */ var _components_welcome_screen_welcome_screen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/welcome-screen/welcome-screen */ \"./src/vue/components/welcome-screen/welcome-screen.js\");\n/* harmony import */ var _components_pages_company_company__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/pages/company/company */ \"./src/vue/components/pages/company/company.js\");\n\n\n\n\n// components\n\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\n// routing\nconst routes = [{ path: '/company', component: _components_pages_company_company__WEBPACK_IMPORTED_MODULE_6__[\"companyComponent\"] }];\nconst router = new vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]({\n    routes\n});\n\nconst bootstrapVue = function (model) {\n\n    const store = _store__WEBPACK_IMPORTED_MODULE_2__[\"default\"];\n    _store__WEBPACK_IMPORTED_MODULE_2__[\"default\"].commit('users/init', model.users);\n\n    new vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n        el: '#app',\n        store,\n        router,\n        methods: {\n            hasCurrentUser() {\n                return store.state.users.currentUser !== null;\n            }\n        },\n        template: `\n            <div class=\"main\">\n                <div class=\"page\">\n                    <topbar></topbar>\n                    <div class=\"content\">\n                        <menubar></menubar>\n                          <router-view></router-view>\n                    </div>\n                </div>\n                \n                <welcome-screen v-if=\"!hasCurrentUser()\"></welcome-screen>\n            </div>\n        `\n    });\n};\n\n\n\n//# sourceURL=webpack:///./src/vue/bootstrap.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"bootstrapVue\", function() { return bootstrapVue; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ \"./node_modules/vue-router/dist/vue-router.esm.js\");\n/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ \"./src/vue/store/index.js\");\n/* harmony import */ var _components_topbar_topbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/topbar/topbar */ \"./src/vue/components/topbar/topbar.js\");\n/* harmony import */ var _components_menu_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/menu/menu */ \"./src/vue/components/menu/menu.js\");\n/* harmony import */ var _components_welcome_screen_welcome_screen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/welcome-screen/welcome-screen */ \"./src/vue/components/welcome-screen/welcome-screen.js\");\n/* harmony import */ var _components_pages_company_company__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/pages/company/company */ \"./src/vue/components/pages/company/company.js\");\n/* harmony import */ var _components_pages_employees_employees__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/pages/employees/employees */ \"./src/vue/components/pages/employees/employees.js\");\n\n\n\n\n// components\n\n\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\n// routing\nconst routes = [{ path: '/company', component: _components_pages_company_company__WEBPACK_IMPORTED_MODULE_6__[\"companyComponent\"] }, { path: '/employees', component: _components_pages_employees_employees__WEBPACK_IMPORTED_MODULE_7__[\"employeesComponent\"] }];\nconst router = new vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]({\n    routes\n});\n\nconst bootstrapVue = function (response) {\n\n    const store = _store__WEBPACK_IMPORTED_MODULE_2__[\"default\"];\n    _store__WEBPACK_IMPORTED_MODULE_2__[\"default\"].commit('users/init', response.users);\n    _store__WEBPACK_IMPORTED_MODULE_2__[\"default\"].commit('initCompany', response.company);\n\n    new vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n        el: '#app',\n        store,\n        router,\n        methods: {\n            hasCurrentUser() {\n                return store.state.users.currentUser !== null;\n            }\n        },\n        template: `\n            <div class=\"main\">\n                <div class=\"page\">\n                    <topbar></topbar>\n                    <div class=\"content\">\n                        <menubar></menubar>\n                        <router-view></router-view>\n                    </div>\n                </div>\n                \n                <welcome-screen v-if=\"!hasCurrentUser()\"></welcome-screen>\n            </div>\n        `\n    });\n};\n\n\n\n//# sourceURL=webpack:///./src/vue/bootstrap.js?");
 
 /***/ }),
 
@@ -963,7 +939,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"menuComponent\", function() { return menuComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\n\nconst menuComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('menubar', {\n    methods: {},\n    template: `\n        <div class=\"menu\">\n            <div class=\"menu__title\">\n                Menu\n            </div>\n            <div class=\"menu__index\">\n                <router-link to=\"/company\">Company</router-link>\n            </div>\n        </div>      \n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/menu/menu.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"menuComponent\", function() { return menuComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\n\nconst menuComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('menubar', {\n    methods: {},\n    template: `\n        <div class=\"menu\">\n            <div class=\"menu__title\">\n                Menu\n            </div>\n            <ul class=\"menu__index\">\n                <li>\n                    <router-link to=\"/company\">Company</router-link>\n                </li>\n                <li>\n                    <router-link to=\"/employees\">Employees</router-link>\n                </li>\n            </ul>\n        </div>      \n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/menu/menu.js?");
 
 /***/ }),
 
@@ -975,7 +951,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"companyComponent\", function() { return companyComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\n\nconst companyComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('company', {\n    methods: {},\n    template: `\n        <div class=\"page company-page\">\n            The company\n        </div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/pages/company/company.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"companyComponent\", function() { return companyComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\n\nconst companyComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('company', {\n    methods: {},\n    computed: {\n        company() {\n            return this.$store.state.company;\n        }\n    },\n    template: `\n        <div class=\"page company-page\">\n            <input v-model=\"company.name\"><br>\n            <input v-model=\"company.address\"><br>\n            <input v-model=\"company.postcode\"><br>\n            <input v-model=\"company.city\">\n        </div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/pages/company/company.js?");
+
+/***/ }),
+
+/***/ "./src/vue/components/pages/employees/employees.js":
+/*!*********************************************************!*\
+  !*** ./src/vue/components/pages/employees/employees.js ***!
+  \*********************************************************/
+/*! exports provided: employeesComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"employeesComponent\", function() { return employeesComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _shared_user_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../shared/user/user */ \"./src/vue/components/shared/user/user.js\");\n\n\n\nconst employeesComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('employees', {\n    methods: {\n        getUsers: function () {\n            return this.$store.state.users.all;\n        },\n        getCurrentUser: function () {\n            return this.$store.state.users.currentUser;\n        }\n    },\n    template: `\n        <div class=\"page page--employees\">\n            Employees\n            <user \n                v-for=\"user in getUsers()\" \n                v-bind:key=\"user.id\"\n                v-bind:user=\"user\"></user>\n        </div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/pages/employees/employees.js?");
 
 /***/ }),
 
@@ -991,6 +979,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./src/vue/components/shared/user/user.js":
+/*!************************************************!*\
+  !*** ./src/vue/components/shared/user/user.js ***!
+  \************************************************/
+/*! exports provided: userComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"userComponent\", function() { return userComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _shared_avatar_avatar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/avatar/avatar */ \"./src/vue/components/shared/avatar/avatar.js\");\n\n\n\nconst userComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('user', {\n    props: ['user'],\n    template: `\n        <div class=\"user\">\n            <avatar v-bind:user=\"user\"></avatar>\n            {{user.getFullName()}}\n        </div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/shared/user/user.js?");
+
+/***/ }),
+
 /***/ "./src/vue/components/topbar/topbar.js":
 /*!*********************************************!*\
   !*** ./src/vue/components/topbar/topbar.js ***!
@@ -1003,18 +1003,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ "./src/vue/components/welcome-screen/user/user.js":
-/*!********************************************************!*\
-  !*** ./src/vue/components/welcome-screen/user/user.js ***!
-  \********************************************************/
-/*! exports provided: userComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"userComponent\", function() { return userComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _shared_avatar_avatar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/avatar/avatar */ \"./src/vue/components/shared/avatar/avatar.js\");\n\n\n\nconst userComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('user', {\n    props: ['user'],\n    template: `\n        <div class=\"user\">\n            <avatar v-bind:user=\"user\"></avatar>\n            {{user.getFullName()}}\n        </div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/welcome-screen/user/user.js?");
-
-/***/ }),
-
 /***/ "./src/vue/components/welcome-screen/welcome-screen.js":
 /*!*************************************************************!*\
   !*** ./src/vue/components/welcome-screen/welcome-screen.js ***!
@@ -1023,7 +1011,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"welcomeScreenComponent\", function() { return welcomeScreenComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _user_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user/user */ \"./src/vue/components/welcome-screen/user/user.js\");\n\n\n\nconst welcomeScreenComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('welcome-screen', {\n    methods: {\n        setCurrentUser: function (user) {\n            this.$store.commit('users/setCurrentUser', user);\n        },\n        // todo user getters\n        getUsers: function () {\n            return this.$store.state.users.all;\n        },\n        getCurrentUser: function () {\n            return this.$store.state.users.currentUser;\n        },\n        getGreeting: function () {\n            let date = new Date(),\n                curHr = date.getHours();\n            if (curHr < 12) {\n                return 'Good morning';\n            } else if (curHr < 18) {\n                return 'Good afternoon';\n            } else {\n                return 'Good evening';\n            }\n        }\n    },\n    template: `\n        <div class=\"welcome-screen\">\n            <h3>{{getGreeting()}}</h3>\n            <user \n                v-for=\"user in getUsers()\" \n                v-on:click.native=\"setCurrentUser(user)\" \n                v-bind:key=\"user.id\"\n                v-bind:user=\"user\"\n                v-bind:class=\"{'user--current': (user === getCurrentUser())}\"></user>\n        </div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/welcome-screen/welcome-screen.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"welcomeScreenComponent\", function() { return welcomeScreenComponent; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _shared_user_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../shared/user/user */ \"./src/vue/components/shared/user/user.js\");\n\n\n\nconst welcomeScreenComponent = vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].component('welcome-screen', {\n    methods: {\n        setCurrentUser: function (user) {\n            this.$store.commit('users/setCurrentUser', user);\n        },\n        // todo user getters\n        getUsers: function () {\n            return this.$store.state.users.all;\n        },\n        getCurrentUser: function () {\n            return this.$store.state.users.currentUser;\n        },\n        getGreeting: function () {\n            let date = new Date(),\n                curHr = date.getHours();\n            if (curHr < 12) {\n                return 'Good morning';\n            } else if (curHr < 18) {\n                return 'Good afternoon';\n            } else {\n                return 'Good evening';\n            }\n        }\n    },\n    template: `\n        <div class=\"welcome-screen\">\n            <h3>{{getGreeting()}}</h3>\n            <user \n                v-for=\"user in getUsers()\" \n                v-on:click.native=\"setCurrentUser(user)\" \n                v-bind:key=\"user.id\"\n                v-bind:user=\"user\"\n                v-bind:class=\"{'user--current': (user === getCurrentUser())}\"></user>\n        </div>\n    `\n});\n\n\n\n//# sourceURL=webpack:///./src/vue/components/welcome-screen/welcome-screen.js?");
 
 /***/ }),
 
@@ -1035,7 +1023,31 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ \"./node_modules/vuex/dist/vuex.esm.js\");\n/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/users */ \"./src/vue/store/modules/users.js\");\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vuex__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__[\"default\"].Store({\n    modules: {\n        users: _modules_users__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n    },\n    strict: true\n}));\n\n//# sourceURL=webpack:///./src/vue/store/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ \"./node_modules/vuex/dist/vuex.esm.js\");\n/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/users */ \"./src/vue/store/modules/users.js\");\n/* harmony import */ var _models_Company__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./models/Company */ \"./src/vue/store/models/Company.js\");\n\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vuex__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\nconst state = {\n    company: null\n};\n\nconst mutations = {\n    initCompany(state, company) {\n        state.company = new _models_Company__WEBPACK_IMPORTED_MODULE_3__[\"Company\"](company);\n    }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__[\"default\"].Store({\n    company: null,\n    state,\n    mutations,\n    modules: {\n        users: _modules_users__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n    },\n    strict: true\n}));\n\n//# sourceURL=webpack:///./src/vue/store/index.js?");
+
+/***/ }),
+
+/***/ "./src/vue/store/models/Company.js":
+/*!*****************************************!*\
+  !*** ./src/vue/store/models/Company.js ***!
+  \*****************************************/
+/*! exports provided: Company */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Company\", function() { return Company; });\nclass Company {\n\n    constructor(company) {\n        this.id = company.id;\n        this.name = company.name;\n        this.address = company.address;\n        this.postcode = company.postcode;\n        this.city = company.city;\n        this.bank = company.bank;\n    }\n\n}\n\n\n\n//# sourceURL=webpack:///./src/vue/store/models/Company.js?");
+
+/***/ }),
+
+/***/ "./src/vue/store/models/User.js":
+/*!**************************************!*\
+  !*** ./src/vue/store/models/User.js ***!
+  \**************************************/
+/*! exports provided: User */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"User\", function() { return User; });\nclass User {\n\n    constructor(user) {\n        this.id = user.id;\n        this.firstName = user.firstName;\n        this.lastName = user.lastName;\n        this.thumbnail = user.thumbnail;\n    }\n\n    getFullName() {\n        return this.firstName + ' ' + this.lastName;\n    }\n\n}\n\n\n\n//# sourceURL=webpack:///./src/vue/store/models/User.js?");
 
 /***/ }),
 
@@ -1047,7 +1059,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue_
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// initial state\nconst state = {\n    all: [],\n    currentUser: null\n};\n\n// getters\nconst getters = {\n    getUsers(state) {\n        return state.all;\n    }\n};\n\n// actions\nconst actions = {\n    // getAllProducts ({ commit }) {\n    //     // api.getProducts(products => {\n    //     //     commit('setProducts', products)\n    //     // })\n    // }\n};\n\n// mutations\nconst mutations = {\n    init(state, users) {\n        state.all = users;\n    },\n\n    setCurrentUser(state, currentUser) {\n        state.currentUser = currentUser;\n    }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    namespaced: true,\n    state,\n    getters,\n    actions,\n    mutations\n});\n\n//# sourceURL=webpack:///./src/vue/store/modules/users.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../models/User */ \"./src/vue/store/models/User.js\");\n\n\n// initial state\nconst state = {\n    all: [],\n    currentUser: null\n};\n\n// getters\nconst getters = {\n    getUsers(state) {\n        return state.all;\n    }\n};\n\n// actions\nconst actions = {};\n\n// mutations\nconst mutations = {\n    init(state, users) {\n        for (let user of users) {\n            state.all.push(new _models_User__WEBPACK_IMPORTED_MODULE_0__[\"User\"](user));\n        }\n    },\n\n    setCurrentUser(state, currentUser) {\n        state.currentUser = currentUser;\n    }\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    namespaced: true,\n    state,\n    getters,\n    actions,\n    mutations\n});\n\n//# sourceURL=webpack:///./src/vue/store/modules/users.js?");
 
 /***/ })
 

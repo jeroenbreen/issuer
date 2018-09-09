@@ -7,21 +7,25 @@ import {topbarComponent} from './components/topbar/topbar';
 import {menuComponent} from './components/menu/menu';
 import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
 import {companyComponent} from './components/pages/company/company';
+import {employeesComponent} from './components/pages/employees/employees';
 
 Vue.use(VueRouter);
 
 // routing
 const routes = [
     { path: '/company', component: companyComponent },
+    { path: '/employees', component: employeesComponent }
 ];
 const router = new VueRouter({
     routes
 });
 
-const bootstrapVue = function(model) {
+const bootstrapVue = function(response) {
+
 
     const store = theStore;
-    theStore.commit('users/init', model.users);
+    theStore.commit('users/init', response.users);
+    theStore.commit('initCompany', response.company);
 
 
 
@@ -40,7 +44,7 @@ const bootstrapVue = function(model) {
                     <topbar></topbar>
                     <div class="content">
                         <menubar></menubar>
-                          <router-view></router-view>
+                        <router-view></router-view>
                     </div>
                 </div>
                 

@@ -10,9 +10,14 @@ const menuComponent = Vue.component('menubar', {
             <div class="menu__title">
                 Menu
             </div>
-            <div class="menu__index">
-                <router-link to="/company">Company</router-link>
-            </div>
+            <ul class="menu__index">
+                <li>
+                    <router-link to="/company">Company</router-link>
+                </li>
+                <li>
+                    <router-link to="/employees">Employees</router-link>
+                </li>
+            </ul>
         </div>      
     `
 });
