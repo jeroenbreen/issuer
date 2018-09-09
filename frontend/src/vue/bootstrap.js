@@ -1,9 +1,22 @@
 import Vue from 'vue';
+import VueRouter from 'vue-router'
 import theStore from './store'
+
+// components
+import {topbarComponent} from './components/topbar/topbar';
+import {menuComponent} from './components/menu/menu';
 import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
-import {pageComponent} from './components/page/page';
+import {companyComponent} from './components/pages/company/company';
 
+Vue.use(VueRouter);
 
+// routing
+const routes = [
+    { path: '/company', component: companyComponent },
+];
+const router = new VueRouter({
+    routes
+});
 
 const bootstrapVue = function(model) {
 
@@ -14,7 +27,8 @@ const bootstrapVue = function(model) {
 
     new Vue({
         el: '#app',
-        store: store,
+        store,
+        router,
         methods: {
             hasCurrentUser() {
                 return store.state.users.currentUser !== null;
@@ -22,7 +36,14 @@ const bootstrapVue = function(model) {
         },
         template: `
             <div class="main">
-                <page v-if="hasCurrentUser()"></page>
+                <div class="page">
+                    <topbar></topbar>
+                    <div class="content">
+                        <menubar></menubar>
+                          <router-view></router-view>
+                    </div>
+                </div>
+                
                 <welcome-screen v-if="!hasCurrentUser()"></welcome-screen>
             </div>
         `

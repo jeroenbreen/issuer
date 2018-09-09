@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {avatarComponent} from '../../shared/avatar/avatar';
+import {avatarComponent} from '../shared/avatar/avatar';
 
 
 const topbarComponent = Vue.component('topbar', {
@@ -12,7 +12,7 @@ const topbarComponent = Vue.component('topbar', {
     template: `
         <div class="topbar">
             Welcome
-            <avatar v-bind:user="getCurrentUser()"></avatar>
+            <avatar v-bind:user="getCurrentUser()" v-if="getCurrentUser()"></avatar>
         </div>
     `
 });

@@ -1,3 +1,5 @@
+@import 'less/mixins';
+
 * {
     box-sizing: border-box;
 }
@@ -7,16 +9,67 @@ body {
     font-family: 'open sans';
 
     .main {
-        position: fixed;
+        position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
         overflow: hidden;
+
+        .page {
+            width: 100%;
+            height: 100%;
+
+            .topbar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: @topbar-height;
+                border-bottom: 1px solid #ddd;
+                padding: @general-padding;
+
+                .avatar {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                }
+            }
+
+            .content {
+                position: absolute;
+                left: 0;
+                top: @topbar-height;
+                width: 100%;
+                height: ~'calc(100% - @{topbar-height})';
+
+                .menu {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: @menu-width;
+                    overflow: auto;
+                    border-right: @general-border;
+                    padding: @general-padding;
+                }
+
+                .page {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    height: 100%;
+                    width: ~'calc(100% - @{menu-width})';
+                    overflow: auto;
+                    padding: @general-padding;
+                }
+            }
+        }
     }
 }
 
-@import 'less/mixins';
 @import 'vue/components/shared/index';
 @import 'vue/components/welcome-screen/welcome-screen';
-@import 'vue/components/page/page';
+@import 'vue/components/topbar/topbar';
+@import 'vue/components/menu/menu';
+@import 'vue/components/pages/index';
