@@ -1,7 +1,7 @@
 class Company {
 
     constructor(company) {
-        this.id = company.id;
+        this._id = company._id;
         this.name = company.name;
         this.address = company.address;
         this.postcode = company.postcode;

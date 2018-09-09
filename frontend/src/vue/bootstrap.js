@@ -8,13 +8,15 @@ import {menuComponent} from './components/menu/menu';
 import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
 import {companyComponent} from './components/pages/company/company';
 import {employeesComponent} from './components/pages/employees/employees';
+import {newEmployeeComponent} from './components/pages/employees/new-employee/new-employee';
 
 Vue.use(VueRouter);
 
 // routing
 const routes = [
     { path: '/company', component: companyComponent },
-    { path: '/employees', component: employeesComponent }
+    { path: '/employees', component: employeesComponent },
+    { path: '/employees/new', component: newEmployeeComponent }
 ];
 const router = new VueRouter({
     routes

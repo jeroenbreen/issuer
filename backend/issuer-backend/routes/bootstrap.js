@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var company_id = 1;
+var company_id = '5b94e03979f9b308ffa9c60e';
 
 // TODO
 // https://stackoverflow.com/questions/43592826/how-to-return-multiple-mongodb-collections-in-one-app-get-request
@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
     var collectionUsers = db.get('users');
     var collectionProjects = db.get('projects');
 
-    collectionCompany.find({id: company_id},{},function(e,docs){
+    collectionCompany.find({_id: company_id},{},function(e,docs){
         if (docs.length > 0) {
             response.company = docs[0];
 
