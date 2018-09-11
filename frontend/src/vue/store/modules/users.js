@@ -9,23 +9,49 @@ const state = {
 const getters = {
     getUsers(state) {
         return state.all;
+    },
+    getUserById: (state) => (id) => {
+        return state.all.find(user => user._id === id);
     }
 };
 
 const actions = {
-    addUser(context, user) {
+    create(context, user) {
         delete user._id;
         $.ajax({
-            'url': (config.backend + 'users/add'),
+            'url': (config.backend + 'users'),
             'type': 'POST',
             'data': user,
             'headers': {
                 'Accept': 'application/json'
             }
         }).done(function(response){
-            console.log(response);
             user._id = response._id;
-            context.commit('addUser', user);
+            context.commit('create', user);
+        });
+    },
+    update(context, user) {
+        $.ajax({
+            'url': (config.backend + 'users/' + user._id),
+            'type': 'PUT',
+            'data': user,
+            'headers': {
+                'Accept': 'application/json'
+            }
+        }).done(function(response){
+            context.commit('update', user);
+        });
+    },
+    delete(context, user) {
+        $.ajax({
+            'url': (config.backend + 'users/' + user._id),
+            'type': 'DELETE',
+            'data': user,
+            'headers': {
+                'Accept': 'application/json'
+            }
+        }).done(function(response){
+            context.commit('delete', user);
         });
     }
 };
@@ -39,8 +65,28 @@ const mutations = {
     setCurrentUser(state, currentUser) {
         state.currentUser = currentUser;
     },
-    addUser(state, user) {
+
+    create(state, user) {
         state.all.push(user)
+    },
+    update(state, user) {
+        let newState = [];
+
+        for (let u of state.all) {
+            if (u._id === user._id) {
+                console.log("!");
+                newState.push(new User({...user}));
+            } else {
+                newState.push(u);
+            }
+        }
+        state.all = newState;
+    },
+    delete(state, user) {
+        let index = state.all.indexOf(user);
+        if (index > -1) {
+            state.all.splice(index, 1);
+        }
     }
 };
 

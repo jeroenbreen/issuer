@@ -8,7 +8,8 @@ import {menuComponent} from './components/menu/menu';
 import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
 import {companyComponent} from './components/pages/company/company';
 import {employeesComponent} from './components/pages/employees/employees';
-import {newEmployeeComponent} from './components/pages/employees/new-employee/new-employee';
+import {employeeCreateComponent} from './components/pages/employees/employee-create/employee-create';
+import {employeeUpdateComponent} from './components/pages/employees/employee-update/employee-update';
 
 Vue.use(VueRouter);
 
@@ -16,7 +17,8 @@ Vue.use(VueRouter);
 const routes = [
     { path: '/company', component: companyComponent },
     { path: '/employees', component: employeesComponent },
-    { path: '/employees/new', component: newEmployeeComponent }
+    { path: '/employees/new', component: employeeCreateComponent },
+    { path: '/employees/:id', component: employeeUpdateComponent }
 ];
 const router = new VueRouter({
     routes

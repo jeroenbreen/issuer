@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import {userComponent} from './../../shared/user/user';
+import {employeeCardComponent} from './employee-card/employee-card';
 
 
 const employeesComponent = Vue.component('employees', {
@@ -11,7 +12,7 @@ const employeesComponent = Vue.component('employees', {
             return this.$store.state.users.currentUser;
         },
         addUser: function() {
-            this.$router.push('employees/new')
+            this.$router.push('employees/new');
         }
     },
     template: `
@@ -19,10 +20,13 @@ const employeesComponent = Vue.component('employees', {
             <h1>
             Employees
             </h1>
-            <user 
-                v-for="user in getUsers()" 
-                v-bind:key="user.id"
-                v-bind:user="user"></user>
+            <div class="employee-cards">
+                <employee-card 
+                    v-for="user in getUsers()" 
+                    v-bind:key="user.id"
+                    v-bind:user="user"></employee-card>
+            </div>
+            
             <button v-on:click="addUser()">
                 Add employee
             </button>
