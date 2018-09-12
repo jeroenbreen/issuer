@@ -20,7 +20,10 @@ const employeeCreateComponent = Vue.component('new-employee', {
                 New Employee
             </h1>
             <employee-detail v-bind:user="user"></employee-detail>
-            <button v-on:click="createEmployee()">Add employee</button>
+            
+            <div class="iss-button" v-on:click="createEmployee()">
+                Create Employee
+            </div>
         </div>
     `
 });

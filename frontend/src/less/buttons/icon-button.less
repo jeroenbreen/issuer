@@ -1,0 +1,62 @@
+.icon-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 12px;
+
+    .icon-button__icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 14px;
+        color: #000;
+        margin-right: 4px;
+    }
+
+    .icon-button__label {
+        font-size: 9px;
+        color: #000;
+    }
+
+    &:hover {
+
+        .icon-button__icon {
+            background: #ddd;
+        }
+    }
+
+    &.icon-button--inverse {
+
+        .icon-button__icon {
+            color: #bbb;
+        }
+
+        .icon-button__label {
+            color: #aaa;
+        }
+
+        &:hover {
+
+            .icon-button__icon {
+                background: @blue-dark;
+            }
+        }
+    }
+
+    &.icon-button--big {
+
+        .icon-button__icon {
+            width: 42px;
+            height: 42px;
+            font-size: 21px;
+            margin-right: 6px;
+        }
+
+        .icon-button__label {
+            font-size: 13px;
+        }
+    }
+}

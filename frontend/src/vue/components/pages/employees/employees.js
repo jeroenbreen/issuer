@@ -11,7 +11,7 @@ const employeesComponent = Vue.component('employees', {
         getCurrentUser: function() {
             return this.$store.state.users.currentUser;
         },
-        addUser: function() {
+        createUser: function() {
             this.$router.push('employees/new');
         }
     },
@@ -27,9 +27,9 @@ const employeesComponent = Vue.component('employees', {
                     v-bind:user="user"></employee-card>
             </div>
             
-            <button v-on:click="addUser()">
-                Add employee
-            </button>
+            <div class="iss-button" v-on:click="createUser()">
+                Create Employee
+            </div>
         </div>
     `
 });

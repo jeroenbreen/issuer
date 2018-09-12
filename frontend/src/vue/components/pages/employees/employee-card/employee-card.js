@@ -1,6 +1,7 @@
 import Vue from 'vue';
 
 
+
 const employeeCardComponent = Vue.component('employee-card', {
     methods: {
         deleteUser: function() {
@@ -18,8 +19,22 @@ const employeeCardComponent = Vue.component('employee-card', {
                 {{user.getFullName()}}
             </div>
             <div class="employee-card__toolbar">
-                <button v-on:click="updateUser()">Update</button>
-                <button v-on:click="deleteUser()">Remove</button>
+                <div class="icon-button icon-button--inverse" v-on:click="updateUser()">
+                    <div class="icon-button__icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <div class="icon-button__label">
+                        Update
+                    </div>
+                </div>
+                <div class="icon-button icon-button--inverse" v-on:click="deleteUser()">
+                    <div class="icon-button__icon">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                    <div class="icon-button__label">
+                        Remove
+                    </div>
+                </div>
             </div>
         </div>
     `

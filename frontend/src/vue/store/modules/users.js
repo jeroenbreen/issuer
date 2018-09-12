@@ -71,10 +71,9 @@ const mutations = {
     },
     update(state, user) {
         let newState = [];
-
         for (let u of state.all) {
             if (u._id === user._id) {
-                console.log("!");
+                // the cloning is need otherwise we could be editing directly the state
                 newState.push(new User({...user}));
             } else {
                 newState.push(u);

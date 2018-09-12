@@ -32,7 +32,10 @@ const employeeUpdateComponent = Vue.component('new-employee', {
                 New Employee
             </h1>
             <employee-detail v-bind:user="user"></employee-detail>
-            <button v-on:click="updateEmployee()">Update employee</button>
+            
+            <div class="iss-button" v-on:click="updateEmployee()">
+                Update Employee
+            </div>
         </div>
     `
 });
