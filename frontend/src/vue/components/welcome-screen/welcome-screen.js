@@ -4,8 +4,8 @@ import {userComponent} from './../shared/user/user';
 
 const welcomeScreenComponent = Vue.component('welcome-screen', {
     methods: {
-        setCurrentUser: function(user) {
-            this.$store.commit('users/setCurrentUser', user);
+        setCurrent: function(user) {
+            this.$store.commit('users/setCurrent', user);
         },
         // todo user getters
         getUsers: function() {
@@ -32,7 +32,7 @@ const welcomeScreenComponent = Vue.component('welcome-screen', {
             <h3>{{getGreeting()}}</h3>
             <user 
                 v-for="user in getUsers()" 
-                v-on:click.native="setCurrentUser(user)" 
+                v-on:click.native="setCurrent(user)" 
                 v-bind:key="user.id"
                 v-bind:user="user"
                 v-bind:class="{'user--current': (user === getCurrentUser())}"></user>

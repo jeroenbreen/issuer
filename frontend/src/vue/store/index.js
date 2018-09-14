@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import users from './modules/users'
+import clients from './modules/clients'
 import {Company} from "./models/Company";
 
 Vue.use(Vuex);
@@ -16,11 +17,11 @@ const mutations = {
 };
 
 export default new Vuex.Store({
-    company: null,
     state,
     mutations,
     modules: {
-        users
+        users,
+        clients
     },
     strict: true
 })

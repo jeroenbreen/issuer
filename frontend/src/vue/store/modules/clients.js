@@ -1,8 +1,8 @@
-import {User} from './../models/User';
+import {Client} from './../models/Client';
 import _base from './_base';
 
-const route = 'users';
-const Model = User;
+const route = 'clients';
+const Model = Client;
 
 const state = {
     all: [],

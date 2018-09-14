@@ -1,17 +1,22 @@
 import Vue from 'vue';
-import {employeeDetailComponent} from './../employee-details/employee-details';
+import {employeeDetailsComponent} from './../employee-details/employee-details';
 import {User} from './../../../../store/models/User';
 
 
-const employeeCreateComponent = Vue.component('new-employee', {
+const employeeCreateComponent = Vue.component('employee-create', {
     data() {
         return {
             user: new User()
         }
     },
     methods: {
-        createEmployee: function() {
-            this.$store.dispatch('users/create', this.user);
+        create: function() {
+            this.$store.dispatch('users/create', this.user).then(() => {
+                this.$router.push({path: '/employees'});
+            });
+        },
+        back: function() {
+            this.$router.push('/employees');
         }
     },
     template: `
@@ -21,8 +26,11 @@ const employeeCreateComponent = Vue.component('new-employee', {
             </h1>
             <employee-detail v-bind:user="user"></employee-detail>
             
-            <div class="iss-button" v-on:click="createEmployee()">
+            <div class="iss-button" v-on:click="create()">
                 Create Employee
+            </div>
+            <div class="iss-button" v-on:click="back()">
+                Back
             </div>
         </div>
     `

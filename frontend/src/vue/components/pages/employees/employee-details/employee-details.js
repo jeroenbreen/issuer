@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 
-const employeeDetailComponent = Vue.component('employee-detail', {
+const employeeDetailsComponent = Vue.component('employee-detail', {
     props: ['user'],
     template: `
         <div class="employee-details">
@@ -10,10 +10,10 @@ const employeeDetailComponent = Vue.component('employee-detail', {
             <input v-model="user.initials" placeholder="Initials"><br>
             <input v-model="user.thumbnail" placeholder="Thumbnail"><br>
             <input v-model="user.email" placeholder="Email"><br>
-            <input v-model="user.ghithubId" placeholder="Github ID"><br><br>
+            <input v-model="user.githubId" placeholder="Github ID"><br><br>
         </div>
     `
 });
 
-export {employeeDetailComponent}
+export {employeeDetailsComponent}
 

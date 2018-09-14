@@ -1,11 +1,24 @@
 .menu {
 
-    .menu__title {
-        font-weight: 700;
-        margin-bottom: 6px;
-    }
-
     .menu__index {
+        padding: 0;
+        margin: 0;
+        border-bottom: 4px solid @grey-10;
 
+        li {
+            list-style: none;
+
+            a {
+                display: block;
+                padding: @general-padding;
+                border-bottom: @general-border;
+                text-decoration: none;
+                color: #000;
+
+                &:hover {
+                    background: @grey-10;
+                }
+            }
+        }
     }
 }

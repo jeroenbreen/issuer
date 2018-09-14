@@ -2,23 +2,27 @@ import Vue from 'vue';
 
 
 
-const employeeCardComponent = Vue.component('employee-card', {
+const clientCardComponent = Vue.component('client-card', {
     methods: {
         deleteItem: function() {
-            this.$store.dispatch('users/delete', this.user);
+            this.$store.dispatch('clients/delete', this.client);
         },
         update: function() {
-            this.$router.push('employees/' + this.user._id)
+            this.$router.push('clients/' + this.client._id)
         }
     },
-    props: ['user'],
+    props: ['client'],
     template: `
-        <div class="employee-card">
-            <avatar v-bind:user="user"></avatar>
-            <div class="employee-card__name">
-                {{user.getFullName()}}
+        <div class="client-card">
+            <div class="client-card__body">
+                <div class="client-card__number">
+                    {{client.getCustomCode()}}
+                </div>
+                <div class="client-card__name">
+                    {{client.companyName}}
+                </div>
             </div>
-            <div class="employee-card__toolbar">
+            <div class="client-card__toolbar">
                 <div class="icon-button icon-button--inverse" v-on:click="update()">
                     <div class="icon-button__icon">
                         <i class="fas fa-pencil-alt"></i>
@@ -40,5 +44,5 @@ const employeeCardComponent = Vue.component('employee-card', {
     `
 });
 
-export {employeeCardComponent}
+export {clientCardComponent}
 

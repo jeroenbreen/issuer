@@ -1,17 +1,16 @@
 import Vue from 'vue';
-import {userComponent} from './../../shared/user/user';
 import {employeeCardComponent} from './employee-card/employee-card';
 
 
 const employeesComponent = Vue.component('employees', {
     methods: {
-        getUsers: function(){
+        getAll: function(){
             return this.$store.state.users.all;
         },
-        getCurrentUser: function() {
+        getCurrent: function() {
             return this.$store.state.users.currentUser;
         },
-        createUser: function() {
+        create: function() {
             this.$router.push('employees/new');
         }
     },
@@ -22,12 +21,12 @@ const employeesComponent = Vue.component('employees', {
             </h1>
             <div class="employee-cards">
                 <employee-card 
-                    v-for="user in getUsers()" 
-                    v-bind:key="user.id"
+                    v-for="user in getAll()" 
+                    v-bind:key="user._id"
                     v-bind:user="user"></employee-card>
             </div>
             
-            <div class="iss-button" v-on:click="createUser()">
+            <div class="iss-button" v-on:click="create()">
                 Create Employee
             </div>
         </div>

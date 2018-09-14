@@ -1,16 +1,30 @@
-var express, router, ObjectId;
+let express, router, ObjectId, company_id;
 express = require('express');
 ObjectId = require('mongodb').ObjectId;
-router = express.Router();
 
-var company_id = '5b94e03979f9b308ffa9c60e';
+router = express.Router();
+company_id = ObjectId('5b94e03979f9b308ffa9c60e');
+
+
+class User {
+    constructor(user) {
+        this._id = user._id ? ObjectId(user._id) : ObjectId();
+        this.company_id = user.company_id ? ObjectId(user.company_id) : ObjectId();
+        this.firstName = String(user.firstName);
+        this.lastName = String(user.lastName);
+        this.initials = String(user.initials);
+        this.email = String(user.email);
+        this.githubId = String(user.githubId);
+        this.thumbnail = String(user.thumbnail);
+    }
+}
 
 
 router.get('/', function(req, res) {
-    var db, collection;
+    let db, collection;
     db = req.db;
     collection = db.get('users');
-    collection.find({},{},function(e,docs){
+    collection.find({}, {}, function(error, docs){
         res.json(docs);
     });
 });
@@ -18,13 +32,13 @@ router.get('/', function(req, res) {
 // https://dev.to/ichtrojan/basic-routing-http-requests-and-crud-operation-with-express-and-mongodb-od2
 
 router.post('/', function(req, res) {
-    var db, collection, user;
-    user = req.body;
+    let db, collection, user;
+    user = new User(req.body);
     user.company_id = company_id;
     db = req.db;
     collection = db.get('users');
     collection.insert(user, {}, function(error, docs){
-        if(error) {
+        if (error) {
             throw error;
         }
         res.send(docs);
@@ -32,27 +46,26 @@ router.post('/', function(req, res) {
 });
 
 router.put('/:id', function(req, res) {
-    var db, collection, user, id;
-    user = req.body;
-    user.company_id = company_id;
+    let db, collection, user, id;
+    user = new User(req.body);
     id = ObjectId(req.params.id);
     db = req.db;
     collection = db.get('users');
     collection.update(id, user, (error, docs) => {
-        if(error) {
+        if (error) {
             throw error;
         }
-        res.send(docs);
+        res.send(user);
     });
 });
 
 router.delete('/:id', function(req, res) {
-    var db, collection, id;
+    let db, collection, id;
     id = ObjectId(req.params.id);
     db = req.db;
     collection = db.get('users');
     collection.remove(id, (error, docs) => {
-        if(error) {
+        if (error) {
             throw error;
         }
         res.send('user deleted');
