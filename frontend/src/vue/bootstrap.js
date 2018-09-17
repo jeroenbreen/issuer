@@ -13,6 +13,10 @@ import {employeeUpdateComponent} from './components/pages/employees/employee-upd
 import {clientsComponent} from './components/pages/clients/clients';
 import {clientCreateComponent} from './components/pages/clients/client-create/client-create';
 import {clientUpdateComponent} from './components/pages/clients/client-update/client-update';
+import {projectsComponent} from './components/pages/projects/projects';
+import {projectCreateComponent} from './components/pages/projects/project-create/project-create';
+import {projectUpdateComponent} from './components/pages/projects/project-update/project-update';
+
 
 
 Vue.use(VueRouter);
@@ -26,7 +30,10 @@ const routes = [
     { path: '/employees/:id', component: employeeUpdateComponent },
     { path: '/clients', component: clientsComponent },
     { path: '/clients/new', component: clientCreateComponent },
-    { path: '/clients/:id', component: clientUpdateComponent }
+    { path: '/clients/:id', component: clientUpdateComponent },
+    { path: '/projects', component: projectsComponent },
+    { path: '/projects/new', component: projectCreateComponent },
+    { path: '/projects/:id', component: projectUpdateComponent }
 ];
 const router = new VueRouter({
     routes
@@ -39,6 +46,7 @@ const bootstrapVue = function(response) {
     theStore.commit('initCompany', response.company);
     theStore.commit('users/init', response.users);
     theStore.commit('clients/init', response.clients);
+    theStore.commit('projects/init', response.projects);
 
 
 
@@ -48,7 +56,7 @@ const bootstrapVue = function(response) {
         router,
         methods: {
             hasCurrentUser() {
-                return store.state.users.currentUser !== null;
+                return this.$store.state.users.current !== null;
             }
         },
         template: `

@@ -24,7 +24,7 @@ const menuComponent = Vue.component('menubar', {
                     <router-link to="/clients">Clients</router-link>
                 </li>
                  <li>
-                    <router-link to="/">Projects</router-link>
+                    <router-link to="/projects">Projects</router-link>
                 </li>
                  <li>
                     <router-link to="/">Documents</router-link>
@@ -35,6 +35,9 @@ const menuComponent = Vue.component('menubar', {
             </ul>
             
             <ul class="menu__index">
+                <li>
+                    <router-link to="/">Repositories</router-link>
+                </li>
                 <li>
                     <router-link to="/">Issues</router-link>
                 </li>

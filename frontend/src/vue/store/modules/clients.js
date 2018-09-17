@@ -1,5 +1,5 @@
 import {Client} from './../models/Client';
-import _base from './_base';
+import _base from './_base-module';
 
 const route = 'clients';
 const Model = Client;

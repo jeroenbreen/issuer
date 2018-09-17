@@ -1,0 +1,48 @@
+.project-card {
+    background: #fff;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px 0 rgba(0,0,0,.14), 0 1px 14px 0 rgba(0,0,0,.12);
+    width: 240px;
+    height: 96px;
+    margin: 0 16px 16px 0;
+    text-align: center;
+    position: relative;
+
+    .project-card__body {
+        display: flex;
+        height: 48px;
+
+        .project-card__number {
+            height: 100%;
+            width: 80px;
+            padding: @general-padding;
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .project-card__name {
+            height: 100%;
+            width: ~'calc(100% - 80px)';
+            padding: @general-padding;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+    }
+
+
+
+    .project-card__toolbar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 48px;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        background: #555;
+    }
+}

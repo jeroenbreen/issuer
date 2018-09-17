@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import users from './modules/users'
 import clients from './modules/clients'
+import projects from './modules/projects'
 import {Company} from "./models/Company";
 
 Vue.use(Vuex);
@@ -21,7 +22,8 @@ export default new Vuex.Store({
     mutations,
     modules: {
         users,
-        clients
+        clients,
+        projects
     },
     strict: true
 })

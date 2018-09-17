@@ -173,7 +173,8 @@ body .main .page .content .page h1 {
   text-decoration: none;
   color: #000;
 }
-.menu .menu__index li a:hover {
+.menu .menu__index li a:hover,
+.menu .menu__index li a.router-link-exact-active {
   background: #ddd;
 }
 .employee-card {

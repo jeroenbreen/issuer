@@ -1,23 +1,31 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
+let createError, express, path, cookieParser, logger, cors,
+    mongo, monk, db,
+    indexRouter, bootstrapRouter, usersRouter, clientsRouter, projectsRouter,
+    app;
+
+createError = require('http-errors');
+express = require('express');
+path = require('path');
+cookieParser = require('cookie-parser');
+logger = require('morgan');
+cors = require('cors');
 
 // Database
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/issuer');
+mongo = require('mongodb');
+monk = require('monk');
+db = monk('localhost:27017/issuer');
+
+// routers
+indexRouter = require('./routes/index');
+bootstrapRouter = require('./routes/bootstrap');
+usersRouter = require('./routes/users');
+clientsRouter = require('./routes/clients');
+projectsRouter = require('./routes/projects');
+
+app = express();
 
 
-var indexRouter = require('./routes/index');
-var bootstrapRouter = require('./routes/bootstrap');
-var usersRouter = require('./routes/users');
-var clientsRouter = require('./routes/clients');
 
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,6 +48,7 @@ app.use('/', indexRouter);
 app.use('/bootstrap', bootstrapRouter);
 app.use('/users', usersRouter);
 app.use('/clients', clientsRouter);
+app.use('/projects', projectsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

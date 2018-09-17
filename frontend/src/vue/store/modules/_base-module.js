@@ -36,7 +36,6 @@ const actions = {
                     'Accept': 'application/json'
                 }
             }).done(function(response){
-                console.log(response);
                 context.commit('update', response);
                 resolve();
             });

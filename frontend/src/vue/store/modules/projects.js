@@ -1,8 +1,8 @@
-import {User} from './../models/User';
+import {Project} from './../models/Project';
 import _base from './_base-module';
 
-const route = 'users';
-const Model = User;
+const route = 'projects';
+const Model = Project;
 
 const state = {
     all: [],
@@ -10,10 +10,7 @@ const state = {
 };
 
 const getters = {
-    ..._base.getters,
-    getCurrent(state) {
-        return state.current;
-    },
+    ..._base.getters
 };
 
 const actions = {
