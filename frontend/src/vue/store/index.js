@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import users from './modules/users'
 import clients from './modules/clients'
+import repositories from './modules/repositories'
 import projects from './modules/projects'
 import {Company} from "./models/Company";
 
@@ -23,7 +24,8 @@ export default new Vuex.Store({
     modules: {
         users,
         clients,
-        projects
+        projects,
+        repositories
     },
     strict: true
 })

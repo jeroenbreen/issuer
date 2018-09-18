@@ -6,7 +6,8 @@ class Project {
         this.projectId = project ? project.projectId : null;
         this.title = project ? project.title : '';
         this.status = project ? project.projectStatus : 0;
-        this.repository = project ? project.repository : '';
+        this.repository_id = project ? project.repository_id : 0;
+        this.milestone_id = project ? project.milestone_id : 0;
 
         this.currency = project ? project.currency : 'EUR';
         this.rate = project ? project.rate : 70;
@@ -19,6 +20,10 @@ class Project {
         this.invoices = [];
         this.comments = [];
         this.issues = [];
+    }
+
+    getBudget() {
+        return (this.rate * this.hours - this.discount) + ' ' +  this.currency;
     }
 }
 

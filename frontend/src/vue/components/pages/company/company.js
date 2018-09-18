@@ -14,7 +14,9 @@ const companyComponent = Vue.component('company', {
             <input v-model="company.name"><br>
             <input v-model="company.address"><br>
             <input v-model="company.postcode"><br>
-            <input v-model="company.city">
+            <input v-model="company.city"><br>
+            <input v-model="company.githubHandle"><br>
+            <input v-model="company.githubKey">
         </div>
     `
 });

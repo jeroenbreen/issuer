@@ -6,6 +6,9 @@ const getters = {
     },
     getItemById: (state) => (id) => {
         return state.all.find(item => item._id === id);
+    },
+    getItemByProperty: (state) => (property, value) => {
+    return state.all.find(item => item[property] === value);
     }
 };
 

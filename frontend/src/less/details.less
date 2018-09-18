@@ -1,0 +1,42 @@
+.details {
+
+    .details-section {
+        padding-bottom: 20px;
+        border-bottom: @general-border;
+        margin-bottom: 20px;
+
+        .details-section__header {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .details-section__content {
+
+            .details-row {
+                display: flex;
+                padding: @general-padding 0;
+                height: 40px;
+                align-items: center;
+
+                .details-label {
+                    width: 100px;
+                }
+
+                .details-content {
+                    width: ~'calc(100% - 100px)';
+                    display: flex;
+                    align-items: center;
+
+                    input {
+                        width: 100%;
+                        max-width: 300px;
+                    }
+
+                    input, select {
+                        margin-right: @general-padding;
+                    }
+                }
+            }
+        }
+    }
+}

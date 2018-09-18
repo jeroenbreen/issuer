@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource';
 import theStore from './store'
 
 // components
@@ -20,6 +21,7 @@ import {projectUpdateComponent} from './components/pages/projects/project-update
 
 
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
 // routing
 const routes = [
@@ -47,6 +49,7 @@ const bootstrapVue = function(response) {
     theStore.commit('users/init', response.users);
     theStore.commit('clients/init', response.clients);
     theStore.commit('projects/init', response.projects);
+    theStore.commit('repositories/init', response.repositories);
 
 
 
@@ -69,7 +72,7 @@ const bootstrapVue = function(response) {
                     </div>
                 </div>
                 
-                <welcome-screen v-if="!hasCurrentUser()"></welcome-screen>
+                <!--<welcome-screen v-if="!hasCurrentUser()"></welcome-screen>-->
             </div>
         `
     });

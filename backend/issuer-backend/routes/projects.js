@@ -12,7 +12,8 @@ class Project {
         this.projectId = project.projectId ? Number(project.projectId) : 0;
         this.title = String(project.title);
         this.status = Number(project.projectStatus);
-        this.repository = String(project.repository);
+        this.repository_id = Number(project.repository_id);
+        this.milestone_id = Number(project.milestone_id);
 
         this.currency = String(project.currency);
         this.rate = Number(project.rate);

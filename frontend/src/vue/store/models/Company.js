@@ -7,6 +7,8 @@ class Company {
         this.postcode = company.postcode;
         this.city = company.city;
         this.bank = company.bank;
+        this.githubHandle = company.githubHandle;
+        this.githubKey = company.githubKey;
     }
 
 }

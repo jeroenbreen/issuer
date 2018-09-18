@@ -28,6 +28,9 @@ const projectUpdateComponent = Vue.component('project-update', {
                 this.$router.push({path: '/projects'});
             });
         },
+        deleteItem: function() {
+            this.$store.dispatch('projects/delete', this.project);
+        },
         back: function() {
             this.$router.push('/projects');
         }
@@ -39,6 +42,11 @@ const projectUpdateComponent = Vue.component('project-update', {
             </h1>
             <project-detail v-bind:project="project"></project-detail>
             
+            
+            <div class="iss-button iss-button--alert" v-on:click="deleteItem()">
+                Delete Project
+            </div>
+            <hr>
             <div class="iss-button" v-on:click="update()">
                 Update Project
             </div>
