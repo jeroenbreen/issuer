@@ -7,7 +7,7 @@ class User {
         this.lastName = user ? user.lastName : '';
         this.initials = user ? user.initials : '';
         this.email = user ? user.email : '';
-        this.githubId = user ? user.githubId : '';
+        this.githubKey = user ? user.githubKey : '';
         this.thumbnail = user ? user.thumbnail : '';
     }
 

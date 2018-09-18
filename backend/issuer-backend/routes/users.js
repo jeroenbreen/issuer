@@ -14,7 +14,7 @@ class User {
         this.lastName = String(user.lastName);
         this.initials = String(user.initials);
         this.email = String(user.email);
-        this.githubId = String(user.githubId);
+        this.githubKey = String(user.githubKey);
         this.thumbnail = String(user.thumbnail);
     }
 }
