@@ -60,6 +60,7 @@ const actions = {
 
 const mutations = {
     init(state, set, Model) {
+        state.all = [];
         for (let item of set) {
             state.all.push(new Model(item));
         }

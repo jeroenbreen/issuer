@@ -1,3 +1,18 @@
+.issue-mini {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  margin: 0 4px 4px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 9px;
+  cursor: default;
+}
+.issue-mini.issue-mini--closed {
+  background: #ccc;
+}
 .details .details-section {
   padding-bottom: 20px;
   border-bottom: 1px solid #ddd;
@@ -10,7 +25,6 @@
 .details .details-section .details-section__content .details-row {
   display: flex;
   padding: 10px 0;
-  height: 40px;
   align-items: center;
 }
 .details .details-section .details-section__content .details-row .details-label {
@@ -19,6 +33,7 @@
 .details .details-section .details-section__content .details-row .details-content {
   width: calc(100% - 100px);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 .details .details-section .details-section__content .details-row .details-content input {
@@ -306,4 +321,37 @@ body .main .page .content .page h1 {
 }
 .project-cards {
   margin-bottom: 20px;
+}
+.issue-card {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+}
+.issue-card > * {
+  border-right: 1px solid #ddd;
+  padding: 10px;
+}
+.issue-card .issue-card__number {
+  width: 60px;
+  flex-grow: 0;
+}
+.issue-card .issue-card__title {
+  width: 200px;
+  overflow: hidden;
+  flex-grow: 10;
+}
+.issue-card .issue-card__repository {
+  width: 100px;
+  flex-grow: 10;
+}
+.issue-card .issue-card__milestone {
+  width: 100px;
+  flex-grow: 20;
+}
+.issue-card .issue-card__project {
+  width: 100px;
+  flex-grow: 20;
+}
+.issue-card .issue-card__assignees {
+  width: 100px;
+  flex-grow: 20;
 }

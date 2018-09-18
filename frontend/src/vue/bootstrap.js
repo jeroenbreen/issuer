@@ -17,6 +17,7 @@ import {clientUpdateComponent} from './components/pages/clients/client-update/cl
 import {projectsComponent} from './components/pages/projects/projects';
 import {projectCreateComponent} from './components/pages/projects/project-create/project-create';
 import {projectUpdateComponent} from './components/pages/projects/project-update/project-update';
+import {issuesComponent} from './components/pages/issues/issues';
 
 
 
@@ -35,7 +36,8 @@ const routes = [
     { path: '/clients/:id', component: clientUpdateComponent },
     { path: '/projects', component: projectsComponent },
     { path: '/projects/new', component: projectCreateComponent },
-    { path: '/projects/:id', component: projectUpdateComponent }
+    { path: '/projects/:id', component: projectUpdateComponent },
+    { path: '/issues', component: issuesComponent }
 ];
 const router = new VueRouter({
     routes
@@ -50,6 +52,9 @@ const bootstrapVue = function(response) {
     theStore.commit('clients/init', response.clients);
     theStore.commit('projects/init', response.projects);
     theStore.commit('repositories/init', response.repositories);
+
+    theStore.commit('users/setCurrent', theStore.state.users.all[0]);
+    theStore.dispatch('issues/read', theStore.state.users.current.githubKey);
 
 
 
@@ -72,7 +77,7 @@ const bootstrapVue = function(response) {
                     </div>
                 </div>
                 
-                <!--<welcome-screen v-if="!hasCurrentUser()"></welcome-screen>-->
+                <welcome-screen v-if="!hasCurrentUser()"></welcome-screen>
             </div>
         `
     });

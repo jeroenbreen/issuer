@@ -36,10 +36,7 @@ const menuComponent = Vue.component('menubar', {
             
             <ul class="menu__index">
                 <li>
-                    <router-link to="/">Repositories</router-link>
-                </li>
-                <li>
-                    <router-link to="/">Issues</router-link>
+                    <router-link to="/issues">Issues</router-link>
                 </li>
             </ul>
         </div>      

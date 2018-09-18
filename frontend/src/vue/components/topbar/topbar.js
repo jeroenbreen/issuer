@@ -5,7 +5,7 @@ import {avatarComponent} from '../shared/avatar/avatar';
 const topbarComponent = Vue.component('topbar', {
     methods: {
         getCurrentUser() {
-            return this.$store.state.users.currentUser;
+            return this.$store.state.users.current;
         }
     },
     props: ['model'],

@@ -15,7 +15,7 @@ const projectsComponent = Vue.component('projects', {
     template: `
         <div class="page page--projects">
             <h1>
-            Projects
+                Projects
             </h1>
             <div class="project-cards">
                 <project-card 

@@ -3,11 +3,13 @@ import Vue from 'vue';
 
 const projectDetailsComponent = Vue.component('project-detail', {
     created: function(){
-        this.onRepositoryChange();
+        this.updateMilestones();
     },
     data: function(){
         return {
-            milestones: []
+            milestones: [],
+            currentMilestone: null,
+            issues: []
         }
     },
     methods: {
@@ -17,26 +19,47 @@ const projectDetailsComponent = Vue.component('project-detail', {
         getUsers() {
             return this.$store.state.users.all;
         },
+        getRepository() {
+            const getItem = this.$store.getters['repositories/getItemByProperty'];
+            return getItem('id', this.project.repository_id);
+        },
         getRepositories() {
             return this.$store.state.repositories.all;
         },
         deleteRespository() {
             this.project.repository_id = 0;
-            this.onRepositoryChange();
+            this.updateMilestones();
         },
         deleteMilestone() {
             this.project.milestone_id = 0;
         },
-        onRepositoryChange() {
-            let self, getItem, repository, url;
-            self = this;
+        updateMilestones() {
+            let repository, url;
             if (this.project.repository_id !== 0) {
-                getItem = this.$store.getters['repositories/getItemByProperty'];
-                repository = getItem('id', this.project.repository_id);
+                repository = this.getRepository();
                 url = 'https://api.github.com/repos/' + this.$store.state.company.githubHandle + '/' + repository.name + '/milestones?access_token=' + this.$store.state.company.githubKey;
                 this.$http.get(url).then(response => {
-                    console.log(response);
                     this.milestones = response.body;
+                    this.setCurrentMilestone();
+                    this.updateIssues();
+                }, response => {
+                    // error
+                });
+            }
+        },
+        setCurrentMilestone() {
+            if (this.project.milestone_id !== 0) {
+                this.currentMilestone = this.milestones.find(item => item.id === this.project.milestone_id);
+                this.updateIssues();
+            }
+        },
+        updateIssues() {
+            if (this.project.milestone_id !== 0) {
+                let repository, url;
+                repository = this.getRepository();
+                url = 'https://api.github.com/repos/' + this.$store.state.company.githubHandle + '/' + repository.name + '/issues?per_page=500&milestone=' + this.currentMilestone.number + '&state=all&access_token=' + this.$store.state.company.githubKey;
+                this.$http.get(url).then(response => {
+                    this.issues = response.body;
                 }, response => {
                     // error
                 });
@@ -92,7 +115,7 @@ const projectDetailsComponent = Vue.component('project-detail', {
                             Repository
                         </div>
                         <div class="details-content">
-                           <select v-model="project.repository_id" v-on:change="onRepositoryChange()">
+                           <select v-model="project.repository_id" v-on:change="updateMilestones()">
                                 <option v-for="repository in getRepositories()" v-bind:value="repository.id">
                                     {{repository.name}}
                                 </option>
@@ -109,7 +132,7 @@ const projectDetailsComponent = Vue.component('project-detail', {
                             Milestone
                         </div>
                         <div class="details-content">
-                           <select v-model="project.milestone_id"">
+                           <select v-model="project.milestone_id"  v-on:change="setCurrentMilestone()">
                                 <option v-for="milestone in milestones" v-bind:value="milestone.id">
                                     {{milestone.title}}
                                 </option>
@@ -119,6 +142,21 @@ const projectDetailsComponent = Vue.component('project-detail', {
                                     <i class="fas fa-trash"></i>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="details-row" v-if="this.currentMilestone">
+                        <div class="details-label">
+                            Issues<br>
+                            {{this.currentMilestone.open_issues}} / {{this.currentMilestone.closed_issues + this.currentMilestone.open_issues}}
+                        </div>
+                        <div class="details-content">
+                            <div 
+                                v-for="issue in issues" 
+                                v-bind:class="{'issue-mini--closed': issue.state === 'closed'}"
+                                v-bind:title="issue.title"
+                                class="issue-mini">
+                                {{issue.number}}
+                           </div>
                         </div>
                     </div>
                 </div>

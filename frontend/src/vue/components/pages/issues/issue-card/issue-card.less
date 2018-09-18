@@ -1,0 +1,44 @@
+.issue-card {
+
+    border-bottom: @general-border;
+    display: flex;
+
+    > * {
+        border-right: @general-border;
+        padding: @general-padding;
+    }
+
+    .issue-card__number {
+        width: 60px;
+        flex-grow: 0;
+    }
+
+    .issue-card__title {
+        width: 200px;
+        overflow: hidden;
+        flex-grow: 10;
+    }
+
+    .issue-card__repository {
+        width: 100px;
+        flex-grow: 10;
+    }
+
+    .issue-card__milestone {
+        width: 100px;
+        flex-grow: 20;
+    }
+
+    .issue-card__project {
+        width: 100px;
+        flex-grow: 20;
+    }
+
+    .issue-card__assignees {
+        width: 100px;
+        flex-grow: 20;
+    }
+
+
+
+}
