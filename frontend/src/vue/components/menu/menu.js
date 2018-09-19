@@ -3,7 +3,9 @@ import Vue from 'vue';
 
 const menuComponent = Vue.component('menubar', {
     methods: {
-
+        getCurrentUser() {
+            return this.$store.state.users.current;
+        }
     },
     template: `
         <div class="menu">
@@ -36,7 +38,12 @@ const menuComponent = Vue.component('menubar', {
             
             <ul class="menu__index">
                 <li>
-                    <router-link to="/issues">Issues</router-link>
+                    <router-link to="/issues">
+                        Issues 
+                        <avatar 
+                            v-bind:user="getCurrentUser()" 
+                            v-bind:size="24"></avatar>
+                    </router-link>
                 </li>
             </ul>
         </div>      

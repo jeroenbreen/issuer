@@ -7,6 +7,8 @@ class Issue {
         this.assignees = [...issue.assignees];
         this.repository = {...issue.repository};
         this.milestone = {...issue.milestone};
+        this.updatedAt = new Date(issue.updated_at);
+        this.createdBy = issue.user.login;
     }
 }
 

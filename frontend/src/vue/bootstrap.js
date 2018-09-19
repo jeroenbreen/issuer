@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource';
 import theStore from './store'
 
+// filters
+import {standardDateFilter} from './filters/standard-date-filter';
+
 // components
 import {topbarComponent} from './components/topbar/topbar';
 import {menuComponent} from './components/menu/menu';

@@ -1,9 +1,9 @@
 import Vue from 'vue';
 
 const avatarComponent = Vue.component('avatar', {
-    props: ['user'],
+    props: ['user', 'size'],
     template: `
-        <div class="avatar" v-bind:style="{ 'background-image': 'url(' + user.thumbnail + ')' }"></div>
+        <div class="avatar" v-bind:style="{ 'background-image': 'url(' + user.thumbnail + ')', 'width': size + 'px', 'height': size + 'px' }"></div>
     `
 });
 

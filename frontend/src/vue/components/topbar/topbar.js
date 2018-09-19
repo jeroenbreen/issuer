@@ -12,7 +12,10 @@ const topbarComponent = Vue.component('topbar', {
     template: `
         <div class="topbar">
             Welcome
-            <avatar v-bind:user="getCurrentUser()" v-if="getCurrentUser()"></avatar>
+            <avatar 
+                v-bind:user="getCurrentUser()" 
+                v-bind:size="48" 
+                v-if="getCurrentUser()"></avatar>
         </div>
     `
 });

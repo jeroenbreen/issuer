@@ -7,11 +7,35 @@ const Model = Issue;
 
 const state = {
     all: [],
-    current: null
+    current: null,
+    filter: {
+        project_id: 0
+    }
 };
 
 const getters = {
-    ..._base.getters
+    ..._base.getters,
+    getFiltered(state, getters, rootState) {
+        function matchesProject(issue) {
+            if (state.filter.project_id === 0) {
+                return true;
+            } else {
+                let projectsWithThisRepo, match;
+                projectsWithThisRepo = rootState.projects.all.filter(function(project){
+                    return project.repository_id === issue.repository.id;
+                });
+                match = projectsWithThisRepo.find(function(project){
+                    return project._id === state.filter.project_id &&
+                        (project.milestone_id === 0 || project.milestone_id === issue.milestone.id);
+                });
+                return match;
+            }
+        }
+
+        return state.all.filter(function(issue) {
+            return matchesProject(issue);
+        }).sort((a, b) => b.updatedAt - a.updatedAt);
+    }
 };
 
 const actions = {
@@ -53,6 +77,9 @@ const mutations = {
     },
     delete(state, item) {
         return _base.mutations.delete(state, item)
+    },
+    updateFilter(state, filter) {
+        state.filter = {...filter};
     }
 };
 

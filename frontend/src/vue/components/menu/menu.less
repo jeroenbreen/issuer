@@ -9,11 +9,17 @@
             list-style: none;
 
             a {
-                display: block;
+                display: flex;
+                align-items: center;
                 padding: @general-padding;
                 border-bottom: @general-border;
                 text-decoration: none;
                 color: #000;
+
+                .avatar {
+                    margin-left: 8px;
+                }
+
 
                 &:hover,
                 &.router-link-exact-active {
