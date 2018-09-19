@@ -14,16 +14,14 @@ const clientCardComponent = Vue.component('client-card', {
     props: ['client'],
     template: `
         <div class="client-card">
-            <div class="client-card__body">
-                <div class="client-card__number">
+            <div class="client-card__number">
                     {{client.getCustomCode()}}
                 </div>
                 <div class="client-card__name">
                     {{client.companyName}}
                 </div>
-            </div>
             <div class="client-card__toolbar">
-                <div class="icon-button icon-button--inverse" v-on:click="update()">
+                <div class="icon-button" v-on:click="update()">
                     <div class="icon-button__icon">
                         <i class="fas fa-pencil-alt"></i>
                     </div>
@@ -31,7 +29,7 @@ const clientCardComponent = Vue.component('client-card', {
                         Update
                     </div>
                 </div>
-                <div class="icon-button icon-button--inverse" v-on:click="deleteItem()">
+                <div class="icon-button" v-on:click="deleteItem()">
                     <div class="icon-button__icon">
                         <i class="fas fa-trash"></i>
                     </div>

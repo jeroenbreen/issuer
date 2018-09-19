@@ -276,50 +276,38 @@ body .main .page .content .page h1 {
   margin-bottom: 20px;
 }
 .client-card {
-  background: #fff;
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
-  width: 240px;
-  height: 96px;
-  margin: 0 16px 16px 0;
-  text-align: center;
-  position: relative;
-}
-.client-card .client-card__body {
   display: flex;
-  height: 48px;
+  border-bottom: 1px solid #ddd;
+  height: 40px;
 }
-.client-card .client-card__body .client-card__number {
-  height: 100%;
-  width: 80px;
+.client-card:first-child {
+  border-top: 1px solid #ddd;
+}
+.client-card > * {
+  border-right: 1px solid #ddd;
   padding: 10px;
-  background: #000;
-  color: #fff;
+  height: 100%;
   display: flex;
-  justify-content: space-around;
   align-items: center;
 }
-.client-card .client-card__body .client-card__name {
-  height: 100%;
-  width: calc(100% - 80px);
-  padding: 10px;
-  display: flex;
+.client-card > *:first-child {
+  border-left: 1px solid #ddd;
+}
+.client-card .client-card__number {
+  width: 50px;
+  flex-grow: 0;
   justify-content: space-around;
-  align-items: center;
+}
+.client-card .client-card__name {
+  width: 100px;
+  flex-grow: 20;
+  display: flex;
 }
 .client-card .client-card__toolbar {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 48px;
-  padding: 0 12px;
-  display: flex;
-  align-items: center;
-  background: #555;
+  width: 100px;
+  flex-grow: 1;
 }
 .client-cards {
-  display: flex;
-  flex-wrap: wrap;
   margin-bottom: 20px;
 }
 .project-card {
