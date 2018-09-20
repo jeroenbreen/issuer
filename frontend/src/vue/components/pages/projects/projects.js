@@ -13,7 +13,7 @@ const projectsComponent = Vue.component('projects', {
         }
     },
     template: `
-        <div class="page page--projects">
+        <div class="page page--projects" v-scrim>
             <h1>
                 Projects
             </h1>

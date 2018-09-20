@@ -36,7 +36,7 @@ const projectUpdateComponent = Vue.component('project-update', {
         }
     },
     template: `
-        <div class="page page--project-update">
+        <div class="page page--project-update" v-scrim>
             <h1>
                 {{currentProject.title}}
             </h1>
