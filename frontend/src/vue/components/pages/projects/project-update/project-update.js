@@ -29,7 +29,7 @@ const projectUpdateComponent = Vue.component('project-update', {
             });
         },
         deleteItem: function() {
-            this.$store.dispatch('projects/delete', this.project);
+            this.$store.dispatch('projects/delete', this.currentProject);
         },
         back: function() {
             this.$router.push('/projects');

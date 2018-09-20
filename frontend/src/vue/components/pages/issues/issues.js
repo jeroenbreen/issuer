@@ -11,7 +11,7 @@ const issuesComponent = Vue.component('issues', {
         }
     },
     template: `
-        <div class="page page--issues">
+        <div class="page page--issues" v-scrim>
             <h1>
                 Issues
             </h1>
@@ -48,7 +48,7 @@ const issuesComponent = Vue.component('issues', {
                     </div>
                     
                 </div>
-                <div class="issue-cards">
+                <div class="issue-cards__body issue-cards">
                     <issue-card 
                         v-for="issue in getFiltered()" 
                         v-bind:key="issue.id"

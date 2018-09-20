@@ -6,11 +6,15 @@ import theStore from './store'
 // filters
 import {standardDateFilter} from './filters/standard-date-filter';
 
+// directives
+import {scrimDirective} from './directives/scrim'
+
 // components
 import {topbarComponent} from './components/topbar/topbar';
 import {menuComponent} from './components/menu/menu';
 import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
 import {companyComponent} from './components/pages/company/company';
+import {settingsComponent} from './components/pages/settings/settings';
 import {employeesComponent} from './components/pages/employees/employees';
 import {employeeCreateComponent} from './components/pages/employees/employee-create/employee-create';
 import {employeeUpdateComponent} from './components/pages/employees/employee-update/employee-update';
@@ -31,6 +35,7 @@ Vue.use(VueResource);
 const routes = [
     { path: '/', component: companyComponent },
     { path: '/company', component: companyComponent },
+    { path: '/settings', component: settingsComponent },
     { path: '/employees', component: employeesComponent },
     { path: '/employees/new', component: employeeCreateComponent },
     { path: '/employees/:id', component: employeeUpdateComponent },
@@ -72,12 +77,10 @@ const bootstrapVue = function(response) {
         },
         template: `
             <div class="main">
-                <div class="page">
-                    <topbar></topbar>
-                    <div class="content">
-                        <menubar></menubar>
-                        <router-view></router-view>
-                    </div>
+                <topbar></topbar>
+                <div class="content">
+                    <menubar></menubar>
+                    <router-view></router-view>
                 </div>
                 
                 <welcome-screen v-if="!hasCurrentUser()"></welcome-screen>

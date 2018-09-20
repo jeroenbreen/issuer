@@ -45,16 +45,19 @@ const actions = {
         })
     },
     delete(context, item, route) {
-        $.ajax({
-            'url': (config.backend + route + '/' + item._id),
-            'type': 'DELETE',
-            'data': item,
-            'headers': {
-                'Accept': 'application/json'
-            }
-        }).done(function(response){
-            context.commit('delete', item);
-        });
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                'url': (config.backend + route + '/' + item._id),
+                'type': 'DELETE',
+                'data': item,
+                'headers': {
+                    'Accept': 'application/json'
+                }
+            }).done(function(response){
+                context.commit('delete', item);
+                resolve();
+            });
+        })
     }
 };
 

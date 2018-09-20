@@ -28,6 +28,11 @@ const clientUpdateComponent = Vue.component('client-update', {
                 this.$router.push({path: '/clients'});
             });
         },
+        deleteItem: function() {
+            this.$store.dispatch('clients/delete', this.currentClient).then(() => {
+                this.$router.push({path: '/clients'});
+            });
+        },
         back: function() {
             this.$router.push('/clients');
         }
@@ -38,6 +43,13 @@ const clientUpdateComponent = Vue.component('client-update', {
                 {{currentClient.getFullLabel()}}
             </h1>
             <client-detail v-bind:client="client"></client-detail>
+            
+            <div class="iss-button iss-button--alert" v-on:click="deleteItem()">
+                Remove Client
+            </div>
+            
+            <hr>
+          
             
             <div class="iss-button" v-on:click="update()">
                 Update Client

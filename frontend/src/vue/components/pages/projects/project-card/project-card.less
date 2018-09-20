@@ -1,7 +1,13 @@
 .project-card {
     border-bottom: @general-border;
+    border-left: @general-border;
+    border-right: @general-border;
     padding: @general-padding;
     cursor: pointer;
+
+    &:first-child {
+        border-top: @general-border;
+    }
 
     &:hover {
         background: @grey-10;

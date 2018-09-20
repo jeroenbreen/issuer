@@ -2,6 +2,11 @@
     display: flex;
     border-bottom: @general-border;
     height: 40px;
+    cursor: pointer;
+
+    &:hover {
+        background: @grey-10;
+    }
 
     &:first-child {
         border-top: @general-border;
@@ -30,12 +35,5 @@
         flex-grow: 20;
         display: flex;
 
-    }
-
-
-
-    .client-card__toolbar {
-        width: 100px;
-        flex-grow: 1;
     }
 }
