@@ -1,5 +1,5 @@
 import Vue from 'vue';
-
+import {Document} from './../../../../store/models/Document';
 
 const projectDetailsComponent = Vue.component('project-detail', {
     created: function(){
@@ -64,152 +64,188 @@ const projectDetailsComponent = Vue.component('project-detail', {
                     // error
                 });
             }
+        },
+        addInvoice() {
+            this.$store.commit('documents/setCurrent', new Document());
         }
     },
     props: ['project'],
     template: `
         <div class="details">
-            <div class="details-section">
-                <div class="details-section__content">
-                    <div class="details-row">
-                        <div class="details-label">
-                            Title
-                        </div>
-                        <div class="details-content">
-                            <input v-model="project.title" placeholder="Title">
+    <div class="details-section">
+        <div class="details-section__content">
+            <div class="details-row">
+                <div class="details-label">
+                    Title
+                </div>
+                <div class="details-content">
+                    <input v-model="project.title" placeholder="Title">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="details-section">
+        <div class="details-section__header">
+            Relations
+        </div>
+        <div class="details-section__content">
+            <div class="details-row">
+                <div class="details-label">
+                    Client
+                </div>
+                <div class="details-content">
+                    <select v-model="project.client_id">
+                        <option v-for="client in getClients()"
+                                v-bind:value="client._id">
+                            {{client.companyName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">
+                    Employee
+                </div>
+                <div class="details-content">
+                    <select v-model="project.user_id">
+                        <option v-for="user in getUsers()"
+                                v-bind:value="user._id">
+                            {{user.getFullName()}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">
+                    Repository
+                </div>
+                <div class="details-content">
+                    <select v-model="project.repository_id"
+                            v-on:change="updateMilestones()">
+                        <option v-for="repository in getRepositories()"
+                                v-bind:value="repository.id">
+                            {{repository.name}}
+                        </option>
+                    </select>
+                    <div class="icon-button" v-on:click="deleteRespository()">
+                        <div class="icon-button__icon">
+                            <i class="fas fa-trash"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="details-section">
-                <div class="details-section__header">
-                    Relations
+            <div class="details-row">
+                <div class="details-label">
+                    Milestone
                 </div>
-                <div class="details-section__content">
-                    <div class="details-row">
-                        <div class="details-label">
-                            Client
-                        </div>
-                        <div class="details-content">
-                            <select v-model="project.client_id">
-                                <option v-for="client in getClients()" v-bind:value="client._id">
-                                    {{client.companyName}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="details-row">
-                        <div class="details-label">
-                            Employee
-                        </div>
-                        <div class="details-content">
-                            <select v-model="project.user_id">
-                                <option v-for="user in getUsers()" v-bind:value="user._id">
-                                    {{user.getFullName()}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="details-row">
-                        <div class="details-label">
-                            Repository
-                        </div>
-                        <div class="details-content">
-                           <select v-model="project.repository_id" v-on:change="updateMilestones()">
-                                <option v-for="repository in getRepositories()" v-bind:value="repository.id">
-                                    {{repository.name}}
-                                </option>
-                            </select>
-                            <div class="icon-button" v-on:click="deleteRespository()">
-                                <div class="icon-button__icon">
-                                    <i class="fas fa-trash"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="details-row">
-                        <div class="details-label">
-                            Milestone
-                        </div>
-                        <div class="details-content">
-                           <select v-model="project.milestone_id"  v-on:change="setCurrentMilestone()">
-                                <option v-for="milestone in milestones" v-bind:value="milestone.id">
-                                    {{milestone.title}}
-                                </option>
-                            </select>
-                            <div class="icon-button" v-on:click="deleteMilestone()">
-                                <div class="icon-button__icon">
-                                    <i class="fas fa-trash"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="details-row" v-if="this.currentMilestone">
-                        <div class="details-label">
-                            Issues<br>
-                            {{this.currentMilestone.open_issues}} / {{this.currentMilestone.closed_issues + this.currentMilestone.open_issues}}
-                        </div>
-                        <div class="details-content">
-                            <div 
-                                v-for="issue in issues" 
-                                v-bind:class="{'issue-mini--closed': issue.state === 'closed'}"
-                                v-bind:title="issue.title"
-                                class="issue-mini">
-                                {{issue.number}}
-                           </div>
+                <div class="details-content">
+                    <select v-model="project.milestone_id"
+                            v-on:change="setCurrentMilestone()">
+                        <option v-for="milestone in milestones"
+                                v-bind:value="milestone.id">
+                            {{milestone.title}}
+                        </option>
+                    </select>
+                    <div class="icon-button" v-on:click="deleteMilestone()">
+                        <div class="icon-button__icon">
+                            <i class="fas fa-trash"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="details-section">
-                <div class="details-section__header">
-                    Financial
+            <div class="details-row" v-if="this.currentMilestone">
+                <div class="details-label">
+                    Issues<br>
+                    {{this.currentMilestone.open_issues}} /
+                    {{this.currentMilestone.closed_issues +
+                    this.currentMilestone.open_issues}}
                 </div>
-                <div class="details-section__content">
-                    <div class="details-row">
-                            <div class="details-label">
-                                Currency
-                            </div>
-                            <div class="details-content">
-                                <input v-model="project.currency" placeholder="Currency">
-                            </div>
+                <div class="details-content">
+                    <div
+                            v-for="issue in issues"
+                            v-bind:class="{'issue-mini--closed': issue.state === 'closed'}"
+                            v-bind:title="issue.title"
+                            class="issue-mini">
+                        {{issue.number}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="details-section">
+        <div class="details-section__header">
+            Financial
+        </div>
+        <div class="details-section__content">
+            <div class="details-row">
+                <div class="details-label">
+                    Currency
+                </div>
+                <div class="details-content">
+                    <input v-model="project.currency" placeholder="Currency">
+                </div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">
+                    Rate
+                </div>
+                <div class="details-content">
+                    <input v-model.number="project.rate" placeholder="Rate"
+                           type="number">
+                </div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">
+                    Hours
+                </div>
+                <div class="details-content">
+                    <input v-model.number="project.hours" placeholder="Hours"
+                           type="number">
+                </div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">
+                    Discount
+                </div>
+                <div class="details-content">
+                    <input v-model.number="project.discount"
+                           placeholder="Discount" type="number">
+                </div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">
+                    Budget
+                </div>
+                <div class="details-content">
+                    {{project.getBudget()}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="details-section">
+        <div class="details-section__header">
+            Documents
+        </div>
+        <div class="details-section__content">
+            <div class="details-row">
+                <div class="details-label">
+                    Invoices
+                </div>
+                <div class="details-content">
+                    <div class="icon-button" v-on:click="addInvoice()">
+                        <div class="icon-button__icon">
+                            <i class="fas fa-plus"></i>
                         </div>
-                        <div class="details-row">
-                            <div class="details-label">
-                                Rate
-                            </div>
-                            <div class="details-content">
-                                <input v-model.number="project.rate" placeholder="Rate" type="number">
-                            </div>
-                        </div>
-                        <div class="details-row">
-                            <div class="details-label">
-                                Hours
-                            </div>
-                            <div class="details-content">
-                                <input v-model.number="project.hours" placeholder="Hours" type="number">
-                            </div>
-                        </div>
-                        <div class="details-row">
-                            <div class="details-label">
-                                Discount
-                            </div>
-                            <div class="details-content">
-                                <input v-model.number="project.discount" placeholder="Discount" type="number">
-                            </div>
-                        </div>
-                        <div class="details-row">
-                            <div class="details-label">
-                                Budget
-                            </div>
-                            <div class="details-content">
-                                {{project.getBudget()}}
-                            </div>
+                        <div class="icon-button__label">
+                            Add Invoice
                         </div>
                     </div>
                 </div>
             </div>
-        </div>     
+        </div>
+    </div>
+</div>
+   
     `
 });
 

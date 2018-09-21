@@ -13,6 +13,7 @@ import {scrimDirective} from './directives/scrim'
 import {topbarComponent} from './components/topbar/topbar';
 import {menuComponent} from './components/menu/menu';
 import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
+import {documentComponent} from './components/document/document';
 import {companyComponent} from './components/pages/company/company';
 import {settingsComponent} from './components/pages/settings/settings';
 import {employeesComponent} from './components/pages/employees/employees';
@@ -26,7 +27,7 @@ import {projectCreateComponent} from './components/pages/projects/project-create
 import {projectUpdateComponent} from './components/pages/projects/project-update/project-update';
 import {issuesComponent} from './components/pages/issues/issues';
 
-
+import {Document} from './store/models/Document'
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -65,6 +66,21 @@ const bootstrapVue = function(response) {
     theStore.dispatch('issues/read', theStore.state.users.current.githubKey);
 
 
+    const document = {
+        type: 'invoice',
+        date: new Date(),
+
+        userName: theStore.state.users.current.getFullName(),
+        clientCompanyName: theStore.state.clients.all[0].companyName,
+        clientContactName: theStore.state.clients.all[0].contactFirstName + theStore.state.clients.all[0].contactLastName,
+        clientStreet: theStore.state.clients.all[0].street,
+        clientPostcode: theStore.state.clients.all[0].postcode,
+        clientCity: theStore.state.clients.all[0].city
+    };
+    console.log(document);
+    theStore.commit('documents/setCurrent', new Document(document));
+
+
 
     new Vue({
         el: '#app',
@@ -73,6 +89,9 @@ const bootstrapVue = function(response) {
         methods: {
             hasCurrentUser() {
                 return this.$store.state.users.current !== null;
+            },
+            hasDocument() {
+                return this.$store.state.documents.current !== null;
             }
         },
         template: `
@@ -82,6 +101,8 @@ const bootstrapVue = function(response) {
                     <menubar></menubar>
                     <router-view></router-view>
                 </div>
+                
+                <document v-if="hasDocument()"></document>
                 
                 <welcome-screen v-if="!hasCurrentUser()"></welcome-screen>
             </div>

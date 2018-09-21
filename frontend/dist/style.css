@@ -244,6 +244,58 @@ body .main .content .page {
   text-align: center;
   margin: 20px;
 }
+.document__container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  left: 0;
+  top: 0;
+  overflow: auto;
+}
+.document__container .document {
+  position: absolute;
+  width: 620px;
+  height: 878px;
+  left: calc(50% - 310px);
+  top: 40px;
+  background: #fff;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  margin-bottom: 40px;
+  padding: 10px;
+}
+.document__container .document .document__elements {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.document__container .document .document__elements .document__info {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+}
+.document__container .document .document__elements .document__addresses {
+  position: absolute;
+  left: -10px;
+  width: calc(100% + 20px);
+  display: flex;
+  padding: 10px;
+}
+.document__container .document .document__elements .document__addresses .document_address-own {
+  width: 50%;
+  padding-right: 10px;
+}
+.document__container .document .document__elements .document__addresses .document_address-client {
+  width: 50%;
+  padding-left: 10px;
+}
+.document__container .document__tools {
+  position: absolute;
+  left: calc(50% + 340px);
+  top: 40px;
+  width: 100px;
+}
 .topbar .avatar {
   position: absolute;
   right: 10px;
@@ -362,8 +414,13 @@ body .main .content .page {
   margin-bottom: 20px;
 }
 .issue-card {
+  color: #000;
+  text-decoration: none;
   border-bottom: 1px solid #ddd;
   display: flex;
+}
+.issue-card:hover {
+  background: #ddd;
 }
 .issue-card > * {
   border-right: 1px solid #ddd;

@@ -1,6 +1,6 @@
 let createError, express, path, cookieParser, logger, cors,
     mongo, monk, db,
-    indexRouter, bootstrapRouter, usersRouter, clientsRouter, projectsRouter,
+    indexRouter, bootstrapRouter, usersRouter, clientsRouter, projectsRouter, documentsRouter,
     app;
 
 createError = require('http-errors');
@@ -21,6 +21,7 @@ bootstrapRouter = require('./routes/bootstrap');
 usersRouter = require('./routes/users');
 clientsRouter = require('./routes/clients');
 projectsRouter = require('./routes/projects');
+documentsRouter = require('./routes/documents');
 
 app = express();
 
@@ -49,6 +50,7 @@ app.use('/bootstrap', bootstrapRouter);
 app.use('/users', usersRouter);
 app.use('/clients', clientsRouter);
 app.use('/projects', projectsRouter);
+app.use('/documents', documentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

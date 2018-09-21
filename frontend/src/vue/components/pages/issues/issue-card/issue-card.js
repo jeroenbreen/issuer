@@ -14,7 +14,7 @@ const issueCardComponent = Vue.component('issue-card', {
         }
     },
     template: `
-        <div class="issue-card">
+        <a v-bind:href="issue.url" target="_blank" class="issue-card">
             <div class="issue-card__number">
                 #{{issue.number}}
             </div>
@@ -45,7 +45,7 @@ const issueCardComponent = Vue.component('issue-card', {
                     v-bind:style="{'background-image': 'url(' + assignee.avatar_url + ')'}"
                     class="assignee-avatar"></div>
             </div>
-        </div>
+        </a>
     `
 });
 

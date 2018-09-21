@@ -71,6 +71,9 @@ const mutations = {
     setCurrent(state, item) {
         state.current = item;
     },
+    unsetCurrent(state) {
+        state.current = null;
+    },
     create(state, item, Model) {
         state.all.push(new Model(item));
     },
