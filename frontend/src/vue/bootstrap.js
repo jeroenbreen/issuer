@@ -69,15 +69,20 @@ const bootstrapVue = function(response) {
     const document = {
         type: 'invoice',
         date: new Date(),
-
+        subject: theStore.state.projects.all[0].title,
         userName: theStore.state.users.current.getFullName(),
         clientCompanyName: theStore.state.clients.all[0].companyName,
-        clientContactName: theStore.state.clients.all[0].contactFirstName + theStore.state.clients.all[0].contactLastName,
+        clientContactName: theStore.state.clients.all[0].contactFirstName + ' ' + theStore.state.clients.all[0].contactLastName,
         clientStreet: theStore.state.clients.all[0].street,
         clientPostcode: theStore.state.clients.all[0].postcode,
-        clientCity: theStore.state.clients.all[0].city
+        clientCity: theStore.state.clients.all[0].city,
+        rate: theStore.state.projects.all[0].rate,
+        pages: [{
+            lines: []
+        }, {
+            lines: []
+        }]
     };
-    console.log(document);
     theStore.commit('documents/setCurrent', new Document(document));
 
 

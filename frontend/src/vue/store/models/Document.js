@@ -1,4 +1,4 @@
-import theStore from "../index";
+import {Page} from "./document/Page";
 
 class Document {
 
@@ -9,6 +9,7 @@ class Document {
 
         this.type = document.type;
         this.date = new Date(document.date);
+        this.subject = document.subject;
         // addresses
         this.userName = document.userName;
         this.clientCompanyName = document.clientCompanyName;
@@ -16,6 +17,36 @@ class Document {
         this.clientStreet = document.clientStreet;
         this.clientPostcode = document.clientPostcode;
         this.clientCity = document.clientCity;
+
+        // financial
+        this.rate = document.rate;
+
+        this.pages = [];
+        this.addPages(document.pages);
+    }
+
+    addPages(pages) {
+        for (let page of pages) {
+            this.pages.push(new Page(page));
+        }
+    }
+
+    addPage(type) {
+        let page;
+        switch (type) {
+            case 'regular':
+                page = new Page();
+        }
+        this.pages.push(page);
+    }
+
+    clone() {
+        const clone = {...this};
+        clone.pages = [];
+        for (let page of this.pages) {
+            clone.pages.push(page.clone());
+        }
+        return clone;
     }
 
 }

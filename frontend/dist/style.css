@@ -244,6 +244,134 @@ body .main .content .page {
   text-align: center;
   margin: 20px;
 }
+.line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  position: relative;
+  background: #fff;
+  height: 24px;
+}
+.line .line__grip {
+  position: absolute;
+  top: 1px;
+  left: -30px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  padding: 6px 6px;
+  background: #fff;
+  cursor: move;
+}
+.line .line__grip .grip__bar {
+  background: #aaa;
+  width: 100%;
+  height: 2px;
+  margin-bottom: 1px;
+}
+.line .line__grip:hover {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.line input {
+  width: 100%;
+  background: #f5f5f5;
+  border: 0;
+  padding: 4px;
+  margin: 0;
+}
+.line input:focus {
+  outline: none;
+  background: #ddd;
+}
+.line .line__subject {
+  width: calc(100% - 220px);
+  padding-right: 10px;
+}
+.line .line__hours {
+  width: 30px;
+  text-align: right;
+}
+.line .line__multiply {
+  width: 10px;
+  text-align: center;
+}
+.line .line__rate {
+  width: 30px;
+}
+.line .line__value {
+  text-align: right;
+  width: 130px;
+}
+.page {
+  width: 620px;
+  height: 878px;
+  margin-bottom: 40px;
+  top: 40px;
+  background: #fff;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+.page .document__elements {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.page .document__elements .document__info {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+}
+.page .document__elements .document__addresses {
+  position: absolute;
+  left: -10px;
+  width: calc(100% + 20px);
+  display: flex;
+  padding: 10px;
+}
+.page .document__elements .document__addresses .document_address-own {
+  width: 50%;
+  padding-right: 10px;
+}
+.page .document__elements .document__addresses .document_address-client {
+  width: 50%;
+  padding-left: 10px;
+}
+.page .document__elements .document__content {
+  position: absolute;
+  width: 100%;
+}
+.page .document__elements .document__content .document__subject {
+  position: relative;
+  left: -10px;
+  width: calc(100% + 20px);
+  padding: 10px;
+}
+.page .document__elements .document__content .document__lines {
+  padding: 10px 0;
+}
+.page .document__elements .document__content .document__lines ul {
+  padding: 0;
+  margin: 0;
+}
+.page .document__elements .document__footer-text {
+  position: absolute;
+  left: -10px;
+  width: calc(100% + 20px);
+  padding: 10px;
+  text-align: center;
+  font-size: 8px;
+}
+.page .document__elements .document__footer-image {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+.page .document__elements .document__official {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
 .document__container {
   position: fixed;
   width: 100%;
@@ -255,40 +383,9 @@ body .main .content .page {
 }
 .document__container .document {
   position: absolute;
-  width: 620px;
-  height: 878px;
   left: calc(50% - 310px);
+  width: 620px;
   top: 40px;
-  background: #fff;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-  margin-bottom: 40px;
-  padding: 10px;
-}
-.document__container .document .document__elements {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.document__container .document .document__elements .document__info {
-  position: absolute;
-  right: 0;
-  top: 0;
-  text-align: right;
-}
-.document__container .document .document__elements .document__addresses {
-  position: absolute;
-  left: -10px;
-  width: calc(100% + 20px);
-  display: flex;
-  padding: 10px;
-}
-.document__container .document .document__elements .document__addresses .document_address-own {
-  width: 50%;
-  padding-right: 10px;
-}
-.document__container .document .document__elements .document__addresses .document_address-client {
-  width: 50%;
-  padding-left: 10px;
 }
 .document__container .document__tools {
   position: absolute;
