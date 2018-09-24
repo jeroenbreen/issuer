@@ -4,7 +4,7 @@ import {SortableList} from "./../../shared/sortable/sortableList";
 
 
 const pageComponent = Vue.component('doc-page', {
-    props: ['page', 'document'],
+    props: ['page', 'type', 'document'],
     data(){
         return {
             settings: this.$store.state.settings.document,
@@ -16,7 +16,18 @@ const pageComponent = Vue.component('doc-page', {
             return this.document.date.getFullYear();
         },
         addLine(type) {
-            this.document.addLine(type);
+            this.page.addLine(type);
+        },
+
+        // template methods
+        getTop() {
+            return this.type === 'front' ? this.settings.content.top + 'px' : 0;
+        },
+        getFooterImageWidth() {
+            return this.type === 'front' ? this.settings.footerImage.width : 0.8 * this.settings.footerImage.width;
+        },
+        getFooterImageTop() {
+            return this.type === 'front' ? this.settings.footerImage.top : this.settings.footerImage.top + 30;
         }
     },
     template: `
@@ -25,12 +36,13 @@ const pageComponent = Vue.component('doc-page', {
             
             <div class="document__elements">
                 <div class="document__logo" 
+                    v-if="type === 'front'"
                     v-bind:style="{'left': settings.logo.left + 'px', 
                                    'top': settings.logo.top + 'px'}">
                     <img v-bind:src="settings.logo.src" v-bind:width="settings.logo.width">
                 </div>
                 
-                <div class="document__info">
+                <div class="document__info" v-if="type === 'front'">
                     <div class="document__">
                         <b>{{settings.dictionary.invoice}}</b> {{getYear()}} 
                     </div>
@@ -40,6 +52,7 @@ const pageComponent = Vue.component('doc-page', {
                 </div>
                 
                 <div class="document__addresses"
+                    v-if="type === 'front'"
                     v-bind:style="{'top': settings.addresses.top + 'px',
                                    'border-top': settings.addresses.borderTop + 'px solid #000'}">
                     <div class="document_address-own">
@@ -57,8 +70,9 @@ const pageComponent = Vue.component('doc-page', {
                 </div>
                 
                 <div class="document__content"
-                    v-bind:style="{'top': settings.content.top + 'px'}">
+                    v-bind:style="{'top': getTop()}">
                     <div class="document__subject"
+                        v-if="type === 'front'"
                         v-bind:style="{'border-top': settings.subject.borderTop + 'px solid #000',
                                        'border-bottom': settings.subject.borderBottom + 'px solid #000'}">
                         <b>{{settings.dictionary.subject}}:</b> {{document.subject}}
@@ -84,6 +98,7 @@ const pageComponent = Vue.component('doc-page', {
                 </div>
                 
                 <div class="document__footer-text"
+                    v-if="type === 'front'"
                     v-bind:style="{'top': settings.footerText.top + 'px',
                                    'border-top': settings.footerText.borderTop + 'px solid #000',
                                    'border-bottom': settings.footerText.borderBottom + 'px solid #000'}">
@@ -92,8 +107,8 @@ const pageComponent = Vue.component('doc-page', {
                 
                 <div class="document__footer-image" 
                     v-if="settings.footerImage.image"
-                    v-bind:style="{'top': settings.footerImage.top + 'px'}">
-                    <img v-bind:src="settings.footerImage.imgSrc" v-bind:width="settings.footerImage.width">    
+                    v-bind:style="{'top': getFooterImageTop() + 'px'}">
+                    <img v-bind:src="settings.footerImage.imgSrc" v-bind:width="getFooterImageWidth()">    
                 </div>
                 
                 <div class="document__official"

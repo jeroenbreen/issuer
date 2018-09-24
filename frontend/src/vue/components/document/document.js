@@ -13,6 +13,9 @@ const documentComponent = Vue.component('document', {
     methods: {
         closeScreen() {
             this.$store.commit('documents/unsetCurrent');
+        },
+        getType(index) {
+            return index === 0 ? 'front' : 'regular';
         }
     },
     template: `
@@ -22,6 +25,7 @@ const documentComponent = Vue.component('document', {
                     v-for="(page, index) in document.pages"
                     v-bind:key="index"
                     v-bind:page="page"
+                    v-bind:type="getType(index)"
                     v-bind:document="document"></doc-page>
             </div>
             <div class="document__tools">

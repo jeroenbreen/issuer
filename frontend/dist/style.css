@@ -300,7 +300,7 @@ body .main .content .page {
 }
 .line .line__value {
   text-align: right;
-  width: 130px;
+  width: 150px;
 }
 .page {
   width: 620px;
@@ -310,6 +310,9 @@ body .main .content .page {
   background: #fff;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   padding: 10px;
+}
+.page:last-child {
+  margin-bottom: 200px;
 }
 .page .document__elements {
   width: 100%;

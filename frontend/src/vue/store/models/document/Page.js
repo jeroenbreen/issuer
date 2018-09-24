@@ -2,16 +2,17 @@ import {HourlyLine} from "./Hourly-Line";
 
 
 class Page {
-    constructor(page) {
+    constructor(page, document) {
         this.lines = [];
+        this.document = document;
         if (page.lines) {
-            this.addLines(page.lines);
+            this.importLines(page.lines);
         }
     }
 
-    addLines(lines) {
+    importLines(lines) {
         for (let line of lines) {
-            this.lines.push(new HourlyLine(line))
+            this.lines.push(new HourlyLine(line, this))
         }
     }
 
@@ -19,7 +20,7 @@ class Page {
         let line;
         switch (type) {
             case 'hourly':
-                line = new HourlyLine();
+                line = new HourlyLine(null, this);
         }
         this.lines.push(line);
     }
@@ -27,8 +28,9 @@ class Page {
     clone() {
         const clone = {...this};
         clone.lines = [];
+        delete clone.document;
         for (let line of this.lines) {
-            clone.pages.push(line.clone());
+            clone.lines.push(line.clone());
         }
         return clone;
     }

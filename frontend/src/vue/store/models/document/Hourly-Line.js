@@ -1,9 +1,10 @@
 class HourlyLine {
 
-    constructor(line) {
-        this.subject = line ? line.subject : '';
-        this.rate = line ? line.rate : 70;
-        this.hours = line ? line.hours : 0;
+    constructor(line, page) {
+        this.page = page;
+        this.subject = line && line.subject ? line.subject : '';
+        this.rate = line && line.rate ? line.rate : page.document.rate;
+        this.hours = line && line.hours ? line.hours : 0;
     }
 
     getValue() {
@@ -11,7 +12,9 @@ class HourlyLine {
     }
 
     clone() {
-        return {...this};
+        const clone = {...this};
+        delete clone.page;
+        return clone;
     }
 
 }

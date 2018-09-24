@@ -78,9 +78,11 @@ const bootstrapVue = function(response) {
         clientCity: theStore.state.clients.all[0].city,
         rate: theStore.state.projects.all[0].rate,
         pages: [{
-            lines: []
+            lines: [{}, {}]
         }, {
-            lines: []
+            lines: [{}, {}, {}, {}]
+        }, {
+            lines: [{}, {}, {}, {}]
         }]
     };
     theStore.commit('documents/setCurrent', new Document(document));

@@ -22,12 +22,12 @@ class Document {
         this.rate = document.rate;
 
         this.pages = [];
-        this.addPages(document.pages);
+        this.importPages(document.pages);
     }
 
-    addPages(pages) {
+    importPages(pages) {
         for (let page of pages) {
-            this.pages.push(new Page(page));
+            this.pages.push(new Page(page, this));
         }
     }
 
@@ -35,7 +35,7 @@ class Document {
         let page;
         switch (type) {
             case 'regular':
-                page = new Page();
+                page = new Page(null, this);
         }
         this.pages.push(page);
     }
