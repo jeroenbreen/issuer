@@ -79,10 +79,6 @@ const bootstrapVue = function(response) {
         rate: theStore.state.projects.all[0].rate,
         pages: [{
             lines: [{}, {}]
-        }, {
-            lines: [{}, {}, {}, {}]
-        }, {
-            lines: [{}, {}, {}, {}]
         }]
     };
     theStore.commit('documents/setCurrent', new Document(document));

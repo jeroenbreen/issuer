@@ -1,15 +1,16 @@
 import Vue from 'vue';
-import {ElementMixin} from "vue-slicksort";
+import {ElementMixin, HandleDirective} from "vue-slicksort";
 
 const lineComponent = Vue.component('doc-line', {
     mixins: [ElementMixin],
+    directives: { handle: HandleDirective },
     methods: {
 
     },
     props: ['line'],
     template: `
-        <div class="line">
-            <div class="line__grip">
+        <li class="line">
+            <div class="line__grip handle" v-handle>
                 <div class="grip__bar"></div>
                 <div class="grip__bar"></div>
                 <div class="grip__bar"></div>
@@ -30,7 +31,7 @@ const lineComponent = Vue.component('doc-line', {
             <div class="line__value">
                 {{line.getValue()}} EUR
             </div>
-        </div>
+        </li>
     `
 });
 

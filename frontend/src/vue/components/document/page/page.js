@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import {lineComponent} from "./line/line";
 import {SortableList} from "./../../shared/sortable/sortableList";
+import $ from 'jquery'
 
 
 const pageComponent = Vue.component('doc-page', {
@@ -8,7 +9,8 @@ const pageComponent = Vue.component('doc-page', {
     data(){
         return {
             settings: this.$store.state.settings.document,
-            company: this.$store.state.company
+            company: this.$store.state.company,
+            canAddLines: true
         }
     },
     methods: {
@@ -16,7 +18,29 @@ const pageComponent = Vue.component('doc-page', {
             return this.document.date.getFullYear();
         },
         addLine(type) {
-            this.page.addLine(type);
+            let lastLine, bottomElement, thisY, margin;
+            margin= 100;
+            lastLine = $(this.$el).find('.line:last-child');
+            if (lastLine) {
+                thisY = $(lastLine).offset().top + $(lastLine).outerHeight();
+
+                if (this.page.isFrontPage()) {
+                    bottomElement = $(this.$el).find('.document__footer-text');
+                } else {
+                    bottomElement = $(this.$el).find('.document__footer-image');
+                }
+
+                if (thisY + margin > $(bottomElement).offset().top) {
+                    this.canAddLines = false;
+                    this.page.document.addPage('regular');
+                    this.page.document.pages[this.page.document.pages.length - 1].addLine(type);
+                } else {
+                    this.page.addLine(type);
+                }
+
+            } else {
+                this.page.addLine(type);
+            }
         },
 
         // template methods
@@ -28,6 +52,14 @@ const pageComponent = Vue.component('doc-page', {
         },
         getFooterImageTop() {
             return this.type === 'front' ? this.settings.footerImage.top : this.settings.footerImage.top + 30;
+        },
+
+        // sortable
+        onSortStart(event) {
+            $('.main').addClass('unselectable');
+        },
+        onSortEnd(event) {
+            $('.main').removeClass('unselectable');
         }
     },
     template: `
@@ -79,7 +111,12 @@ const pageComponent = Vue.component('doc-page', {
                     </div>
                     
                     <div class="document__lines">
-                        <SortableList lockAxis="y" v-model="page.lines">
+                        <SortableList 
+                            lockAxis="y" 
+                            v-bind:useDragHandle="true" 
+                            v-model="page.lines"
+                            v-on:sortStart="onSortStart($event)"
+                            v-on:sortEnd="onSortEnd($event)">
                             <doc-line 
                                 v-for="(line, index) in page.lines" 
                                 v-bind:index="index" 
@@ -89,7 +126,7 @@ const pageComponent = Vue.component('doc-page', {
                     </div>
                     
                     <div class="lines_tools">
-                            <div class="icon-button" v-on:click="addLine('hourly')">
+                            <div class="icon-button icon-button--color" v-on:click="addLine('hourly')" v-if="canAddLines">
                                 <div class="icon-button__icon">
                                     <i class="fas fa-plus"></i>
                                 </div>

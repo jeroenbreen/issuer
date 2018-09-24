@@ -83,6 +83,16 @@ input {
 .icon-button.icon-button--inverse:hover .icon-button__icon {
   background: #176C82;
 }
+.icon-button.icon-button--color .icon-button__icon {
+  color: #fff;
+  background: #00B7FF;
+}
+.icon-button.icon-button--color .icon-button__label {
+  color: #fff;
+}
+.icon-button.icon-button--color:hover .icon-button__icon {
+  background: #176C82;
+}
 .icon-button.icon-button--big .icon-button__icon {
   width: 42px;
   height: 42px;
@@ -157,6 +167,16 @@ input {
 .scrim .scrim__content {
   overflow: auto;
   height: 100%;
+}
+.unselectable {
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
+  user-select: none;
+  /* Standard */
 }
 * {
   box-sizing: border-box;
@@ -356,6 +376,12 @@ body .main .content .page {
 .page .document__elements .document__content .document__lines ul {
   padding: 0;
   margin: 0;
+}
+.page .document__elements .document__content .lines_tools {
+  position: relative;
+  width: calc(100% + 150px);
+  display: flex;
+  justify-content: flex-end;
 }
 .page .document__elements .document__footer-text {
   position: absolute;

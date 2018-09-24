@@ -5,7 +5,7 @@ class Page {
     constructor(page, document) {
         this.lines = [];
         this.document = document;
-        if (page.lines) {
+        if (page && page.lines) {
             this.importLines(page.lines);
         }
     }
@@ -23,6 +23,10 @@ class Page {
                 line = new HourlyLine(null, this);
         }
         this.lines.push(line);
+    }
+
+    isFrontPage() {
+        return this.document.pages.indexOf(this) === 0;
     }
 
     clone() {
