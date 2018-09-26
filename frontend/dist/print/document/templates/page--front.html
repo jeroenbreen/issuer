@@ -1,0 +1,65 @@
+<div class='page' style="padding: <?php echo $this->resize * $this->template->margin->top; ?>px <?php echo $this->resize * $this->template->margin->right; ?>px <?php echo $this->resize * $this->template->margin->bottom; ?>px <?php echo $this->resize * $this->template->margin->left; ?>px">
+    <div class="document__elements">
+        <div class="document__logo"
+            style="left: <?php echo $this->resize * $this->template->logo->left; ?>px;
+                   top: <?php echo $this->resize * $this->template->logo->top; ?>px">
+            <img src="images/<?php echo $this->template->logo->src; ?>" width="<?php echo $this->resize * $this->template->logo->width; ?>">
+        </div>
+
+        <div class="document__info">
+            <div class="document__">
+                <b><?php echo $this->dictionary->invoice; ?></b> TODO year
+            </div>
+            <div class="document__date">
+                <?php echo $this->document->date; ?>
+            </div>
+        </div>
+
+        <div class="document__addresses"
+             style="top: <?php echo $this->resize * $this->template->addresses->top; ?>px;
+                    border-top: <?php echo $this->template->addresses->borderTop; ?>px solid #000">
+            <div class="document_address-own">
+                <b><?php echo $this->company->name; ?></b><br>
+                <?php echo $this->document->userName; ?><br>
+                <?php echo $this->company->address; ?><br>
+                <?php echo $this->company->postcode; ?> <?php echo $this->company->city; ?>
+            </div>
+            <div class="document_address-client">
+                <b><?php echo $this->document->clientCompanyName; ?></b><br>
+                <?php echo $this->document->clientContactName; ?><br>
+                <?php echo $this->document->clientStreet; ?><br>
+                <?php echo $this->document->clientPostcode; ?> <?php echo $this->document->clientCity; ?>
+            </div>
+        </div>
+
+        <div class="document__content"
+             style="top: <?php echo $this->resize * $this->template->content->top; ?>px">
+            <div class="document__subject"
+                 style="border-top: <?php echo $this->template->subject->borderTop; ?>px solid #000;
+                        border-bottom: <?php echo $this->template->subject->borderBottom; ?>px solid #000">
+                <b><?php echo $this->dictionary->subject ?>:</b> <?php echo $this->document->subject; ?>
+            </div>
+
+            <div class="document__lines">
+                Hier de lines
+            </div>
+        </div>
+
+        <div class="document__footer-text"
+             style="top: <?php echo $this->resize * $this->template->footerText->top; ?>px;
+                    border-top: <?php echo $this->template->footerText->borderTop; ?>px solid #000;
+                    border-bottom: <?php echo $this->template->footerText->borderBottom; ?>px solid #000">
+            <?php echo $this->dictionary->footer; ?>
+        </div>
+
+        <div class="document__footer-image"
+             style="top: <?php echo $this->resize * $this->template->footerImage->top; ?>px">
+            <img src="images/<?php echo $this->template->footerImage->imgSrc; ?>" width="<?php echo $this->resize * $this->template->footerImage->width; ?>">
+        </div>
+
+        <div class="document__official"
+             style="top: <?php echo $this->resize * $this->template->official->top; ?>px">
+            <?php echo $this->company->name; ?> | <?php echo $this->company->coc; ?>  | <?php echo $this->company->vat; ?>
+        </div>
+    </div>
+</div>

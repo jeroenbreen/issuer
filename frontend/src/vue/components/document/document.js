@@ -2,12 +2,15 @@ import Vue from 'vue';
 import {pageComponent} from "./page/page";
 
 import {Document} from "../../store/models/Document";
+import $ from "jquery";
 
 
 const documentComponent = Vue.component('document', {
     data(){
         return {
-            document: new Document(this.$store.state.documents.current.clone())
+            document: new Document(this.$store.state.documents.current.clone()),
+            template: this.$store.getters.template,
+            company: this.$store.state.company
         }
     },
     methods: {
@@ -16,6 +19,23 @@ const documentComponent = Vue.component('document', {
         },
         getType(index) {
             return index === 0 ? 'front' : 'regular';
+        },
+        print() {
+
+            $.ajax({
+                'url': ('print/document/print.php'),
+                'type': 'POST',
+                'data': JSON.stringify({
+                    document: this.document.clone(),
+                    template: this.template.clone(),
+                    company: {...this.company}
+                }),
+                'headers': {
+                    'Accept': 'application/json'
+                }
+            }).done(function(response){
+                window.open(config.printLocation + response);
+            });
         }
     },
     template: `
@@ -31,6 +51,9 @@ const documentComponent = Vue.component('document', {
             <div class="document__tools">
                 <div class="iss-button" v-on:click="closeScreen()">
                     Back
+                </div>
+                <div class="iss-button" v-on:click="print()">
+                    Print
                 </div>
             </div>   
         </div>

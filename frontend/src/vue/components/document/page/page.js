@@ -44,8 +44,14 @@ const pageComponent = Vue.component('doc-page', {
         },
 
         // template methods
+        getLogoSrc() {
+            return config.templateLocation + this.template.settings.logo.src;
+        },
         getTop() {
             return this.type === 'front' ? this.template.settings.content.top + 'px' : 0;
+        },
+        getFooterImageSrc() {
+            return config.templateLocation + this.template.settings.footerImage.imgSrc;
         },
         getFooterImageWidth() {
             return this.type === 'front' ? this.template.settings.footerImage.width : 0.8 * this.template.settings.footerImage.width;
@@ -71,7 +77,7 @@ const pageComponent = Vue.component('doc-page', {
                     v-if="type === 'front'"
                     v-bind:style="{'left': template.settings.logo.left + 'px', 
                                    'top': template.settings.logo.top + 'px'}">
-                    <img v-bind:src="template.settings.logo.src" v-bind:width="template.settings.logo.width">
+                    <img v-bind:src="getLogoSrc()" v-bind:width="template.settings.logo.width">
                 </div>
                 
                 <div class="document__info" v-if="type === 'front'">
@@ -145,7 +151,7 @@ const pageComponent = Vue.component('doc-page', {
                 <div class="document__footer-image" 
                     v-if="template.settings.footerImage.image"
                     v-bind:style="{'top': getFooterImageTop() + 'px'}">
-                    <img v-bind:src="template.settings.footerImage.imgSrc" v-bind:width="getFooterImageWidth()">    
+                    <img v-bind:src="getFooterImageSrc()" v-bind:width="getFooterImageWidth()">    
                 </div>
                 
                 <div class="document__official"

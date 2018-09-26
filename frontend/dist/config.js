@@ -1,5 +1,7 @@
 const config = {
     backend: 'http://localhost:3000/',
+    printLocation: 'print/pdf/',
+    templateLocation: 'print/document/images/',
     framework: 'vue'
 };
 

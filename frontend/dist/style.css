@@ -323,8 +323,8 @@ body .main .content .page {
   width: 150px;
 }
 .page {
-  width: 620px;
-  height: 878px;
+  width: 610px;
+  height: 862px;
   margin-bottom: 40px;
   top: 40px;
   background: #fff;
@@ -421,6 +421,9 @@ body .main .content .page {
   left: calc(50% + 340px);
   top: 40px;
   width: 100px;
+}
+.document__container .document__tools .iss-button {
+  margin-bottom: 4px;
 }
 .topbar .avatar {
   position: absolute;

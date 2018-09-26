@@ -6,6 +6,10 @@ class Template {
         this.settings = template.settings;
     }
 
+    clone() {
+        return {...this};
+    }
+
 
 }
 
