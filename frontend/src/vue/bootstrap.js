@@ -61,6 +61,7 @@ const bootstrapVue = function(response) {
     theStore.commit('clients/init', response.clients);
     theStore.commit('projects/init', response.projects);
     theStore.commit('repositories/init', response.repositories);
+    theStore.commit('templates/init', response.templates);
 
     theStore.commit('users/setCurrent', theStore.state.users.all[0]);
     theStore.dispatch('issues/read', theStore.state.users.current.githubKey);

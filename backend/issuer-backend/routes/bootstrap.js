@@ -8,7 +8,7 @@ let company_id = ObjectId('5b94e03979f9b308ffa9c60e');
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
 router.get('/', function(req, res) {
     let response, db,
-        collectionCompany, collectionUsers, collectionClients, collectionProjects;
+        collectionCompany, collectionUsers, collectionClients, collectionProjects, collectionTemplates;
     response = {};
     db = req.db;
 
@@ -16,6 +16,7 @@ router.get('/', function(req, res) {
     collectionUsers = db.get('users');
     collectionClients = db.get('clients');
     collectionProjects = db.get('projects');
+    collectionTemplates = db.get('templates');
 
     collectionCompany.find({_id: company_id}, {}, function(e, docs){
         if (docs.length > 0) {
@@ -30,7 +31,11 @@ router.get('/', function(req, res) {
                     collectionProjects.find({company_id: company_id}, {}, function(e, docs){
                         response.projects = docs;
 
-                        res.json(response);
+                        collectionTemplates.find({company_id: company_id}, {}, function(e, docs){
+                            response.templates = docs;
+
+                            res.json(response);
+                        });
                     });
                 });
             });

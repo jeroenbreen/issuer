@@ -8,7 +8,7 @@ const pageComponent = Vue.component('doc-page', {
     props: ['page', 'type', 'document'],
     data(){
         return {
-            settings: this.$store.state.settings.document,
+            template: this.$store.getters.template,
             company: this.$store.state.company,
             canAddLines: true
         }
@@ -45,13 +45,13 @@ const pageComponent = Vue.component('doc-page', {
 
         // template methods
         getTop() {
-            return this.type === 'front' ? this.settings.content.top + 'px' : 0;
+            return this.type === 'front' ? this.template.settings.content.top + 'px' : 0;
         },
         getFooterImageWidth() {
-            return this.type === 'front' ? this.settings.footerImage.width : 0.8 * this.settings.footerImage.width;
+            return this.type === 'front' ? this.template.settings.footerImage.width : 0.8 * this.template.settings.footerImage.width;
         },
         getFooterImageTop() {
-            return this.type === 'front' ? this.settings.footerImage.top : this.settings.footerImage.top + 30;
+            return this.type === 'front' ? this.template.settings.footerImage.top : this.template.settings.footerImage.top + 30;
         },
 
         // sortable
@@ -64,19 +64,19 @@ const pageComponent = Vue.component('doc-page', {
     },
     template: `
         <div class="page"
-            v-bind:style="{'padding': settings.margin.top + 'px ' + settings.margin.right + 'px ' + settings.margin.bottom + 'px ' + settings.margin.left + 'px'}">
+            v-bind:style="{'padding': template.settings.margin.top + 'px ' + template.settings.margin.right + 'px ' + template.settings.margin.bottom + 'px ' + template.settings.margin.left + 'px'}">
             
             <div class="document__elements">
                 <div class="document__logo" 
                     v-if="type === 'front'"
-                    v-bind:style="{'left': settings.logo.left + 'px', 
-                                   'top': settings.logo.top + 'px'}">
-                    <img v-bind:src="settings.logo.src" v-bind:width="settings.logo.width">
+                    v-bind:style="{'left': template.settings.logo.left + 'px', 
+                                   'top': template.settings.logo.top + 'px'}">
+                    <img v-bind:src="template.settings.logo.src" v-bind:width="template.settings.logo.width">
                 </div>
                 
                 <div class="document__info" v-if="type === 'front'">
                     <div class="document__">
-                        <b>{{settings.dictionary.invoice}}</b> {{getYear()}} 
+                        <b>{{template.settings.dictionary.invoice}}</b> {{getYear()}} 
                     </div>
                     <div class="document__date">
                         {{document.date | standardDate}}
@@ -85,8 +85,8 @@ const pageComponent = Vue.component('doc-page', {
                 
                 <div class="document__addresses"
                     v-if="type === 'front'"
-                    v-bind:style="{'top': settings.addresses.top + 'px',
-                                   'border-top': settings.addresses.borderTop + 'px solid #000'}">
+                    v-bind:style="{'top': template.settings.addresses.top + 'px',
+                                   'border-top': template.settings.addresses.borderTop + 'px solid #000'}">
                     <div class="document_address-own">
                         <b>{{company.name}}</b><br>
                         {{document.userName}}<br>
@@ -105,9 +105,9 @@ const pageComponent = Vue.component('doc-page', {
                     v-bind:style="{'top': getTop()}">
                     <div class="document__subject"
                         v-if="type === 'front'"
-                        v-bind:style="{'border-top': settings.subject.borderTop + 'px solid #000',
-                                       'border-bottom': settings.subject.borderBottom + 'px solid #000'}">
-                        <b>{{settings.dictionary.subject}}:</b> {{document.subject}}
+                        v-bind:style="{'border-top': template.settings.subject.borderTop + 'px solid #000',
+                                       'border-bottom': template.settings.subject.borderBottom + 'px solid #000'}">
+                        <b>{{template.settings.dictionary.subject}}:</b> {{document.subject}}
                     </div>
                     
                     <div class="document__lines">
@@ -136,20 +136,20 @@ const pageComponent = Vue.component('doc-page', {
                 
                 <div class="document__footer-text"
                     v-if="type === 'front'"
-                    v-bind:style="{'top': settings.footerText.top + 'px',
-                                   'border-top': settings.footerText.borderTop + 'px solid #000',
-                                   'border-bottom': settings.footerText.borderBottom + 'px solid #000'}">
-                    <span v-html="settings.dictionary.footer"></span>
+                    v-bind:style="{'top': template.settings.footerText.top + 'px',
+                                   'border-top': template.settings.footerText.borderTop + 'px solid #000',
+                                   'border-bottom': template.settings.footerText.borderBottom + 'px solid #000'}">
+                    <span v-html="template.settings.dictionary.footer"></span>
                 </div>
                 
                 <div class="document__footer-image" 
-                    v-if="settings.footerImage.image"
+                    v-if="template.settings.footerImage.image"
                     v-bind:style="{'top': getFooterImageTop() + 'px'}">
-                    <img v-bind:src="settings.footerImage.imgSrc" v-bind:width="getFooterImageWidth()">    
+                    <img v-bind:src="template.settings.footerImage.imgSrc" v-bind:width="getFooterImageWidth()">    
                 </div>
                 
                 <div class="document__official"
-                    v-bind:style="{'top': settings.official.top + 'px'}">
+                    v-bind:style="{'top': template.settings.official.top + 'px'}">
                     {{company.name}} | {{company.coc}}  | {{company.vat}}
                 </div>
                 
