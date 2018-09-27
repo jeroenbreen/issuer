@@ -11,7 +11,8 @@ const settingsComponent = Vue.component('settings', {
     },
     template: `
         <div class="page settings-page">
-            Client numbering: '3zeros'
+            Client numbering: '3zeros'<br>
+            Document numbering: '3zeros'
         </div>
     `
 });

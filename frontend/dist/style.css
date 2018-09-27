@@ -309,7 +309,6 @@ body .main .content .page {
 }
 .line .line__hours {
   width: 30px;
-  text-align: right;
 }
 .line .line__multiply {
   width: 10px;
@@ -323,21 +322,19 @@ body .main .content .page {
   width: 150px;
 }
 .page {
-  width: 610px;
-  height: 862px;
+  width: 620px;
+  height: 877px;
   margin-bottom: 40px;
   top: 40px;
   background: #fff;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-  padding: 10px;
+  position: relative;
 }
 .page:last-child {
   margin-bottom: 200px;
 }
 .page .document__elements {
-  width: 100%;
-  height: 100%;
-  position: relative;
+  position: absolute;
 }
 .page .document__elements .document__info {
   position: absolute;
@@ -400,6 +397,7 @@ body .main .content .page {
   position: absolute;
   width: 100%;
   text-align: center;
+  font-size: 8px;
 }
 .document__container {
   position: fixed;
@@ -415,6 +413,7 @@ body .main .content .page {
   left: calc(50% - 310px);
   width: 620px;
   top: 40px;
+  line-height: 1.6;
 }
 .document__container .document__tools {
   position: absolute;

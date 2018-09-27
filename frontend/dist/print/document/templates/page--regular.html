@@ -1,0 +1,29 @@
+<div class='page page--regular'>
+    <div class="document__elements"
+         style="left: <?php echo $scale * $this->template->margin->left; ?>px;
+                top: <?php echo $scale * $this->template->margin->top; ?>px;
+                right: <?php echo $scale * $this->template->margin->right; ?>px;
+                bottom: <?php echo $scale * $this->template->margin->left; ?>px">
+
+        <div class="document__content">
+
+            <div class="document__lines">
+                <?php
+                    include("templates/lines.html");
+                ?>
+            </div>
+        </div>
+
+        <div class="document__footer-image"
+             style="top: <?php echo $scale * ($this->template->footerImage->top + 30); ?>px">
+            <img
+                    src="images/<?php echo $this->template->footerImage->imgSrc; ?>"
+                    style="width:<?php echo 0.8 * $scale * $this->template->footerImage->width; ?>px">
+        </div>
+
+        <div class="document__official small-text"
+             style="top: <?php echo $scale * $this->template->official->top; ?>px">
+            <?php echo $this->company->name; ?> | <?php echo $this->company->coc; ?>  | <?php echo $this->company->vat; ?>
+        </div>
+    </div>
+</div>

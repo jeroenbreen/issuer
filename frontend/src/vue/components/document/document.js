@@ -14,6 +14,9 @@ const documentComponent = Vue.component('document', {
         }
     },
     methods: {
+        getDocumentId() {
+            return this.document.date.getFullYear() + '-' + this.$root.$options.filters.formatId(this.$store.state.settings.documentIdFormat, this.document.documentId);
+        },
         closeScreen() {
             this.$store.commit('documents/unsetCurrent');
         },
@@ -21,12 +24,14 @@ const documentComponent = Vue.component('document', {
             return index === 0 ? 'front' : 'regular';
         },
         print() {
-
+            const document = this.document.clone();
+            document.documentIdFormatted = this.getDocumentId();
+            document.dateFormatted = this.$root.$options.filters.standardDate(this.document.date);
             $.ajax({
                 'url': ('print/document/print.php'),
                 'type': 'POST',
                 'data': JSON.stringify({
-                    document: this.document.clone(),
+                    document: document,
                     template: this.template.clone(),
                     company: {...this.company}
                 }),

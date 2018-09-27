@@ -17,15 +17,6 @@ class Client {
         this.info = client ? client.info : '';
     }
 
-    getCustomCode() {
-        switch (window.settings.clientFormat) {
-            case '3zeros':
-                let s = String(this.clientId);
-                while (s.length < (3 || 2)) {s = "0" + s;}
-                return s;
-        }
-    }
-
     getFullLabel() {
         return this.getCustomCode() + ' ' + this.companyName;
     }

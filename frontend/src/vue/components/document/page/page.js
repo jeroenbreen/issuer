@@ -14,12 +14,13 @@ const pageComponent = Vue.component('doc-page', {
         }
     },
     methods: {
-        getYear() {
-            return this.document.date.getFullYear();
+        getDocumentId() {
+            // todo make DRY with document.js
+            return this.document.date.getFullYear() + '-' + this.$root.$options.filters.formatId(this.$store.state.settings.documentIdFormat, this.document.documentId);
         },
         addLine(type) {
             let lastLine, bottomElement, thisY, margin;
-            margin= 100;
+            margin = 100;
             lastLine = $(this.$el).find('.line:last-child');
             if (lastLine) {
                 thisY = $(lastLine).offset().top + $(lastLine).outerHeight();
@@ -69,10 +70,12 @@ const pageComponent = Vue.component('doc-page', {
         }
     },
     template: `
-        <div class="page"
-            v-bind:style="{'padding': template.settings.margin.top + 'px ' + template.settings.margin.right + 'px ' + template.settings.margin.bottom + 'px ' + template.settings.margin.left + 'px'}">
-            
-            <div class="document__elements">
+        <div class="page">
+            <div class="document__elements"
+                v-bind:style="{'left': template.settings.margin.left + 'px',
+                               'top': template.settings.margin.top + 'px',
+                               'right': template.settings.margin.right + 'px ',
+                               'bottom': template.settings.margin.bottom + 'px'}">
                 <div class="document__logo" 
                     v-if="type === 'front'"
                     v-bind:style="{'left': template.settings.logo.left + 'px', 
@@ -82,7 +85,7 @@ const pageComponent = Vue.component('doc-page', {
                 
                 <div class="document__info" v-if="type === 'front'">
                     <div class="document__">
-                        <b>{{template.settings.dictionary.invoice}}</b> {{getYear()}} 
+                        <b>{{template.settings.dictionary.invoice}}</b> {{getDocumentId()}} 
                     </div>
                     <div class="document__date">
                         {{document.date | standardDate}}

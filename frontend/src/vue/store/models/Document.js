@@ -8,6 +8,8 @@ class Document {
         this.project_id = document.project_id ? document.projectId : null;
 
         this.type = document.type;
+        this.documentId = document.documentId ? document.documentId : null;
+
         this.date = new Date(document.date);
         this.subject = document.subject;
         // addresses

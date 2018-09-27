@@ -5,6 +5,7 @@ import theStore from './store'
 
 // filters
 import {standardDateFilter} from './filters/standard-date-filter';
+import {idFormatter} from './filters/id-formatter';
 
 // directives
 import {scrimDirective} from './directives/scrim'
@@ -69,6 +70,7 @@ const bootstrapVue = function(response) {
 
     const document = {
         type: 'invoice',
+        documentId: 1,
         date: new Date(),
         subject: theStore.state.projects.all[0].title,
         userName: theStore.state.users.current.getFullName(),
@@ -79,6 +81,8 @@ const bootstrapVue = function(response) {
         clientCity: theStore.state.clients.all[0].city,
         rate: theStore.state.projects.all[0].rate,
         pages: [{
+            lines: [{}]
+        }, {
             lines: [{}, {}]
         }]
     };

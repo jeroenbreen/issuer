@@ -4,12 +4,6 @@ import $ from 'jquery';
 import {bootstrapVue} from './vue/bootstrap';
 import {bootstrapReact} from './react/bootstrap';
 
-window.settings = {
-    clientFormat: '3zeros'
-};
-
-
-
 function getBackendData() {
     const url = config.backend + 'bootstrap';
 

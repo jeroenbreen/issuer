@@ -9,6 +9,17 @@ class Company {
         this.bank = company.bank;
         this.githubHandle = company.githubHandle;
         this.githubKey = company.githubKey;
+        this.coc = company.coc;
+        this.vat = company.vat;
+    }
+
+    getCustomCode() {
+        switch (window.settings.documentIdFormat) {
+            case '3zeros':
+                let s = String(this.clientId);
+                while (s.length < (3 || 2)) {s = "0" + s;}
+                return s;
+        }
     }
 
 }
