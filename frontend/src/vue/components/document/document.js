@@ -24,7 +24,7 @@ const documentComponent = Vue.component('document', {
             return index === 0 ? 'front' : 'regular';
         },
         print() {
-            const document = this.document.clone();
+            const document = this.document.toPrint(this.$root.$options.filters.currency);
             document.documentIdFormatted = this.getDocumentId();
             document.dateFormatted = this.$root.$options.filters.standardDate(this.document.date);
             $.ajax({

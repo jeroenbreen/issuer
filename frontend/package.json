@@ -30,6 +30,7 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "vue": "^2.5.16",
+    "vue-currency-filter": "^3.0.0",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vue-slicksort": "^0.1.10",

@@ -60,6 +60,9 @@ const pageComponent = Vue.component('doc-page', {
         getFooterImageTop() {
             return this.type === 'front' ? this.template.settings.footerImage.top : this.template.settings.footerImage.top + 30;
         },
+        getTotalTop() {
+            return this.type === 'front' ? this.template.settings.footerText.top - 80 : this.template.settings.footerImage.top + 30 - 80;
+        },
 
         // sortable
         onSortStart(event) {
@@ -84,11 +87,12 @@ const pageComponent = Vue.component('doc-page', {
                 </div>
                 
                 <div class="document__info" v-if="type === 'front'">
-                    <div class="document__">
-                        <b>{{template.settings.dictionary.invoice}}</b> {{getDocumentId()}} 
-                    </div>
                     <div class="document__date">
                         {{document.date | standardDate}}
+                    </div>
+                    <div class="document__document-id">
+                        {{template.settings.dictionary.invoice}} 
+                        <b>{{getDocumentId()}}</b>
                     </div>
                 </div>
                 
@@ -135,13 +139,44 @@ const pageComponent = Vue.component('doc-page', {
                     </div>
                     
                     <div class="lines_tools">
-                            <div class="icon-button icon-button--color" v-on:click="addLine('hourly')" v-if="canAddLines">
-                                <div class="icon-button__icon">
-                                    <i class="fas fa-plus"></i>
-                                </div>
+                        <div class="icon-button icon-button--color" v-on:click="addLine('hourly')" v-if="canAddLines">
+                            <div class="icon-button__icon">
+                                <i class="fas fa-plus"></i>
                             </div>
                         </div>
+                    </div>
                 </div>
+                
+                <div class="document__total" 
+                    v-if="page.showTotal()"
+                    v-bind:style="{'top': getTotalTop() + 'px'}">
+                    <div class="document__total-line">
+                        <div class="document__total-label">
+                            Totaal
+                        </div>
+                         <div class="document__total-value">
+                            {{document.getTotal() | currency}} {{document.currency}}
+                        </div>
+                    </div>
+                    <div class="document__total-line">
+                        <div class="document__total-label">
+                            BTW 21%
+                        </div>
+                         <div class="document__total-value">
+                            {{document.getTotal() * 0.21 | currency}} {{document.currency}}
+                        </div>
+                    </div>
+                    <div class="document__total-line document__total-line--big">
+                        <div class="document__total-label">
+                            Te betalen
+                        </div>
+                         <div class="document__total-value">
+                            {{document.getTotal() * 1.21 | currency}} {{document.currency}}
+                        </div>
+                    </div>
+                </div>
+                
+                
                 
                 <div class="document__footer-text"
                     v-if="type === 'front'"

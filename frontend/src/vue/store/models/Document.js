@@ -22,6 +22,7 @@ class Document {
 
         // financial
         this.rate = document.rate;
+        this.currency = document.currency;
 
         this.pages = [];
         this.importPages(document.pages);
@@ -40,6 +41,48 @@ class Document {
                 page = new Page(null, this);
         }
         this.pages.push(page);
+    }
+
+    // ui
+
+    getPageWithTotal() {
+        let pageWithTotal = null;
+        for (let page of this.pages) {
+            if (page.lines.length > 0) {
+                pageWithTotal = page;
+            }
+        }
+        return pageWithTotal;
+    }
+
+    getTotal() {
+        let total = 0;
+        for (let page of this.pages) {
+            for (let line of page.lines) {
+                total += line.getValue();
+            }
+        }
+        return total;
+    }
+
+    //
+
+    toPrint(currencyFilter) {
+        const clone = {...this};
+        clone.pages = [];
+        clone.total = {
+            page: this.pages.indexOf(this.getPageWithTotal()),
+            value: this.getTotal(),
+            formattedValue: {
+                net: currencyFilter(this.getTotal()),
+                vat: currencyFilter(this.getTotal() * 0.21),
+                total: currencyFilter(this.getTotal() * 1.21)
+            }
+        };
+        for (let page of this.pages) {
+            clone.pages.push(page.toPrint(currencyFilter));
+        }
+        return clone;
     }
 
     clone() {

@@ -25,8 +25,26 @@ class Page {
         this.lines.push(line);
     }
 
+    // ui
+
     isFrontPage() {
         return this.document.pages.indexOf(this) === 0;
+    }
+
+    showTotal() {
+        return this.document.getPageWithTotal() === this;
+    }
+
+    //
+
+    toPrint(currencyFilter) {
+        const clone = {...this};
+        clone.lines = [];
+        delete clone.document;
+        for (let line of this.lines) {
+            clone.lines.push(line.toPrint(currencyFilter));
+        }
+        return clone;
     }
 
     clone() {

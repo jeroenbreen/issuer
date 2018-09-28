@@ -1,6 +1,6 @@
 <style>
     .line > * {
-        padding-top:<?php echo $scale * 7; ?>px;
+        padding-top:<?php echo $scale * 5; ?>px;
     }
 </style>
 
@@ -9,7 +9,7 @@
         foreach ($page->lines as $line) {
             ?>
                 <div class="line"
-                    style="height:<?php echo (28 * $scale); ?>px">
+                    style="height:<?php echo (24 * $scale); ?>px">
                     <div class="line__subject"
                          style="width:<?php echo $col_width_50 - $spacing; ?>px;">
                         <?php echo $line->subject; ?>
@@ -25,10 +25,10 @@
                     </div>
                     <div class="line__rate"
                          style="width:<?php echo $scale * 50; ?>px">
-                        <?php echo $line->rate; ?> EUR
+                        <?php echo $line->rate; ?> <?php echo $this->document->currency; ?>
                     </div>
                     <div class="line__value">
-                        xxx EUR
+                        <?php echo $line->value; ?> <?php echo $this->document->currency; ?>
                     </div>
                 </div>
             <?php

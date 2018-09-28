@@ -4,7 +4,7 @@
     margin-bottom: 4px;
     position: relative;
     background: #fff;
-    height: 24px;
+    height: 20px;
 
     .line__grip {
         position: absolute;
@@ -44,12 +44,13 @@
     }
 
     .line__subject {
-        width: ~'calc(100% - 220px)';
+        width: 50%;
         padding-right: 10px;
     }
 
     .line__hours {
-        width: 30px;
+        width: 40px;
+        padding-left: 10px;
     }
 
     .line__multiply {
@@ -58,11 +59,16 @@
     }
 
     .line__rate {
-        width: 30px;
+        width: 60px;
+
+        input {
+            width: 30px;
+            margin-right: 4px;
+        }
     }
 
     .line__value {
+        width: ~'calc(50% - 110px)';
         text-align: right;
-        width: 150px;
     }
 }

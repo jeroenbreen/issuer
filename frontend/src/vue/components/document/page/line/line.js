@@ -26,10 +26,11 @@ const lineComponent = Vue.component('doc-line', {
                 ×
             </div>
             <div class="line__rate">
-                <input v-model.number="line.rate">
+                <input v-model.number="line.rate"> 
+                {{line.document.currency}}
             </div>
             <div class="line__value">
-                {{line.getValue()}} EUR
+                {{line.getValue() | currency}} {{line.document.currency}}
             </div>
         </li>
     `

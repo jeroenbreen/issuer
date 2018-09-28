@@ -9,6 +9,8 @@
     background: #fff;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     position: relative;
+    font-size: 9px;
+    line-height: 1.6;
 
     &:last-child {
         margin-bottom: 200px;
@@ -21,7 +23,19 @@
             position: absolute;
             right: 0;
             top: 0;
-            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .document__date {
+                margin-right: @general-padding
+            }
+
+            .document__document-id {
+                background: #eee;
+                padding: @general-padding;
+                font-size: 11px;
+            }
         }
 
         .document__addresses {
@@ -67,6 +81,39 @@
                 width: ~'calc(100% + 150px)';
                 display: flex;
                 justify-content: flex-end;
+            }
+        }
+
+        .document__total {
+            position: absolute;
+            width: 100%;
+
+            .document__total-line {
+                display: flex;
+                height: 20px;
+
+                .document__total-label {
+                    width: 50%;
+                }
+
+                .document__total-value {
+                    width: 50%;
+                    text-align: right;
+                }
+
+                &.document__total-line--big {
+                    font-weight: 700;
+                    font-size: 15px;
+                    line-height: 16px;
+
+                    .document__total-label {
+
+                    }
+
+                    .document__total-value {
+
+                    }
+                }
             }
         }
 

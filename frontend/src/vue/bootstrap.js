@@ -6,6 +6,7 @@ import theStore from './store'
 // filters
 import {standardDateFilter} from './filters/standard-date-filter';
 import {idFormatter} from './filters/id-formatter';
+import VueCurrencyFilter from 'vue-currency-filter'
 
 // directives
 import {scrimDirective} from './directives/scrim'
@@ -32,6 +33,16 @@ import {Document} from './store/models/Document'
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.use(VueCurrencyFilter,
+    {
+        symbol : '',
+        thousandsSeparator: '.',
+        fractionCount: 2,
+        fractionSeparator: ',',
+        symbolPosition: 'front',
+        symbolSpacing: true
+    });
+
 
 // routing
 const routes = [
@@ -80,12 +91,12 @@ const bootstrapVue = function(response) {
         clientPostcode: theStore.state.clients.all[0].postcode,
         clientCity: theStore.state.clients.all[0].city,
         rate: theStore.state.projects.all[0].rate,
+        currency: theStore.state.projects.all[0].currency,
         pages: [{
             lines: [{}]
-        }, {
-            lines: [{}, {}]
         }]
     };
+    console.log(document);
     theStore.commit('documents/setCurrent', new Document(document));
 
 

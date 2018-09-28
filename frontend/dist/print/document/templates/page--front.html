@@ -1,6 +1,6 @@
 <style>
     body {
-        font-size: <?php echo $scale * 11; ?>px;
+        font-size: <?php echo $scale * 9; ?>px;
     }
 
     .page {
@@ -41,12 +41,15 @@
         </div>
 
         <div class="document__info">
-            <div class="document__">
-                <b><?php echo $this->dictionary->invoice; ?></b> <?php echo $this->document->documentIdFormatted; ?>
-            </div>
-            <div class="document__date">
+            <div class="document__date"
+                 style="margin-right: <?php echo $scale * 10; ?>px; padding-top: <?php echo $scale * 7; ?>px">
                 <?php echo $this->document->dateFormatted; ?>
             </div>
+            <div class="document__document-id"
+                 style="padding: <?php echo $scale * 10; ?>px; font-size:<?php echo $scale * 11;?>px">
+                <?php echo $this->dictionary->invoice; ?> <b><?php echo $this->document->documentIdFormatted; ?></b>
+            </div>
+
         </div>
 
         <div class="document__addresses overlapping"
@@ -87,8 +90,13 @@
             <?php
                 include("templates/lines.html");
             ?>
-
         </div>
+
+        <?php
+            if ($i == $this->document->total->page) {
+                include("templates/total.html");
+            }
+        ?>
 
         <div class="document__footer-text overlapping small-text"
              style="top: <?php echo $scale * $this->template->footerText->top; ?>px;

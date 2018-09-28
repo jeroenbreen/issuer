@@ -35,6 +35,17 @@ html {
     text-align: right;
 }
 
+.page .document__elements .document__info .document__date {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.page .document__elements .document__info .document__document-id {
+    background: #eee;
+    padding: 10px;
+    display: inline-block;
+}
+
 .page .document__elements .document__addresses {
     position: absolute;
 }
@@ -90,7 +101,7 @@ html {
     text-align: center;
 }
 
-/* */
+/* lin */
 
 .line {
     clear: both;
@@ -115,4 +126,31 @@ html {
 .line .line__value {
     text-align: right;
     float: right;
+}
+
+
+/* total */
+
+.page .document__elements .document__total {
+    position: absolute;
+    width: 100%;
+}
+
+.page .document__elements .document__total .document__total-line {
+    clear: both;
+}
+
+.page .document__elements .document__total .document__total-line .document__total-label {
+    width: 50%;
+    float: left;
+}
+
+.page .document__elements .document__total .document__total-line .document__total-value {
+    width: 50%;
+    float: left;
+    text-align: right;
+}
+
+.page .document__elements .document__total .document__total-line.document__total-line--big {
+    font-weight: 700;
 }

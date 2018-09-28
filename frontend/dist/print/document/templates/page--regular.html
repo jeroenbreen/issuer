@@ -14,6 +14,12 @@
             </div>
         </div>
 
+        <?php
+            if ($i == $this->document->total->page) {
+                include("templates/total.html");
+            }
+        ?>
+
         <div class="document__footer-image"
              style="top: <?php echo $scale * ($this->template->footerImage->top + 30); ?>px">
             <img
