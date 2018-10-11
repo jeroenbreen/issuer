@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-right: 12px;
+    margin-right: 4px;
 
     .icon-button__icon {
         width: 28px;
@@ -61,6 +61,25 @@
 
             .icon-button__icon {
                 background: @blue-dark;
+            }
+        }
+    }
+
+    &.icon-button--editing-mode {
+
+        .icon-button__icon {
+            color: @editing-mode-color-contra;
+            background: @editing-mode-color;
+        }
+
+        .icon-button__label {
+            color: #fff;
+        }
+
+        &:hover {
+
+            .icon-button__icon {
+                background: @editing-mode-color-dark;
             }
         }
     }

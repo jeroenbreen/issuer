@@ -9,37 +9,44 @@
 <?php
     function getTop($i, $scope, $scale) {
         if ($i == 0) {
-            return $scale * ($scope->template->footerText->top - 80);
+            return $scale * ($scope->template->footerImage->top - 130);
         } else {
-            return $scale * ($scope->template->footerImage->top + 30 - 80);
+            return $scale * ($scope->template->footerImage->top + 30 - 130);
         }
     }
 ?>
 
 <div class="document__total"
      style="top: <?php echo getTop($i, $this, $scale); ?>px">
-    <div class="document__total-line" style="<?php echo $scale * 22; ?>px">
-        <div class="document__total-label">
+    <div class="document__total-line" style="<?php echo $scale * 22; ?>px"><!--
+        --><div class="document__total-label">
             Totaal <?php echo getTop($i, $this, $scale); ?>
-        </div>
-        <div class="document__total-value">
+        </div><!--
+        --><div class="document__total-value">
             <?php echo $this->document->total->formattedValue->net; ?> <?php echo $this->document->currency; ?>
-        </div>
-    </div>
-    <div class="document__total-line">
-        <div class="document__total-label">
+        </div><!--
+    --></div>
+    <div class="document__total-line"><!--
+        --><div class="document__total-label">
             BTW 21%
-        </div>
-        <div class="document__total-value">
+        </div><!--
+        --><div class="document__total-value">
             <?php echo $this->document->total->formattedValue->vat; ?> <?php echo $this->document->currency; ?>
-        </div>
-    </div>
-    <div class="document__total-line document__total-line--big">
-        <div class="document__total-label">
+        </div><!--
+    --></div>
+    <div class="document__total-line document__total-line--big"><!--
+        --><div class="document__total-label">
             Te betalen
-        </div>
-        <div class="document__total-value">
+        </div><!--
+        --><div class="document__total-value">
             <?php echo $this->document->total->formattedValue->total; ?> <?php echo $this->document->currency; ?>
-        </div>
+        </div><!--
+    --></div>
+
+    <div class="document__footer-text overlapping-inner small-text"
+         style="margin-top: <?php echo $scale * 20; ?>px;
+                border-top: <?php echo $this->template->footerText->borderTop; ?>px solid #000;
+                border-bottom: <?php echo $this->template->footerText->borderBottom; ?>px solid #000">
+        <?php echo $this->dictionary->footer; ?>
     </div>
 </div>

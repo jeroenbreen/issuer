@@ -1,16 +1,15 @@
-class HourlyLine {
+class SumLine {
 
     constructor(line, page) {
-        this.type = 'hourly';
+        this.type = 'sum';
         this.page = page;
         this.document = page.document;
         this.subject = line && line.subject ? line.subject : '';
-        this.rate = line && line.rate ? line.rate : page.document.rate;
-        this.hours = line && line.hours ? line.hours : 0;
+        this.value = line && line.value ? line.value : 0;
     }
 
     getValue() {
-        return Math.round(this.rate * this.hours * 100) / 100;
+        return Math.round(this.value * 100) / 100;
     }
 
     //
@@ -36,4 +35,4 @@ class HourlyLine {
 
 }
 
-export {HourlyLine};
+export {SumLine};

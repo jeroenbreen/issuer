@@ -78,9 +78,8 @@
 
             .lines_tools {
                 position: relative;
-                width: ~'calc(100% + 150px)';
+                left: ~'calc(100% + 100px)';
                 display: flex;
-                justify-content: flex-end;
             }
         }
 
@@ -115,16 +114,19 @@
                     }
                 }
             }
+
+            .document__footer-text {
+                position: relative;
+                left: -10px;
+                width: ~'calc(100% + 20px)';
+                padding: 10px;
+                text-align: center;
+                font-size: 8px;
+                margin-top: 20px;
+            }
         }
 
-        .document__footer-text {
-            position: absolute;
-            left: -10px;
-            width: ~'calc(100% + 20px)';
-            padding: 10px;
-            text-align: center;
-            font-size: 8px;
-        }
+
 
         .document__footer-image {
             position: absolute;

@@ -85,7 +85,7 @@ html {
 }
 
 .page .document__elements .document__footer-text {
-    position: absolute;
+    position: relative;
     text-align: center;
 }
 
@@ -137,17 +137,16 @@ html {
 }
 
 .page .document__elements .document__total .document__total-line {
-    clear: both;
 }
 
 .page .document__elements .document__total .document__total-line .document__total-label {
     width: 50%;
-    float: left;
+    display: inline-block;
 }
 
 .page .document__elements .document__total .document__total-line .document__total-value {
     width: 50%;
-    float: left;
+    display: inline-block;
     text-align: right;
 }
 

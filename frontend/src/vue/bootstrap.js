@@ -93,7 +93,7 @@ const bootstrapVue = function(response) {
         rate: theStore.state.projects.all[0].rate,
         currency: theStore.state.projects.all[0].currency,
         pages: [{
-            lines: [{}]
+            lines: [{}, {}, {type: 'sum'}]
         }]
     };
     console.log(document);

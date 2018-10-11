@@ -1,11 +1,17 @@
 import Vue from 'vue';
 import {ElementMixin, HandleDirective} from "vue-slicksort";
 
+import {hourlyLineComponent} from "./hourly-line";
+import {sumLineComponent} from "./sum-line";
+
+
 const lineComponent = Vue.component('doc-line', {
     mixins: [ElementMixin],
     directives: { handle: HandleDirective },
     methods: {
-
+        removeLine() {
+            this.line.page.removeLine(this.line);
+        }
     },
     props: ['line'],
     template: `
@@ -16,21 +22,21 @@ const lineComponent = Vue.component('doc-line', {
                 <div class="grip__bar"></div>
                 <div class="grip__bar"></div>
             </div>
-            <div class="line__subject">
-                <input v-model="line.subject">
-            </div>
-            <div class="line__hours">
-                <input v-model.number="line.hours">
-            </div>
-            <div class="line__multiply">
-                ×
-            </div>
-            <div class="line__rate">
-                <input v-model.number="line.rate"> 
-                {{line.document.currency}}
-            </div>
-            <div class="line__value">
-                {{line.getValue() | currency}} {{line.document.currency}}
+            
+            <hourly-line 
+                    v-if="line.type === 'hourly'"
+                    v-bind:line="line"/>
+            <sum-line 
+                v-if="line.type === 'sum'"
+                v-bind:line="line"/>
+            
+            
+            <div class="line__tools">
+                <div 
+                    v-on:click="removeLine()"
+                    class="line__tool">
+                    <i class="fas fa-times"></i>
+                </div>
             </div>
         </li>
     `
