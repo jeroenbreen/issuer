@@ -1,5 +1,7 @@
 import {HourlyLine} from "./Hourly-Line";
 import {SumLine} from "./Sum-Line";
+import {SubtotalLine} from "./Subtotal-Line";
+import {TextLine} from "./Text-Line";
 
 
 class Page {
@@ -14,35 +16,42 @@ class Page {
     importLines(lines) {
         let newLine;
         for (let line of lines) {
-            switch (line.type) {
-                case 'sum':
-                    newLine = new SumLine(line, this);
-                    break;
-                default:
-                    newLine = new HourlyLine(line, this);
-                    break;
-            }
+            newLine = this._getLineType(line, line.type);
             this.lines.push(newLine)
         }
     }
 
     createLine(type) {
-        let line;
+        let line = this._getLineType(null, type);
+        this.lines.push(line);
+    }
+
+    _getLineType(line, type) {
         switch (type) {
             case 'sum':
-                line = new SumLine(null, this);
-                break;
+                return new SumLine(line, this);
+            case 'subtotal':
+                return new SubtotalLine(line, this);
+            case 'text':
+                return new TextLine(line, this);
             default:
-                line = new HourlyLine(null, this);
-                break;
+                return new HourlyLine(line, this);
         }
-        this.lines.push(line);
     }
 
     removeLine(line) {
         let index = this.lines.indexOf(line);
         if (index > -1) {
             this.lines.splice(index, 1);
+        }
+    }
+
+    prev() {
+        let index = this.document.pages.indexOf(this);
+        if (index > 0) {
+            return this.document.pages[index - 1];
+        } else {
+            return null;
         }
     }
 

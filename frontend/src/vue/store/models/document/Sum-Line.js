@@ -1,9 +1,11 @@
-class SumLine {
+import {_Line} from './_Line';
+
+
+class SumLine extends _Line {
 
     constructor(line, page) {
+        super(line, page);
         this.type = 'sum';
-        this.page = page;
-        this.document = page.document;
         this.subject = line && line.subject ? line.subject : '';
         this.value = line && line.value ? line.value : 0;
     }
@@ -11,28 +13,6 @@ class SumLine {
     getValue() {
         return Math.round(this.value * 100) / 100;
     }
-
-    //
-
-    toPrint(currencyFilter) {
-        const clone = {...this};
-        if (currencyFilter) {
-            clone.value = currencyFilter(this.getValue());
-        } else {
-            clone.value = this.getValue();
-        }
-        delete clone.page;
-        delete clone.document;
-        return clone;
-    }
-
-    clone() {
-        const clone = {...this};
-        delete clone.page;
-        delete clone.document;
-        return clone;
-    }
-
 }
 
 export {SumLine};

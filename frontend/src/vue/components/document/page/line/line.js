@@ -3,6 +3,8 @@ import {ElementMixin, HandleDirective} from "vue-slicksort";
 
 import {hourlyLineComponent} from "./hourly-line";
 import {sumLineComponent} from "./sum-line";
+import {subtotalLineComponent} from "./subtotal-line";
+import {textLineComponent} from "./text-line";
 
 
 const lineComponent = Vue.component('doc-line', {
@@ -28,6 +30,14 @@ const lineComponent = Vue.component('doc-line', {
                     v-bind:line="line"/>
             <sum-line 
                 v-if="line.type === 'sum'"
+                v-bind:line="line"/>
+                
+            <subtotal-line 
+                v-if="line.type === 'subtotal'"
+                v-bind:line="line"/>
+                
+            <text-line 
+                v-if="line.type === 'text'"
                 v-bind:line="line"/>
             
             

@@ -59,7 +59,9 @@ class Document {
         let total = 0;
         for (let page of this.pages) {
             for (let line of page.lines) {
-                total += line.getValue();
+                if (line.type === 'hourly' || line.type === 'sum') {
+                    total += line.getValue();
+                }
             }
         }
         return total;

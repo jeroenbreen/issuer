@@ -94,14 +94,14 @@ input {
   background: #176C82;
 }
 .icon-button.icon-button--editing-mode .icon-button__icon {
-  color: #5F0142;
-  background: #00FFCE;
+  color: #000;
+  background: #FFE000;
 }
 .icon-button.icon-button--editing-mode .icon-button__label {
   color: #fff;
 }
 .icon-button.icon-button--editing-mode:hover .icon-button__icon {
-  background: #017761;
+  background: #FFEF7B;
 }
 .icon-button.icon-button--big .icon-button__icon {
   width: 42px;
@@ -274,15 +274,99 @@ body .main .content .page {
   text-align: center;
   margin: 20px;
 }
+.quillWrapper .ql-toolbar {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  border: 0;
+  background: #FFE000;
+}
+.quillWrapper #quill-container {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  border: 0;
+}
+.quillWrapper #quill-container .ql-editor {
+  padding: 0;
+  min-height: 20px;
+  font-size: inherit;
+}
+.quillWrapper #quill-container .ql-editor:focus {
+  background: #f5f5f5;
+}
 .line {
   margin-bottom: 4px;
   position: relative;
   background: #fff;
+  list-style: none;
+}
+.line .line__row {
   height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.line .line__row.line__row--heavy {
+  font-weight: 700;
+  font-size: 120%;
+}
+.line .line__row .line-part--100 {
+  width: 100%;
+}
+.line .line__row .line-part--75 {
+  width: 75%;
+}
+.line .line__row .line-part--50 {
+  width: 50%;
+}
+.line .line__row .line-part--25 {
+  width: 25%;
+}
+.line .line__row .line-part {
+  display: flex;
+  align-items: center;
+}
+.line .line__row .line-part--start {
+  padding-right: 10px;
+}
+.line .line__row .line-part--middle {
+  padding: 0 10px;
+}
+.line .line__row .line-part--end {
+  padding-left: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+.line .line__row .line-part--end input {
+  text-align: right;
+}
+.line .line__row input,
+.line .line__row textarea {
+  width: 100%;
+  background: #f5f5f5;
+  border: 0;
+  padding: 4px;
+  margin: 0;
+  font-size: 10px;
+}
+.line .line__row input:focus,
+.line .line__row textarea:focus {
+  outline: none;
+  background: #ddd;
+}
+.line .line__row input.line-input--number,
+.line .line__row textarea.line-input--number {
+  width: 32px;
+}
+.line .line__row input.line-input--big-number,
+.line .line__row textarea.line-input--big-number {
+  width: 48px;
 }
 .line .line__grip {
   position: absolute;
-  top: 1px;
+  top: -2px;
   left: -30px;
   width: 24px;
   height: 24px;
@@ -291,13 +375,13 @@ body .main .content .page {
   cursor: move;
 }
 .line .line__grip .grip__bar {
-  background: #5F0142;
+  background: #000;
   width: 100%;
   height: 2px;
   margin-bottom: 1px;
 }
 .line .line__grip:hover {
-  background: #00FFCE;
+  background: #FFE000;
 }
 .line .line__tools {
   position: absolute;
@@ -309,51 +393,26 @@ body .main .content .page {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  color: #5F0142;
+  background: #FFE000;
+  color: #000;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 .line .line__tools .line__tool:hover {
-  background: #00FFCE;
+  background: #FFEF7B;
 }
-.line .line__content {
+.line .line-part__set {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.line .line__content input {
-  width: 100%;
-  background: #f5f5f5;
-  border: 0;
-  padding: 4px;
-  margin: 0;
+.line .line__subtotal {
+  margin-bottom: 28px;
 }
-.line .line__content input:focus {
-  outline: none;
-  background: #ddd;
-}
-.line .line__content .line__subject {
-  width: 50%;
-  padding-right: 10px;
-}
-.line .line__content .line__hours {
-  width: 40px;
-  padding-left: 10px;
-}
-.line .line__content .line__multiply {
-  width: 10px;
-  text-align: center;
-}
-.line .line__content .line__rate {
-  width: 60px;
-}
-.line .line__content .line__rate input {
-  width: 30px;
-  margin-right: 4px;
-}
-.line .line__content .line__value {
-  width: calc(50% - 110px);
-  text-align: right;
+.line .line__text .line__row {
+  height: auto;
+  min-height: 20px;
 }
 .page {
   width: 620px;
@@ -363,7 +422,7 @@ body .main .content .page {
   background: #fff;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   position: relative;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.6;
 }
 .page:last-child {

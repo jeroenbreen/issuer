@@ -5,12 +5,12 @@ const sumLineComponent = Vue.component('sum-line', {
     methods: {},
     props: ['line'],
     template: `
-        <div class="sum-line line__content">
-            <div class="line__subject">
+        <div class="line__row">
+            <div class="line-part line-part--75 line-part--start">
                 <input v-model="line.subject">
             </div>
-            <div class="line__value">
-                <input v-model="line.value">
+            <div class="line-part line-part--25 line-part--end">
+                <input v-model="line.value" class="line-input--big-number">
                 {{line.document.currency}}
             </div>
         </div>
