@@ -9,12 +9,22 @@ const textLineComponent = Vue.component('text-line', {
     components: {
         VueEditor
     },
+    data() {
+        return {
+            customToolbar: [
+                [{ 'header': [false, 1, 2 ] }],
+                ["bold", "italic"],
+                [{list: "bullet"}],
+                ["link"]
+            ]
+        }
+    },
     methods: {
         onEditorFocus() {
             $('.ql-toolbar').show();
         },
         onEditorBlur() {
-            $('.ql-toolbar').hide();
+            //$('.ql-toolbar').hide();
         }
     },
     props: ['line'],
@@ -23,6 +33,7 @@ const textLineComponent = Vue.component('text-line', {
             <div class="line__row">
                 <vue-editor 
                     v-model="line.text"
+                    :editorToolbar="customToolbar"
                     @focus="onEditorFocus"
                     @blur="onEditorBlur"></vue-editor>
             </div>

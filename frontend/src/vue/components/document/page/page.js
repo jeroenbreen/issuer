@@ -169,7 +169,7 @@ const pageComponent = Vue.component('doc-page', {
                             </div>
                         </div>
                         <div 
-                            v-on:click="createLine('paragraph')" 
+                            v-on:click="createLine('break')" 
                             class="icon-button icon-button--editing-mode">
                             <div class="icon-button__icon">
                                 <i class="fas fa-paragraph"></i>

@@ -274,27 +274,86 @@ body .main .content .page {
   text-align: center;
   margin: 20px;
 }
-.quillWrapper .ql-toolbar {
+body .quillWrapper {
+  width: 100%;
+}
+body .quillWrapper .ql-toolbar.ql-snow {
   position: absolute;
   left: 0;
   bottom: calc(100% + 10px);
+  width: 100%;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
   border: 0;
   background: #FFE000;
+  padding: 0;
 }
-.quillWrapper #quill-container {
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats {
+  margin: 0;
+  padding: 5px 10px;
+  border-right: 1px solid #FFEF7B;
+}
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats:last-child {
+  border-right: 0;
+}
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats .ql-picker :hover {
+  background: #FFEF7B;
+  color: inherit;
+}
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats button {
+  background: none;
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  height: 24px;
+  padding: 0 3px;
+  width: 24px;
+  font-size: 10px;
+  margin-right: 3px;
+}
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats button:last-child {
+  margin-right: 0;
+}
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats button:hover {
+  background: #FFEF7B;
+}
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats button:hover svg path,
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats button:hover svg line {
+  stroke: #000;
+}
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats button svg {
+  width: 16px;
+  height: 16px;
+}
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats button svg path {
+  stroke: #000;
+}
+body .quillWrapper .ql-toolbar.ql-snow .ql-formats .ql-picker-label {
+  font-size: inherit;
+}
+body .quillWrapper #quill-container {
   position: relative;
   left: 0;
   top: 0;
   width: 100%;
   border: 0;
 }
-.quillWrapper #quill-container .ql-editor {
-  padding: 0;
+body .quillWrapper #quill-container .ql-editor {
+  padding: 4px;
   min-height: 20px;
   font-size: inherit;
-}
-.quillWrapper #quill-container .ql-editor:focus {
   background: #f5f5f5;
+}
+body .quillWrapper #quill-container .ql-editor h1 {
+  font-family: 'Tinos';
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+body .quillWrapper #quill-container .ql-editor h2 {
+  font-family: 'Roboto condensed';
+  font-size: 15px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 .line {
   margin-bottom: 4px;

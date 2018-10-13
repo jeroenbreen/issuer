@@ -2,6 +2,7 @@ import {HourlyLine} from "./Hourly-Line";
 import {SumLine} from "./Sum-Line";
 import {SubtotalLine} from "./Subtotal-Line";
 import {TextLine} from "./Text-Line";
+import {BreakLine} from "./Break-Line";
 
 
 class Page {
@@ -34,6 +35,8 @@ class Page {
                 return new SubtotalLine(line, this);
             case 'text':
                 return new TextLine(line, this);
+            case 'break':
+                return new BreakLine(line, this);
             default:
                 return new HourlyLine(line, this);
         }

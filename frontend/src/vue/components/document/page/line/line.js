@@ -5,6 +5,7 @@ import {hourlyLineComponent} from "./hourly-line";
 import {sumLineComponent} from "./sum-line";
 import {subtotalLineComponent} from "./subtotal-line";
 import {textLineComponent} from "./text-line";
+import {breakLineComponent} from "./break-line";
 
 
 const lineComponent = Vue.component('doc-line', {
@@ -38,6 +39,10 @@ const lineComponent = Vue.component('doc-line', {
                 
             <text-line 
                 v-if="line.type === 'text'"
+                v-bind:line="line"/>
+                
+            <break-line 
+                v-if="line.type === 'break'"
                 v-bind:line="line"/>
             
             
