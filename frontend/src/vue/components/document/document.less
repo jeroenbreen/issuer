@@ -1,4 +1,5 @@
 @import "page/page";
+@import "mini-page/mini-page";
 
 .document__container {
     position: fixed;
@@ -14,6 +15,20 @@
         left: ~'calc(50% - 310px)';
         width: 620px;
         line-height: 1.6;
+    }
+
+    .document__index {
+        position: fixed;
+        right: ~'calc(50% + 340px)';
+        top: 40px;
+        width: 50px;
+        height: ~'calc(100% + 80px)';
+        overflow: auto;
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
     }
 
     .document__tools {

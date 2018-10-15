@@ -28,16 +28,18 @@ class Document {
         this.importPages(document.pages);
     }
 
+    // actions
+
     importPages(pages) {
         for (let page of pages) {
             this.pages.push(new Page(page, this));
         }
     }
 
-    addPage(type) {
+    createPage(type) {
         let page;
         switch (type) {
-            case 'regular':
+            default:
                 page = new Page(null, this);
         }
         this.pages.push(page);
@@ -45,10 +47,19 @@ class Document {
 
     // ui
 
+    hasLinesWithValue() {
+        for (let page of this.pages) {
+            if (page.hasLinesWithValue()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     getPageWithTotal() {
         let pageWithTotal = null;
         for (let page of this.pages) {
-            if (page.lines.length > 0) {
+            if (page.hasLinesWithValue()) {
                 pageWithTotal = page;
             }
         }
@@ -59,7 +70,7 @@ class Document {
         let total = 0;
         for (let page of this.pages) {
             for (let line of page.lines) {
-                if (line.type === 'hourly' || line.type === 'sum') {
+                if (line.hasValue()) {
                     total += line.getValue();
                 }
             }

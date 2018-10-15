@@ -93,9 +93,11 @@ const bootstrapVue = function(response) {
         rate: theStore.state.projects.all[0].rate,
         currency: theStore.state.projects.all[0].currency,
         pages: [
-            {},
         {
-            lines: [{type: 'text', text: '<h1>Aanleiding</h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur nibh dui, in congue dolor finibus at. Ut sit amet scelerisque justo. Nullam finibus ligula a nisl faucibus faucibus. Ut sollicitudin erat nec augue imperdiet, sit amet condimentum felis porttitor. Fusce ligula arcu, aliquet vitae vehicula vitae, rutrum vitae diam. Pellentesque suscipit felis velit, vel ullamcorper augue fermentum in.<br><br><h2>Cras efficitur nulla lorem</h2>Maecenas a commodo ligula. Ut efficitur nec mauris id placerat.'}, {}]
+            lines: [{type: 'hourly'}]
+        },
+        {
+            lines: [{type: 'text', text: '<h1>Aanleiding</h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur nibh dui, in congue dolor finibus at. Ut sit amet scelerisque justo. Nullam finibus ligula a nisl faucibus faucibus. Ut sollicitudin erat nec augue imperdiet, sit amet condimentum felis porttitor. Fusce ligula arcu, aliquet vitae vehicula vitae, rutrum vitae diam. Pellentesque suscipit felis velit, vel ullamcorper augue fermentum in.<br><br><h2>Cras efficitur nulla lorem</h2>Maecenas a commodo ligula. Ut efficitur nec mauris id placerat.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur nibh dui, in congue dolor finibus at. Ut sit amet scelerisque justo. Nullam finibus ligula a nisl faucibus faucibus. Ut sollicitudin erat nec augue imperdiet, sit amet condimentum felis porttitor. Fusce ligula arcu, aliquet vitae vehicula vitae, rutrum vitae diam. Pellentesque suscipit felis velit, vel ullamcorper augue fermentum in.'}]
         }]
     };
     console.log(document);

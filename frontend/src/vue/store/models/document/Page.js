@@ -60,6 +60,15 @@ class Page {
 
     // ui
 
+    hasLinesWithValue() {
+        for (let line of this.lines) {
+            if (line.hasValue()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     isFrontPage() {
         return this.document.pages.indexOf(this) === 0;
     }

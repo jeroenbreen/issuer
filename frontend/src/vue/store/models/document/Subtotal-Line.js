@@ -12,7 +12,7 @@ class SubtotalLine extends _Line {
         prev = this.prev();
         value = 0;
         while (prev && prev.type !== 'subtotal') {
-            if (prev.type === 'hourly' || prev.type === 'sum') {
+            if (prev.hasValue()) {
                 value += prev.getValue();
             }
             prev = prev.prev();

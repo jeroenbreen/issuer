@@ -23,6 +23,10 @@ class _Line {
         }
     }
 
+    hasValue() {
+        return this.type === 'hourly' || this.type === 'sum';
+    }
+
     toPrint(currencyFilter) {
         const clone = {...this};
         if (currencyFilter) {
