@@ -82,6 +82,7 @@ const bootstrapVue = function(response) {
     const document = {
         type: 'invoice',
         documentId: 1,
+        locked: true,
         date: new Date(),
         subject: theStore.state.projects.all[0].title,
         userName: theStore.state.users.current.getFullName(),

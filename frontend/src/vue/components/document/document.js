@@ -29,6 +29,9 @@ const documentComponent = Vue.component('document', {
         createPage() {
             this.document.createPage();
         },
+        toggleReadonly() {
+            this.document.locked = !this.document.locked;
+        },
         print() {
             const document = this.document.toPrint(this.$root.$options.filters.currency);
             document.documentIdFormatted = this.getDocumentId();
@@ -56,14 +59,14 @@ const documentComponent = Vue.component('document', {
     },
     template: `
         <div class="document__container">
-            <div class="document">
+            <div class="document" v-bind:class="{'document--locked': document.locked}">
                 <doc-page 
                     v-for="(page, index) in document.pages"
                     v-bind:key="index"
                     v-bind:page="page"
                     v-bind:type="getType(index)"
                     v-bind:document="document"></doc-page>
-                <div class="page__tools">
+                <div v-if="!document.locked" class="page__tools">
                     <div 
                         v-on:click="createPage()" 
                         class="icon-button icon-button--editing-mode">
@@ -73,7 +76,9 @@ const documentComponent = Vue.component('document', {
                     </div>
                 </div>
             </div>
-            <div class="document__index">
+            <div
+                v-if="document.pages.length > 1"
+                class="document__index">
                 <SortableList 
                     lockAxis="y" 
                     v-model="document.pages"
@@ -86,11 +91,30 @@ const documentComponent = Vue.component('document', {
                 </SortableList>
             </div>
             <div class="document__tools">
-                <div class="iss-button" v-on:click="closeScreen()">
-                    Back
+                <div class="tool-button" v-on:click="closeScreen()">
+                    <div class="tool-button__icon">
+                        <i class="fas fa-long-arrow-alt-left"></i>
+                    </div>
+                    <div class="tool-button__label">
+                        Back
+                    </div>
                 </div>
-                <div class="iss-button" v-on:click="print()">
-                    Print
+                <div class="tool-button" v-on:click="print()">
+                    <div class="tool-button__icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <div class="tool-button__label">
+                        Print
+                    </div>
+                </div>
+                
+                <div class="tool-button" v-on:click="toggleReadonly()">
+                    <div class="tool-button__icon">
+                       <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="tool-button__label">
+                        Read-only
+                    </div>
                 </div>
             </div>   
         </div>

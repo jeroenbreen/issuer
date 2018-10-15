@@ -8,6 +8,7 @@ class Document {
         this.project_id = document.project_id ? document.projectId : null;
 
         this.type = document.type;
+        this.locked = document.locked;
         this.documentId = document.documentId ? document.documentId : null;
 
         this.date = new Date(document.date);

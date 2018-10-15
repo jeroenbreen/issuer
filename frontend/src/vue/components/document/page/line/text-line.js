@@ -16,14 +16,16 @@ const textLineComponent = Vue.component('text-line', {
                 ["bold", "italic"],
                 [{list: "bullet"}],
                 ["link"]
-            ]
+            ],
+            id: Math.random().toString(36).substring(7)
         }
     },
     methods: {
         onEditorFocus() {
-            $('.ql-toolbar').show();
+            //$('.ql-toolbar').show();
         },
         onEditorBlur() {
+            console.log('blur');
             //$('.ql-toolbar').hide();
         }
     },
@@ -32,6 +34,7 @@ const textLineComponent = Vue.component('text-line', {
         <div class="line__text">
             <div class="line__row">
                 <vue-editor 
+                    v-bind:id="id"
                     v-model="line.text"
                     :editorToolbar="customToolbar"
                     @focus="onEditorFocus"

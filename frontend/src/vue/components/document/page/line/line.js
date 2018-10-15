@@ -19,7 +19,7 @@ const lineComponent = Vue.component('doc-line', {
     props: ['line'],
     template: `
         <li class="line">
-            <div class="line__grip handle" v-handle>
+            <div v-if="!line.document.locked" class="line__grip handle" v-handle>
                 <div class="grip__bar"></div>
                 <div class="grip__bar"></div>
                 <div class="grip__bar"></div>
@@ -46,7 +46,7 @@ const lineComponent = Vue.component('doc-line', {
                 v-bind:line="line"/>
             
             
-            <div class="line__tools">
+            <div class="line__tools" v-if="!line.document.locked">
                 <div 
                     v-on:click="removeLine()"
                     class="line__tool">

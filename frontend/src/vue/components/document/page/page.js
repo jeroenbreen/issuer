@@ -138,7 +138,7 @@ const pageComponent = Vue.component('doc-page', {
                         </SortableList>
                     </div>
                     
-                    <div class="lines_tools" v-if="canAddLines">
+                    <div class="lines_tools" v-if="canAddLines && !document.locked">
                         <div 
                             v-on:click="createLine('hourly')" 
                             class="icon-button icon-button--editing-mode">
