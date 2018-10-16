@@ -121,12 +121,27 @@ const documentComponent = Vue.component('document', {
                     </div>
                 </div>
                 
-                <div class="tool-button" v-on:click="toggleReadonly()">
+                <div 
+                    v-if="document.locked"
+                    v-on:click="toggleReadonly()"
+                    class="tool-button">
                     <div class="tool-button__icon">
                        <i class="fas fa-book-open"></i>
                     </div>
                     <div class="tool-button__label">
-                        Read-only
+                        Read-only modus
+                    </div>
+                </div>
+                
+                <div 
+                    v-if="!document.locked"
+                    v-on:click="toggleReadonly()"
+                    class="tool-button">
+                    <div class="tool-button__icon">
+                       <i class="fas fa-pen-alt"></i>
+                    </div>
+                    <div class="tool-button__label">
+                        Edit modus
                     </div>
                 </div>
             </div>   
