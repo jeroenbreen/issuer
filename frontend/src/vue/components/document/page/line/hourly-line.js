@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import {switchInputComponent} from '../../../shared/switch-input/switch-input'
 
 
 const hourlyLineComponent = Vue.component('hourly-line', {
@@ -7,12 +8,20 @@ const hourlyLineComponent = Vue.component('hourly-line', {
     template: `
         <div class="line__row">
             <div class="line-part line-part--50 line-part--start">
-                <input v-model="line.subject">
+                <switch-input 
+                    v-bind:value="'subject'"
+                    v-bind:line="line"></switch-input>
             </div>
             <div class="line-part line-part--25 line-part--middle line-part__set">
-                <input v-model.number="line.hours" class="line-input--number">
-                ×
-                <input v-model.number="line.rate" class="line-input--number"> 
+                <switch-input 
+                        v-bind:value="'hours'"
+                        v-bind:line="line"
+                        v-bind:size="'number'"></switch-input>
+                                    ×
+                <switch-input 
+                        v-bind:value="'rate'"
+                        v-bind:line="line"
+                        v-bind:size="'number'"></switch-input>
                 {{line.document.currency}}
             </div>
             <div class="line-part line-part--end line-part--25">

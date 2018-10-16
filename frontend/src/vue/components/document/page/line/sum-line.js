@@ -7,11 +7,15 @@ const sumLineComponent = Vue.component('sum-line', {
     template: `
         <div class="line__row">
             <div class="line-part line-part--75 line-part--start">
-                <input v-model="line.subject">
+                <switch-input 
+                    v-bind:value="'subject'"
+                    v-bind:line="line"></switch-input>
             </div>
             <div class="line-part line-part--25 line-part--end">
-                <input v-model="line.value" class="line-input--big-number">
-                {{line.document.currency}}
+                <switch-input 
+                    v-bind:value="'value'"
+                    v-bind:line="line"
+                    v-bind:size="'number'"></switch-input>&nbsp;{{line.document.currency}}
             </div>
         </div>
         

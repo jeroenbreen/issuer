@@ -284,6 +284,9 @@ body .main .content .page {
   background-position: 50% 50%;
   background-size: cover;
 }
+.switch-input {
+  display: contents;
+}
 .welcome-screen {
   width: 300px;
   background: #fff;
@@ -361,22 +364,10 @@ body .quillWrapper .ql-container {
   border: 0;
 }
 body .quillWrapper .ql-container .ql-editor {
+  margin: -4px;
   padding: 4px;
   min-height: 20px;
-  font-size: inherit;
   background: #f5f5f5;
-}
-body .quillWrapper .ql-container .ql-editor h1 {
-  font-family: 'Tinos';
-  font-size: 22px;
-  margin-bottom: 30px;
-}
-body .quillWrapper .ql-container .ql-editor h2 {
-  font-family: 'Roboto condensed';
-  font-size: 15px;
-  margin-bottom: 10px;
-  font-weight: 400;
-  text-transform: uppercase;
 }
 .document--locked .ql-toolbar {
   display: none;
@@ -433,7 +424,7 @@ body .quillWrapper .ql-container .ql-editor h2 {
   background: #f5f5f5;
   border: 0;
   padding: 4px;
-  margin: 0;
+  margin: -4px;
   font-size: 10px;
 }
 .line .line__row input:focus,
@@ -473,7 +464,7 @@ body .quillWrapper .ql-container .ql-editor h2 {
   left: calc(100% + 20px);
   top: 0;
 }
-.line .line__tools line .line__tool {
+.line .line__tools .line__tool {
   cursor: pointer;
   width: 20px;
   height: 20px;
@@ -484,7 +475,7 @@ body .quillWrapper .ql-container .ql-editor h2 {
   justify-content: space-around;
   align-items: center;
 }
-.line .line__tools line .line__tool:hover {
+.line .line__tools .line__tool:hover {
   background: #FFEF7B;
 }
 .line .line-part__set {
@@ -498,6 +489,37 @@ body .quillWrapper .ql-container .ql-editor h2 {
 .line .line__text .line__row {
   height: auto;
   min-height: 20px;
+}
+body .quillWrapper .ql-container .ql-editor,
+body .quillWrapper .ql-container .ql-editor p,
+.line__text {
+  font-family: 'Open Sans';
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: left;
+}
+body .quillWrapper .ql-container .ql-editor h1,
+body .quillWrapper .ql-container .ql-editor p h1,
+.line__text h1 {
+  font-family: 'Tinos';
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+body .quillWrapper .ql-container .ql-editor h2,
+body .quillWrapper .ql-container .ql-editor p h2,
+.line__text h2 {
+  font-family: 'Roboto condensed';
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-top: 0;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+body .quillWrapper .ql-container .ql-editor p,
+body .quillWrapper .ql-container .ql-editor p p,
+.line__text p {
+  margin: 0;
 }
 .page {
   width: 620px;
@@ -658,7 +680,7 @@ body .quillWrapper .ql-container .ql-editor h2 {
   margin: 0;
 }
 .document__container .document__tools {
-  position: absolute;
+  position: fixed;
   left: calc(50% + 340px);
   top: 40px;
   width: 100px;

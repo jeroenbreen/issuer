@@ -34,11 +34,15 @@ const textLineComponent = Vue.component('text-line', {
         <div class="line__text">
             <div class="line__row">
                 <vue-editor 
+                    v-if="!line.document.locked"
                     v-bind:id="id"
                     v-model="line.text"
                     :editorToolbar="customToolbar"
                     @focus="onEditorFocus"
                     @blur="onEditorBlur"></vue-editor>
+                <div 
+                    v-if="line.document.locked"
+                    v-html="line.text"></div>
             </div>
         </div>
     `
