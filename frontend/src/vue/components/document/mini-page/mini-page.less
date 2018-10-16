@@ -8,7 +8,11 @@
     background: #fff;
     cursor: pointer;
 
-    &:hover {
+    &:hover:not(.mini-page--current) {
+        background: #ddd;
+    }
+
+    &.mini-page--current {
         background: @editing-mode-color;
     }
 

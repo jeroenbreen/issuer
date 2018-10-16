@@ -7,8 +7,21 @@ import {miniPageComponent} from "./mini-page/mini-page";
 import {Document} from "../../store/models/Document";
 import $ from "jquery";
 
+const pageHeight = 877 + 40;
+const scrollBuffer = 20;
+
 
 const documentComponent = Vue.component('document', {
+    mounted () {
+        const container = $('.document__container');
+        const document = this.document;
+        container.scroll(function(event){
+            let scroll = container.scrollTop(),
+                pageIndex = Math.floor((scroll + scrollBuffer) / pageHeight);
+            document.state.currentPage = document.pages[pageIndex];
+
+        })
+    },
     data(){
         return {
             document: new Document(this.$store.state.documents.current.clone()),
@@ -53,7 +66,7 @@ const documentComponent = Vue.component('document', {
         },
         onSortEnd(event) {
             $('.document__container').animate({
-                scrollTop: event.newIndex * (877 + 30)
+                scrollTop: event.newIndex * (pageHeight) - scrollBuffer
             }, 1000);
         }
     },

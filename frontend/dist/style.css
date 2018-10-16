@@ -649,7 +649,10 @@ body .quillWrapper .ql-container .ql-editor p p,
   background: #fff;
   cursor: pointer;
 }
-.mini-page:hover {
+.mini-page:hover:not(.mini-page--current) {
+  background: #ddd;
+}
+.mini-page.mini-page--current {
   background: #FFE000;
 }
 .document__container {

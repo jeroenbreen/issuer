@@ -9,7 +9,8 @@ const miniPageComponent = Vue.component('mini-page', {
     mixins: [ElementMixin],
     props: ['page'],
     template: `
-        <li class="mini-page"></li>
+        <li class="mini-page"
+            v-bind:class="{'mini-page--current': page === page.document.state.currentPage}"></li>
     `
 });
 

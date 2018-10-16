@@ -26,6 +26,11 @@ class Document {
         this.currency = document.currency;
 
         this.pages = [];
+
+        this.state = {
+            currentPage: null
+        };
+
         this.importPages(document.pages);
     }
 
@@ -34,6 +39,9 @@ class Document {
     importPages(pages) {
         for (let page of pages) {
             this.pages.push(new Page(page, this));
+        }
+        if (this.pages.length > 0) {
+            this.state.currentPage = this.pages[0];
         }
     }
 
