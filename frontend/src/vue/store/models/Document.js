@@ -104,6 +104,8 @@ class Document {
         for (let page of this.pages) {
             clone.pages.push(page.toPrint(currencyFilter));
         }
+        delete clone.state;
+        console.log(clone);
         return clone;
     }
 

@@ -1,3 +1,6 @@
+import {Document} from './Document'
+
+
 class Project {
 
     constructor(project) {
@@ -24,6 +27,25 @@ class Project {
 
     getBudget() {
         return (this.rate * this.hours - this.discount) + ' ' +  this.currency;
+    }
+
+    getDocument(type) {
+        return new Document({
+            type: type,
+            documentId: 1,
+            locked: false,
+            date: new Date(),
+            subject: this.title,
+            userName: theStore.state.users.current.getFullName(),
+            clientCompanyName: theStore.state.clients.all[0].companyName,
+            clientContactName: theStore.state.clients.all[0].contactFirstName + ' ' + theStore.state.clients.all[0].contactLastName,
+            clientStreet: theStore.state.clients.all[0].street,
+            clientPostcode: theStore.state.clients.all[0].postcode,
+            clientCity: theStore.state.clients.all[0].city,
+            rate: this.rate,
+            currency: this.currency,
+            pages: [{}]
+        })
     }
 }
 

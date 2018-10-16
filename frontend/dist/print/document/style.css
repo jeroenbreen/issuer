@@ -1,5 +1,47 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: url(./../../assets/fonts/Open_Sans/OpenSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: bold;
+    src: url(./../../assets/fonts/Open_Sans/OpenSans-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Tinos';
+    font-style: normal;
+    font-weight: normal;
+    src: url(./../../assets/fonts/Tinos/Tinos-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Tinos';
+    font-style: normal;
+    font-weight: bold;
+    src: url(./../../assets/fonts/Tinos/Tinos-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: normal;
+    src: url(./../../assets/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: bold;
+    src: url(./../../assets/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf) format('truetype');
+}
+
 body {
-    font-family: 'Helvetica';
+    font-family: 'Open Sans';
     margin: 0;
     padding: 0;
     position: relative;
@@ -15,7 +57,6 @@ html {
     left: 0;
     top: 0;
     page-break-after: always;
-    line-height: 1.6;
 }
 .page .document__elements {
     position: absolute;
@@ -101,7 +142,36 @@ html {
     text-align: center;
 }
 
-/* lin */
+
+
+
+/* total */
+
+.page .document__elements .document__total {
+    position: absolute;
+    width: 100%;
+}
+
+.page .document__elements .document__total .document__total-line {
+}
+
+.page .document__elements .document__total .document__total-line .document__total-label {
+    width: 50%;
+    display: inline-block;
+}
+
+.page .document__elements .document__total .document__total-line .document__total-value {
+    width: 50%;
+    display: inline-block;
+    text-align: right;
+}
+
+.page .document__elements .document__total .document__total-line.document__total-line--big {
+    font-weight: 700;
+}
+
+
+/* line sum/hourly */
 
 .line {
     clear: both;
@@ -129,27 +199,28 @@ html {
 }
 
 
-/* total */
+/* text line */
 
-.page .document__elements .document__total {
-    position: absolute;
-    width: 100%;
+.line--text,
+.line--text p {
+    font-family: 'Open Sans';
+    text-align: left;
 }
 
-.page .document__elements .document__total .document__total-line {
+.line--text h1 {
+    font-family: 'Tinos';
+    margin-top: 0;
+    display: block;
 }
 
-.page .document__elements .document__total .document__total-line .document__total-label {
-    width: 50%;
-    display: inline-block;
+.line--text h2 {
+    font-family: 'Roboto condensed';
+    margin-top: 0;
+    font-weight: 400;
+    text-transform: uppercase;
+    display: block;
 }
 
-.page .document__elements .document__total .document__total-line .document__total-value {
-    width: 50%;
-    display: inline-block;
-    text-align: right;
-}
-
-.page .document__elements .document__total .document__total-line.document__total-line--big {
-    font-weight: 700;
+.line--text p {
+    margin: 0;
 }

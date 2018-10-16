@@ -66,7 +66,26 @@ const projectDetailsComponent = Vue.component('project-detail', {
             }
         },
         addInvoice() {
-            this.$store.commit('documents/setCurrent', new Document());
+            let client, document;
+            const getItemById = this.$store.getters['clients/getItemById'];
+            client = getItemById(this.project.client_id);
+            document = new Document({
+                type: 'invoice',
+                documentId: 1,
+                locked: false,
+                date: new Date(),
+                subject: this.project.title,
+                userName: this.$store.state.users.current.getFullName(),
+                clientCompanyName: client.companyName,
+                clientContactName: client.contactFirstName + ' ' + client.contactLastName,
+                clientStreet: client.street,
+                clientPostcode: client.postcode,
+                clientCity: client.city,
+                rate: this.project.rate,
+                currency: this.project.currency,
+                pages: [{}]
+            });
+            this.$store.commit('documents/setCurrent', document);
         }
     },
     props: ['project'],
@@ -232,11 +251,11 @@ const projectDetailsComponent = Vue.component('project-detail', {
                     Invoices
                 </div>
                 <div class="details-content">
-                    <div class="icon-button" v-on:click="addInvoice()">
-                        <div class="icon-button__icon">
+                    <div class="tool-button" v-on:click="addInvoice()">
+                        <div class="tool-button__icon">
                             <i class="fas fa-plus"></i>
                         </div>
-                        <div class="icon-button__label">
+                        <div class="tool-button__label">
                             Add Invoice
                         </div>
                     </div>

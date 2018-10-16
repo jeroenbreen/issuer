@@ -29,10 +29,12 @@ class _Line {
 
     toPrint(currencyFilter) {
         const clone = {...this};
-        if (currencyFilter) {
-            clone.value = currencyFilter(this.getValue());
-        } else {
-            clone.value = this.getValue();
+        if (this.hasValue()) {
+            if (currencyFilter) {
+                clone.value = currencyFilter(this.getValue());
+            } else {
+                clone.value = this.getValue();
+            }
         }
         delete clone.page;
         delete clone.document;

@@ -136,7 +136,7 @@ input {
   align-items: center;
 }
 .tool-button:hover .tool-button__icon {
-  border: 1px solid #fff;
+  border: 1px solid #000;
 }
 .tool-button .tool-button__icon {
   font-size: 9px;
@@ -146,13 +146,23 @@ input {
   border-radius: 50%;
   background: #00B7FF;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  border: 1px solid #000;
+  border: 1px solid #fff;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 .tool-button .tool-button__label {
+  color: #000;
   white-space: nowrap;
+}
+.tool-button.tool-button--inverse:hover .tool-button__icon {
+  border: 1px solid #fff;
+}
+.tool-button.tool-button--inverse .tool-button__icon {
+  border: 1px solid #000;
+}
+.tool-button.tool-button--inverse .tool-button__label {
+  color: #fff;
 }
 .milestone {
   display: inline-block;

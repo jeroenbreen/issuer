@@ -104,7 +104,7 @@ const documentComponent = Vue.component('document', {
                 </SortableList>
             </div>
             <div class="document__tools">
-                <div class="tool-button" v-on:click="closeScreen()">
+                <div class="tool-button tool-button--inverse" v-on:click="closeScreen()">
                     <div class="tool-button__icon">
                         <i class="fas fa-long-arrow-alt-left"></i>
                     </div>
@@ -112,7 +112,7 @@ const documentComponent = Vue.component('document', {
                         Back
                     </div>
                 </div>
-                <div class="tool-button" v-on:click="print()">
+                <div class="tool-button tool-button--inverse" v-on:click="print()">
                     <div class="tool-button__icon">
                         <i class="fas fa-print"></i>
                     </div>
@@ -124,7 +124,7 @@ const documentComponent = Vue.component('document', {
                 <div 
                     v-if="document.locked"
                     v-on:click="toggleReadonly()"
-                    class="tool-button">
+                    class="tool-button tool-button--inverse">
                     <div class="tool-button__icon">
                        <i class="fas fa-book-open"></i>
                     </div>
@@ -136,7 +136,7 @@ const documentComponent = Vue.component('document', {
                 <div 
                     v-if="!document.locked"
                     v-on:click="toggleReadonly()"
-                    class="tool-button">
+                    class="tool-button tool-button--inverse">
                     <div class="tool-button__icon">
                        <i class="fas fa-pen-alt"></i>
                     </div>
