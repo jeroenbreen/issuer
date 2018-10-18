@@ -35,6 +35,7 @@ const projectDetailsComponent = Vue.component('project-detail', {
             this.project.milestone_id = 0;
         },
         updateMilestones() {
+            console.log("!");
             let repository, url;
             if (this.project.repository_id !== 0) {
                 repository = this.getRepository();
@@ -102,12 +103,10 @@ const projectDetailsComponent = Vue.component('project-detail', {
     <div class="details-section">
         <div class="details-section__content">
             <div class="details-row">
-                <div class="details-label">
-                    Title
-                </div>
-                <div class="details-content">
-                    <input v-model="project.title" placeholder="Title">
-                </div>
+                <md-field>
+                    <label>Title</label>
+                    <md-input v-model="project.title" placeholder="Title"></md-input>
+                </md-field>
             </div>
         </div>
     </div>
@@ -117,66 +116,60 @@ const projectDetailsComponent = Vue.component('project-detail', {
         </div>
         <div class="details-section__content">
             <div class="details-row">
-                <div class="details-label">
-                    Client
-                </div>
-                <div class="details-content">
-                    <select v-model="project.client_id">
-                        <option v-for="client in getClients()"
-                                v-bind:value="client._id">
-                            {{client.companyName}}
-                        </option>
-                    </select>
-                </div>
+                <md-field>
+                    <label>Client</label>
+                    <md-select
+                        v-model="project.client_id"
+                        placeholder="Client">
+                        <md-option 
+                            v-for="(client, index) in getClients()" 
+                            v-bind:value="client._id"
+                            v-bind:key="index">{{client.companyName}}</md-option> 
+                    </md-select>
+                </md-field>
             </div>
             <div class="details-row">
-                <div class="details-label">
-                    Employee
-                </div>
-                <div class="details-content">
-                    <select v-model="project.user_id">
-                        <option v-for="user in getUsers()"
-                                v-bind:value="user._id">
-                            {{user.getFullName()}}
-                        </option>
-                    </select>
-                </div>
+                <md-field>
+                    <label>Employee</label>
+                    <md-select
+                        v-model="project.user_id"
+                        placeholder="Employee">
+                        <md-option 
+                            v-for="(user, index) in getUsers()" 
+                            v-bind:value="user._id"
+                            v-bind:key="index">{{user.getFullName()}}</md-option> 
+                    </md-select>
+                </md-field>
             </div>
             <div class="details-row">
-                <div class="details-label">
-                    Repository
-                </div>
-                <div class="details-content">
-                    <select v-model="project.repository_id"
-                            v-on:change="updateMilestones()">
-                        <option v-for="repository in getRepositories()"
-                                v-bind:value="repository.id">
-                            {{repository.name}}
-                        </option>
-                    </select>
-                    <div class="icon-button" v-on:click="deleteRespository()">
-                        <div class="icon-button__icon">
-                            <i class="fas fa-trash"></i>
-                        </div>
-                    </div>
-                </div>
+                <md-field>
+                    <label>Repository</label>
+                    <md-select
+                        v-model="project.repository_id"
+                        @md-selected="updateMilestones()"
+                        placeholder="Repository">
+                        <md-option 
+                            v-for="(repository, index) in getRepositories()" 
+                            v-bind:value="repository.id"
+                            v-bind:key="index">{{repository.name}}</md-option> 
+                    </md-select>
+                </md-field>
             </div>
             <div class="details-row">
-                <div class="details-label">
-                    Milestone
-                </div>
-                <div class="details-content">
-                    <select v-model="project.milestone_id"
-                            v-on:change="setCurrentMilestone()">
-                        <option v-for="milestone in milestones"
-                                v-bind:value="milestone.id">
-                            {{milestone.title}}
-                        </option>
-                    </select>
-                    <div class="icon-button" v-on:click="deleteMilestone()">
-                        <div class="icon-button__icon">
-                            <i class="fas fa-trash"></i>
-                        </div>
+                <md-field>
+                    <label>Milestone</label>
+                    <md-select
+                        v-model="project.milestone_id"
+                        placeholder="Milestone">
+                        <md-option 
+                            v-for="(milestone, index) in milestones" 
+                            v-bind:value="milestone.id"
+                            v-bind:key="index">{{milestone.title}}</md-option> 
+                    </md-select>
+                </md-field>
+                <div class="icon-button" v-on:click="deleteMilestone()">
+                    <div class="icon-button__icon">
+                        <i class="fas fa-trash"></i>
                     </div>
                 </div>
             </div>
@@ -205,39 +198,28 @@ const projectDetailsComponent = Vue.component('project-detail', {
         </div>
         <div class="details-section__content">
             <div class="details-row">
-                <div class="details-label">
-                    Currency
-                </div>
-                <div class="details-content">
-                    <input v-model="project.currency" placeholder="Currency">
-                </div>
+                <md-field>
+                    <label>Currency</label>
+                    <md-input v-model="project.currency" placeholder="Currency"></md-input>
+                </md-field>
             </div>
             <div class="details-row">
-                <div class="details-label">
-                    Rate
-                </div>
-                <div class="details-content">
-                    <input v-model.number="project.rate" placeholder="Rate"
-                           type="number">
-                </div>
+                <md-field>
+                    <label>Rate</label>
+                    <md-input v-model="project.rate" type="number" placeholder="Rate"></md-input>
+                </md-field>
             </div>
             <div class="details-row">
-                <div class="details-label">
-                    Hours
-                </div>
-                <div class="details-content">
-                    <input v-model.number="project.hours" placeholder="Hours"
-                           type="number">
-                </div>
+                <md-field>
+                    <label>Hours</label>
+                    <md-input v-model="project.hours" type="number" placeholder="Hours"></md-input>
+                </md-field>
             </div>
             <div class="details-row">
-                <div class="details-label">
-                    Discount
-                </div>
-                <div class="details-content">
-                    <input v-model.number="project.discount"
-                           placeholder="Discount" type="number">
-                </div>
+                <md-field>
+                    <label>Discount</label>
+                    <md-input v-model="project.discount" type="number" placeholder="Discount"></md-input>
+                </md-field>
             </div>
             <div class="details-row">
                 <div class="details-label">
@@ -265,7 +247,9 @@ const projectDetailsComponent = Vue.component('project-detail', {
                         v-bind:key="index">
                     </document-mini>
                 
-                
+                      <md-button v-on:click="createDocument('invoice')" class="md-primary">Add Invoice</md-button>
+
+
                     <div class="tool-button" v-on:click="createDocument('invoice')">
                         <div class="tool-button__icon">
                             <i class="fas fa-plus"></i>

@@ -29,6 +29,15 @@ import {projectCreateComponent} from './components/pages/projects/project-create
 import {projectUpdateComponent} from './components/pages/projects/project-update/project-update';
 import {issuesComponent} from './components/pages/issues/issues';
 
+// google material for Vue
+// import { MdField, MdInput } from 'vue-material/dist/components'
+// Vue.use(MdField);
+// Vue.use(MdInput);
+import VueMaterial from 'vue-material'
+Vue.use(VueMaterial);
+
+
+
 import {Document} from './store/models/Document'
 
 Vue.use(VueRouter);

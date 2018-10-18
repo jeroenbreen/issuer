@@ -1,3 +1,4 @@
+@import '../node_modules/vue-material/dist/vue-material.min.css';
 .issue-mini {
   width: 24px;
   height: 24px;
@@ -26,6 +27,9 @@
   display: flex;
   padding: 10px 0;
   align-items: center;
+}
+.details .details-section .details-section__content .details-row .md-field {
+  max-width: 300px;
 }
 .details .details-section .details-section__content .details-row .details-label {
   width: 100px;
