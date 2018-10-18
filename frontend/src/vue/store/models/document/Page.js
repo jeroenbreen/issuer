@@ -80,13 +80,23 @@ class Page {
     //
 
     toPrint(currencyFilter) {
-        const clone = {...this};
-        clone.lines = [];
-        delete clone.document;
+        const obj = {...this};
+        obj.lines = [];
+        delete obj.document;
         for (let line of this.lines) {
-            clone.lines.push(line.toPrint(currencyFilter));
+            obj.lines.push(line.toPrint(currencyFilter));
         }
-        return clone;
+        return obj;
+    }
+
+    toBackend() {
+        const obj = {...this};
+        obj.lines = [];
+        delete obj.document;
+        for (let line of this.lines) {
+            obj.lines.push(line.toBackend());
+        }
+        return obj;
     }
 
     clone() {

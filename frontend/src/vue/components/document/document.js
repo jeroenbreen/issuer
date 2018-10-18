@@ -31,7 +31,7 @@ const documentComponent = Vue.component('document', {
     },
     methods: {
         getDocumentId() {
-            return this.document.date.getFullYear() + '-' + this.$root.$options.filters.formatId(this.$store.state.settings.documentIdFormat, this.document.documentId);
+            return this.document.getFormattedId(this.$root.$options.filters.formatId, this.$store.state.settings.documentIdFormat);
         },
         closeScreen() {
             this.$store.commit('documents/unsetCurrent');

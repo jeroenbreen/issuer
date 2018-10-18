@@ -706,6 +706,33 @@ body .quillWrapper .ql-container .ql-editor p p,
 .document__container .document__tools .iss-button {
   margin-bottom: 4px;
 }
+.document-mini {
+  display: flex;
+  background: #00B7FF;
+  height: 26px;
+  border-radius: 13px;
+  padding: 0 12px;
+  align-items: center;
+  margin: 0 3px 3px 0;
+  cursor: pointer;
+}
+.document-mini:hover {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.document-mini .document-mini__icon {
+  font-size: 12px;
+  margin-right: 6px;
+  width: 16px;
+}
+.document-mini .document-mini__icon.document-mini__icon--hover {
+  display: none;
+}
+.document-mini:hover .document-mini__icon--normal {
+  display: none;
+}
+.document-mini:hover .document-mini__icon--hover {
+  display: block;
+}
 .topbar .avatar {
   position: absolute;
   right: 10px;

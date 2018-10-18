@@ -12,7 +12,18 @@ class Document {
         this.project_id = document.project_id ? ObjectId(document.project_id) : ObjectId();
         this.documentId = document.documentId ? Number(document.documentId) : 0;
         this.type = String(document.type);
-
+        this.locked = Boolean(document.locked);
+        this.date = String(document.date);
+        this.subject = String(document.subject);
+        this.userName = String(document.userName);
+        this.clientCompanyName = String(document.clientCompanyName);
+        this.clientContactName = String(document.clientContactName);
+        this.clientStreet = String(document.clientStreet);
+        this.clientPostcode = String(document.clientPostcode);
+        this.clientCity = String(document.clientCity);
+        this.rate = Number(document.rate);
+        this.currency = String(document.currency);
+        this.pages = document.pages;
     }
 }
 
@@ -28,6 +39,7 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
     let db, collection, document;
+    console.log(req.body);
     document = new Document(req.body);
     document.company_id = company_id;
     db = req.db;
@@ -49,9 +61,6 @@ router.post('/', function(req, res) {
             res.send(docs);
         });
     });
-
-
-
 });
 
 router.put('/:id', function(req, res) {

@@ -14,16 +14,19 @@ const getters = {
 
 const actions = {
     create(context, item, route) {
+        console.log(item);
         return new Promise((resolve, reject) => {
             delete item._id;
             $.ajax({
                 'url': (config.backend + route),
                 'type': 'POST',
-                'data': item,
+                'data': JSON.stringify(item),
                 'headers': {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             }).done(function(response){
+                console.log(response);
                 context.commit('create', response);
                 resolve();
             });

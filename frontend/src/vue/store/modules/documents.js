@@ -10,7 +10,10 @@ const state = {
 };
 
 const getters = {
-    ..._base.getters
+    ..._base.getters,
+    getSet: (state) => (type, project_id) => {
+        return state.all.filter(item => item.type === type && item.project_id === project_id);
+    },
 };
 
 const actions = {

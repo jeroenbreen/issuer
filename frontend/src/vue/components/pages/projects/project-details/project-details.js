@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import {Document} from './../../../../store/models/Document';
+import {documentMiniComponent} from './../../../document-mini/document-mini';
 
 const projectDetailsComponent = Vue.component('project-detail', {
     created: function(){
@@ -65,15 +66,20 @@ const projectDetailsComponent = Vue.component('project-detail', {
                 });
             }
         },
-        addInvoice() {
+        getDocuments(type) {
+            const getSet = this.$store.getters['documents/getSet'];
+            return getSet(type, this.project._id);
+        },
+        createDocument(type) {
             let client, document;
             const getItemById = this.$store.getters['clients/getItemById'];
             client = getItemById(this.project.client_id);
-            document = new Document({
-                type: 'invoice',
+            document = {
+                type: type,
                 documentId: 1,
+                project_id: this.project._id,
                 locked: false,
-                date: new Date(),
+                date: '2010-01-01',
                 subject: this.project.title,
                 userName: this.$store.state.users.current.getFullName(),
                 clientCompanyName: client.companyName,
@@ -84,8 +90,10 @@ const projectDetailsComponent = Vue.component('project-detail', {
                 rate: this.project.rate,
                 currency: this.project.currency,
                 pages: [{}]
+            };
+            this.$store.dispatch('documents/create', document).then(() => {
+                this.$store.commit('documents/setCurrent', new Document(document));
             });
-            this.$store.commit('documents/setCurrent', document);
         }
     },
     props: ['project'],
@@ -251,7 +259,14 @@ const projectDetailsComponent = Vue.component('project-detail', {
                     Invoices
                 </div>
                 <div class="details-content">
-                    <div class="tool-button" v-on:click="addInvoice()">
+                    <document-mini 
+                        v-for="(document, index) in getDocuments('invoice')"
+                        v-bind:document="document"
+                        v-bind:key="index">
+                    </document-mini>
+                
+                
+                    <div class="tool-button" v-on:click="createDocument('invoice')">
                         <div class="tool-button__icon">
                             <i class="fas fa-plus"></i>
                         </div>

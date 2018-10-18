@@ -1,0 +1,39 @@
+.document-mini {
+    display: flex;
+    background: @blue;
+    height: 26px;
+    border-radius: 13px;
+    padding: 0 12px;
+    align-items: center;
+    margin: 0 3px 3px 0;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .document-mini__icon {
+        font-size: 12px;
+        margin-right: 6px;
+        width: 16px;
+
+        &.document-mini__icon--hover {
+            display: none;
+        }
+    }
+
+    &:hover {
+
+        .document-mini__icon--normal {
+            display: none;
+        }
+
+        .document-mini__icon--hover {
+            display: block;
+        }
+    }
+
+    .document-mini__label {
+
+    }
+}

@@ -28,17 +28,24 @@ class _Line {
     }
 
     toPrint(currencyFilter) {
-        const clone = {...this};
+        const obj = {...this};
         if (this.hasValue()) {
             if (currencyFilter) {
-                clone.value = currencyFilter(this.getValue());
+                obj.value = currencyFilter(this.getValue());
             } else {
-                clone.value = this.getValue();
+                obj.value = this.getValue();
             }
         }
-        delete clone.page;
-        delete clone.document;
-        return clone;
+        delete obj.page;
+        delete obj.document;
+        return obj;
+    }
+
+    toBackend() {
+        const obj = {...this};
+        delete obj.page;
+        delete obj.document;
+        return obj;
     }
 
     clone() {
