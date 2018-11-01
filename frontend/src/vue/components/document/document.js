@@ -30,6 +30,11 @@ const documentComponent = Vue.component('document', {
         }
     },
     methods: {
+        deleteDocument() {
+            this.$store.dispatch('documents/delete', this.$store.state.documents.current).then(() => {
+                this.closeScreen();
+            });
+        },
         getDocumentId() {
             return this.document.getFormattedId(this.$root.$options.filters.formatId, this.$store.state.settings.documentIdFormat);
         },
@@ -118,6 +123,15 @@ const documentComponent = Vue.component('document', {
                     </div>
                     <div class="tool-button__label">
                         Print
+                    </div>
+                </div>
+                
+                <div class="tool-button tool-button--inverse tool-button--warning" v-on:click="deleteDocument()">
+                    <div class="tool-button__icon">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                    <div class="tool-button__label">
+                        Remove
                     </div>
                 </div>
                 

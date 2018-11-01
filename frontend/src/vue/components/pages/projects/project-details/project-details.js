@@ -35,7 +35,6 @@ const projectDetailsComponent = Vue.component('project-detail', {
             this.project.milestone_id = 0;
         },
         updateMilestones() {
-            console.log("!");
             let repository, url;
             if (this.project.repository_id !== 0) {
                 repository = this.getRepository();
@@ -247,17 +246,7 @@ const projectDetailsComponent = Vue.component('project-detail', {
                         v-bind:key="index">
                     </document-mini>
                 
-                      <md-button v-on:click="createDocument('invoice')" class="md-primary">Add Invoice</md-button>
-
-
-                    <div class="tool-button" v-on:click="createDocument('invoice')">
-                        <div class="tool-button__icon">
-                            <i class="fas fa-plus"></i>
-                        </div>
-                        <div class="tool-button__label">
-                            Add Invoice
-                        </div>
-                    </div>
+                    <md-button v-on:click="createDocument('invoice')" class="md-primary">Add Invoice</md-button>
                 </div>
             </div>
         </div>

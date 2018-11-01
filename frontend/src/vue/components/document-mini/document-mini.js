@@ -9,7 +9,7 @@ const documentMiniComponent = Vue.component('document-mini', {
             return this.document.getFormattedId(this.$root.$options.filters.formatId, this.$store.state.settings.documentIdFormat);
         },
         openDocument() {
-            this.$store.commit('documents/setCurrent', new Document(this.document.toBackend()));
+            this.$store.commit('documents/setCurrent', this.document);
         }
     },
     template: `

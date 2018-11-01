@@ -52,7 +52,6 @@ const actions = {
             $.ajax({
                 'url': (config.backend + route + '/' + item._id),
                 'type': 'DELETE',
-                'data': item,
                 'headers': {
                     'Accept': 'application/json'
                 }
