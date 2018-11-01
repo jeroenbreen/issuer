@@ -14,18 +14,23 @@ const projectsComponent = Vue.component('projects', {
     },
     template: `
         <div class="page page--projects" v-scrim>
-            <h1>
-                Projects
-            </h1>
-            <div class="project-cards">
-                <project-card 
-                    v-for="project in getAll()" 
-                    v-bind:key="project._id"
-                    v-bind:project="project"></project-card>
+            <div class="page-section">
+                <h1>
+                    Projects
+                </h1>
             </div>
-            
-            <div class="iss-button" v-on:click="create()">
-                Create Project
+            <div class="page-section">
+                <div class="project-cards">
+                    <project-card 
+                        v-for="project in getAll()" 
+                        v-bind:key="project._id"
+                        v-bind:project="project"></project-card>
+                </div>
+            </div>
+            <div class="page-section">
+                <div class="iss-button" v-on:click="create()">
+                    Create Project
+                </div>
             </div>
         </div>
     `

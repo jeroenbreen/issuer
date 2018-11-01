@@ -1,0 +1,50 @@
+.md-snackbar {
+    z-index: 1000;
+}
+
+.md-field {
+    margin: 0;
+
+
+
+    .md-select {
+
+        input.md-input {
+            height: 24px;
+            margin-bottom: 4px;
+
+            &::-webkit-input-placeholder,
+            &::-moz-placeholder,
+            &:-ms-input-placeholder,
+            &:-moz-placeholder {
+                font-size: 14px;
+            }
+        }
+
+        .md-icon {
+
+            svg {
+
+                path:first-child {
+                    fill: @main-theme-color;
+                }
+            }
+        }
+    }
+
+    &:before {
+        background-color: @main-theme-color!important;
+    }
+
+    &.md-has-value {
+
+        label {
+            font-size: 10px;
+            color: @main-theme-color;
+        }
+
+        input.md-input {
+            font-size: 14px;
+        }
+    }
+}

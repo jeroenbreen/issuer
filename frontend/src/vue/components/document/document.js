@@ -9,6 +9,7 @@ import $ from "jquery";
 
 const pageHeight = 877 + 40;
 const scrollBuffer = 20;
+let saveBuffer = null;
 
 
 const documentComponent = Vue.component('document', {
@@ -26,11 +27,36 @@ const documentComponent = Vue.component('document', {
         return {
             document: new Document(this.$store.state.documents.current.clone()),
             template: this.$store.getters.template,
-            company: this.$store.state.company
+            company: this.$store.state.company,
+            localState: {
+                showSnackbar: false
+            }
+        }
+    },
+    watch: {
+        document: {
+            handler: function() {
+                // todo document.state should either be excluded from the watch
+                // or be stored in the database
+                if (saveBuffer) {
+                    clearTimeout(saveBuffer);
+                }
+                saveBuffer = setTimeout(() => {
+                    this.$store.dispatch('documents/update', this.document.toBackend()).then(() => {
+                        this.localState.showSnackbar = true;
+                        console.log('saved...');
+                    });
+                }, 500)
+            },
+            deep: true
         }
     },
     methods: {
+        pint() {
+            console.log('ping');
+        },
         deleteDocument() {
+            // use the current document for deleting, since this.document is a clone of it
             this.$store.dispatch('documents/delete', this.$store.state.documents.current).then(() => {
                 this.closeScreen();
             });
@@ -46,9 +72,6 @@ const documentComponent = Vue.component('document', {
         },
         createPage() {
             this.document.createPage();
-        },
-        toggleReadonly() {
-            this.document.locked = !this.document.locked;
         },
         print() {
             const document = this.document.toPrint(this.$root.$options.filters.currency);
@@ -109,14 +132,7 @@ const documentComponent = Vue.component('document', {
                 </SortableList>
             </div>
             <div class="document__tools">
-                <div class="tool-button tool-button--inverse" v-on:click="closeScreen()">
-                    <div class="tool-button__icon">
-                        <i class="fas fa-long-arrow-alt-left"></i>
-                    </div>
-                    <div class="tool-button__label">
-                        Back
-                    </div>
-                </div>
+
                 <div class="tool-button tool-button--inverse" v-on:click="print()">
                     <div class="tool-button__icon">
                         <i class="fas fa-print"></i>
@@ -134,31 +150,17 @@ const documentComponent = Vue.component('document', {
                         Remove
                     </div>
                 </div>
-                
-                <div 
-                    v-if="document.locked"
-                    v-on:click="toggleReadonly()"
-                    class="tool-button tool-button--inverse">
-                    <div class="tool-button__icon">
-                       <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="tool-button__label">
-                        Read-only modus
-                    </div>
-                </div>
-                
-                <div 
-                    v-if="!document.locked"
-                    v-on:click="toggleReadonly()"
-                    class="tool-button tool-button--inverse">
-                    <div class="tool-button__icon">
-                       <i class="fas fa-pen-alt"></i>
-                    </div>
-                    <div class="tool-button__label">
-                        Edit modus
-                    </div>
-                </div>
-            </div>   
+            </div>  
+            
+            <md-snackbar :md-position="'left'" :md-duration="2000" :md-active.sync="localState.showSnackbar" md-persistent>
+                <span>Saved...</span>
+            </md-snackbar> 
+            
+            <div class="document__close" v-on:click="closeScreen()"></div>
+            
+            <div class="document__mode">
+                <md-switch v-model="document.locked">Locked</md-switch>
+            </div>
         </div>
     `
 });

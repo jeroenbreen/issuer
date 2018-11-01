@@ -14,40 +14,6 @@
 .issue-mini.issue-mini--closed {
   background: #ccc;
 }
-.details .details-section {
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 20px;
-}
-.details .details-section .details-section__header {
-  font-size: 18px;
-  margin-bottom: 16px;
-}
-.details .details-section .details-section__content .details-row {
-  display: flex;
-  padding: 10px 0;
-  align-items: center;
-}
-.details .details-section .details-section__content .details-row .md-field {
-  max-width: 300px;
-}
-.details .details-section .details-section__content .details-row .details-label {
-  width: 100px;
-}
-.details .details-section .details-section__content .details-row .details-content {
-  width: calc(100% - 100px);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.details .details-section .details-section__content .details-row .details-content input {
-  width: 100%;
-  max-width: 300px;
-}
-.details .details-section .details-section__content .details-row .details-content input,
-.details .details-section .details-section__content .details-row .details-content select {
-  margin-right: 10px;
-}
 input {
   padding: 10px;
   border: 1px solid #ddd;
@@ -178,12 +144,49 @@ input {
   background: #00B7FF;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
-.page {
+.page .page-section {
   padding: 30px;
+  border-bottom: 1px solid #ddd;
+}
+.page .page-section:last-child {
+  border-bottom: 0;
+}
+.page .page-section .page-section__header {
+  font-size: 28px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-family: Tinos;
+  color: #E25252;
+}
+.page .page-section .page-section__content .details-row {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+}
+.page .page-section .page-section__content .details-row .md-field {
+  max-width: 300px;
+}
+.page .page-section .page-section__content .details-row .details-label {
+  width: 100px;
+}
+.page .page-section .page-section__content .details-row .details-content {
+  width: calc(100% - 100px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.page .page-section .page-section__content .details-row .details-content input {
+  width: 100%;
+  max-width: 300px;
+}
+.page .page-section .page-section__content .details-row .details-content input,
+.page .page-section .page-section__content .details-row .details-content select {
+  margin-right: 10px;
 }
 .page h1 {
-  margin: 0 0 15px 0;
-  height: 30px;
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
 }
 .scrim {
   position: relative;
@@ -230,6 +233,35 @@ input {
   /* IE10+/Edge */
   user-select: none;
   /* Standard */
+}
+.md-snackbar {
+  z-index: 1000;
+}
+.md-field {
+  margin: 0;
+}
+.md-field .md-select input.md-input {
+  height: 24px;
+  margin-bottom: 4px;
+}
+.md-field .md-select input.md-input::-webkit-input-placeholder,
+.md-field .md-select input.md-input::-moz-placeholder,
+.md-field .md-select input.md-input:-ms-input-placeholder,
+.md-field .md-select input.md-input:-moz-placeholder {
+  font-size: 14px;
+}
+.md-field .md-select .md-icon svg path:first-child {
+  fill: #E25252;
+}
+.md-field:before {
+  background-color: #E25252 !important;
+}
+.md-field.md-has-value label {
+  font-size: 10px;
+  color: #E25252;
+}
+.md-field.md-has-value input.md-input {
+  font-size: 14px;
 }
 * {
   box-sizing: border-box;
@@ -679,7 +711,7 @@ body .quillWrapper .ql-container .ql-editor p p,
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(20, 20, 20, 0.9);
   left: 0;
   top: 0;
   overflow: auto;
@@ -712,6 +744,41 @@ body .quillWrapper .ql-container .ql-editor p p,
 }
 .document__container .document__tools .iss-button {
   margin-bottom: 4px;
+}
+.document__container .document__close {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.8;
+  cursor: pointer;
+  text-align: center;
+}
+.document__container .document__close:before,
+.document__container .document__close:after {
+  position: absolute;
+  left: 23px;
+  top: 5px;
+  content: ' ';
+  height: 32px;
+  width: 2px;
+  background-color: #fff;
+}
+.document__container .document__close:before {
+  transform: rotate(45deg);
+}
+.document__container .document__close:after {
+  transform: rotate(-45deg);
+}
+.document__container .document__close:hover {
+  opacity: 1;
+}
+.document__container .document__mode {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  color: #fff;
 }
 .document-mini {
   display: flex;

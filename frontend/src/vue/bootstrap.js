@@ -73,6 +73,7 @@ const router = new VueRouter({
     routes
 });
 
+
 const bootstrapVue = function(response) {
     const store = theStore;
     theStore.commit('initCompany', response.company);
@@ -85,32 +86,6 @@ const bootstrapVue = function(response) {
 
     theStore.commit('users/setCurrent', theStore.state.users.all[0]);
     theStore.dispatch('issues/read', theStore.state.users.current.githubKey);
-
-
-    // const document = {
-    //     type: 'invoice',
-    //     documentId: 1,
-    //     locked: false,
-    //     date: new Date(),
-    //     subject: theStore.state.projects.all[0].title,
-    //     userName: theStore.state.users.current.getFullName(),
-    //     clientCompanyName: theStore.state.clients.all[0].companyName,
-    //     clientContactName: theStore.state.clients.all[0].contactFirstName + ' ' + theStore.state.clients.all[0].contactLastName,
-    //     clientStreet: theStore.state.clients.all[0].street,
-    //     clientPostcode: theStore.state.clients.all[0].postcode,
-    //     clientCity: theStore.state.clients.all[0].city,
-    //     rate: theStore.state.projects.all[0].rate,
-    //     currency: theStore.state.projects.all[0].currency,
-    //     pages: [
-    //     {
-    //         lines: [{type: 'hourly', subject: 'Lorem ipsum'}, {type: 'sum', subject: 'Onkosten', value: 9532.87}]
-    //     },
-    //     {
-    //         lines: [{type: 'text', text: '<h1>Aanleiding</h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur nibh dui, in congue dolor finibus at. Ut sit amet scelerisque justo. Nullam finibus ligula a nisl faucibus faucibus. Ut sollicitudin erat nec augue imperdiet, sit amet condimentum felis porttitor. Fusce ligula arcu, aliquet vitae vehicula vitae, rutrum vitae diam. Pellentesque suscipit felis velit, vel ullamcorper augue fermentum in.<br><br><h2>Cras efficitur nulla lorem</h2>Maecenas a commodo ligula. Ut efficitur nec mauris id placerat.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur nibh dui, in congue dolor finibus at. Ut sit amet scelerisque justo. Nullam finibus ligula a nisl faucibus faucibus. Ut sollicitudin erat nec augue imperdiet, sit amet condimentum felis porttitor. Fusce ligula arcu, aliquet vitae vehicula vitae, rutrum vitae diam. Pellentesque suscipit felis velit, vel ullamcorper augue fermentum in.'}]
-    //     }]
-    // };
-    // console.log(document);
-    // theStore.commit('documents/setCurrent', new Document(document));
 
 
 

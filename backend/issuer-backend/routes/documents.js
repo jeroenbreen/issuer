@@ -23,7 +23,7 @@ class Document {
         this.clientCity = String(document.clientCity);
         this.rate = Number(document.rate);
         this.currency = String(document.currency);
-        this.pages = document.pages;
+        this.pages = Object(document.pages);
     }
 }
 

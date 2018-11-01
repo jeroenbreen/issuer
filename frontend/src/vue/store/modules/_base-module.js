@@ -37,9 +37,10 @@ const actions = {
             $.ajax({
                 'url': (config.backend + route + '/' + item._id),
                 'type': 'PUT',
-                'data': item,
+                'data': JSON.stringify(item),
                 'headers': {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             }).done(function(response){
                 context.commit('update', response);

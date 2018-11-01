@@ -3,6 +3,15 @@ import {Document} from './../../../../store/models/Document';
 import {documentMiniComponent} from './../../../document-mini/document-mini';
 
 const projectDetailsComponent = Vue.component('project-detail', {
+    mounted () {
+        if (this.$route.query.document) {
+            const getItem = this.$store.getters['documents/getItemById'];
+            const document = getItem(this.$route.query.document);
+            if (document) {
+                this.$store.commit('documents/setCurrent', document);
+            }
+        }
+    },
     created: function(){
         this.updateMilestones();
     },
@@ -99,8 +108,8 @@ const projectDetailsComponent = Vue.component('project-detail', {
     props: ['project'],
     template: `
         <div class="details">
-    <div class="details-section">
-        <div class="details-section__content">
+    <div class="page-section">
+        <div class="page-section__content">
             <div class="details-row">
                 <md-field>
                     <label>Title</label>
@@ -109,11 +118,11 @@ const projectDetailsComponent = Vue.component('project-detail', {
             </div>
         </div>
     </div>
-    <div class="details-section">
-        <div class="details-section__header">
+    <div class="page-section">
+        <div class="page-section__header">
             Relations
         </div>
-        <div class="details-section__content">
+        <div class="page-section__content">
             <div class="details-row">
                 <md-field>
                     <label>Client</label>
@@ -191,11 +200,11 @@ const projectDetailsComponent = Vue.component('project-detail', {
             </div>
         </div>
     </div>
-    <div class="details-section">
-        <div class="details-section__header">
+    <div class="page-section">
+        <div class="page-section__header">
             Financial
         </div>
-        <div class="details-section__content">
+        <div class="page-section__content">
             <div class="details-row">
                 <md-field>
                     <label>Currency</label>
@@ -230,11 +239,11 @@ const projectDetailsComponent = Vue.component('project-detail', {
             </div>
         </div>
     </div>
-    <div class="details-section">
-        <div class="details-section__header">
+    <div class="page-section">
+        <div class="page-section__header">
             Documents
         </div>
-        <div class="details-section__content">
+        <div class="page-section__content">
             <div class="details-row">
                 <div class="details-label">
                     Invoices
