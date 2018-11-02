@@ -16,18 +16,22 @@ const employeesComponent = Vue.component('employees', {
     },
     template: `
         <div class="page page--employees">
-            <h1>
-            Employees
-            </h1>
-            <div class="employee-cards">
-                <employee-card 
-                    v-for="user in getAll()" 
-                    v-bind:key="user._id"
-                    v-bind:user="user"></employee-card>
+            <div class="page-section">
+                <h1>
+                Employees
+                </h1>
+            </div>
+            <div class="page-section">
+                <div class="employee-cards">
+                    <employee-card 
+                        v-for="user in getAll()" 
+                        v-bind:key="user._id"
+                        v-bind:user="user"></employee-card>
+                </div>
             </div>
             
-            <div class="iss-button" v-on:click="create()">
-                Create Employee
+            <div class="page-section">
+                <md-button v-on:click="create()" class="md-primary">Create Employee</md-button>
             </div>
         </div>
     `

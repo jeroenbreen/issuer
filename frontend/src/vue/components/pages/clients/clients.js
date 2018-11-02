@@ -14,18 +14,21 @@ const clientsComponent = Vue.component('employees', {
     },
     template: `
         <div class="page page--clients">
-            <h1>
-            Clients
-            </h1>
-            <div class="client-cards">
-                <client-card 
-                    v-for="client in getAll()" 
-                    v-bind:key="client._id"
-                    v-bind:client="client"></client-card>
+            <div class="page-section">
+                <h1>
+                Clients
+                </h1>
             </div>
-            
-            <div class="iss-button" v-on:click="create()">
-                Create Client
+            <div class="page-section">
+                <div class="client-cards">
+                    <client-card 
+                        v-for="client in getAll()" 
+                        v-bind:key="client._id"
+                        v-bind:client="client"></client-card>
+                </div>
+            </div>
+            <div class="page-section">
+                <md-button v-on:click="create()" class="md-primary">Create Client</md-button>
             </div>
         </div>
     `

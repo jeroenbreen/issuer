@@ -46,16 +46,11 @@ const projectUpdateComponent = Vue.component('project-update', {
             <project-detail v-bind:project="project"></project-detail>
             
             <div class="page-section">
-                <div class="iss-button iss-button--alert" v-on:click="deleteItem()">
-                    Delete Project
-                </div>
-                <hr>
-                <div class="iss-button" v-on:click="update()">
-                    Update Project
-                </div>
-                <div class="iss-button" v-on:click="back()">
-                    Back
-                </div>
+                <md-button v-on:click="deleteItem()" class="md-primary">Delete Project</md-button>
+
+                <md-button v-on:click="update()" class="md-primary">Update Project</md-button>
+
+                <md-button v-on:click="back()" class="md-primary">Back</md-button>
             </div>
         </div>
     `

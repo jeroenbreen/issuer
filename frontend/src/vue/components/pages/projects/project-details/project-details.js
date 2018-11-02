@@ -181,21 +181,23 @@ const projectDetailsComponent = Vue.component('project-detail', {
                     </div>
                 </div>
             </div>
-            <div class="details-row" v-if="this.currentMilestone">
-                <div class="details-label">
-                    Issues<br>
-                    {{this.currentMilestone.open_issues}} /
-                    {{this.currentMilestone.closed_issues +
-                    this.currentMilestone.open_issues}}
-                </div>
-                <div class="details-content">
-                    <div
-                            v-for="issue in issues"
-                            v-bind:class="{'issue-mini--closed': issue.state === 'closed'}"
-                            v-bind:title="issue.title"
-                            class="issue-mini">
-                        {{issue.number}}
-                    </div>
+        </div>
+    </div>
+    <div class="page-section" v-if="this.currentMilestone">
+        <div class="page-section__header">
+            Issues
+        </div>
+        <div class="page-section__content">
+            {{this.currentMilestone.open_issues}} /
+            {{this.currentMilestone.closed_issues + this.currentMilestone.open_issues}}
+            <br>
+            <div class="issues__container">
+                <div
+                    v-for="issue in issues"
+                    v-bind:class="{'issue-mini--closed': issue.state === 'closed'}"
+                    v-bind:title="issue.title"
+                    class="issue-mini">
+                    {{issue.number}}
                 </div>
             </div>
         </div>
@@ -241,13 +243,10 @@ const projectDetailsComponent = Vue.component('project-detail', {
     </div>
     <div class="page-section">
         <div class="page-section__header">
-            Documents
+            Invoices
         </div>
         <div class="page-section__content">
             <div class="details-row">
-                <div class="details-label">
-                    Invoices
-                </div>
                 <div class="details-content">
                     <document-mini 
                         v-for="(document, index) in getDocuments('invoice')"

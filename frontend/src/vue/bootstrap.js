@@ -28,6 +28,7 @@ import {projectsComponent} from './components/pages/projects/projects';
 import {projectCreateComponent} from './components/pages/projects/project-create/project-create';
 import {projectUpdateComponent} from './components/pages/projects/project-update/project-update';
 import {issuesComponent} from './components/pages/issues/issues';
+import {templatesComponent} from './components/pages/templates/templates';
 
 // google material for Vue
 // import { MdField, MdInput } from 'vue-material/dist/components'
@@ -67,7 +68,8 @@ const routes = [
     { path: '/projects', component: projectsComponent },
     { path: '/projects/new', component: projectCreateComponent },
     { path: '/projects/:id', component: projectUpdateComponent },
-    { path: '/issues', component: issuesComponent }
+    { path: '/issues', component: issuesComponent },
+    { path: '/templates', component: templatesComponent }
 ];
 const router = new VueRouter({
     routes

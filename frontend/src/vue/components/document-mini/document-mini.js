@@ -16,10 +16,7 @@ const documentMiniComponent = Vue.component('document-mini', {
         <div 
             v-on:click="openDocument()"
             class="document-mini">
-            <div class="document-mini__icon document-mini__icon--normal">
-                <i class="fas fa-folder"></i>
-            </div>
-            <div class="document-mini__icon document-mini__icon--hover">
+            <div class="document-mini__icon">
                 <i class="fas fa-folder-open"></i>
             </div>
             <div class="document-mini__label">

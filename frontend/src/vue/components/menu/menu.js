@@ -19,6 +19,9 @@ const menuComponent = Vue.component('menubar', {
                 <li>
                     <router-link to="/settings">Settings</router-link>
                 </li>
+                <li>
+                    <router-link to="/templates">Templates</router-link>
+                </li>
             </ul>
                 
             <ul class="menu__index">
