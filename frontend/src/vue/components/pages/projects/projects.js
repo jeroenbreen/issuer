@@ -13,13 +13,13 @@ const projectsComponent = Vue.component('projects', {
         }
     },
     template: `
-        <div class="page page--projects" v-scrim>
-            <div class="page-section">
+        <div class="view-frame view-frame--projects" v-scrim>
+            <div class="view-frame-section">
                 <h1>
                     Projects
                 </h1>
             </div>
-            <div class="page-section">
+            <div class="view-frame-section">
                 <div class="project-cards">
                     <project-card 
                         v-for="project in getAll()" 
@@ -27,7 +27,7 @@ const projectsComponent = Vue.component('projects', {
                         v-bind:project="project"></project-card>
                 </div>
             </div>
-            <div class="page-section">
+            <div class="view-frame-section">
                 <div class="iss-button" v-on:click="create()">
                     Create Project
                 </div>

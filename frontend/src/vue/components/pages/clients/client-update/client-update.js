@@ -38,7 +38,7 @@ const clientUpdateComponent = Vue.component('client-update', {
         }
     },
     template: `
-        <div class="page page--client-update">
+        <div class="view-frame view-frame--client-update">
             <h1>
                 {{currentClient.getFullLabel()}}
             </h1>

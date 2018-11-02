@@ -15,13 +15,13 @@ const employeesComponent = Vue.component('employees', {
         }
     },
     template: `
-        <div class="page page--employees">
-            <div class="page-section">
+        <div class="view-frame view-frame--employees">
+            <div class="view-frame-section">
                 <h1>
                 Employees
                 </h1>
             </div>
-            <div class="page-section">
+            <div class="view-frame-section">
                 <div class="employee-cards">
                     <employee-card 
                         v-for="user in getAll()" 
@@ -30,7 +30,7 @@ const employeesComponent = Vue.component('employees', {
                 </div>
             </div>
             
-            <div class="page-section">
+            <div class="view-frame-section">
                 <md-button v-on:click="create()" class="md-primary">Create Employee</md-button>
             </div>
         </div>

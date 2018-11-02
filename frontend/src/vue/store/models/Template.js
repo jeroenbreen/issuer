@@ -7,8 +7,20 @@ class Template {
     }
 
     clone() {
-        return {...this};
+        let obj = {...this};
+        obj.settings = this.deepclone(obj.settings);
+        return obj;
     }
+
+    deepclone(obj) {
+        let newObj = {};
+        for (let key in obj) {
+            newObj[key] = {...obj[key]}
+        }
+        return newObj
+    }
+
+
 
 
 }

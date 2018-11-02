@@ -3,27 +3,27 @@ import {Page} from "./document/Page";
 class Document {
 
     constructor(document) {
-        this._id = document._id ? document._id : null;
-        this.company_id = document.company_id ? document.company_id : '';
-        this.project_id = document.project_id ? document.project_id : null;
+        this._id = document && document._id ? document._id : null;
+        this.company_id = document && document.company_id ? document.company_id : '';
+        this.project_id = document && document.project_id ? document.project_id : null;
 
-        this.type = document.type;
-        this.locked = document.locked;
-        this.documentId = document.documentId ? document.documentId : null;
+        this.type = document && document.type ? document.type : 'invoice';
+        this.locked = document && document.locked ? document.locked : false;
+        this.documentId = document && document.documentId ? document.documentId : null;
 
-        this.date = new Date(document.date);
-        this.subject = document.subject;
+        this.date = document && document.date ? new Date(document.date) : new Date();
+        this.subject = document && document.subject ? document.subject : '';
         // addresses
-        this.userName = document.userName;
-        this.clientCompanyName = document.clientCompanyName;
-        this.clientContactName = document.clientContactName;
-        this.clientStreet = document.clientStreet;
-        this.clientPostcode = document.clientPostcode;
-        this.clientCity = document.clientCity;
+        this.userName = document && document.userName ? document.userName : '';
+        this.clientCompanyName = document && document.clientCompanyName ? document.clientCompanyName : '';
+        this.clientContactName = document && document.clientContactName ? document.clientContactName : '';
+        this.clientStreet = document && document.clientStreet ? document.clientStreet : '';
+        this.clientPostcode = document && document.clientPostcode ? document.clientPostcode : '';
+        this.clientCity = document && document.clientCity ? document.clientCity : '';
 
         // financial
-        this.rate = document.rate;
-        this.currency = document.currency;
+        this.rate = document && document.rate ? document.rate : 0;
+        this.currency = document && document.currency ? document.currency : 0;
 
         this.pages = [];
 
@@ -31,7 +31,9 @@ class Document {
             currentPage: null
         };
 
-        this.importPages(document.pages);
+        if (document && document.pages) {
+            this.importPages(document.pages);
+        }
     }
 
     // actions

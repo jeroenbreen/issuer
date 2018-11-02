@@ -33,7 +33,7 @@ const employeeUpdateComponent = Vue.component('new-employee', {
         }
     },
     template: `
-        <div class="page page--employee-update">
+        <div class="view-frame view-frame--employee-update">
             <h1>
                 {{currentUser.getFullName()}}
             </h1>

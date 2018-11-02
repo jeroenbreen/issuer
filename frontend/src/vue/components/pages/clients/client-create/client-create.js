@@ -20,7 +20,7 @@ const clientCreateComponent = Vue.component('client-create', {
         }
     },
     template: `
-        <div class="page page--client-create">
+        <div class="view-frame view-frame--client-create">
             <h1>
                 New Client
             </h1>

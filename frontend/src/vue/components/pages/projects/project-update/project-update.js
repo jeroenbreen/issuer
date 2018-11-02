@@ -36,8 +36,8 @@ const projectUpdateComponent = Vue.component('project-update', {
         }
     },
     template: `
-        <div class="page page--project-update" v-scrim>
-            <div class="page-section">
+        <div class="view-frame view-frame--project-update" v-scrim>
+            <div class="view-frame-section">
                 <h1>
                     {{currentProject.title}}
                 </h1>
@@ -45,7 +45,7 @@ const projectUpdateComponent = Vue.component('project-update', {
 
             <project-detail v-bind:project="project"></project-detail>
             
-            <div class="page-section">
+            <div class="view-frame-section">
                 <md-button v-on:click="deleteItem()" class="md-primary">Delete Project</md-button>
 
                 <md-button v-on:click="update()" class="md-primary">Update Project</md-button>

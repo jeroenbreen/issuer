@@ -13,13 +13,13 @@ const clientsComponent = Vue.component('employees', {
         }
     },
     template: `
-        <div class="page page--clients">
-            <div class="page-section">
+        <div class="view-frame view-frame--clients">
+            <div class="view-frame-section">
                 <h1>
                 Clients
                 </h1>
             </div>
-            <div class="page-section">
+            <div class="view-frame-section">
                 <div class="client-cards">
                     <client-card 
                         v-for="client in getAll()" 
@@ -27,7 +27,7 @@ const clientsComponent = Vue.component('employees', {
                         v-bind:client="client"></client-card>
                 </div>
             </div>
-            <div class="page-section">
+            <div class="view-frame-section">
                 <md-button v-on:click="create()" class="md-primary">Create Client</md-button>
             </div>
         </div>

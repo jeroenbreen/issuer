@@ -25,15 +25,15 @@ const projectCreateComponent = Vue.component('project-create', {
         }
     },
     template: `
-        <div class="page page--project-create">
-            <div class="page-section">
+        <div class="view-frame view-frame--project-create">
+            <div class="view-frame-section">
                 <h1>
                     New Project
                 </h1>
             </div>
             <project-detail v-bind:project="project"></project-detail>
                
-            <div class="page-section">   
+            <div class="view-frame-section">   
                 <div class="iss-button" v-on:click="create()">
                     Create Project
                 </div>

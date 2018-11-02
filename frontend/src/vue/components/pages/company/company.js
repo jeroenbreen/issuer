@@ -11,12 +11,12 @@ const companyComponent = Vue.component('company', {
     },
     template: `
         <div class="page company-page">
-            <div class="page-section">
+            <div class="view-frame-section">
                 <h1>
                     Company
                 </h1>
             </div>
-            <div class="page-section">
+            <div class="view-frame-section">
                 <input v-model="company.name"><br>
                 <input v-model="company.address"><br>
                 <input v-model="company.postcode"><br>

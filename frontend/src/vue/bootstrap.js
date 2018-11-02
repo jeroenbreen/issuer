@@ -37,6 +37,10 @@ import {templatesComponent} from './components/pages/templates/templates';
 import VueMaterial from 'vue-material'
 Vue.use(VueMaterial);
 
+// draggable
+import VueDraggableResizable from 'vue-draggable-resizable'
+Vue.component('vue-draggable-resizable', VueDraggableResizable)
+
 
 
 import {Document} from './store/models/Document'

@@ -27,6 +27,10 @@ class Page {
         this.lines.push(line);
     }
 
+    getType() {
+        return this.document.pages.indexOf(this) === 0 ? 'front' : 'follow-up';
+    }
+
     _getLineType(line, type) {
         switch (type) {
             case 'sum':

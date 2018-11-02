@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import {SortableList} from "./../shared/sortable/sortableList";
 
-import {pageComponent} from "./page/page";
+import {pageComponent} from "./../shared/page/page";
 import {miniPageComponent} from "./mini-page/mini-page";
 
 import {Document} from "../../store/models/Document";
@@ -52,9 +52,6 @@ const documentComponent = Vue.component('document', {
         }
     },
     methods: {
-        pint() {
-            console.log('ping');
-        },
         deleteDocument() {
             // use the current document for deleting, since this.document is a clone of it
             this.$store.dispatch('documents/delete', this.$store.state.documents.current).then(() => {
@@ -66,9 +63,6 @@ const documentComponent = Vue.component('document', {
         },
         closeScreen() {
             this.$store.commit('documents/unsetCurrent');
-        },
-        getType(index) {
-            return index === 0 ? 'front' : 'regular';
         },
         createPage() {
             this.document.createPage();
@@ -99,14 +93,16 @@ const documentComponent = Vue.component('document', {
         }
     },
     template: `
-        <div class="document__container">
+        <div class="cover">
             <div class="document" v-bind:class="{'document--locked': document.locked}">
                 <doc-page 
                     v-for="(page, index) in document.pages"
                     v-bind:key="index"
                     v-bind:page="page"
-                    v-bind:type="getType(index)"
-                    v-bind:document="document"></doc-page>
+                    v-bind:template="template"
+                    v-bind:editor="false"
+                    v-bind:factor="1"
+                    v-bind:tools="true"></doc-page>
                 <div v-if="!document.locked" class="page__tools">
                     <div 
                         v-on:click="createPage()" 

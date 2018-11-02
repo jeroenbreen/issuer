@@ -11,7 +11,7 @@ const issuesComponent = Vue.component('issues', {
         }
     },
     template: `
-        <div class="page page--issues" v-scrim>
+        <div class="view-frame view-frame--issues" v-scrim>
             <h1>
                 Issues
             </h1>

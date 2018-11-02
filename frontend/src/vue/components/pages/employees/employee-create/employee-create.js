@@ -20,7 +20,7 @@ const employeeCreateComponent = Vue.component('employee-create', {
         }
     },
     template: `
-        <div class="page page--employee-create">
+        <div class="view-frame view-frame--employee-create">
             <h1>
                 New Employee
             </h1>

@@ -108,8 +108,8 @@ const projectDetailsComponent = Vue.component('project-detail', {
     props: ['project'],
     template: `
         <div class="details">
-    <div class="page-section">
-        <div class="page-section__content">
+    <div class="view-frame-section">
+        <div class="view-frame-section__content">
             <div class="details-row">
                 <md-field>
                     <label>Title</label>
@@ -118,11 +118,11 @@ const projectDetailsComponent = Vue.component('project-detail', {
             </div>
         </div>
     </div>
-    <div class="page-section">
-        <div class="page-section__header">
+    <div class="view-frame-section">
+        <div class="view-frame-section__header">
             Relations
         </div>
-        <div class="page-section__content">
+        <div class="view-frame-section__content">
             <div class="details-row">
                 <md-field>
                     <label>Client</label>
@@ -183,11 +183,11 @@ const projectDetailsComponent = Vue.component('project-detail', {
             </div>
         </div>
     </div>
-    <div class="page-section" v-if="this.currentMilestone">
-        <div class="page-section__header">
+    <div class="view-frame-section" v-if="this.currentMilestone">
+        <div class="view-frame-section__header">
             Issues
         </div>
-        <div class="page-section__content">
+        <div class="view-frame-section__content">
             {{this.currentMilestone.open_issues}} /
             {{this.currentMilestone.closed_issues + this.currentMilestone.open_issues}}
             <br>
@@ -202,11 +202,11 @@ const projectDetailsComponent = Vue.component('project-detail', {
             </div>
         </div>
     </div>
-    <div class="page-section">
-        <div class="page-section__header">
+    <div class="view-frame-section">
+        <div class="view-frame-section__header">
             Financial
         </div>
-        <div class="page-section__content">
+        <div class="view-frame-section__content">
             <div class="details-row">
                 <md-field>
                     <label>Currency</label>
@@ -241,11 +241,11 @@ const projectDetailsComponent = Vue.component('project-detail', {
             </div>
         </div>
     </div>
-    <div class="page-section">
-        <div class="page-section__header">
+    <div class="view-frame-section">
+        <div class="view-frame-section__header">
             Invoices
         </div>
-        <div class="page-section__content">
+        <div class="view-frame-section__content">
             <div class="details-row">
                 <div class="details-content">
                     <document-mini 

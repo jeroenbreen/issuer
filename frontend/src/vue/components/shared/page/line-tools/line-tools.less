@@ -1,0 +1,23 @@
+.line__tools {
+    position: absolute;
+    left: ~'calc(100% + 20px)';
+    top: 0;
+    display: flex;
+    flex-wrap: nowrap;
+
+    .line__tool {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: @editing-mode-color;
+        color: @editing-mode-color-contra;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        &:hover {
+            background: @editing-mode-color-hover;
+        }
+    }
+}

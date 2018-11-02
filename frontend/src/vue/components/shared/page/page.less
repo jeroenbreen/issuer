@@ -1,0 +1,143 @@
+@import "line/line";
+@import "line/line--text";
+@import "line-tools/line-tools";
+
+
+.page {
+    background: #fff;
+    position: relative;
+    line-height: 1.6;
+}
+
+.page__tools {
+    margin: 60px 0;
+    position: relative;
+    left: ~'calc(100% + 20px)';
+    display: flex;
+    width: 100px;
+}
+
+.document__elements {
+    position: absolute;
+
+    .document__logo {
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .document__info {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .document__date {
+            margin-right: @general-padding
+        }
+
+        .document__document-id {
+            background: #eee;
+            padding: @general-padding;
+        }
+    }
+
+    .document__addresses {
+        position: absolute;
+        left: -10px;
+        width: ~'calc(100% + 20px)';
+        display: flex;
+        padding: 10px;
+
+        .document_address-own {
+            width: 50%;
+            padding-right: 10px;
+        }
+
+        .document_address-client {
+            width: 50%;
+            padding-left: 10px;
+        }
+    }
+
+    .document__content {
+        position: absolute;
+        width: 100%;
+
+        .document__subject {
+            position: relative;
+            left: -10px;
+            width: ~'calc(100% + 20px)';
+        }
+
+        .document__lines {
+
+            ul {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .lines_tools {
+            position: relative;
+            left: ~'calc(100% + 100px)';
+            display: flex;
+            width: 200px;
+        }
+    }
+
+    .document__total {
+        position: absolute;
+        width: 100%;
+
+        .document__total-line {
+            display: flex;
+
+            .document__total-label {
+                width: 50%;
+            }
+
+            .document__total-value {
+                width: 50%;
+                text-align: right;
+            }
+
+            &.document__total-line--big {
+                font-weight: 700;
+
+                .document__total-label {
+
+                }
+
+                .document__total-value {
+
+                }
+            }
+        }
+
+        .document__footer-text {
+            position: relative;
+            left: -10px;
+            width: ~'calc(100% + 20px)';
+            text-align: center;
+        }
+    }
+
+
+
+    .document__footer-image {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+    }
+
+    .document__official {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+    }
+}
