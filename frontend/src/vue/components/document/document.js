@@ -7,7 +7,8 @@ import {miniPageComponent} from "./mini-page/mini-page";
 import {Document} from "../../store/models/Document";
 import $ from "jquery";
 
-const pageHeight = 877 + 40;
+const pageHeight = 877;
+const pageMargin = 40;
 const scrollBuffer = 20;
 let saveBuffer = null;
 
@@ -16,15 +17,17 @@ const documentComponent = Vue.component('document', {
     mounted () {
         const container = $('.document__container');
         const document = this.document;
+        const factor = this.factor;
         container.scroll(function(event){
             let scroll = container.scrollTop(),
-                pageIndex = Math.floor((scroll + scrollBuffer) / pageHeight);
+                pageIndex = Math.floor((scroll + scrollBuffer) / (pageHeight * factor + pageMargin));
             document.state.currentPage = document.pages[pageIndex];
 
         })
     },
     data(){
         return {
+            factor: 1,
             document: new Document(this.$store.state.documents.current.clone()),
             template: this.$store.getters.template,
             company: this.$store.state.company,
@@ -63,6 +66,7 @@ const documentComponent = Vue.component('document', {
         },
         closeScreen() {
             this.$store.commit('documents/unsetCurrent');
+            this.$router.push({query: { document: null }})
         },
         createPage() {
             this.document.createPage();
@@ -88,12 +92,12 @@ const documentComponent = Vue.component('document', {
         },
         onSortEnd(event) {
             $('.document__container').animate({
-                scrollTop: event.newIndex * (pageHeight) - scrollBuffer
+                scrollTop: event.newIndex * (pageHeight * this.factor + pageMargin) - scrollBuffer
             }, 1000);
         }
     },
     template: `
-        <div class="cover">
+        <div class="cover document__container">
             <div class="document" v-bind:class="{'document--locked': document.locked}">
                 <doc-page 
                     v-for="(page, index) in document.pages"
@@ -101,7 +105,7 @@ const documentComponent = Vue.component('document', {
                     v-bind:page="page"
                     v-bind:template="template"
                     v-bind:editor="false"
-                    v-bind:factor="1"
+                    v-bind:factor="factor"
                     v-bind:tools="true"></doc-page>
                 <div v-if="!document.locked" class="page__tools">
                     <div 

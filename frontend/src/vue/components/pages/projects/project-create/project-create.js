@@ -26,7 +26,12 @@ const projectCreateComponent = Vue.component('project-create', {
     },
     template: `
         <div class="view-frame view-frame--project-create">
-            <div class="view-frame-section">
+            <div class="view-frame__header">
+                <div 
+                    v-on:click="back()"
+                    class="view-frame__header-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
                 <h1>
                     New Project
                 </h1>
@@ -36,9 +41,6 @@ const projectCreateComponent = Vue.component('project-create', {
             <div class="view-frame-section">   
                 <div class="iss-button" v-on:click="create()">
                     Create Project
-                </div>
-                <div class="iss-button" v-on:click="back()">
-                    Back
                 </div>
             </div>
         </div>

@@ -37,7 +37,12 @@ const projectUpdateComponent = Vue.component('project-update', {
     },
     template: `
         <div class="view-frame view-frame--project-update" v-scrim>
-            <div class="view-frame-section">
+            <div class="view-frame__header">
+                <div 
+                    v-on:click="back()"
+                    class="view-frame__header-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
                 <h1>
                     {{currentProject.title}}
                 </h1>
@@ -49,8 +54,6 @@ const projectUpdateComponent = Vue.component('project-update', {
                 <md-button v-on:click="deleteItem()" class="md-primary">Delete Project</md-button>
 
                 <md-button v-on:click="update()" class="md-primary">Update Project</md-button>
-
-                <md-button v-on:click="back()" class="md-primary">Back</md-button>
             </div>
         </div>
     `

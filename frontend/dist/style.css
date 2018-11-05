@@ -175,6 +175,32 @@ input {
   background: #00B7FF;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
+.view-frame .view-frame__header {
+  border-bottom: 1px solid #ddd;
+  height: 80px;
+  display: flex;
+}
+.view-frame .view-frame__header .view-frame__header-button {
+  height: 100%;
+  width: 80px;
+  border-right: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+}
+.view-frame .view-frame__header .view-frame__header-button:hover {
+  color: #000;
+}
+.view-frame .view-frame__header h1 {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-left: 30px;
+}
 .view-frame .view-frame-section {
   padding: 30px;
   border-bottom: 1px solid #ddd;
@@ -210,11 +236,6 @@ input {
 .view-frame .view-frame-section .view-frame-section__content .details-row .details-content input,
 .view-frame .view-frame-section .view-frame-section__content .details-row .details-content select {
   margin-right: 10px;
-}
-.view-frame h1 {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 700;
 }
 .scrim {
   position: relative;
@@ -581,7 +602,6 @@ body .quillWrapper .ql-container .ql-editor p p,
   background: #fff;
   position: relative;
   line-height: 1.6;
-  overflow: hidden;
 }
 .page__tools {
   margin: 60px 0;
@@ -1066,6 +1086,7 @@ body .quillWrapper .ql-container .ql-editor p p,
 }
 .templates .template__container .page {
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 .templates .template__container .template__title {
   height: 36px;

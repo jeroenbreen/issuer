@@ -21,7 +21,12 @@ const employeeCreateComponent = Vue.component('employee-create', {
     },
     template: `
         <div class="view-frame view-frame--employee-create">
-            <div class="view-frame-section">
+            <div class="view-frame__header">
+                <div 
+                    v-on:click="back()"
+                    class="view-frame__header-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
                 <h1>
                     New Employee
                 </h1>
@@ -30,8 +35,6 @@ const employeeCreateComponent = Vue.component('employee-create', {
             
             <div class="view-frame-section">
                 <md-button v-on:click="create()" class="md-primary">Create Employee</md-button>
-                
-                <md-button v-on:click="back()" class="md-primary">Back</md-button>
             </div>
         </div>
     `

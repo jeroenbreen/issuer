@@ -10,6 +10,7 @@ const documentMiniComponent = Vue.component('document-mini', {
         },
         openDocument() {
             this.$store.commit('documents/setCurrent', this.document);
+            this.$router.push({query: { document: this.document._id }})
         }
     },
     template: `

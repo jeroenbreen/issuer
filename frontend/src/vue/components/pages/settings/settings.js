@@ -3,6 +3,11 @@ import Vue from 'vue';
 
 const settingsComponent = Vue.component('settings', {
     methods: {
+        getFormats() {
+            return [
+                '3zeros'
+            ];
+        }
     },
     computed: {
         settings () {
@@ -17,8 +22,35 @@ const settingsComponent = Vue.component('settings', {
                 </h1>
             </div>
             <div class="view-frame-section">
-                Client numbering: '3zeros'<br>
-                Document numbering: '3zeros'
+                <div class="view-frame-section__content">
+                    <div class="details-row">
+                            <md-field>
+                                <label>Client numbering</label>
+                                <md-select
+                                    v-model="settings.clientIdFormat"
+                                    placeholder="Client numbering">
+                                    <md-option 
+                                        v-for="(format, index) in getFormats()" 
+                                        v-bind:value="format"
+                                        v-bind:key="index">{{format}}</md-option> 
+                                </md-select>
+                            </md-field>
+                        </div>
+                        <div class="details-row">
+                            <md-field>
+                                <label>Document numbering</label>
+                                <md-select
+                                    v-model="settings.documentIdFormat"
+                                    placeholder="Document numbering">
+                                    <md-option 
+                                        v-for="(format, index) in getFormats()" 
+                                        v-bind:value="format"
+                                        v-bind:key="index">{{format}}</md-option> 
+                                </md-select>
+                            </md-field>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     `

@@ -22,6 +22,10 @@ class Company {
         }
     }
 
+    toBackend() {
+        return {...this};
+    }
+
 }
 
 export {Company};

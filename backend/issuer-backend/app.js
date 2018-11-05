@@ -1,6 +1,6 @@
 let createError, express, path, cookieParser, logger, cors,
     mongo, monk, db,
-    indexRouter, bootstrapRouter, usersRouter, clientsRouter, projectsRouter, documentsRouter, templatesRouter,
+    indexRouter, bootstrapRouter, companyRouter, usersRouter, clientsRouter, projectsRouter, documentsRouter, templatesRouter,
     app;
 
 createError = require('http-errors');
@@ -18,6 +18,7 @@ db = monk('localhost:27017/issuer');
 // routers
 indexRouter = require('./routes/index');
 bootstrapRouter = require('./routes/bootstrap');
+companyRouter = require('./routes/company');
 usersRouter = require('./routes/users');
 clientsRouter = require('./routes/clients');
 projectsRouter = require('./routes/projects');
@@ -48,6 +49,7 @@ app.use(function(req,res,next){
 
 app.use('/', indexRouter);
 app.use('/bootstrap', bootstrapRouter);
+app.use('/company', companyRouter);
 app.use('/users', usersRouter);
 app.use('/clients', clientsRouter);
 app.use('/projects', projectsRouter);

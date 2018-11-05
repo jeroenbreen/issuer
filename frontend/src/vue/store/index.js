@@ -9,6 +9,8 @@ import projects from './modules/projects'
 import issues from './modules/issues'
 import documents from './modules/documents'
 import {Company} from "./models/Company";
+import _base from "./modules/_base-module";
+
 
 Vue.use(Vuex);
 
@@ -23,9 +25,18 @@ const state = {
     company: null
 };
 
+const actions = {
+    updateCompany(context, item){
+        return _base.actions.update(context, item, 'company');
+    }
+};
+
 const mutations = {
     initCompany(state, company) {
         state.company = new Company(company);
+    },
+    update(state, item) {
+        state.company = new Company(item);
     }
 };
 
@@ -33,6 +44,7 @@ export default new Vuex.Store({
     state,
     getters,
     mutations,
+    actions,
     modules: {
         settings,
         templates,
