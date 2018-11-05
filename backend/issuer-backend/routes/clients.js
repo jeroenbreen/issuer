@@ -57,9 +57,6 @@ router.post('/', function(req, res) {
             res.send(docs);
         });
     });
-
-
-
 });
 
 router.put('/:id', function(req, res) {

@@ -34,16 +34,18 @@ const employeeUpdateComponent = Vue.component('new-employee', {
     },
     template: `
         <div class="view-frame view-frame--employee-update">
-            <h1>
-                {{currentUser.getFullName()}}
-            </h1>
+            <div class="view-frame-section">
+                <h1>
+                    {{currentUser.getFullName()}}
+                </h1>
+            </div>
+            
             <employee-detail v-bind:user="user"></employee-detail>
             
-            <div class="iss-button" v-on:click="update()">
-                Update Employee
-            </div>
-            <div class="iss-button" v-on:click="back()">
-                Back
+            <div class="view-frame-section">
+                <md-button v-on:click="update()" class="md-primary">Update Employee</md-button>
+                
+                <md-button v-on:click="back()" class="md-primary">Back</md-button>
             </div>
         </div>
     `

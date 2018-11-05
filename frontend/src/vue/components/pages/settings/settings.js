@@ -10,7 +10,7 @@ const settingsComponent = Vue.component('settings', {
         }
     },
     template: `
-        <div class="page settings-page">
+        <div class="view-frame view-frame--settings">
             <div class="view-frame-section">
                 <h1>
                     Settings

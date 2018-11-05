@@ -7,6 +7,7 @@
     background: #fff;
     position: relative;
     line-height: 1.6;
+    overflow: hidden;
 }
 
 .page__tools {
@@ -131,8 +132,11 @@
 
     .document__footer-image {
         position: absolute;
-        width: 100%;
-        text-align: center;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
 
     .document__official {

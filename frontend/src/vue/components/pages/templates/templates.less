@@ -4,13 +4,28 @@
     display: flex;
     flex-wrap: wrap;
 
-    .page {
-        box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.5);
-        border: 1px solid transparent;
-        cursor: pointer;
+    .template__container {
+        padding: 16px;
 
-        &:hover {
-            border: 1px solid @main-theme-color;
+        .page {
+            box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .template__title {
+            height: 36px;
+            margin-bottom: 10px;
+            line-height: 1;
+            font-weight: 700;
+            width: 155px;
+            text-align: center;
+        }
+
+        .template__tools {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
         }
     }
+
+
 }

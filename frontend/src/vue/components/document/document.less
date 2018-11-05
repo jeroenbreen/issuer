@@ -44,38 +44,6 @@
     }
 }
 
-.document__close {
-    position: fixed;
-    right: 20px;
-    top: 20px;
-    width: 48px;
-    height: 48px;
-    opacity: 0.8;
-    cursor: pointer;
-    text-align: center;
-
-    &:before, &:after {
-        position: absolute;
-        left: 23px;
-        top: 5px;
-        content: ' ';
-        height: 32px;
-        width: 2px;
-        background-color: #fff;
-    }
-
-    &:before {
-        transform: rotate(45deg);
-    }
-    &:after {
-        transform: rotate(-45deg);
-    }
-
-    &:hover {
-        opacity: 1;
-    }
-}
-
 .document__mode {
     position: fixed;
     right: 20px;

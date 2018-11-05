@@ -152,7 +152,7 @@ const documentComponent = Vue.component('document', {
                 <span>Saved...</span>
             </md-snackbar> 
             
-            <div class="document__close" v-on:click="closeScreen()"></div>
+            <div class="close-button" v-on:click="closeScreen()"></div>
             
             <div class="document__mode">
                 <md-switch v-model="document.locked">Locked</md-switch>

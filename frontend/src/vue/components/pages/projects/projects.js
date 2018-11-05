@@ -28,9 +28,7 @@ const projectsComponent = Vue.component('projects', {
                 </div>
             </div>
             <div class="view-frame-section">
-                <div class="iss-button" v-on:click="create()">
-                    Create Project
-                </div>
+                <md-button v-on:click="create()" class="md-primary">Create Project</md-button>
             </div>
         </div>
     `

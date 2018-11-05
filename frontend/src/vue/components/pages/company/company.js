@@ -10,7 +10,7 @@ const companyComponent = Vue.component('company', {
         }
     },
     template: `
-        <div class="page company-page">
+        <div class="view-frame view-frame--company">
             <div class="view-frame-section">
                 <h1>
                     Company

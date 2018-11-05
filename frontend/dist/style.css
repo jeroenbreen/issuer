@@ -36,13 +36,15 @@ input {
   font-size: 14px;
   color: #000;
   margin-right: 4px;
+  background: #ddd;
 }
 .icon-button .icon-button__label {
   font-size: 9px;
   color: #000;
 }
 .icon-button:hover .icon-button__icon {
-  background: #ddd;
+  background: #E25252;
+  color: #fff;
 }
 .icon-button.icon-button--inverse .icon-button__icon {
   color: #bbb;
@@ -97,6 +99,35 @@ input {
 }
 .iss-button.iss-button--alert {
   background: red;
+}
+.close-button {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.8;
+  cursor: pointer;
+  text-align: center;
+}
+.close-button:before,
+.close-button:after {
+  position: absolute;
+  left: 23px;
+  top: 5px;
+  content: ' ';
+  height: 32px;
+  width: 2px;
+  background-color: #fff;
+}
+.close-button:before {
+  transform: rotate(45deg);
+}
+.close-button:after {
+  transform: rotate(-45deg);
+}
+.close-button:hover {
+  opacity: 1;
 }
 .tool-button {
   padding: 4px 8px;
@@ -259,6 +290,9 @@ input {
 }
 .md-field.md-has-value input.md-input {
   font-size: 14px;
+}
+.md-field.md-focused label {
+  color: #E25252 !important;
 }
 .cover {
   position: fixed;
@@ -547,6 +581,7 @@ body .quillWrapper .ql-container .ql-editor p p,
   background: #fff;
   position: relative;
   line-height: 1.6;
+  overflow: hidden;
 }
 .page__tools {
   margin: 60px 0;
@@ -636,8 +671,10 @@ body .quillWrapper .ql-container .ql-editor p p,
 }
 .document__elements .document__footer-image {
   position: absolute;
+}
+.document__elements .document__footer-image img {
   width: 100%;
-  text-align: center;
+  height: auto;
 }
 .document__elements .document__official {
   position: absolute;
@@ -733,35 +770,6 @@ body .quillWrapper .ql-container .ql-editor p p,
 .document__tools .iss-button {
   margin-bottom: 4px;
 }
-.document__close {
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  width: 48px;
-  height: 48px;
-  opacity: 0.8;
-  cursor: pointer;
-  text-align: center;
-}
-.document__close:before,
-.document__close:after {
-  position: absolute;
-  left: 23px;
-  top: 5px;
-  content: ' ';
-  height: 32px;
-  width: 2px;
-  background-color: #fff;
-}
-.document__close:before {
-  transform: rotate(45deg);
-}
-.document__close:after {
-  transform: rotate(-45deg);
-}
-.document__close:hover {
-  opacity: 1;
-}
 .document__mode {
   position: fixed;
   right: 20px;
@@ -814,32 +822,29 @@ body .quillWrapper .ql-container .ql-editor p p,
 .menu .menu__index li a.router-link-exact-active {
   background: #ddd;
 }
-.employee-card {
-  background: #fff;
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
-  padding: 20px 10px;
+.employee {
   width: 180px;
   height: 200px;
   margin: 0 16px 16px 0;
   text-align: center;
   position: relative;
 }
-.employee-card .avatar {
-  width: 72px;
-  height: 72px;
-  display: inline-block;
-  margin: 0 0 12px 0;
+.employee .employee-card {
+  background: #fff;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
+  padding: 20px 10px;
+  height: 180px;
 }
-.employee-card .employee-card__toolbar {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 48px;
-  padding: 0 12px;
+.employee .employee-card .employee-card__name {
+  height: 20px;
+  margin-top: 10px;
+  line-height: 1;
+  text-align: center;
+}
+.employee .employee-card__toolbar {
+  margin-top: 16px;
   display: flex;
-  align-items: center;
-  background: #555;
+  justify-content: center;
 }
 .employee-details {
   max-width: 400px;
@@ -978,6 +983,14 @@ body .quillWrapper .ql-container .ql-editor p p,
   border-top: 1px solid #ddd;
   font-weight: 700;
 }
+.template-editor__title {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  width: 300px;
+  background: #fff;
+  padding: 10px;
+}
 .template-editor {
   position: absolute;
   left: calc(50% - 310px);
@@ -988,6 +1001,10 @@ body .quillWrapper .ql-container .ql-editor p p,
   margin-bottom: 40px;
   top: 40px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  background: #FCF3C0;
+}
+.template-editor .page .document__elements {
+  background: #fff;
 }
 .template-editor .page:last-child {
   margin-bottom: 200px;
@@ -1010,7 +1027,7 @@ body .quillWrapper .ql-container .ql-editor p p,
 }
 .template-editor .page .iss-resizer.iss-resizer--hor:before {
   left: calc(50% - 32px);
-  top: 50%;
+  top: calc(50% - 2px);
   width: 64px;
   height: 1px;
   border-top: 1px solid #FFE000;
@@ -1021,7 +1038,7 @@ body .quillWrapper .ql-container .ql-editor p p,
 }
 .template-editor .page .iss-resizer.iss-resizer--ver:before {
   top: calc(50% - 32px);
-  left: 50%;
+  left: calc(50% - 2px);
   height: 64px;
   width: 1px;
   border-left: 1px solid #FFE000;
@@ -1032,8 +1049,8 @@ body .quillWrapper .ql-container .ql-editor p p,
 }
 .template-editor .page .iss-resizer:after {
   position: absolute;
-  left: calc(50% - 16px);
-  top: calc(50% - 16px);
+  left: calc(50% - 17px);
+  top: calc(50% - 17px);
   border: 1px solid #FFE000;
   content: '';
   width: 32px;
@@ -1044,11 +1061,22 @@ body .quillWrapper .ql-container .ql-editor p p,
   display: flex;
   flex-wrap: wrap;
 }
-.templates .page {
-  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.5);
-  border: 1px solid transparent;
-  cursor: pointer;
+.templates .template__container {
+  padding: 16px;
 }
-.templates .page:hover {
-  border: 1px solid #E25252;
+.templates .template__container .page {
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.5);
+}
+.templates .template__container .template__title {
+  height: 36px;
+  margin-bottom: 10px;
+  line-height: 1;
+  font-weight: 700;
+  width: 155px;
+  text-align: center;
+}
+.templates .template__container .template__tools {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
 }

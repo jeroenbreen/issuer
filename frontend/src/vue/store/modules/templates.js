@@ -32,6 +32,9 @@ const mutations = {
     setCurrent(state, item) {
         return _base.mutations.setCurrent(state, item)
     },
+    unsetCurrent(state, item) {
+        return _base.mutations.unsetCurrent(state, item)
+    },
     create(state, item) {
         return _base.mutations.create(state, item, Model);
     },

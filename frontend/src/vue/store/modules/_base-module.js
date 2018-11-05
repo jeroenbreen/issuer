@@ -14,7 +14,6 @@ const getters = {
 
 const actions = {
     create(context, item, route) {
-        console.log(item);
         return new Promise((resolve, reject) => {
             delete item._id;
             $.ajax({

@@ -1,3 +1,12 @@
+.template-editor__title {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    width: 300px;
+    background: #fff;
+    padding: 10px;
+}
+
 .template-editor {
     position: absolute;
     left: ~'calc(50% - 310px)';
@@ -8,6 +17,11 @@
         margin-bottom: 40px;
         top: 40px;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+        background: @editing-mode-color-light;
+
+        .document__elements {
+            background: #fff;
+        }
 
         &:last-child {
             margin-bottom: 200px;
@@ -34,7 +48,7 @@
 
                 &:before {
                     left: ~'calc(50% - 32px)';
-                    top: 50%;
+                    top: ~'calc(50% - 2px)';
                     width: 64px;
                     height: 1px;
                     border-top: 1px solid @editing-mode-color;
@@ -47,7 +61,7 @@
 
                 &:before {
                     top: ~'calc(50% - 32px)';
-                    left: 50%;
+                    left: ~'calc(50% - 2px)';
                     height: 64px;
                     width: 1px;
                     border-left: 1px solid @editing-mode-color;
@@ -61,8 +75,8 @@
 
             &:after {
                 position: absolute;
-                left: ~'calc(50% - 16px)';
-                top: ~'calc(50% - 16px)';
+                left: ~'calc(50% - 17px)';
+                top: ~'calc(50% - 17px)';
                 border: 1px solid @editing-mode-color;
                 content: '';
                 width: 32px;
