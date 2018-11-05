@@ -21,6 +21,10 @@ class Template {
         return newObj
     }
 
+    toBackend() {
+        return this.clone();
+    }
+
 
 
 

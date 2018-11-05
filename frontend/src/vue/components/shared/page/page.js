@@ -20,7 +20,7 @@ const pageComponent = Vue.component('doc-page', {
                         clearTimeout(saveBuffer);
                     }
                     saveBuffer = setTimeout(() => {
-                        this.$store.dispatch('templates/update', this.clonedTemplate).then(() => {
+                        this.$store.dispatch('templates/update', this.getTemplate().toBackend()).then(() => {
                             // todo: use 1 global snackbar
                             this.localState.showSnackbar = true;
                             // todo: update the original, so other pages
@@ -35,7 +35,7 @@ const pageComponent = Vue.component('doc-page', {
     data(){
         return {
             // make a clone to prevent editing the state directly when we are in editor mode
-            clonedTemplate: this.editor ? new Template(this.template.clone()) : this.template,
+            clonedTemplate: new Template(this.template.clone()),
             company: this.$store.state.company,
             canAddLines: true,
             localState: {
@@ -44,6 +44,9 @@ const pageComponent = Vue.component('doc-page', {
         }
     },
     methods: {
+        getTemplate() {
+            return this.editor ? this.clonedTemplate : this.template
+        },
         scale(value) {
             return value * this.factor;
         },
@@ -54,22 +57,22 @@ const pageComponent = Vue.component('doc-page', {
 
         // template methods
         getLogoSrc() {
-            return config.templateLocation + this.clonedTemplate.settings.logo.src;
+            return config.templateLocation + this.getTemplate().settings.logo.src;
         },
         getTop() {
-            return this.page.getType() === 'front' ? this.scale(this.clonedTemplate.settings.content.top) + 'px' : 0;
+            return this.page.getType() === 'front' ? this.scale(this.getTemplate().settings.content.top) + 'px' : 0;
         },
         getFooterImageSrc() {
-            return config.templateLocation + this.clonedTemplate.settings.footerImage.imgSrc;
+            return config.templateLocation + this.getTemplate().settings.footerImage.imgSrc;
         },
         getFooterImageWidth() {
-            return this.page.getType() === 'front' ? this.scale(this.clonedTemplate.settings.footerImage.width) : 0.8 * this.scale(this.clonedTemplate.settings.footerImage.width);
+            return this.page.getType() === 'front' ? this.scale(this.getTemplate().settings.footerImage.width) : 0.8 * this.scale(this.getTemplate().settings.footerImage.width);
         },
         getFooterImageTop() {
-            return this.page.getType() === 'front' ? this.scale(this.clonedTemplate.settings.footerImage.top) : this.scale(this.clonedTemplate.settings.footerImage.top + 30);
+            return this.page.getType() === 'front' ? this.scale(this.getTemplate().settings.footerImage.top) : this.scale(this.getTemplate().settings.footerImage.top + 30);
         },
         getTotalTop() {
-            return this.page.getType() === 'front' ?  this.scale(this.clonedTemplate.settings.footerImage.top - 130) : this.scale(this.clonedTemplate.settings.footerImage.top + 30 - 130);
+            return this.page.getType() === 'front' ?  this.scale(this.getTemplate().settings.footerImage.top - 130) : this.scale(this.getTemplate().settings.footerImage.top + 30 - 130);
         },
 
         // sortable
@@ -82,16 +85,16 @@ const pageComponent = Vue.component('doc-page', {
 
         // template
         setMarginTop(x, y) {
-            this.clonedTemplate.settings.margin.top = y;
+            this.getTemplate().settings.margin.top = y;
         },
         setMarginBottom(x, y) {
-            this.clonedTemplate.settings.margin.bottom = 877 - y;
+            this.getTemplate().settings.margin.bottom = 877 - y;
         },
         setMarginLeft(x, y) {
-            this.clonedTemplate.settings.margin.left = x;
+            this.getTemplate().settings.margin.left = x;
         },
         setMarginRight(x, y) {
-            this.clonedTemplate.settings.margin.right = 620 - x;
+            this.getTemplate().settings.margin.right = 620 - x;
         }
     },
     template: `
@@ -102,10 +105,10 @@ const pageComponent = Vue.component('doc-page', {
             
             
             <div class="document__elements"
-                v-bind:style="{'left': scale(clonedTemplate.settings.margin.left) + 'px',
-                               'top': scale(clonedTemplate.settings.margin.top) + 'px',
-                               'right': scale(clonedTemplate.settings.margin.right) + 'px ',
-                               'bottom': scale(clonedTemplate.settings.margin.bottom) + 'px'}">
+                v-bind:style="{'left': scale(getTemplate().settings.margin.left) + 'px',
+                               'top': scale(getTemplate().settings.margin.top) + 'px',
+                               'right': scale(getTemplate().settings.margin.right) + 'px ',
+                               'bottom': scale(getTemplate().settings.margin.bottom) + 'px'}">
                 
                 
                 
@@ -115,10 +118,10 @@ const pageComponent = Vue.component('doc-page', {
                     v-if="page.getType() === 'front'"
                     v-bind:draggable="editor"
                     v-bind:resizable="editor"
-                    v-bind:w="scale(clonedTemplate.settings.logo.width)"
-                    v-bind:h="scale(clonedTemplate.settings.logo.height)"
-                    v-bind:x="scale(clonedTemplate.settings.logo.left)"
-                    v-bind:y="scale(clonedTemplate.settings.logo.top)"
+                    v-bind:w="scale(getTemplate().settings.logo.width)"
+                    v-bind:h="scale(getTemplate().settings.logo.height)"
+                    v-bind:x="scale(getTemplate().settings.logo.left)"
+                    v-bind:y="scale(getTemplate().settings.logo.top)"
                     v-bind:parent="true">
                     <img v-bind:src="getLogoSrc()">
                 </vue-draggable-resizable>
@@ -137,15 +140,15 @@ const pageComponent = Vue.component('doc-page', {
                     <div 
                         v-bind:style="{'padding': scale(10) + 'px', 'font-size': scale(11) + 'px'}"
                         class="document__document-id">
-                        {{clonedTemplate.settings.dictionary.invoice}} 
+                        {{getTemplate().settings.dictionary.invoice}} 
                         <b>{{getDocumentId()}}</b>
                     </div>
                 </div>
                 
                 <div class="document__addresses"
                     v-if="page.getType() === 'front'"
-                    v-bind:style="{'top': scale(clonedTemplate.settings.addresses.top) + 'px',
-                                   'border-top': scale(clonedTemplate.settings.addresses.borderTop) + 'px solid #000'}">
+                    v-bind:style="{'top': scale(getTemplate().settings.addresses.top) + 'px',
+                                   'border-top': scale(getTemplate().settings.addresses.borderTop) + 'px solid #000'}">
                     <div class="document_address-own">
                         <b>{{company.name}}</b><br>
                         {{page.document.userName}}<br>
@@ -164,10 +167,10 @@ const pageComponent = Vue.component('doc-page', {
                     v-bind:style="{'top': getTop()}">
                     <div class="document__subject"
                         v-if="page.getType() === 'front'"
-                        v-bind:style="{'border-top': scale(clonedTemplate.settings.subject.borderTop) + 'px solid #000',
-                                       'border-bottom': scale(clonedTemplate.settings.subject.borderBottom) + 'px solid #000',
+                        v-bind:style="{'border-top': scale(getTemplate().settings.subject.borderTop) + 'px solid #000',
+                                       'border-bottom': scale(getTemplate().settings.subject.borderBottom) + 'px solid #000',
                                        'padding': scale(10) + 'px'}">
-                        <b>{{clonedTemplate.settings.dictionary.subject}}:</b> {{page.document.subject}}
+                        <b>{{getTemplate().settings.dictionary.subject}}:</b> {{page.document.subject}}
                     </div>
                     
                     <div 
@@ -232,29 +235,29 @@ const pageComponent = Vue.component('doc-page', {
                     <div class="document__footer-text"
                         v-bind:style="{'font-size': scale(8) + 'px',
                                        'margin-top': scale(20) + 'px',
-                                       'border-top': scale(clonedTemplate.settings.footerText.borderTop) + 'px solid #000',
-                                       'border-bottom': scale(clonedTemplate.settings.footerText.borderBottom) + 'px solid #000',
+                                       'border-top': scale(getTemplate().settings.footerText.borderTop) + 'px solid #000',
+                                       'border-bottom': scale(getTemplate().settings.footerText.borderBottom) + 'px solid #000',
                                        'padding': scale(10) + 'px'}">
-                        <span v-html="clonedTemplate.settings.dictionary.footer"></span>
+                        <span v-html="getTemplate().settings.dictionary.footer"></span>
                     </div>
                 </div>
                 
                 <vue-draggable-resizable
                     class="document__footer-image iss-resizable" 
-                    v-if="clonedTemplate.settings.footerImage.image"
+                    v-if="getTemplate().settings.footerImage.image"
                     v-bind:draggable="false"
                     v-bind:resizable="editor"
                     v-bind:minw="getFooterImageWidth()"
                     v-bind:w="getFooterImageWidth()"
                     v-bind:h="scale(100)"
-                    v-bind:x="(scale(620 - clonedTemplate.settings.margin.left - clonedTemplate.settings.margin.right) - getFooterImageWidth()) / 2"
+                    v-bind:x="(scale(620 - getTemplate().settings.margin.left - getTemplate().settings.margin.right) - getFooterImageWidth()) / 2"
                     v-bind:y="getFooterImageTop()"
                     v-bind:parent="true">
                     <img v-bind:src="getFooterImageSrc()">
                 </vue-draggable-resizable>
                 
                 <div class="document__official"
-                    v-bind:style="{'font-size': scale(8) + 'px','top': scale(clonedTemplate.settings.official.top) + 'px'}">
+                    v-bind:style="{'font-size': scale(8) + 'px','top': scale(getTemplate().settings.official.top) + 'px'}">
                     {{company.name}} | {{company.coc}}  | {{company.vat}}
                 </div>
             </div>
@@ -266,11 +269,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginTop"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
-                v-bind:y="scale(clonedTemplate.settings.margin.top)"
-                v-bind:x="scale(clonedTemplate.settings.margin.left)"
+                v-bind:y="scale(getTemplate().settings.margin.top)"
+                v-bind:x="scale(getTemplate().settings.margin.left)"
                 v-bind:h="1"
                 v-bind:minh="1"
-                v-bind:w="scale(620 - clonedTemplate.settings.margin.left - clonedTemplate.settings.margin.right)"
+                v-bind:w="scale(620 - getTemplate().settings.margin.left - getTemplate().settings.margin.right)"
                 v-bind:parent="true"/>
                 
             <vue-draggable-resizable 
@@ -280,11 +283,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginBottom"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
-                v-bind:y="scale(877 - clonedTemplate.settings.margin.bottom)"
-                v-bind:x="scale(clonedTemplate.settings.margin.left)"
+                v-bind:y="scale(877 - getTemplate().settings.margin.bottom)"
+                v-bind:x="scale(getTemplate().settings.margin.left)"
                 v-bind:h="1"
                 v-bind:minh="1"
-                v-bind:w="scale(620 - clonedTemplate.settings.margin.left - clonedTemplate.settings.margin.right)"
+                v-bind:w="scale(620 - getTemplate().settings.margin.left - getTemplate().settings.margin.right)"
                 v-bind:parent="true"/>
                 
             <vue-draggable-resizable 
@@ -294,11 +297,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginLeft"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
-                v-bind:y="scale(clonedTemplate.settings.margin.top)"
-                v-bind:x="scale(clonedTemplate.settings.margin.left)"
+                v-bind:y="scale(getTemplate().settings.margin.top)"
+                v-bind:x="scale(getTemplate().settings.margin.left)"
                 v-bind:w="1"
                 v-bind:minw="1"
-                v-bind:h="scale(877 - clonedTemplate.settings.margin.top - clonedTemplate.settings.margin.bottom)"
+                v-bind:h="scale(877 - getTemplate().settings.margin.top - getTemplate().settings.margin.bottom)"
                 v-bind:parent="true"/>
                 
             <vue-draggable-resizable 
@@ -308,11 +311,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginRight"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
-                v-bind:y="scale(clonedTemplate.settings.margin.top)"
-                v-bind:x="scale(620 - clonedTemplate.settings.margin.right)"
+                v-bind:y="scale(getTemplate().settings.margin.top)"
+                v-bind:x="scale(620 - getTemplate().settings.margin.right)"
                 v-bind:w="1"
                 v-bind:minw="1"
-                v-bind:h="scale(877 - clonedTemplate.settings.margin.top - clonedTemplate.settings.margin.bottom)"
+                v-bind:h="scale(877 - getTemplate().settings.margin.top - getTemplate().settings.margin.bottom)"
                 v-bind:parent="true"/>
                 
                 
