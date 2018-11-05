@@ -15,7 +15,7 @@ const employeesComponent = Vue.component('employees', {
         }
     },
     template: `
-        <div class="view-frame view-frame--employees">
+        <div class="view-frame view-frame--employees" v-scrim>
             <div class="view-frame-section">
                 <h1>
                 Employees

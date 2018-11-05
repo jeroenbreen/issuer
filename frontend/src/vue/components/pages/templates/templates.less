@@ -6,10 +6,27 @@
 
     .template__container {
         padding: 16px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        position: relative;
+
+        &.template--current {
+            border: 1px solid @main-theme-color;
+        }
 
         .page {
             box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.5);
             overflow: hidden;
+        }
+
+        .template__select {
+            position: absolute;
+            left: 16px;
+            top: 62px;
+            width: 155px;
+            height: 220px;
+            z-index: 1;
+            cursor: pointer;
         }
 
         .template__title {

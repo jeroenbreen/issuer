@@ -5,8 +5,10 @@ import {Client} from './../../../../store/models/Client';
 
 const clientCreateComponent = Vue.component('client-create', {
     data() {
+        const client = new Client();
+        client.rate = this.$store.state.settings.standardRate;
         return {
-            client: new Client()
+            client: client
         }
     },
     methods: {

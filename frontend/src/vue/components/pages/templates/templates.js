@@ -78,7 +78,24 @@ const templatesComponent = Vue.component('templates', {
             this.$store.dispatch('templates/create', clone);
         },
         deleteTemplate(template) {
-            this.$store.dispatch('templates/delete', template);
+            const store = this.$store;
+
+            function callback() {
+                store.dispatch('templates/delete', template);
+            }
+
+            this.$store.commit('confirm', {
+                message: 'Are you sure?',
+                callback: callback
+            });
+        },
+        isCurrentTemplate(template) {
+            return this.$store.state.settings.template_id === template._id;
+        },
+        setTemplate(template) {
+            const settings = {...this.$store.state.settings};
+            settings.template_id = template._id;
+            this.$store.commit('settings/update', settings);
         }
     },
     template: `
@@ -92,10 +109,12 @@ const templatesComponent = Vue.component('templates', {
                 <div class="templates">
                     <div 
                         v-for="(template, index) in getAll()"
+                        v-bind:class="{'template--current': isCurrentTemplate(template)}"
                         class="template__container">
                         <div class="template__title">
                             {{template.title}}
                         </div>
+                        <div v-on:click="setTemplate(template)" class="template__select"></div>
                         <doc-page 
                             v-bind:key="index"
                             v-bind:page="document.pages[0]"

@@ -16,6 +16,7 @@ import {topbarComponent} from './components/topbar/topbar';
 import {menuComponent} from './components/menu/menu';
 import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
 import {documentComponent} from './components/document/document';
+import {modalComponent} from './components/modal/modal';
 import {companyComponent} from './components/pages/company/company';
 import {settingsComponent} from './components/pages/settings/settings';
 import {employeesComponent} from './components/pages/employees/employees';
@@ -105,6 +106,9 @@ const bootstrapVue = function(response) {
             },
             hasDocument() {
                 return this.$store.state.documents.current !== null;
+            },
+            showModal() {
+                return this.$store.state.modal.show;
             }
         },
         template: `
@@ -116,6 +120,8 @@ const bootstrapVue = function(response) {
                 </div>
                 
                 <document v-if="hasDocument()"></document>
+                
+                <modal v-if="showModal()"></modal>
                 
                 <welcome-screen v-if="!hasCurrentUser()"></welcome-screen>
             </div>

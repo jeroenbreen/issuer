@@ -13,7 +13,7 @@ class Client {
         this.email = client ? client.email : '';
         this.telephone = client ? client.telephone : '';
         this.homepage = client ? client.homepage : '';
-        this.rate = client ? client.rate : 70;
+        this.rate = client ? client.rate : 0;
         this.info = client ? client.info : '';
     }
 

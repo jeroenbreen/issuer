@@ -20,7 +20,7 @@ const employeeCreateComponent = Vue.component('employee-create', {
         }
     },
     template: `
-        <div class="view-frame view-frame--employee-create">
+        <div class="view-frame view-frame--employee-create" v-scrim>
             <div class="view-frame__header">
                 <div 
                     v-on:click="back()"

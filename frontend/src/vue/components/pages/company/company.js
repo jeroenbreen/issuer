@@ -16,7 +16,7 @@ const companyComponent = Vue.component('company', {
         }
     },
     template: `
-        <div class="view-frame view-frame--company">
+        <div class="view-frame view-frame--company" v-scrim>
             <div class="view-frame-section">
                 <h1>
                     Company

@@ -5,7 +5,17 @@ import Vue from 'vue';
 const employeeCardComponent = Vue.component('employee-card', {
     methods: {
         deleteItem: function() {
-            this.$store.dispatch('users/delete', this.user);
+            const store = this.$store;
+            const user = this.user;
+
+            function callback() {
+                store.dispatch('users/delete', user);
+            }
+
+            this.$store.commit('confirm', {
+                message: 'Are you sure?',
+                callback: callback
+            });
         },
         update: function() {
             this.$router.push('employees/' + this.user._id)

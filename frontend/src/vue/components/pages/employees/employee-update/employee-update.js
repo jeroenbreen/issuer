@@ -33,7 +33,7 @@ const employeeUpdateComponent = Vue.component('new-employee', {
         }
     },
     template: `
-        <div class="view-frame view-frame--employee-update">
+        <div class="view-frame view-frame--employee-update" v-scrim>
             <div class="view-frame__header">
                 <div 
                     v-on:click="back()"

@@ -9,9 +9,18 @@ const settingsComponent = Vue.component('settings', {
             ];
         }
     },
-    computed: {
-        settings () {
-            return this.$store.state.settings
+    data() {
+        return {
+            settings: {...this.$store.state.settings}
+        }
+    },
+    watch: {
+        settings: {
+            handler: function() {
+                this.settings.standardRate = Number(this.settings.standardRate);
+                this.$store.commit('settings/update', this.settings);
+            },
+            deep: true
         }
     },
     template: `
@@ -47,6 +56,12 @@ const settingsComponent = Vue.component('settings', {
                                         v-bind:value="format"
                                         v-bind:key="index">{{format}}</md-option> 
                                 </md-select>
+                            </md-field>
+                        </div>
+                        <div class="details-row">
+                            <md-field>
+                                <label>Standard rate</label>
+                                <md-input v-model="settings.standardRate" placeholder="Standard rate" type="number"></md-input>
                             </md-field>
                         </div>
                     </div>
