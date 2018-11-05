@@ -8,7 +8,7 @@ const clientCardComponent = Vue.component('client-card', {
             this.$router.push('clients/' + this.client._id)
         },
         formatId: function() {
-            return this.$root.$options.filters.formatId(this.$store.state.settings.clientIdFormat, this.client.clientId);
+            return this.client.getCustomCode(this.$root.$options.filters.formatId, this.$store.state.settings.clientIdFormat);
         }
     },
     props: ['client'],

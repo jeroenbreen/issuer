@@ -17,8 +17,16 @@ class Client {
         this.info = client ? client.info : '';
     }
 
-    getFullLabel() {
-        return this.getCustomCode() + ' ' + this.companyName;
+    getFullLabel(formatter, formatSetting) {
+        return this.getCustomCode(formatter, formatSetting) + ' ' + this.companyName;
+    }
+
+    getCustomCode(formatter, formatSetting) {
+        return formatter(formatSetting, this.clientId);
+    }
+
+    toBackend() {
+        return {...this};
     }
 }
 

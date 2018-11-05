@@ -21,16 +21,21 @@ const clientCreateComponent = Vue.component('client-create', {
     },
     template: `
         <div class="view-frame view-frame--client-create">
-            <h1>
-                New Client
-            </h1>
-            <client-detail v-bind:client="client"></client-detail>
-               
-            <div class="iss-button" v-on:click="create()">
-                Create Client
+            <div class="view-frame__header">
+                <div 
+                    v-on:click="back()"
+                    class="view-frame__header-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h1>
+                    New Client
+                </h1>
             </div>
-            <div class="iss-button" v-on:click="back()">
-                Back
+            
+            <client-detail v-bind:client="client"></client-detail>
+            
+            <div class="view-frame-section">
+                <md-button v-on:click="create()" class="md-primary">Create Client</md-button>
             </div>
         </div>
     `

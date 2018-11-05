@@ -13,7 +13,7 @@ const clientUpdateComponent = Vue.component('client-update', {
             if (client) {
                 return {
                     currentClient: client,
-                    client: new Client(client)
+                    client: new Client(client.toBackend())
                 }
             } else {
                 return null;
@@ -23,6 +23,9 @@ const clientUpdateComponent = Vue.component('client-update', {
         }
     },
     methods: {
+        getFullLabel: function() {
+            return this.currentClient.getFullLabel(this.$root.$options.filters.formatId, this.$store.state.settings.clientIdFormat);
+        },
         update: function() {
             this.$store.dispatch('clients/update', this.client).then(() => {
                 this.$router.push({path: '/clients'});
@@ -39,23 +42,22 @@ const clientUpdateComponent = Vue.component('client-update', {
     },
     template: `
         <div class="view-frame view-frame--client-update">
-            <h1>
-                {{currentClient.getFullLabel()}}
-            </h1>
+            <div class="view-frame__header">
+                <div 
+                    v-on:click="back()"
+                    class="view-frame__header-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h1>
+                    {{getFullLabel()}}
+                </h1>
+            </div>
+
             <client-detail v-bind:client="client"></client-detail>
             
-            <div class="iss-button iss-button--alert" v-on:click="deleteItem()">
-                Remove Client
-            </div>
-            
-            <hr>
-          
-            
-            <div class="iss-button" v-on:click="update()">
-                Update Client
-            </div>
-            <div class="iss-button" v-on:click="back()">
-                Back
+            <div class="view-frame-section">
+                <md-button v-on:click="update()" class="md-primary">Update Client</md-button>
+                <md-button v-on:click="deleteItem()" class="md-primary">Remove Client</md-button>
             </div>
         </div>
     `
