@@ -83,6 +83,8 @@ const pageComponent = Vue.component('doc-page', {
             $('.main').removeClass('unselectable');
         },
 
+
+
         // template
         setMarginTop(x, y) {
             this.getTemplate().settings.margin.top = y;
@@ -95,6 +97,16 @@ const pageComponent = Vue.component('doc-page', {
         },
         setMarginRight(x, y) {
             this.getTemplate().settings.margin.right = 620 - x;
+        },
+        setPositionLogo(left, top) {
+            this.getTemplate().settings.logo.left = left;
+            this.getTemplate().settings.logo.top = top;
+        },
+        setSizeLogo(x, y, width, height) {
+            if (this.editor) {
+                this.getTemplate().settings.logo.width = width;
+                this.getTemplate().settings.logo.height = height;
+            }
         }
     },
     template: `
@@ -116,6 +128,8 @@ const pageComponent = Vue.component('doc-page', {
                 <vue-draggable-resizable
                     class="document__logo iss-resizable" 
                     v-if="page.getType() === 'front'"
+                    v-on:dragging="setPositionLogo"
+                    v-on:resizing="setSizeLogo"
                     v-bind:draggable="editor"
                     v-bind:resizable="editor"
                     v-bind:w="scale(getTemplate().settings.logo.width)"

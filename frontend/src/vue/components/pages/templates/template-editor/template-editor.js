@@ -20,7 +20,7 @@ const templateEditorComponent = Vue.component('template-editor', {
             saveBuffer = setTimeout(() => {
                 let template = new Template(this.template);
                 template.title = this.templateTitle;
-                this.$store.dispatch('templates/update', template);
+                this.$store.dispatch('templates/update', template.toBackend());
             }, 500)
         }
     },
