@@ -102,7 +102,7 @@ const templatesComponent = Vue.component('templates', {
         <div class="view-frame view-frame--templates" v-scrim>
             <div class="view-frame-section">
                 <h1>
-                    Templates
+                    Templates !!!AAA$$$
                 </h1>
             </div>
             <div class="view-frame-section">

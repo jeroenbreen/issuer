@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import {itemComponent} from "./item/item";
 import {lineComponent} from "./line/line";
 import {lineToolsComponent} from "./line-tools/line-tools";
 import {SortableList} from "./../../shared/sortable/sortableList";
@@ -62,17 +63,9 @@ const pageComponent = Vue.component('doc-page', {
         getTop() {
             return this.page.getType() === 'front' ? this.scale(this.getTemplate().settings.content.top) + 'px' : 0;
         },
-        getFooterImageSrc() {
-            return config.templateLocation + this.getTemplate().settings.footerImage.imgSrc;
-        },
-        getFooterImageWidth() {
-            return this.page.getType() === 'front' ? this.scale(this.getTemplate().settings.footerImage.width) : 0.8 * this.scale(this.getTemplate().settings.footerImage.width);
-        },
-        getFooterImageTop() {
-            return this.page.getType() === 'front' ? this.scale(this.getTemplate().settings.footerImage.top) : this.scale(this.getTemplate().settings.footerImage.top + 30);
-        },
         getTotalTop() {
-            return this.page.getType() === 'front' ?  this.scale(this.getTemplate().settings.footerImage.top - 130) : this.scale(this.getTemplate().settings.footerImage.top + 30 - 130);
+            return 200;
+            //return this.page.getType() === 'front' ?  this.scale(this.getTemplate().settings.footerImage.top - 130) : this.scale(this.getTemplate().settings.footerImage.top + 30 - 130);
         },
 
         // sortable
@@ -256,19 +249,17 @@ const pageComponent = Vue.component('doc-page', {
                     </div>
                 </div>
                 
-                <vue-draggable-resizable
-                    class="document__footer-image iss-resizable" 
-                    v-if="getTemplate().settings.footerImage.image"
-                    v-bind:draggable="false"
-                    v-bind:resizable="editor"
-                    v-bind:minw="getFooterImageWidth()"
-                    v-bind:w="getFooterImageWidth()"
-                    v-bind:h="scale(100)"
-                    v-bind:x="(scale(620 - getTemplate().settings.margin.left - getTemplate().settings.margin.right) - getFooterImageWidth()) / 2"
-                    v-bind:y="getFooterImageTop()"
-                    v-bind:parent="true">
-                    <img v-bind:src="getFooterImageSrc()">
-                </vue-draggable-resizable>
+                
+                <!-- custom items -->
+                <item
+                    v-if="page.getType() === 'front'"
+                    v-for="(item, index) in getTemplate().frontPage.items"
+                    v-bind:key="index"
+                    v-bind:item="item"
+                    v-bind:editor="editor"
+                    v-bind:factor="factor"
+                    v-bind:template="template"></item>
+                
                 
                 <div class="document__official"
                     v-bind:style="{'font-size': scale(8) + 'px','top': scale(getTemplate().settings.official.top) + 'px'}">

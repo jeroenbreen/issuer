@@ -1,0 +1,14 @@
+{
+  "name": "bundle",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "mongod | npm start --prefix ./backend | npm run build --prefix ./frontend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "devDependencies": {},
+  "dependencies": {}
+}
