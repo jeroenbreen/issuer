@@ -33,6 +33,10 @@ class _Item {
             return 'y';
         }
     }
+
+    clone() {
+        return {...this}
+    }
 }
 
 

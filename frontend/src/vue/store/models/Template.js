@@ -1,5 +1,6 @@
 import {Image} from './template/Image';
 import {pageWidth} from './../globals'
+import {Tools} from './../../tools/tools'
 
 
 
@@ -57,31 +58,31 @@ class Template {
     //
 
     clone() {
-        let obj = {...this};
-        obj.settings = this.deepclone(obj.settings);
-        return obj;
+        return Tools.deepclone(this);
+        // let obj = {...this};
+        // obj.settings = Tools.deepclone(obj.settings);
+        // obj.frontPage = {};
+        // obj.frontPage.items = [];
+        // for (let item of this.frontPage.items) {
+        //     obj.frontPage.items.push(item.clone());
+        // }
+        // return obj;
     }
 
-    deepclone(obj) {
-        let newObj = {};
-        for (let key in obj) {
-            newObj[key] = {...obj[key]}
-        }
-        return newObj
-    }
+
 
     toBackend() {
         return this.clone();
     }
 
     toPrint() {
-        let obj = this.clone();
+        let obj = {...this};
+        obj.settings = Tools.deepclone(obj.settings);
         obj.settings.logo.src = config.fromPrint + config.templateUrl + this.settings.logo.src;
         obj.frontPage.items = [];
         for (let item of this.frontPage.items) {
             obj.frontPage.items.push(item.toPrint());
         }
-        console.log(obj);
         return obj;
     }
 
