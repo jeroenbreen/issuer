@@ -1,11 +1,10 @@
-const config = require('./dist/config');
 const path = require('path');
 
 
 module.exports = {
     entry: "./src/index.js",
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "./../../live"),
         filename: "bundle.js"
     },
     mode: 'development',
@@ -25,7 +24,6 @@ module.exports = {
 
     module: {
         rules: [
-            // vue
             {
                 test: /\.vue$/,
                 include: [
@@ -42,25 +40,8 @@ module.exports = {
                     loader: "babel-loader",
                     options: { presets: ['es2015', 'stage-2']}
                 }
-            },
-
-
-            // react
-            {
-                test: /\.js$/,
-                include: [
-                    path.resolve(__dirname, "./src/react")
-                ],
-                use: {
-                    loader: "babel-loader",
-                    options: { presets: ['es2015', 'react'] }
-                }
             }
         ]
     }
 };
-
-
-console.log('This app is build with ' + config.framework);
-
 
