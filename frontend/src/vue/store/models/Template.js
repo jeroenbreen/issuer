@@ -33,7 +33,7 @@ class Template {
                 width: 120,
                 height: 100,
                 z: 'auto',
-                src: 'print/document/images/slogan.png'
+                src: 'slogan.png'
             }
         ];
         for(let item of template.frontPage.items) {
@@ -47,6 +47,14 @@ class Template {
                 return new Image(item);
         }
     }
+
+    //
+
+    getLogoSrc() {
+            return config.fromFrontend + config.templateUrl + this.settings.logo.src;
+    }
+
+    //
 
     clone() {
         let obj = {...this};
@@ -64,6 +72,17 @@ class Template {
 
     toBackend() {
         return this.clone();
+    }
+
+    toPrint() {
+        let obj = this.clone();
+        obj.settings.logo.src = config.fromPrint + config.templateUrl + this.settings.logo.src;
+        obj.frontPage.items = [];
+        for (let item of this.frontPage.items) {
+            obj.frontPage.items.push(item.toPrint());
+        }
+        console.log(obj);
+        return obj;
     }
 
 

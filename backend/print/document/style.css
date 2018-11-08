@@ -1,0 +1,226 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: url(./../../assets/fonts/Open_Sans/OpenSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: bold;
+    src: url(./../../assets/fonts/Open_Sans/OpenSans-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Tinos';
+    font-style: normal;
+    font-weight: normal;
+    src: url(./../../assets/fonts/Tinos/Tinos-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Tinos';
+    font-style: normal;
+    font-weight: bold;
+    src: url(./../../assets/fonts/Tinos/Tinos-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: normal;
+    src: url(./../../assets/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: bold;
+    src: url(./../../assets/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf) format('truetype');
+}
+
+body {
+    font-family: 'Open Sans';
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+.page {
+    position: absolute;
+    left: 0;
+    top: 0;
+    page-break-after: always;
+}
+.page .document__elements {
+    position: absolute;
+}
+
+.page .document__elements .document__logo {
+    width: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.page .document__elements .document__info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+}
+
+.page .document__elements .document__info .document__date {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.page .document__elements .document__info .document__document-id {
+    background: #eee;
+    padding: 10px;
+    display: inline-block;
+}
+
+.page .document__elements .document__addresses {
+    position: absolute;
+}
+
+.page .document__elements .document__addresses .document_address-own {
+    position: absolute;
+    display: inline-block;
+}
+
+.page .document__elements .document__addresses .document_address-client {
+    position: absolute;
+    display: inline-block;
+}
+
+.page .document__elements .document__content {
+    position: absolute;
+}
+
+.page .document__elements .document__content .document__subject {
+    position: relative;
+}
+
+.page .document__elements .document__content .document__lines {
+    padding: 20px 0;
+}
+
+.page .document__elements .document__content .document__lines ul {
+    padding: 0;
+    margin: 0;
+}
+
+.page .document__elements .document__content .lines_tools {
+    position: relative;
+    width: calc(100% + 3000px);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.page .document__elements .document__footer-text {
+    position: relative;
+    text-align: center;
+}
+
+.page .document__elements .document__footer-image {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+.page .document__elements .document__official {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+
+/* total */
+
+.page .document__elements .document__total {
+    position: absolute;
+    width: 100%;
+}
+
+.page .document__elements .document__total .document__total-line {
+}
+
+.page .document__elements .document__total .document__total-line .document__total-label {
+    width: 50%;
+    display: inline-block;
+}
+
+.page .document__elements .document__total .document__total-line .document__total-value {
+    width: 50%;
+    display: inline-block;
+    text-align: right;
+}
+
+.page .document__elements .document__total .document__total-line.document__total-line--big {
+    font-weight: 700;
+}
+
+
+/* line sum/hourly */
+
+.line {
+    clear: both;
+    width: 100%;
+}
+
+
+
+.line > * {
+    float: left;
+    white-space: nowrap;
+}
+
+.line .line__multiply {
+    width: 10px;
+    text-align: center;
+}
+
+.line .line__rate {
+}
+
+.line .line__value {
+    text-align: right;
+    float: right;
+}
+
+
+/* text line */
+
+.line--text,
+.line--text p {
+    font-family: 'Open Sans';
+    text-align: left;
+}
+
+.line--text h1 {
+    font-family: 'Tinos';
+    margin-top: 0;
+    display: block;
+}
+
+.line--text h2 {
+    font-family: 'Roboto condensed';
+    margin-top: 0;
+    font-weight: 400;
+    text-transform: uppercase;
+    display: block;
+}
+
+.line--text p {
+    margin: 0;
+}

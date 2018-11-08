@@ -76,18 +76,18 @@ const documentComponent = Vue.component('document', {
             document.documentIdFormatted = this.getDocumentId();
             document.dateFormatted = this.$root.$options.filters.standardDate(this.document.date);
             $.ajax({
-                'url': ('print/document/print.php'),
+                'url': (config.fromFrontend + config.printUrl + '/document/print.php'),
                 'type': 'POST',
                 'data': JSON.stringify({
                     document: document,
-                    template: this.template.clone(),
+                    template: this.template.toPrint(),
                     company: {...this.company}
                 }),
                 'headers': {
                     'Accept': 'application/json'
                 }
             }).done(function(response){
-                window.open(config.printLocation + response);
+                window.open(config.fromFrontend + config.pdfUrl + response);
             });
         },
         onSortEnd(event) {

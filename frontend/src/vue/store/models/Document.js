@@ -111,7 +111,6 @@ class Document {
             obj.pages.push(page.toPrint(currencyFilter));
         }
         delete obj.state;
-        console.log(obj);
         return obj;
     }
 

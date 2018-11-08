@@ -7,6 +7,16 @@ class Image extends _Item {
         this.type = 'image';
         this.src = image.src;
     }
+
+    getSrc() {
+        return config.fromFrontend + config.templateUrl + this.src;
+    }
+
+    toPrint() {
+        let obj = {...this};
+        obj.src = config.fromPrint + config.templateUrl + this.src;
+        return obj;
+    }
 }
 
 export {Image};

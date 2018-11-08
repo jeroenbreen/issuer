@@ -1,0 +1,40 @@
+<style>
+    .line > * {
+        padding-top:<?php echo $scale * 5; ?>px;
+    }
+
+    .line--text,
+    .line--text p {
+        font-size: <?php echo $scale * 10; ?>px;
+    }
+
+    .line--text h1 {
+        font-size: <?php echo $scale * 20; ?>px;
+        margin-bottom: <?php echo $scale * 20; ?>px;
+    }
+
+    .line--text h2 {
+        font-size: <?php echo $scale * 14; ?>px;
+        margin-bottom: <?php echo $scale * 10; ?>px;
+    }
+
+    .line--text p {
+        margin: 0;
+    }
+</style>
+
+<div class="document__lines">
+    <?php
+        foreach ($page->lines as $line) {
+            if ($line->type == 'hourly') {
+                include("templates/line--hourly.html");
+            } else if ($line->type == 'text') {
+                include("templates/line--text.html");
+            } else if ($line->type == 'sum') {
+                include("templates/line--sum.html");
+            } else if ($line->type == 'break') {
+                include("templates/line--break.html");
+            }
+        }
+    ?>
+</div>

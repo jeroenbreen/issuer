@@ -57,9 +57,6 @@ const pageComponent = Vue.component('doc-page', {
 
 
         // template methods
-        getLogoSrc() {
-            return config.templateLocation + this.getTemplate().settings.logo.src;
-        },
         getTop() {
             return this.page.getType() === 'front' ? this.scale(this.getTemplate().settings.content.top) + 'px' : 0;
         },
@@ -130,7 +127,7 @@ const pageComponent = Vue.component('doc-page', {
                     v-bind:x="scale(getTemplate().settings.logo.left)"
                     v-bind:y="scale(getTemplate().settings.logo.top)"
                     v-bind:parent="true">
-                    <img v-bind:src="getLogoSrc()">
+                    <img v-bind:src="getTemplate().getLogoSrc()">
                 </vue-draggable-resizable>
                 
                 

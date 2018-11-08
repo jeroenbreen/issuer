@@ -34,7 +34,7 @@ const itemComponent = Vue.component('item', {
             v-bind:x="scale(item.getX(template))"
             v-bind:y="scale(item.y)"
             v-bind:parent="true">
-            <img v-if="item.type === 'image'" v-bind:src="item.src">
+            <img v-if="item.type === 'image'" v-bind:src="item.getSrc()">
         </vue-draggable-resizable>
     `
 });

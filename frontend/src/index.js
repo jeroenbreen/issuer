@@ -1,8 +1,5 @@
 import $ from 'jquery';
-
-
 import {bootstrapVue} from './vue/bootstrap';
-import {bootstrapReact} from './react/bootstrap';
 
 function getBackendData() {
     const url = config.backend + 'bootstrap';
@@ -33,15 +30,7 @@ function getGitData(response) {
         }).done(function(repositories){
             response.repositories = repositories;
             console.log(response);
-
-            switch (config.framework) {
-                case 'vue':
-                    bootstrapVue(response);
-                    break;
-                case 'react':
-                    bootstrapReact(model);
-                    break;
-            }
+            bootstrapVue(response);
         });
     } else {
         console.log('No github data present');
