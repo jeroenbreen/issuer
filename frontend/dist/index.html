@@ -8,7 +8,22 @@
     <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i|Roboto+Condensed:300,300i,400,400i,700,700i|Tinos:400,400i,700,700i" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css" />
+    <!--<link rel="stylesheet" href="style.css" />-->
+    <link rel="stylesheet/less" type="text/css" href="./../src/index.less" />
+    <script>
+        less = {
+            env : "development",
+            async : true,
+            fileAsync : true,
+            poll : 1000,
+            functions : {},
+            dumpLineNumbers : 'mediaquery',
+            relativeUrls : false,
+            logLevel : 0
+        };
+    </script>
+    <script src="./../node_modules/less/dist/less.js"></script>
+    <!--end of less-->
 </head>
 <body>
 
