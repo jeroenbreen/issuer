@@ -1,19 +1,23 @@
 import Vue from 'vue';
+import VueDraggableResizable from 'vue-draggable-resizable'
 import {imageUploaderComponent} from './../../../pages/templates/image-uploader/image-uploader';
-import $ from 'jquery';
+
 
 const itemComponent = Vue.component('item', {
     props: ['template', 'editor', 'factor', 'item'],
     methods: {
-        onDrag (x, y) {
-            this.item.x = x;
-            this.item.y = y;
-        },
-        onResize (x, y, width, height) {
+        onDrag (event) {
             if (this.editor) {
-                this.item.width = width;
-                this.item.height = height;
-                //$(this.$el).css('left', this.scale(this.item.getX(this.template)))
+                this.item.x = event.left;
+                this.item.y = event.top;
+            }
+        },
+        onResize (event) {
+            if (this.editor) {
+                this.item.x = event.left;
+                this.item.y = event.top;
+                this.item.width = event.width;
+                this.item.height = event.height;
             }
         },
         scale(value) {
@@ -21,27 +25,23 @@ const itemComponent = Vue.component('item', {
         }
     },
     template: `
-        <vue-draggable-resizable
-            class="iss-resizable"
-            v-on:dragging="onDrag"
-            v-on:resizing="onResize"
-            v-bind:axis="'both'"
-            v-bind:draggable="editor"
-            v-bind:resizable="editor"
+        <vue-drag-resize 
+            v-bind:parentLimitation="true" 
             v-bind:minw="20"
-            v-bind:w="scale(item.width)"
             v-bind:minh="20"
+            v-bind:w="scale(item.width)"
             v-bind:h="scale(item.height)"
             v-bind:x="scale(item.x)"
             v-bind:y="scale(item.y)"
-            v-bind:parent="true">
+            v-on:resizing="onResize" 
+            v-on:dragging="onDrag">
             <image-uploader
                 v-if="editor && item.type === 'image'"
                 v-bind:item="item"
                 v-bind:template="template"></image-uploader>
             
             <img v-if="item.type === 'image'" v-bind:src="item.getSrc()">
-        </vue-draggable-resizable>
+        </vue-drag-resize>
     `
 });
 

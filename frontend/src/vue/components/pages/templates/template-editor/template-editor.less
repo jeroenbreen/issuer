@@ -24,6 +24,27 @@
         &.template--active {
             background: @editing-mode-color-light;
 
+            .vdr {
+                cursor: pointer;
+
+                &:before {
+                    outline: 1px dashed @editing-mode-color;
+                    content: '';
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    position: absolute;
+                }
+
+                .vdr-stick {
+                    border: 1px solid @editing-mode-color;
+                    background: #fff;
+                    box-shadow: none;
+                    -webkit-box-shadow: none;
+                }
+            }
+
             .iss-resizable {
                 outline: 1px dashed @editing-mode-color;
                 cursor: pointer;

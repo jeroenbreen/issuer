@@ -21,25 +21,33 @@ const templateToolsComponent = Vue.component('template-tools', {
                     <div class="template-tools__label">
                         Left
                     </div>
-                    <input v-model="item.x" type="number">
+                    <md-field>
+                        <md-input v-model="item.x" placeholder="left" type="number"></md-input>
+                    </md-field>
                 </div>
                 <div class="template-tools__row">
                     <div class="template-tools__label">
                         Top
                     </div>
-                    <input v-model="item.y" type="number">
+                    <md-field>
+                        <md-input v-model="item.y" placeholder="top" type="number"></md-input>
+                    </md-field>
                 </div>
                 <div class="template-tools__row">
                     <div class="template-tools__label">
                         Width
                     </div>
-                    <input v-model="item.width" type="number">
+                    <md-field>
+                        <md-input v-model="item.width" placeholder="width" type="number"></md-input>
+                    </md-field>
                 </div>
                 <div class="template-tools__row">
                     <div class="template-tools__label">
                         Height
                     </div>
-                    <input v-model="item.height" type="number">
+                    <md-field>
+                        <md-input v-model="item.height" placeholder="height" type="number"></md-input>
+                    </md-field>
                 </div>
             </div>
             <div class="template-tools__section">

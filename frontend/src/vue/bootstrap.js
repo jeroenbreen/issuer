@@ -39,8 +39,11 @@ import VueMaterial from 'vue-material'
 Vue.use(VueMaterial);
 
 // draggable
+import VueDragResize from 'vue-drag-resize'
+Vue.component('vue-drag-resize', VueDragResize);
+
 import VueDraggableResizable from 'vue-draggable-resizable'
-Vue.component('vue-draggable-resizable', VueDraggableResizable)
+Vue.component('vue-draggable-resizable', VueDraggableResizable);
 
 
 
