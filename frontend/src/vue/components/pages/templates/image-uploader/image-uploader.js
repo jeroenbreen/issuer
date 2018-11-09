@@ -5,9 +5,10 @@ import $ from "jquery";
 
 
 const imageUploaderComponent = Vue.component('image-uploader', {
-    props: ['item'],
+    props: ['item', 'template'],
     data() {
         return {
+            loading: false,
             dropzoneOptions: {
                 parallelUploads: 1,
                 maxFiles: 1,
@@ -23,9 +24,13 @@ const imageUploaderComponent = Vue.component('image-uploader', {
         vueDropzone: vue2Dropzone
     },
     methods: {
+        fileDropped(file){
+            this.loading = true;
+            this.item.src = '';
+        },
         fileAdded(file, response) {
             let image = file.dataURL.split(',')[1];
-            let item = this.item;
+            let self = this;
             $.ajax({
                 'url': (config.fromFrontend + 'image-uploader/index.php'),
                 'type': 'POST',
@@ -34,16 +39,38 @@ const imageUploaderComponent = Vue.component('image-uploader', {
                     'Accept': 'application/json'
                 }
             }).done(function(response){
-                item.src = response;
+                self.fileAddedByBackend(response, file);
             });
+        },
+        fileAddedByBackend(src, file) {
+            let ratio = file.width / file.height;
+            this.item.src = src;
+            this.item.height = this.item.width / ratio;
+            this.loading = false;
+            this.empty();
+            this.updateTemplate();
+        },
+        empty() {
+            this.$refs.dropzone.removeAllFiles();
+        },
+        updateTemplate() {
+            this.$store.dispatch('templates/update', this.template.toBackend());
         }
     },
     template: `
-        <vue-dropzone 
-            id="x"
-            ref="myVueDropz one" 
-            :options="dropzoneOptions"
-            v-on:vdropzone-success="fileAdded"></vue-dropzone>
+        <div class="image-uploader"> 
+            <vue-dropzone 
+                id="x"
+                ref="dropzone" 
+                :options="dropzoneOptions"
+                v-on:vdropzone-file-added="fileDropped"
+                v-on:vdropzone-success="fileAdded"></vue-dropzone>
+            <div 
+                v-if="loading"
+                class="image-uploader__loader"> 
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        </div>
     `
 });
 

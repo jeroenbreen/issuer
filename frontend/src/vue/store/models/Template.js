@@ -23,20 +23,7 @@ class Template {
     }
 
     importItems(template) {
-        template.frontPage = {};
-        template.frontPage.items = [
-            {
-                type: 'image',
-                horizontal: 'centered',
-                vertical: '',
-                x: 100,
-                y: 590,
-                width: 120,
-                height: 100,
-                z: 'auto',
-                src: 'slogan.png'
-            }
-        ];
+        this.frontPage = {items: []};
         for(let item of template.frontPage.items) {
             this.frontPage.items.push(this.importItem(item));
         }

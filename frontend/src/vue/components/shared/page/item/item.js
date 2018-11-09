@@ -36,8 +36,9 @@ const itemComponent = Vue.component('item', {
             v-bind:y="scale(item.y)"
             v-bind:parent="true">
             <image-uploader
-                v-if="editor"
-                v-bind:item="item"></image-uploader>
+                v-if="editor && item.type === 'image'"
+                v-bind:item="item"
+                v-bind:template="template"></image-uploader>
             
             <img v-if="item.type === 'image'" v-bind:src="item.getSrc()">
         </vue-draggable-resizable>
