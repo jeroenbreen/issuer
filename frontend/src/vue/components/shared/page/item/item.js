@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import {imageUploaderComponent} from './../../../pages/templates/image-uploader/image-uploader';
 import $ from 'jquery';
 
 const itemComponent = Vue.component('item', {
@@ -34,6 +35,10 @@ const itemComponent = Vue.component('item', {
             v-bind:x="scale(item.getX(template))"
             v-bind:y="scale(item.y)"
             v-bind:parent="true">
+            <image-uploader
+                v-if="editor"
+                v-bind:item="item"></image-uploader>
+            
             <img v-if="item.type === 'image'" v-bind:src="item.getSrc()">
         </vue-draggable-resizable>
     `

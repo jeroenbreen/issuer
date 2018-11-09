@@ -2,7 +2,6 @@ import Vue from 'vue';
 import {templateEditorComponent} from './template-editor/template-editor';
 import {Document} from "../../../store/models/Document";
 import {Template} from "../../../store/models/Template";
-import vue2Dropzone from 'vue2-dropzone';
 
 
 
@@ -16,19 +15,8 @@ const templatesComponent = Vue.component('templates', {
         return {
             document: doc,
             currentTemplate: null,
-            dropzoneOptions: {
-                parallelUploads: 1,
-                maxFiles: 1,
-                url: 'https://httpbin.org/post',
-                thumbnailWidth: 150,
-                maxFilesize: 0.5,
-                headers: { "My-Awesome-Header": "header value" },
-                dictDefaultMessage: '<span class="dz-icon"><i class="far fa-image"></i></span>'
-            }
+            image: 'https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5OS8zMjkvb3JpZ2luYWwvY2hpbXBzLWVhdC1tb25rZXktYnJhaW5zLTAx'
         }
-    },
-    components: {
-        vueDropzone: vue2Dropzone
     },
     methods: {
         getAll: function(){
@@ -110,12 +98,6 @@ const templatesComponent = Vue.component('templates', {
             const settings = {...this.$store.state.settings};
             settings.template_id = template._id;
             this.$store.commit('settings/update', settings);
-        },
-
-
-
-        fileAdded(file) {
-            console.log(file);
         }
     },
     template: `
@@ -161,15 +143,7 @@ const templatesComponent = Vue.component('templates', {
                             </div>
                         </div>
                     </div>
-                    
-                    <div id="test-drop">
-                        <vue-dropzone 
-                            id="x"
-                            ref="myVueDropzone" 
-                            :options="dropzoneOptions"
-                            v-on:vdropzone-file-added="fileAdded"></vue-dropzone>
-                    </div>
-                    
+
 
 
                 </div>
