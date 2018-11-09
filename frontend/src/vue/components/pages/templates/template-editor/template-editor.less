@@ -1,4 +1,5 @@
 @import "template-tools/template-tools";
+@import "template-margins/template-margins";
 
 .template-editor__title {
     position: fixed;
@@ -58,6 +59,14 @@
             .iss-resizer {
                 position: absolute;
                 cursor: pointer;
+
+                &:before {
+                    outline: none;
+                }
+
+                .vdr-stick {
+                    display: none;
+                }
 
 
                 &.iss-resizer--hor {

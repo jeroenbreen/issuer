@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import {templateToolsComponent} from "./template-tools/template-tools";
+import {templateMarginsComponent} from "./template-margins/template-margins";
 import {Document} from "../../../../store/models/Document";
 import {Template} from "../../../../store/models/Template";
 
@@ -71,8 +72,10 @@ const templateEditorComponent = Vue.component('template-editor', {
             
             <div class="close-button" v-on:click="closeScreen()"></div>
             
+            <template-margins
+                v-bind:template="clonedTemplate"></template-margins>
+            
             <template-tools
-                v-if="currentItem"
                 v-bind:item="currentItem"
                 v-bind:template="clonedTemplate"></template-tools>
             

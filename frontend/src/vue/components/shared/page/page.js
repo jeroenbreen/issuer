@@ -76,27 +76,17 @@ const pageComponent = Vue.component('doc-page', {
                 this.onSelectItem(item);
             }
         },
-        setMarginTop(x, y) {
-            this.template.settings.margin.top = y;
+        setMarginTop(event) {
+            this.template.settings.margin.top = event.top;
         },
-        setMarginBottom(x, y) {
-            this.template.settings.margin.bottom = 877 - y;
+        setMarginBottom(event) {
+            this.template.settings.margin.bottom = 877 - event.top;
         },
-        setMarginLeft(x, y) {
-            this.template.settings.margin.left = x;
+        setMarginLeft(event) {
+            this.template.settings.margin.left = event.left;
         },
-        setMarginRight(x, y) {
-            this.template.settings.margin.right = 620 - x;
-        },
-        setPositionLogo(left, top) {
-            this.template.settings.logo.left = left;
-            this.template.settings.logo.top = top;
-        },
-        setSizeLogo(x, y, width, height) {
-            if (this.editor) {
-                this.template.settings.logo.width = width;
-                this.template.settings.logo.height = height;
-            }
+        setMarginRight(event) {
+            this.template.settings.margin.right = 620 - event.left;
         }
     },
     template: `
@@ -116,24 +106,16 @@ const pageComponent = Vue.component('doc-page', {
                 
                 
                 
-                <vue-draggable-resizable
-                    class="document__logo iss-resizable" 
+                <item
+                    class="document__logo"
                     v-if="page.getType() === 'front'"
-                    v-on:dragging="setPositionLogo"
-                    v-on:resizing="setSizeLogo"
-                    v-bind:draggable="editor"
-                    v-bind:resizable="editor"
-                    v-bind:w="scale(template.settings.logo.width)"
-                    v-bind:h="scale(template.settings.logo.height)"
-                    v-bind:x="scale(template.settings.logo.left)"
-                    v-bind:y="scale(template.settings.logo.top)"
-                    v-bind:parent="true">
-                    <img v-bind:src="template.getLogoSrc()">
-                </vue-draggable-resizable>
+                    v-on:click.native="selectItem(template.logo)"
+                    v-bind:item="template.logo"
+                    v-bind:editor="editor"
+                    v-bind:factor="factor"
+                    v-bind:template="template"></item>
                 
-                
-                
-                
+
                 
                 
                 <div class="document__info" v-if="page.getType() === 'front'">
@@ -266,61 +248,61 @@ const pageComponent = Vue.component('doc-page', {
                 </div>
             </div>
             
-            <vue-draggable-resizable 
-                class="iss-resizer iss-resizer--hor"
-                axis="y"
+            <vue-drag-resize 
                 v-if="editor && page.getType() === 'front'"
+                class="iss-resizer iss-resizer--hor"
+                v-bind:parentLimitation="true" 
+                v-bind:axis="'y'"
                 v-on:dragging="setMarginTop"
-                v-bind:draggable="editor"
-                v-bind:resizable="false"
+                v-bind:isDraggable="editor"
+                v-bind:isResizable="false"
                 v-bind:y="scale(template.settings.margin.top)"
                 v-bind:x="scale(template.settings.margin.left)"
                 v-bind:h="1"
                 v-bind:minh="1"
-                v-bind:w="scale(620 - template.settings.margin.left - template.settings.margin.right)"
-                v-bind:parent="true"/>
+                v-bind:w="scale(620 - template.settings.margin.left - template.settings.margin.right)"/>
                 
-            <vue-draggable-resizable 
-                class="iss-resizer iss-resizer--hor"
-                axis="y"
+            <vue-drag-resize 
                 v-if="editor && page.getType() === 'front'"
+                class="iss-resizer iss-resizer--hor"
+                v-bind:parentLimitation="true" 
+                v-bind:axis="'y'"
                 v-on:dragging="setMarginBottom"
-                v-bind:draggable="editor"
-                v-bind:resizable="false"
-                v-bind:y="scale(877 - template.settings.margin.bottom)"
+                v-bind:isDraggable="editor"
+                v-bind:isResizable="false"
+                v-bind:y="scale(877 - template.settings.margin.top)"
                 v-bind:x="scale(template.settings.margin.left)"
                 v-bind:h="1"
                 v-bind:minh="1"
-                v-bind:w="scale(620 - template.settings.margin.left - template.settings.margin.right)"
-                v-bind:parent="true"/>
+                v-bind:w="scale(620 - template.settings.margin.left - template.settings.margin.right)"/>
                 
-            <vue-draggable-resizable 
-                class="iss-resizer iss-resizer--ver"
-                axis="x"
+            <vue-drag-resize 
                 v-if="editor && page.getType() === 'front'"
+                class="iss-resizer iss-resizer--ver"
+                v-bind:parentLimitation="true" 
+                v-bind:axis="'x'"
                 v-on:dragging="setMarginLeft"
-                v-bind:draggable="editor"
-                v-bind:resizable="false"
+                v-bind:isDraggable="editor"
+                v-bind:isResizable="false"
                 v-bind:y="scale(template.settings.margin.top)"
                 v-bind:x="scale(template.settings.margin.left)"
                 v-bind:w="1"
                 v-bind:minw="1"
-                v-bind:h="scale(877 - template.settings.margin.top - template.settings.margin.bottom)"
-                v-bind:parent="true"/>
+                v-bind:h="scale(877 - template.settings.margin.top - template.settings.margin.bottom)"/>
                 
-            <vue-draggable-resizable 
-                class="iss-resizer iss-resizer--ver"
-                axis="x"
+            <vue-drag-resize 
                 v-if="editor && page.getType() === 'front'"
+                class="iss-resizer iss-resizer--ver"
+                v-bind:parentLimitation="true" 
+                v-bind:axis="'x'"
                 v-on:dragging="setMarginRight"
-                v-bind:draggable="editor"
-                v-bind:resizable="false"
+                v-bind:isDraggable="editor"
+                v-bind:isResizable="false"
                 v-bind:y="scale(template.settings.margin.top)"
                 v-bind:x="scale(620 - template.settings.margin.right)"
                 v-bind:w="1"
                 v-bind:minw="1"
-                v-bind:h="scale(877 - template.settings.margin.top - template.settings.margin.bottom)"
-                v-bind:parent="true"/>
+                v-bind:h="scale(877 - template.settings.margin.top - template.settings.margin.bottom)"/>
                 
                 
             <md-snackbar :md-position="'left'" :md-duration="2000" :md-active.sync="localState.showSnackbar" md-persistent>

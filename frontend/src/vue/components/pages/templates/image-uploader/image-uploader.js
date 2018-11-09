@@ -16,7 +16,7 @@ const imageUploaderComponent = Vue.component('image-uploader', {
                 thumbnailWidth: 150,
                 maxFilesize: 0.5,
                 headers: { "My-Awesome-Header": "header value" },
-                dictDefaultMessage: '<span class="dz-icon"><i class="far fa-image"></i></span>'
+                dictDefaultMessage: '<span class="dz-icon"><i class="fas fa-upload"></i></span>'
             }
         }
     },

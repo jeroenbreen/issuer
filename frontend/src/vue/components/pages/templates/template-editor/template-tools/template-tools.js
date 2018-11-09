@@ -10,6 +10,29 @@ const templateToolsComponent = Vue.component('template-tools', {
     },
 
     methods: {
+        addImage() {
+            let image = {
+                src: 'image-placeholder.png',
+                width: 100,
+                height: 100,
+                x: (this.template.getElementAreaWidth() - 200) / 2,
+                y: 100
+            };
+            this.template.addItem('image', image, 'frontPage');
+        },
+        removeItem() {
+            const template = this.template;
+            const item = this.item;
+
+            function callback() {
+                template.removeItem(item);
+            }
+
+            this.$store.commit('confirm', {
+                message: 'Are you sure?',
+                callback: callback
+            });
+        },
         centerHorizontal() {
             this.item.x = (this.template.getElementAreaWidth() - this.item.width) / 2;
         }
@@ -17,6 +40,18 @@ const templateToolsComponent = Vue.component('template-tools', {
     template: `
         <div class="template-tools">
             <div class="template-tools__section">
+                <div class="template-tools__label">&nbsp;</div>
+                <button v-on:click="addImage()">
+                    Add Image
+                </button>
+            </div>
+             <div v-if="item" class="template-tools__section">
+                <div class="template-tools__label">&nbsp;</div>
+                <button v-on:click="removeItem()">
+                    Remove Item
+                </button>
+            </div>
+            <div v-if="item" class="template-tools__section">
                 <div class="template-tools__row">
                     <div class="template-tools__label">
                         Left
@@ -50,7 +85,7 @@ const templateToolsComponent = Vue.component('template-tools', {
                     </md-field>
                 </div>
             </div>
-            <div class="template-tools__section">
+            <div v-if="item" class="template-tools__section">
                 <div class="template-tools__row">
                     <div class="template-tools__label">
                         Horiz. centered

@@ -11,6 +11,7 @@ class Template {
         this.company_id = template.company_id ? template.company_id : '';
         this.title = template.title;
         this.settings = template.settings;
+        this.logo = new Image(template.logo);
         this.frontPage = {
             items: []
         };
@@ -18,25 +19,36 @@ class Template {
         this.importItems(template);
     }
 
-    getElementAreaWidth() {
-        return pageWidth - this.settings.margin.left - this.settings.margin.right;
-    }
+    // actions
 
     importItems(template) {
         this.frontPage = {items: []};
         for(let item of template.frontPage.items) {
-            this.frontPage.items.push(this.importItem(item));
+            this.addItem(item.type, item, 'frontPage');
         }
     }
 
-    importItem(item) {
-        switch (item.type) {
+    addItem(type, itemData, page) {
+        let item;
+        switch (type) {
             case 'image':
-                return new Image(item);
+                item = new Image(itemData);
+        }
+        this[page].items.push(item);
+    }
+
+    removeItem(item) {
+        let index = this.frontPage.items.indexOf(item);
+        if (index > -1) {
+            this.frontPage.items.splice(index, 1);
         }
     }
 
-    //
+    // getters
+
+    getElementAreaWidth() {
+        return pageWidth - this.settings.margin.left - this.settings.margin.right;
+    }
 
     getLogoSrc() {
             return config.fromFrontend + config.templateUrl + this.settings.logo.src;

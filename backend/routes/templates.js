@@ -10,6 +10,7 @@ class Template {
         this._id = template._id ? ObjectId(template._id) : ObjectId();
         this.company_id = template.company_id ? ObjectId(template.company_id) : ObjectId();
         this.title = String(template.title);
+        this.logo = Object(template.logo);
         this.settings = Object(template.settings);
         this.frontPage = template.frontPage;
     }
