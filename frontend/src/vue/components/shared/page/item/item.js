@@ -18,21 +18,21 @@ const itemComponent = Vue.component('item', {
         },
         scale(value) {
             return value * this.factor;
-        },
+        }
     },
     template: `
         <vue-draggable-resizable
             class="iss-resizable"
             v-on:dragging="onDrag"
             v-on:resizing="onResize"
-            v-bind:axis="item.getAxis()"
-            v-bind:draggable="item.isDraggable()"
+            v-bind:axis="'both'"
+            v-bind:draggable="editor"
             v-bind:resizable="editor"
             v-bind:minw="20"
             v-bind:w="scale(item.width)"
             v-bind:minh="20"
             v-bind:h="scale(item.height)"
-            v-bind:x="scale(item.getX(template))"
+            v-bind:x="scale(item.x)"
             v-bind:y="scale(item.y)"
             v-bind:parent="true">
             <image-uploader

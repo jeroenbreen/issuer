@@ -12,7 +12,7 @@ let saveBuffer = null;
 
 
 const pageComponent = Vue.component('doc-page', {
-    props: ['page', 'template', 'editor', 'factor', 'tools'],
+    props: ['page', 'template', 'editor', 'factor', 'tools', 'onSelectItem'],
     watch: {
         clonedTemplate: {
             handler: function() {
@@ -21,7 +21,7 @@ const pageComponent = Vue.component('doc-page', {
                         clearTimeout(saveBuffer);
                     }
                     saveBuffer = setTimeout(() => {
-                        this.$store.dispatch('templates/update', this.getTemplate().toBackend()).then(() => {
+                        this.$store.dispatch('templates/update', this.template.toBackend()).then(() => {
                             // todo: use 1 global snackbar
                             this.localState.showSnackbar = true;
                             // todo: update the original, so other pages
@@ -35,8 +35,6 @@ const pageComponent = Vue.component('doc-page', {
     },
     data(){
         return {
-            // make a clone to prevent editing the state directly when we are in editor mode
-            clonedTemplate: new Template(this.template.clone()),
             company: this.$store.state.company,
             canAddLines: true,
             localState: {
@@ -45,9 +43,6 @@ const pageComponent = Vue.component('doc-page', {
         }
     },
     methods: {
-        getTemplate() {
-            return this.editor ? this.clonedTemplate : this.template
-        },
         scale(value) {
             return value * this.factor;
         },
@@ -58,11 +53,11 @@ const pageComponent = Vue.component('doc-page', {
 
         // template methods
         getTop() {
-            return this.page.getType() === 'front' ? this.scale(this.getTemplate().settings.content.top) + 'px' : 0;
+            return this.page.getType() === 'front' ? this.scale(this.template.settings.content.top) + 'px' : 0;
         },
         getTotalTop() {
             return 200;
-            //return this.page.getType() === 'front' ?  this.scale(this.getTemplate().settings.footerImage.top - 130) : this.scale(this.getTemplate().settings.footerImage.top + 30 - 130);
+            //return this.page.getType() === 'front' ?  this.scale(this.template.settings.footerImage.top - 130) : this.scale(this.template.settings.footerImage.top + 30 - 130);
         },
 
         // sortable
@@ -76,26 +71,31 @@ const pageComponent = Vue.component('doc-page', {
 
 
         // template
+        selectItem(item) {
+            if (this.editor) {
+                this.onSelectItem(item);
+            }
+        },
         setMarginTop(x, y) {
-            this.getTemplate().settings.margin.top = y;
+            this.template.settings.margin.top = y;
         },
         setMarginBottom(x, y) {
-            this.getTemplate().settings.margin.bottom = 877 - y;
+            this.template.settings.margin.bottom = 877 - y;
         },
         setMarginLeft(x, y) {
-            this.getTemplate().settings.margin.left = x;
+            this.template.settings.margin.left = x;
         },
         setMarginRight(x, y) {
-            this.getTemplate().settings.margin.right = 620 - x;
+            this.template.settings.margin.right = 620 - x;
         },
         setPositionLogo(left, top) {
-            this.getTemplate().settings.logo.left = left;
-            this.getTemplate().settings.logo.top = top;
+            this.template.settings.logo.left = left;
+            this.template.settings.logo.top = top;
         },
         setSizeLogo(x, y, width, height) {
             if (this.editor) {
-                this.getTemplate().settings.logo.width = width;
-                this.getTemplate().settings.logo.height = height;
+                this.template.settings.logo.width = width;
+                this.template.settings.logo.height = height;
             }
         }
     },
@@ -108,10 +108,10 @@ const pageComponent = Vue.component('doc-page', {
             
             
             <div class="document__elements"
-                v-bind:style="{'left': scale(getTemplate().settings.margin.left) + 'px',
-                               'top': scale(getTemplate().settings.margin.top) + 'px',
-                               'right': scale(getTemplate().settings.margin.right) + 'px ',
-                               'bottom': scale(getTemplate().settings.margin.bottom) + 'px'}">
+                v-bind:style="{'left': scale(template.settings.margin.left) + 'px',
+                               'top': scale(template.settings.margin.top) + 'px',
+                               'right': scale(template.settings.margin.right) + 'px ',
+                               'bottom': scale(template.settings.margin.bottom) + 'px'}">
                 
                 
                 
@@ -123,12 +123,12 @@ const pageComponent = Vue.component('doc-page', {
                     v-on:resizing="setSizeLogo"
                     v-bind:draggable="editor"
                     v-bind:resizable="editor"
-                    v-bind:w="scale(getTemplate().settings.logo.width)"
-                    v-bind:h="scale(getTemplate().settings.logo.height)"
-                    v-bind:x="scale(getTemplate().settings.logo.left)"
-                    v-bind:y="scale(getTemplate().settings.logo.top)"
+                    v-bind:w="scale(template.settings.logo.width)"
+                    v-bind:h="scale(template.settings.logo.height)"
+                    v-bind:x="scale(template.settings.logo.left)"
+                    v-bind:y="scale(template.settings.logo.top)"
                     v-bind:parent="true">
-                    <img v-bind:src="getTemplate().getLogoSrc()">
+                    <img v-bind:src="template.getLogoSrc()">
                 </vue-draggable-resizable>
                 
                 
@@ -145,15 +145,15 @@ const pageComponent = Vue.component('doc-page', {
                     <div 
                         v-bind:style="{'padding': scale(10) + 'px', 'font-size': scale(11) + 'px'}"
                         class="document__document-id">
-                        {{getTemplate().settings.dictionary.invoice}} 
+                        {{template.settings.dictionary.invoice}} 
                         <b>{{getDocumentId()}}</b>
                     </div>
                 </div>
                 
                 <div class="document__addresses"
                     v-if="page.getType() === 'front'"
-                    v-bind:style="{'top': scale(getTemplate().settings.addresses.top) + 'px',
-                                   'border-top': scale(getTemplate().settings.addresses.borderTop) + 'px solid #000'}">
+                    v-bind:style="{'top': scale(template.settings.addresses.top) + 'px',
+                                   'border-top': scale(template.settings.addresses.borderTop) + 'px solid #000'}">
                     <div class="document_address-own">
                         <b>{{company.name}}</b><br>
                         {{page.document.userName}}<br>
@@ -172,10 +172,10 @@ const pageComponent = Vue.component('doc-page', {
                     v-bind:style="{'top': getTop()}">
                     <div class="document__subject"
                         v-if="page.getType() === 'front'"
-                        v-bind:style="{'border-top': scale(getTemplate().settings.subject.borderTop) + 'px solid #000',
-                                       'border-bottom': scale(getTemplate().settings.subject.borderBottom) + 'px solid #000',
+                        v-bind:style="{'border-top': scale(template.settings.subject.borderTop) + 'px solid #000',
+                                       'border-bottom': scale(template.settings.subject.borderBottom) + 'px solid #000',
                                        'padding': scale(10) + 'px'}">
-                        <b>{{getTemplate().settings.dictionary.subject}}:</b> {{page.document.subject}}
+                        <b>{{template.settings.dictionary.subject}}:</b> {{page.document.subject}}
                     </div>
                     
                     <div 
@@ -240,10 +240,10 @@ const pageComponent = Vue.component('doc-page', {
                     <div class="document__footer-text"
                         v-bind:style="{'font-size': scale(8) + 'px',
                                        'margin-top': scale(20) + 'px',
-                                       'border-top': scale(getTemplate().settings.footerText.borderTop) + 'px solid #000',
-                                       'border-bottom': scale(getTemplate().settings.footerText.borderBottom) + 'px solid #000',
+                                       'border-top': scale(template.settings.footerText.borderTop) + 'px solid #000',
+                                       'border-bottom': scale(template.settings.footerText.borderBottom) + 'px solid #000',
                                        'padding': scale(10) + 'px'}">
-                        <span v-html="getTemplate().settings.dictionary.footer"></span>
+                        <span v-html="template.settings.dictionary.footer"></span>
                     </div>
                 </div>
                 
@@ -251,7 +251,8 @@ const pageComponent = Vue.component('doc-page', {
                 <!-- custom items -->
                 <item
                     v-if="page.getType() === 'front'"
-                    v-for="(item, index) in getTemplate().frontPage.items"
+                    v-for="(item, index) in template.frontPage.items"
+                    v-on:click.native="selectItem(item)"
                     v-bind:key="index"
                     v-bind:item="item"
                     v-bind:editor="editor"
@@ -260,7 +261,7 @@ const pageComponent = Vue.component('doc-page', {
                 
                 
                 <div class="document__official"
-                    v-bind:style="{'font-size': scale(8) + 'px','top': scale(getTemplate().settings.official.top) + 'px'}">
+                    v-bind:style="{'font-size': scale(8) + 'px','top': scale(template.settings.official.top) + 'px'}">
                     {{company.name}} | {{company.coc}}  | {{company.vat}}
                 </div>
             </div>
@@ -272,11 +273,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginTop"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
-                v-bind:y="scale(getTemplate().settings.margin.top)"
-                v-bind:x="scale(getTemplate().settings.margin.left)"
+                v-bind:y="scale(template.settings.margin.top)"
+                v-bind:x="scale(template.settings.margin.left)"
                 v-bind:h="1"
                 v-bind:minh="1"
-                v-bind:w="scale(620 - getTemplate().settings.margin.left - getTemplate().settings.margin.right)"
+                v-bind:w="scale(620 - template.settings.margin.left - template.settings.margin.right)"
                 v-bind:parent="true"/>
                 
             <vue-draggable-resizable 
@@ -286,11 +287,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginBottom"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
-                v-bind:y="scale(877 - getTemplate().settings.margin.bottom)"
-                v-bind:x="scale(getTemplate().settings.margin.left)"
+                v-bind:y="scale(877 - template.settings.margin.bottom)"
+                v-bind:x="scale(template.settings.margin.left)"
                 v-bind:h="1"
                 v-bind:minh="1"
-                v-bind:w="scale(620 - getTemplate().settings.margin.left - getTemplate().settings.margin.right)"
+                v-bind:w="scale(620 - template.settings.margin.left - template.settings.margin.right)"
                 v-bind:parent="true"/>
                 
             <vue-draggable-resizable 
@@ -300,11 +301,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginLeft"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
-                v-bind:y="scale(getTemplate().settings.margin.top)"
-                v-bind:x="scale(getTemplate().settings.margin.left)"
+                v-bind:y="scale(template.settings.margin.top)"
+                v-bind:x="scale(template.settings.margin.left)"
                 v-bind:w="1"
                 v-bind:minw="1"
-                v-bind:h="scale(877 - getTemplate().settings.margin.top - getTemplate().settings.margin.bottom)"
+                v-bind:h="scale(877 - template.settings.margin.top - template.settings.margin.bottom)"
                 v-bind:parent="true"/>
                 
             <vue-draggable-resizable 
@@ -314,11 +315,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginRight"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
-                v-bind:y="scale(getTemplate().settings.margin.top)"
-                v-bind:x="scale(620 - getTemplate().settings.margin.right)"
+                v-bind:y="scale(template.settings.margin.top)"
+                v-bind:x="scale(620 - template.settings.margin.right)"
                 v-bind:w="1"
                 v-bind:minw="1"
-                v-bind:h="scale(877 - getTemplate().settings.margin.top - getTemplate().settings.margin.bottom)"
+                v-bind:h="scale(877 - template.settings.margin.top - template.settings.margin.bottom)"
                 v-bind:parent="true"/>
                 
                 
