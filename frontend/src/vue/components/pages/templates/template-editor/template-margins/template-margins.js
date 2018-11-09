@@ -13,7 +13,7 @@ const templateMarginsComponent = Vue.component('template-margins', {
                         Margin top
                     </div>
                     <md-field>
-                        <md-input v-model="template.settings.margin.top" placeholder="Margin top" type="number"></md-input>
+                        <md-input v-model="template.margin.top" placeholder="Margin top" type="number"></md-input>
                     </md-field>
                 </div>
                 <div class="template-tools__row">
@@ -21,7 +21,7 @@ const templateMarginsComponent = Vue.component('template-margins', {
                         Margin right
                     </div>
                     <md-field>
-                        <md-input v-model="template.settings.margin.right" placeholder="Margin right" type="number"></md-input>
+                        <md-input v-model="template.margin.right" placeholder="Margin right" type="number"></md-input>
                     </md-field>
                 </div>
                 <div class="template-tools__row">
@@ -29,7 +29,7 @@ const templateMarginsComponent = Vue.component('template-margins', {
                         Margin bottom
                     </div>
                     <md-field>
-                        <md-input v-model="template.settings.margin.bottom" placeholder="Margin bottom" type="number"></md-input>
+                        <md-input v-model="template.margin.bottom" placeholder="Margin bottom" type="number"></md-input>
                     </md-field>
                 </div>
                 <div class="template-tools__row">
@@ -37,7 +37,7 @@ const templateMarginsComponent = Vue.component('template-margins', {
                         Margin left
                     </div>
                     <md-field>
-                        <md-input v-model="template.settings.margin.left" placeholder="Margin left" type="number"></md-input>
+                        <md-input v-model="template.margin.left" placeholder="Margin left" type="number"></md-input>
                     </md-field>
                 </div>
             </div>

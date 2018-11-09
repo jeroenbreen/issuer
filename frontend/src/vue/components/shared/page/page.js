@@ -77,16 +77,16 @@ const pageComponent = Vue.component('doc-page', {
             }
         },
         setMarginTop(event) {
-            this.template.settings.margin.top = event.top;
+            this.template.margin.top = event.top;
         },
         setMarginBottom(event) {
-            this.template.settings.margin.bottom = 877 - event.top;
+            this.template.margin.bottom = 877 - event.top;
         },
         setMarginLeft(event) {
-            this.template.settings.margin.left = event.left;
+            this.template.margin.left = event.left;
         },
         setMarginRight(event) {
-            this.template.settings.margin.right = 620 - event.left;
+            this.template.margin.right = 620 - event.left;
         }
     },
     template: `
@@ -98,10 +98,10 @@ const pageComponent = Vue.component('doc-page', {
             
             
             <div class="document__elements"
-                v-bind:style="{'left': scale(template.settings.margin.left) + 'px',
-                               'top': scale(template.settings.margin.top) + 'px',
-                               'right': scale(template.settings.margin.right) + 'px ',
-                               'bottom': scale(template.settings.margin.bottom) + 'px'}">
+                v-bind:style="{'left': scale(template.margin.left) + 'px',
+                               'top': scale(template.margin.top) + 'px',
+                               'right': scale(template.margin.right) + 'px ',
+                               'bottom': scale(template.margin.bottom) + 'px'}">
                 
                 
                 
@@ -256,11 +256,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginTop"
                 v-bind:isDraggable="editor"
                 v-bind:isResizable="false"
-                v-bind:y="scale(template.settings.margin.top)"
-                v-bind:x="scale(template.settings.margin.left)"
+                v-bind:y="scale(template.margin.top)"
+                v-bind:x="scale(template.margin.left)"
                 v-bind:h="1"
                 v-bind:minh="1"
-                v-bind:w="scale(620 - template.settings.margin.left - template.settings.margin.right)"/>
+                v-bind:w="scale(620 - template.margin.left - template.margin.right)"/>
                 
             <vue-drag-resize 
                 v-if="editor && page.getType() === 'front'"
@@ -270,11 +270,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginBottom"
                 v-bind:isDraggable="editor"
                 v-bind:isResizable="false"
-                v-bind:y="scale(877 - template.settings.margin.top)"
-                v-bind:x="scale(template.settings.margin.left)"
+                v-bind:y="scale(877 - template.margin.top)"
+                v-bind:x="scale(template.margin.left)"
                 v-bind:h="1"
                 v-bind:minh="1"
-                v-bind:w="scale(620 - template.settings.margin.left - template.settings.margin.right)"/>
+                v-bind:w="scale(620 - template.margin.left - template.margin.right)"/>
                 
             <vue-drag-resize 
                 v-if="editor && page.getType() === 'front'"
@@ -284,11 +284,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginLeft"
                 v-bind:isDraggable="editor"
                 v-bind:isResizable="false"
-                v-bind:y="scale(template.settings.margin.top)"
-                v-bind:x="scale(template.settings.margin.left)"
+                v-bind:y="scale(template.margin.top)"
+                v-bind:x="scale(template.margin.left)"
                 v-bind:w="1"
                 v-bind:minw="1"
-                v-bind:h="scale(877 - template.settings.margin.top - template.settings.margin.bottom)"/>
+                v-bind:h="scale(877 - template.margin.top - template.margin.bottom)"/>
                 
             <vue-drag-resize 
                 v-if="editor && page.getType() === 'front'"
@@ -298,11 +298,11 @@ const pageComponent = Vue.component('doc-page', {
                 v-on:dragging="setMarginRight"
                 v-bind:isDraggable="editor"
                 v-bind:isResizable="false"
-                v-bind:y="scale(template.settings.margin.top)"
-                v-bind:x="scale(620 - template.settings.margin.right)"
+                v-bind:y="scale(template.margin.top)"
+                v-bind:x="scale(620 - template.margin.right)"
                 v-bind:w="1"
                 v-bind:minw="1"
-                v-bind:h="scale(877 - template.settings.margin.top - template.settings.margin.bottom)"/>
+                v-bind:h="scale(877 - template.margin.top - template.margin.bottom)"/>
                 
                 
             <md-snackbar :md-position="'left'" :md-duration="2000" :md-active.sync="localState.showSnackbar" md-persistent>

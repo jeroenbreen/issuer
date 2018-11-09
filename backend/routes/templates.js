@@ -12,6 +12,7 @@ class Template {
         this.title = String(template.title);
         this.logo = Object(template.logo);
         this.settings = Object(template.settings);
+        this.margin = Object(template.margin);
         this.frontPage = template.frontPage;
     }
 }

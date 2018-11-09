@@ -12,6 +12,7 @@ class Template {
         this.title = template.title;
         this.settings = template.settings;
         this.logo = new Image(template.logo);
+        this.margin = template.margin;
         this.frontPage = {
             items: []
         };
@@ -47,7 +48,7 @@ class Template {
     // getters
 
     getElementAreaWidth() {
-        return pageWidth - this.settings.margin.left - this.settings.margin.right;
+        return pageWidth - this.margin.left - this.margin.right;
     }
 
     getLogoSrc() {
