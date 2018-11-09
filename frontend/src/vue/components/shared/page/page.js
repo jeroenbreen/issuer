@@ -102,6 +102,7 @@ const pageComponent = Vue.component('doc-page', {
     template: `
         <div 
             v-bind:style="{'font-size': scale(10) + 'px', 'width': scale(620) + 'px', 'height': scale(877) + 'px'}"
+            v-bind:class="{'template--active': editor}"
             class="page">
             
             
@@ -267,7 +268,7 @@ const pageComponent = Vue.component('doc-page', {
             <vue-draggable-resizable 
                 class="iss-resizer iss-resizer--hor"
                 axis="y"
-                v-if="page.getType() === 'front'"
+                v-if="editor && page.getType() === 'front'"
                 v-on:dragging="setMarginTop"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
@@ -281,7 +282,7 @@ const pageComponent = Vue.component('doc-page', {
             <vue-draggable-resizable 
                 class="iss-resizer iss-resizer--hor"
                 axis="y"
-                v-if="page.getType() === 'front'"
+                v-if="editor && page.getType() === 'front'"
                 v-on:dragging="setMarginBottom"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
@@ -295,7 +296,7 @@ const pageComponent = Vue.component('doc-page', {
             <vue-draggable-resizable 
                 class="iss-resizer iss-resizer--ver"
                 axis="x"
-                v-if="page.getType() === 'front'"
+                v-if="editor && page.getType() === 'front'"
                 v-on:dragging="setMarginLeft"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"
@@ -309,7 +310,7 @@ const pageComponent = Vue.component('doc-page', {
             <vue-draggable-resizable 
                 class="iss-resizer iss-resizer--ver"
                 axis="x"
-                v-if="page.getType() === 'front'"
+                v-if="editor && page.getType() === 'front'"
                 v-on:dragging="setMarginRight"
                 v-bind:draggable="editor"
                 v-bind:resizable="false"

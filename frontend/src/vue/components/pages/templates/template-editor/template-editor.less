@@ -17,7 +17,69 @@
         margin-bottom: 40px;
         top: 40px;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-        background: @editing-mode-color-light;
+
+
+        &.template--active {
+            background: @editing-mode-color-light;
+
+            .iss-resizable {
+                outline: 1px dashed @editing-mode-color;
+                cursor: pointer;
+
+                .handle {
+                    border: 1px solid @editing-mode-color;
+                    background: #fff;
+                }
+            }
+
+            .iss-resizer {
+                position: absolute;
+                cursor: pointer;
+
+
+                &.iss-resizer--hor {
+                    height: 1px;
+                    width: 100%;
+
+                    &:before {
+                        left: ~'calc(50% - 32px)';
+                        top: ~'calc(50% - 2px)';
+                        width: 64px;
+                        height: 1px;
+                        border-top: 1px solid @editing-mode-color;
+                    }
+                }
+
+                &.iss-resizer--ver {
+                    width: 1px;
+                    height: 100%;
+
+                    &:before {
+                        top: ~'calc(50% - 32px)';
+                        left: ~'calc(50% - 2px)';
+                        height: 64px;
+                        width: 1px;
+                        border-left: 1px solid @editing-mode-color;
+                    }
+                }
+
+                &:before {
+                    position: absolute;
+                    content: '';
+                }
+
+                &:after {
+                    position: absolute;
+                    left: ~'calc(50% - 17px)';
+                    top: ~'calc(50% - 17px)';
+                    border: 1px solid @editing-mode-color;
+                    content: '';
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                }
+            }
+        }
 
         .document__elements {
             background: #fff;
@@ -26,63 +88,12 @@
         &:last-child {
             margin-bottom: 200px;
         }
-
-        .iss-resizable {
-            outline: 1px dashed @editing-mode-color;
-            cursor: pointer;
-
-            .handle {
-                border: 1px solid @editing-mode-color;
-                background: #fff;
-            }
-        }
-
-        .iss-resizer {
-            position: absolute;
-            cursor: pointer;
-
-
-            &.iss-resizer--hor {
-                height: 1px;
-                width: 100%;
-
-                &:before {
-                    left: ~'calc(50% - 32px)';
-                    top: ~'calc(50% - 2px)';
-                    width: 64px;
-                    height: 1px;
-                    border-top: 1px solid @editing-mode-color;
-                }
-            }
-
-            &.iss-resizer--ver {
-                width: 1px;
-                height: 100%;
-
-                &:before {
-                    top: ~'calc(50% - 32px)';
-                    left: ~'calc(50% - 2px)';
-                    height: 64px;
-                    width: 1px;
-                    border-left: 1px solid @editing-mode-color;
-                }
-            }
-
-            &:before {
-                position: absolute;
-                content: '';
-            }
-
-            &:after {
-                position: absolute;
-                left: ~'calc(50% - 17px)';
-                top: ~'calc(50% - 17px)';
-                border: 1px solid @editing-mode-color;
-                content: '';
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-            }
-        }
     }
+}
+
+.template__mode {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    color: #fff;
 }

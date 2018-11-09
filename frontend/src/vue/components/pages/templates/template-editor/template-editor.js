@@ -9,7 +9,8 @@ const templateEditorComponent = Vue.component('template-editor', {
     props: ['template', 'document'],
     data(){
         return {
-            templateTitle: this.template.title
+            templateTitle: this.template.title,
+            showTools: false
         }
     },
     watch: {
@@ -37,13 +38,13 @@ const templateEditorComponent = Vue.component('template-editor', {
                     v-bind:template="template"
                     v-bind:factor="1"
                     v-bind:tools="false"
-                    v-bind:editor="true"></doc-page>
+                    v-bind:editor="!showTools"></doc-page>
                 <doc-page 
                     v-bind:page="document.pages[1]"
                     v-bind:template="template"
                     v-bind:factor="1"
                     v-bind:tools="false"
-                    v-bind:editor="true"></doc-page>
+                    v-bind:editor="!showTools"></doc-page>
             </div>
             
             <div class="template-editor__title">
@@ -55,6 +56,10 @@ const templateEditorComponent = Vue.component('template-editor', {
 
             
             <div class="close-button" v-on:click="closeScreen()"></div>
+            
+            <div class="template__mode">
+                <md-switch v-model="showTools">Hide tools</md-switch>
+            </div>
         </div>
     `
 });
