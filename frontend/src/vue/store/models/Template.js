@@ -7,23 +7,53 @@ import {Tools} from './../../tools/tools'
 class Template {
 
     constructor(template) {
-        this._id = template._id ? template._id : null;
-        this.company_id = template.company_id ? template.company_id : '';
-        this.title = template.title;
-        this.settings = template.settings;
-        this.logo = new Image(template.logo);
-        this.margin = template.margin;
+        this._id = template && template._id ? template._id : null;
+        this.company_id = template && template.company_id ? template.company_id : '';
+        this.title = template && template.title ? template.title : '';
+        this.settings = template ? template.settings : {
+            addresses: {
+                borderTop: 1,
+                top: 140
+            },
+            content: {
+                top: 250
+            },
+            subject: {
+                borderTop: 1,
+                borderBottom: 1
+            },
+            footerText: {
+                borderTop: 1,
+                borderBottom: 1
+            },
+            official: {
+                top: 730
+            }
+        };
+        this.logo = template ? new Image(template.logo) : new Image();
+        this.margin = template ? template.margin : {
+            top: 60,
+            right: 70,
+            bottom: 60,
+            left: 70
+        };
+        this.dictionary = template ? template.dictionary : {
+            invoice: "Invoice",
+            subject: "Subject",
+            footer: "Please transfer this amount within four weeks, stating...</b>"
+        };
         this.frontPage = {
             items: []
         };
 
-        this.importItems(template);
+        if (template) {
+            this.importItems(template);
+        }
     }
 
     // actions
 
     importItems(template) {
-        this.frontPage = {items: []};
         for(let item of template.frontPage.items) {
             this.addItem(item.type, item, 'frontPage');
         }

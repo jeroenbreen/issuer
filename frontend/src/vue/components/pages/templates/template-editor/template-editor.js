@@ -3,7 +3,7 @@ import {templateToolsComponent} from "./template-tools/template-tools";
 import {templateMarginsComponent} from "./template-margins/template-margins";
 import {Document} from "../../../../store/models/Document";
 import {Template} from "../../../../store/models/Template";
-
+import $ from 'jquery';
 
 let saveBuffer = null;
 
@@ -41,10 +41,21 @@ const templateEditorComponent = Vue.component('template-editor', {
         },
         onSelectItem(item) {
             this.currentItem = item;
+        },
+        onDeselectItem() {
+            this.currentItem = null;
+        },
+        generalClick(event) {
+            let target = $(event.target);
+            if (target.hasClass('cover')) {
+                this.closeScreen();
+            } else if (!target.hasClass('vdr') && !target.hasClass('vdr-stick')) {
+                this.onDeselectItem();
+            }
         }
     },
     template: `
-        <div class="cover">
+        <div class="cover" v-on:click="generalClick($event)">
             <div class="template-editor">
                 <doc-page 
                     v-bind:page="document.pages[0]"

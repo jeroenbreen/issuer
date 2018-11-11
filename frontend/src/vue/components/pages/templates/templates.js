@@ -23,7 +23,13 @@ const templatesComponent = Vue.component('templates', {
             return this.$store.state.templates.all;
         },
         create: function() {
-            this.$router.push('templates/new');
+            let template = new Template();
+            this.$store.dispatch('templates/create', template.toBackend()).then((response) => {
+                console.log(response);
+                let createdTemplate = this.$store.getters['templates/getItemById'](response._id);
+                console.log(createdTemplate);
+                this.$store.commit('templates/setCurrent', createdTemplate);
+            });
         },
         editTemplate: function(template) {
             this.$store.commit('templates/setCurrent', template);

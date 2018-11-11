@@ -5,7 +5,7 @@ class Image extends _Item {
     constructor(image) {
         super(image);
         this.type = 'image';
-        this.src = image ? image.src : '';
+        this.src = image ? image.src : 'image-placeholder.png';
     }
 
     // getters

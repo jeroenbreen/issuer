@@ -44,6 +44,10 @@
                     box-shadow: none;
                     -webkit-box-shadow: none;
                 }
+
+                &.active {
+                    z-index: 10000000!important;
+                }
             }
 
             .iss-resizable {
@@ -128,4 +132,25 @@
     right: 20px;
     bottom: 20px;
     color: #fff;
+}
+
+.template__input {
+    border: 1px dashed @editing-mode-color;
+    background:transparent;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    width: 60px;
+
+    &.template__input--align-right {
+        text-align: right;
+    }
+
+    &.template__input--bold {
+        font-weight: 700;
+    }
+
+    &:focus {
+        border: 1px solid @editing-mode-color;
+    }
 }

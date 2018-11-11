@@ -25,9 +25,8 @@ const actions = {
                     'Content-Type': 'application/json'
                 }
             }).done(function(response){
-                console.log(response);
                 context.commit('create', response);
-                resolve();
+                resolve(response);
             });
         })
     },

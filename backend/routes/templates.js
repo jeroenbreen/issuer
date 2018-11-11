@@ -13,6 +13,7 @@ class Template {
         this.logo = Object(template.logo);
         this.settings = Object(template.settings);
         this.margin = Object(template.margin);
+        this.dictionary = Object(template.dictionary);
         this.frontPage = template.frontPage;
     }
 }

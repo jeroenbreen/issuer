@@ -127,7 +127,11 @@ const pageComponent = Vue.component('doc-page', {
                     <div 
                         v-bind:style="{'padding': scale(10) + 'px', 'font-size': scale(11) + 'px'}"
                         class="document__document-id">
-                        {{template.settings.dictionary.invoice}} 
+                        <span v-if="!editor">
+                            {{template.dictionary.invoice}} 
+                        </span>
+                        <input v-else v-model="template.dictionary.invoice" class="template__input template__input--align-right">
+                        
                         <b>{{getDocumentId()}}</b>
                     </div>
                 </div>
@@ -157,7 +161,9 @@ const pageComponent = Vue.component('doc-page', {
                         v-bind:style="{'border-top': scale(template.settings.subject.borderTop) + 'px solid #000',
                                        'border-bottom': scale(template.settings.subject.borderBottom) + 'px solid #000',
                                        'padding': scale(10) + 'px'}">
-                        <b>{{template.settings.dictionary.subject}}:</b> {{page.document.subject}}
+                        <span class="document__subject-about" v-if="!editor">{{template.dictionary.subject}}:</span>
+                        <input v-else v-model="template.dictionary.subject" class="template__input template__input--bold">
+                        {{page.document.subject}}
                     </div>
                     
                     <div 
@@ -225,7 +231,7 @@ const pageComponent = Vue.component('doc-page', {
                                        'border-top': scale(template.settings.footerText.borderTop) + 'px solid #000',
                                        'border-bottom': scale(template.settings.footerText.borderBottom) + 'px solid #000',
                                        'padding': scale(10) + 'px'}">
-                        <span v-html="template.settings.dictionary.footer"></span>
+                        <span v-html="template.dictionary.footer"></span>
                     </div>
                 </div>
                 
