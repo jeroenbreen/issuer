@@ -1,0 +1,24 @@
+<script>
+    export default {
+        name: 'avatar',
+        props: ['user', 'size'],
+    }
+</script>
+
+
+<template>
+    <div class="avatar" v-bind:style="{ 'background-image': 'url(' + user.thumbnail + ')', 'width': size + 'px', 'height': size + 'px' }"></div>
+</template>
+
+
+<style lang="less">
+    .avatar {
+        width: 48px;
+        height: 48px;
+        display: inline-block;
+        //border: @general-border;
+        border-radius: 50%;
+        background-position: 50% 50%;
+        background-size: cover;
+    }
+</style>

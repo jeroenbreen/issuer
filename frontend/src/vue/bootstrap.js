@@ -7,34 +7,31 @@ import theStore from './store'
 import {standardDateFilter} from './filters/standard-date-filter';
 import {idFormatter} from './filters/id-formatter';
 import VueCurrencyFilter from 'vue-currency-filter'
-
-// directives
-import {scrimDirective} from './directives/scrim'
+//
+// // directives
+// import {scrimDirective} from './directives/scrim'
 
 // components
-import {topbarComponent} from './components/topbar/topbar';
-import {menuComponent} from './components/menu/menu';
-import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
-import {documentComponent} from './components/document/document';
-import {modalComponent} from './components/modal/modal';
-import {companyComponent} from './components/pages/company/company';
-import {settingsComponent} from './components/pages/settings/settings';
-import {employeesComponent} from './components/pages/employees/employees';
-import {employeeCreateComponent} from './components/pages/employees/employee-create/employee-create';
-import {employeeUpdateComponent} from './components/pages/employees/employee-update/employee-update';
-import {clientsComponent} from './components/pages/clients/clients';
-import {clientCreateComponent} from './components/pages/clients/client-create/client-create';
-import {clientUpdateComponent} from './components/pages/clients/client-update/client-update';
-import {projectsComponent} from './components/pages/projects/projects';
-import {projectCreateComponent} from './components/pages/projects/project-create/project-create';
-import {projectUpdateComponent} from './components/pages/projects/project-update/project-update';
-import {issuesComponent} from './components/pages/issues/issues';
-import {templatesComponent} from './components/pages/templates/templates';
+import topBar from '@components/layout/top-bar';
+import menuBar from '@components/layout/menu-bar';
+import document from './components/document/document';
+// import {welcomeScreenComponent} from './components/welcome-screen/welcome-screen';
+// import {modalComponent} from './components/modal/modal';
+// import {companyComponent} from './components/pages/company/company';
+// import {settingsComponent} from './components/pages/settings/settings';
+// import {employeesComponent} from './components/pages/employees/employees';
+// import {employeeCreateComponent} from './components/pages/employees/employee-create/employee-create';
+// import {employeeUpdateComponent} from './components/pages/employees/employee-update/employee-update';
+// import {clientsComponent} from './components/pages/clients/clients';
+// import {clientCreateComponent} from './components/pages/clients/client-create/client-create';
+// import {clientUpdateComponent} from './components/pages/clients/client-update/client-update';
+// import {projectsComponent} from './components/pages/projects/projects';
+// import {projectCreateComponent} from './components/pages/projects/project-create/project-create';
+// import {projectUpdateComponent} from './components/pages/projects/project-update/project-update';
+// import {issuesComponent} from './components/pages/issues/issues';
+// import {templatesComponent} from './components/pages/templates/templates';
 
 // google material for Vue
-// import { MdField, MdInput } from 'vue-material/dist/components'
-// Vue.use(MdField);
-// Vue.use(MdInput);
 import VueMaterial from 'vue-material'
 Vue.use(VueMaterial);
 
@@ -63,22 +60,23 @@ Vue.use(VueCurrencyFilter,
 
 
 // routing
-const routes = [
-    { path: '/', component: companyComponent },
-    { path: '/company', component: companyComponent },
-    { path: '/settings', component: settingsComponent },
-    { path: '/employees', component: employeesComponent },
-    { path: '/employees/new', component: employeeCreateComponent },
-    { path: '/employees/:id', component: employeeUpdateComponent },
-    { path: '/clients', component: clientsComponent },
-    { path: '/clients/new', component: clientCreateComponent },
-    { path: '/clients/:id', component: clientUpdateComponent },
-    { path: '/projects', component: projectsComponent },
-    { path: '/projects/new', component: projectCreateComponent },
-    { path: '/projects/:id', component: projectUpdateComponent },
-    { path: '/issues', component: issuesComponent },
-    { path: '/templates', component: templatesComponent }
-];
+const routes = [];
+// const routes = [
+//     { path: '/', component: companyComponent },
+//     { path: '/company', component: companyComponent },
+//     { path: '/settings', component: settingsComponent },
+//     { path: '/employees', component: employeesComponent },
+//     { path: '/employees/new', component: employeeCreateComponent },
+//     { path: '/employees/:id', component: employeeUpdateComponent },
+//     { path: '/clients', component: clientsComponent },
+//     { path: '/clients/new', component: clientCreateComponent },
+//     { path: '/clients/:id', component: clientUpdateComponent },
+//     { path: '/projects', component: projectsComponent },
+//     { path: '/projects/new', component: projectCreateComponent },
+//     { path: '/projects/:id', component: projectUpdateComponent },
+//     { path: '/issues', component: issuesComponent },
+//     { path: '/templates', component: templatesComponent }
+// ];
 const router = new VueRouter({
     routes
 });
@@ -98,11 +96,13 @@ const bootstrapVue = function(response) {
     theStore.dispatch('issues/read', theStore.state.users.current.githubKey);
 
 
-
     new Vue({
         el: '#app',
         store,
         router,
+        components: {
+            topBar, menuBar, document
+        },
         methods: {
             hasCurrentUser() {
                 return this.$store.state.users.current !== null;
@@ -116,17 +116,13 @@ const bootstrapVue = function(response) {
         },
         template: `
             <div class="main">
-                <topbar></topbar>
+                <top-bar/>
                 <div class="content">
-                    <menubar></menubar>
+                    <menu-bar/>
                     <router-view></router-view>
                 </div>
                 
-                <document v-if="hasDocument()"></document>
-                
-                <modal v-if="showModal()"></modal>
-                
-                <welcome-screen v-if="!hasCurrentUser()"></welcome-screen>
+                <document v-if="hasDocument()"/>
             </div>
         `
     });
