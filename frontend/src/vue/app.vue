@@ -2,10 +2,12 @@
     import topBar from '@components/layout/top-bar';
     import menuBar from '@components/layout/menu-bar';
     import document from '@components/document/document';
+    import modal from '@components/layout/modal';
+    import welcomeScreen from '@components/layout/welcome-screen';
 
     export default {
         components: {
-            topBar, menuBar, document
+            topBar, menuBar, document, modal, welcomeScreen
         },
         methods: {
             hasCurrentUser() {
@@ -31,6 +33,10 @@
         </div>
 
         <document v-if="hasDocument()"/>
+
+        <modal v-if="showModal()"></modal>
+
+        <welcome-screen v-if="!hasCurrentUser()"></welcome-screen>
     </div>
 </template>
 
