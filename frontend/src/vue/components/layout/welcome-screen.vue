@@ -1,5 +1,5 @@
 <script>
-    import user from '@components/shared/user/user';
+    import user from '@components/shared/user';
 
     export default {
         name: 'welcome-screen',
@@ -47,7 +47,7 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">      @import '@styles/variables.scss';
     .welcome-screen {
         width: 300px;
         background: #fff;

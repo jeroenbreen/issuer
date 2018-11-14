@@ -52,7 +52,7 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">      @import '@styles/variables.scss';
     .vdr {
 
         img {

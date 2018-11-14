@@ -31,10 +31,12 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .document-mini {
         display: flex;
-        background: @blue;
+        background: $blue;
         height: 26px;
         border-radius: 13px;
         padding: 0 12px;

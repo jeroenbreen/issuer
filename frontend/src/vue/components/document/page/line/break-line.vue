@@ -10,4 +10,4 @@
 </template>
 
 
-<style lang="less"></style>
+<style lang="scss">      @import '@styles/variables.scss';</style>

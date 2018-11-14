@@ -16,7 +16,9 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .mini-page {
         list-style: none;
         margin-bottom: 10px;
@@ -32,7 +34,7 @@
         }
 
         &.mini-page--current {
-            background: @editing-mode-color;
+            background: $editing-mode-color;
         }
 
 

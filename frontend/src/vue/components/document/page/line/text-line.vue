@@ -50,7 +50,9 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">      @import '@styles/variables.scss';
+
+
     body .quillWrapper .ql-container .ql-editor,
     body .quillWrapper .ql-container .ql-editor p,
     .line__text {
@@ -88,17 +90,17 @@
             .ql-toolbar.ql-snow {
                 position: absolute;
                 left: 0;
-                bottom: ~'calc(100% + 10px)';
+                bottom: calc(100% + 10px);
                 width: 100%;
                 box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
                 border: 0;
-                background: @editing-mode-color;
+                background: $editing-mode-color;
                 padding: 0;
 
                 .ql-formats {
                     margin: 0;
                     padding: 5px 10px;
-                    border-right: 1px solid @editing-mode-color-hover;
+                    border-right: 1px solid $editing-mode-color-hover;
 
                     &:last-child {
                         border-right: 0;
@@ -107,7 +109,7 @@
                     .ql-picker {
 
                         :hover {
-                            background: @editing-mode-color-hover;
+                            background: $editing-mode-color-hover;
                             color: inherit;
                         }
                     }
@@ -128,7 +130,7 @@
                         }
 
                         &:hover {
-                            background: @editing-mode-color-hover;
+                            background: $editing-mode-color-hover;
 
                             svg {
 

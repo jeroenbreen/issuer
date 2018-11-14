@@ -77,7 +77,9 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">      @import '@styles/variables.scss';
+
+
     .image-uploader {
         background: pink;
 
@@ -104,7 +106,7 @@
             min-height: 0;
             width: 50px;
             height: 50px;
-            background: @editing-mode-color;
+            background: $editing-mode-color;
             padding: 0;
 
             &:hover {

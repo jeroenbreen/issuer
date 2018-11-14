@@ -1,5 +1,5 @@
 <script>
-    import switchInput from '@components/shared/switch-input/switch-input'
+    import switchInput from '@components/shared/switch-input'
 
     export default {
         name: 'hourly-line',
@@ -40,7 +40,7 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">      @import '@styles/variables.scss';
 
 </style>
 

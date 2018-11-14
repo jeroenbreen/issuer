@@ -11,12 +11,12 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">      @import '@styles/variables.scss';
     .avatar {
         width: 48px;
         height: 48px;
         display: inline-block;
-        //border: @general-border;
+        border: $generalBorder;
         border-radius: 50%;
         background-position: 50% 50%;
         background-size: cover;

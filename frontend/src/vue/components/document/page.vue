@@ -1,8 +1,8 @@
 <script>
     import item from "./page/item";
-    import line from "./page/line/line";
-    import lineTools from "./page/line-tools/line-tools";
-    import sortableList from "@components/shared/sortable/sortable-list";
+    import docLine from "./page/line";
+    import lineTools from "./page/line/line-tools";
+    import sortableList from "@components/shared/sortable-list";
     import $ from 'jquery'
 
     import {Template} from "@models/Template";
@@ -11,9 +11,9 @@
     let saveBuffer = null;
 
     export default {
-        name: 'page',
+        name: 'doc-page',
         components: {
-            item, line, lineTools, sortableList
+            item, docLine, lineTools, sortableList
         },
         props: ['page', 'template', 'editor', 'factor', 'tools', 'onSelectItem'],
         watch: {
@@ -176,7 +176,7 @@
                 <div
                         v-bind:style="{'padding': scale(10) + 'px 0'}"
                         class="document__lines">
-                    <SortableList
+                    <sortable-list
                             lockAxis="y"
                             v-bind:useDragHandle="true"
                             v-model="page.lines"
@@ -189,7 +189,7 @@
                                 v-bind:line="line"
                                 v-bind:tools="tools"
                                 v-bind:scale="scale"/>
-                    </SortableList>
+                    </sortable-list>
                 </div>
 
                 <line-tools
@@ -325,7 +325,9 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">      @import '@styles/variables.scss';
+
+
     .page {
         background: #fff;
         position: relative;
@@ -335,7 +337,7 @@
     .page__tools {
         margin: 60px 0;
         position: relative;
-        left: ~'calc(100% + 20px)';
+        left: calc(100% + 20px);
         display: flex;
         width: 100px;
     }
@@ -360,19 +362,19 @@
             justify-content: flex-end;
 
             .document__date {
-                margin-right: @general-padding
+                margin-right: $general-padding
             }
 
             .document__document-id {
                 background: #eee;
-                padding: @general-padding;
+                padding: $general-padding;
             }
         }
 
         .document__addresses {
             position: absolute;
             left: -10px;
-            width: ~'calc(100% + 20px)';
+            width: calc(100% + 20px);
             display: flex;
             padding: 10px;
 
@@ -394,7 +396,7 @@
             .document__subject {
                 position: relative;
                 left: -10px;
-                width: ~'calc(100% + 20px)';
+                width: calc(100% + 20px);
 
                 .document__subject-about {
                     font-weight: 700;
@@ -411,7 +413,7 @@
 
             .lines_tools {
                 position: relative;
-                left: ~'calc(100% + 100px)';
+                left: calc(100% + 100px);
                 display: flex;
                 width: 200px;
             }
@@ -449,7 +451,7 @@
             .document__footer-text {
                 position: relative;
                 left: -10px;
-                width: ~'calc(100% + 20px)';
+                width: calc(100% + 20px);
                 text-align: center;
             }
         }

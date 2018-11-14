@@ -1,6 +1,9 @@
 import $ from 'jquery';
 import {bootstrapVue} from './vue/bootstrap';
 
+
+
+
 function getBackendData() {
     const url = config.backend + 'bootstrap';
 

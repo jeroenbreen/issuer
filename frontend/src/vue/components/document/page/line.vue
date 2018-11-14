@@ -76,7 +76,9 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">      @import '@styles/variables.scss';
+
+
     .line {
         position: relative;
         background: #fff;
@@ -146,7 +148,7 @@
 
                 &:focus {
                     outline: none;
-                    background: @grey-10;
+                    background: $grey-10;
                 }
 
                 &.line-input--number {
@@ -171,14 +173,14 @@
 
 
             .grip__bar {
-                background: @editing-mode-color-contra;
+                background: $editing-mode-color-contra;
                 width: 100%;
                 height: 2px;
                 margin-bottom: 1px;
             }
 
             &:hover {
-                background: @editing-mode-color;
+                background: $editing-mode-color;
             }
         }
 

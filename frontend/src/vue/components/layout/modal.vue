@@ -47,7 +47,7 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">      @import '@styles/variables.scss';
     .modal {
         background-color: #fff;
         position: absolute;

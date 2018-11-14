@@ -1,6 +1,6 @@
 <script>
     import sortableList from "@components/shared/sortable-list";
-    import page from "./page";
+    import docPage from "./page";
     import miniPage from "./mini-page";
 
     import {Document} from "@models/Document";
@@ -14,7 +14,7 @@
     export default {
         name: 'document',
         components: {
-            sortableList, page, miniPage
+            sortableList, docPage, miniPage
         },
         mounted () {
             const container = $('.document__container');
@@ -126,7 +126,7 @@
         <div
                 v-if="document.pages.length > 1"
                 class="document__index">
-            <SortableList
+            <sortable-list
                     lockAxis="y"
                     v-model="document.pages"
                     v-on:sortEnd="onSortEnd($event)">
@@ -135,7 +135,7 @@
                         v-bind:index="index"
                         v-bind:key="index"
                         v-bind:page="page"></mini-page>
-            </SortableList>
+            </sortable-list>
         </div>
         <div class="document__tools">
 
@@ -171,10 +171,12 @@
 </template>
 
 
-<style lang="less">
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .document {
         position: absolute;
-        left: ~'calc(50% - 310px)';
+        left: calc(50% - 310px);
         width: 620px;
         line-height: 1.6;
 
@@ -191,10 +193,10 @@
 
     .document__index {
         position: fixed;
-        right: ~'calc(50% + 340px)';
+        right: calc(50% + 340px);
         top: 40px;
         width: 50px;
-        height: ~'calc(100% + 80px)';
+        height: calc(100% + 80px);
         overflow: auto;
 
         ul {
@@ -205,7 +207,7 @@
 
     .document__tools {
         position: fixed;
-        left: ~'calc(50% + 340px)';
+        left: calc(50% + 340px);
         top: 40px;
         width: 100px;
         display: flex;
