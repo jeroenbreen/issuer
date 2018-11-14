@@ -108,50 +108,7 @@
                    'right': scale(template.margin.right) + 'px ',
                    'bottom': scale(template.margin.bottom) + 'px'}">
 
-            <item
-                class="document__logo"
-                v-if="page.getType() === 'front'"
-                @click.native="selectItem(template.logo)"
-                :item="template.logo"
-                :editor="editor"
-                :factor="factor"
-                :template="template"/>
 
-            <div class="document__info" v-if="page.getType() === 'front'">
-                <div
-                    :style="{'margin-right': scale(10) + 'px'}"
-                    class="document__date">
-                    {{page.document.date | standardDate}}
-                </div>
-                <div
-                    :style="{'padding': scale(10) + 'px', 'font-size': scale(11) + 'px'}"
-                    class="document__document-id">
-                        <span v-if="!editor">
-                            {{template.dictionary.invoice}}
-                        </span>
-                    <input v-else v-model="template.dictionary.invoice" class="template__input template__input--align-right">
-
-                    <b>{{getDocumentId()}}</b>
-                </div>
-            </div>
-
-            <div class="document__addresses"
-                 v-if="page.getType() === 'front'"
-                 :style="{'top': scale(template.settings.addresses.top) + 'px',
-                                   'border-top': scale(template.settings.addresses.borderTop) + 'px solid #000'}">
-                <div class="document_address-own">
-                    <b>{{company.name}}</b><br>
-                    {{page.document.userName}}<br>
-                    {{company.address}}<br>
-                    {{company.postcode}} {{company.city}}
-                </div>
-                <div class="document_address-client">
-                    <b>{{page.document.clientCompanyName}}</b><br>
-                    {{page.document.clientContactName}}<br>
-                    {{page.document.clientStreet}}<br>
-                    {{page.document.clientPostcode}} {{company.clientCity}}
-                </div>
-            </div>
 
             <div class="document__content"
                  :style="{'top': getTop()}">
@@ -223,34 +180,18 @@
                         {{page.document.getTotal() * 1.21 | currency}} {{page.document.currency}}
                     </div>
                 </div>
-
-                <div class="document__footer-text"
-                     :style="{'font-size': scale(8) + 'px',
-                           'margin-top': scale(20) + 'px',
-                           'border-top': scale(template.settings.footerText.borderTop) + 'px solid #000',
-                           'border-bottom': scale(template.settings.footerText.borderBottom) + 'px solid #000',
-                           'padding': scale(10) + 'px'}">
-                    <span v-html="template.dictionary.footer"></span>
-                </div>
             </div>
 
 
             <!-- custom items -->
             <item
-                v-if="page.getType() === 'front'"
-                v-for="(item, index) in template.frontPage.items"
-                @click.native="selectItem(item)"
+                v-for="(item, index) in template.items"
+                :on-click="selectItem"
                 :key="index"
                 :item="item"
                 :editor="editor"
                 :factor="factor"
                 :template="template"/>
-
-
-            <div class="document__official"
-                :style="{'font-size': scale(8) + 'px','top': scale(template.settings.official.top) + 'px'}">
-                {{company.name}} | {{company.coc}}  | {{company.vat}}
-            </div>
         </div>
 
         <vue-drag-resize
@@ -461,12 +402,6 @@
                 width: 100%;
                 height: auto;
             }
-        }
-
-        .document__official {
-            position: absolute;
-            width: 100%;
-            text-align: center;
         }
     }
 </style>

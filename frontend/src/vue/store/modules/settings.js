@@ -1,5 +1,5 @@
 const state = {
-    template_id: '5bab514352c60208f92fa80c',
+    template_id: '5bec4b1b9334193529e8a753',
     documentIdFormat: '3zeros',
     clientIdFormat: '3zeros',
     standardRate: 70

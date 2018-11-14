@@ -1,13 +1,14 @@
 <script>
     import VueDraggableResizable from 'vue-draggable-resizable'
     import imageUploader from '@components/templates/image-uploader';
+    import $ from 'jquery';
 
     export default {
         name: 'item',
         components: {
             imageUploader
         },
-        props: ['template', 'editor', 'factor', 'item'],
+        props: ['template', 'editor', 'factor', 'item', 'onClick'],
         methods: {
             onDrag (event) {
                 if (this.editor) {
@@ -25,6 +26,16 @@
             },
             scale(value) {
                 return value * this.factor;
+            },
+            getContent() {
+                let company = this.$store.state.company;
+                return this.item.getContent(company);
+            },
+            select() {
+                this.onClick(this.item);
+                if ((this.item.type === 'text' || this.item.type === 'tag-text') && this.editor) {
+                    $(this.$el).find('textarea').focus();
+                }
             }
         }
     }
@@ -33,30 +44,61 @@
 
 <template>
     <vue-drag-resize
-            :parentLimitation="true"
-            :minw="20"
-            :minh="20"
-            :w="scale(item.width)"
-            :h="scale(item.height)"
-            :x="scale(item.x)"
-            :y="scale(item.y)"
-            @resizing="onResize"
-            @dragging="onDrag">
+        @click.native="select()"
+        :parentLimitation="true"
+        :minw="20"
+        :minh="20"
+        :w="scale(item.width)"
+        :h="scale(item.height)"
+        :x="scale(item.x)"
+        :y="scale(item.y)"
+        @resizing="onResize"
+        @dragging="onDrag">
+
         <image-uploader
                 v-if="editor && item.type === 'image'"
                 :item="item"
                 :template="template"/>
 
-        <img v-if="item.type === 'image'" :src="item.getSrc()">
+        <img
+            v-if="item.type === 'image'"
+            :src="item.getSrc()">
+
+        <textarea
+            v-if="item.type === 'text' && editor"
+            v-model="item.content"
+            :style="{'text-align': item.align}"></textarea>
+
+        <div
+            class="item__text"
+            v-if="item.type === 'text' && !editor"
+            v-html="getContent()"
+            :style="{'text-align': item.align}"></div>
     </vue-drag-resize>
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .vdr {
 
         img {
             width: 100%;
+        }
+
+        .item__text,
+        textarea {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            resize: none;
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
         }
     }
 </style>

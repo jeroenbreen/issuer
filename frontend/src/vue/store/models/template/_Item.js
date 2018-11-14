@@ -2,10 +2,13 @@
 class _Item {
 
     constructor(item) {
-        this.x = item ? item.x : 0;
-        this.y = item ? item.y : 0;
-        this.width = item ? item.width : 200;
-        this.height = item ? item.height : 200;
+        this.x = item.x;
+        this.y = item.y;
+        this.width = item.width;
+        this.height = item.height;
+        this.page = item.page;
+        this.padding = item.padding;
+        this.background = item.background;
     }
 
     getX(template) {

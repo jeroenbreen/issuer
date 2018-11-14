@@ -17,8 +17,7 @@
             doc.createPage();
             return {
                 document: doc,
-                currentTemplate: null,
-                image: 'https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5OS8zMjkvb3JpZ2luYWwvY2hpbXBzLWVhdC1tb25rZXktYnJhaW5zLTAx'
+                currentTemplate: null
             }
         },
         methods: {
@@ -123,20 +122,20 @@
         <div class="view-frame-section">
             <div class="templates">
                 <div
-                        v-for="(template, index) in getAll()"
-                        :class="{'template--current': isCurrentTemplate(template)}"
-                        class="template__container">
+                    v-for="(template, index) in getAll()"
+                    :class="{'template--current': isCurrentTemplate(template)}"
+                    class="template__container">
                     <div class="template__title">
                         {{template.title}}
                     </div>
                     <div @click="setTemplate(template)" class="template__select"></div>
                     <doc-page
-                            :key="index"
-                            :page="document.pages[0]"
-                            :template="template"
-                            :editor="false"
-                            :factor="0.25"
-                            :tools="false"></doc-page>
+                        :key="index"
+                        :page="document.pages[0]"
+                        :template="template"
+                        :editor="false"
+                        :factor="0.25"
+                        :tools="false"/>
 
                     <div class="template__tools">
                         <div class="icon-button" @click="editTemplate(template)">
@@ -168,7 +167,6 @@
             :document="document"/>
     </div>
 </template>
-
 
 
 <style lang="scss">

@@ -13,10 +13,20 @@
                     src: 'image-placeholder.png',
                     width: 100,
                     height: 100,
-                    x: (this.template.getElementAreaWidth() - 200) / 2,
+                    x: (this.template.getElementAreaWidth() - 100) / 2,
                     y: 100
                 };
                 this.template.addItem('image', image, 'frontPage');
+            },
+            addText() {
+                let text = {
+                    content: '',
+                    width: 200,
+                    height: 20,
+                    x: (this.template.getElementAreaWidth() - 200) / 2,
+                    y: 100
+                };
+                this.template.addItem('text', text, 'frontPage');
             },
             removeItem() {
                 const template = this.template;
@@ -45,6 +55,9 @@
             <div class="template-tools__label">&nbsp;</div>
             <button @click="addImage()">
                 Add Image
+            </button>
+            <button @click="addText()">
+                Add Text
             </button>
         </div>
         <div v-if="item" class="template-tools__section">

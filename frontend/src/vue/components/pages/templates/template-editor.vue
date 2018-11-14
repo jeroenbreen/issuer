@@ -52,9 +52,22 @@
             },
             generalClick(event) {
                 let target = $(event.target);
+
+                function isItemArea(element) {
+                    const areas = ['vdr', 'template-tools'];
+                    for (let area of areas) {
+                        if (element.parents('.' + area).length > 0 || element.hasClass(area)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
+
                 if (target.hasClass('cover')) {
                     this.closeScreen();
-                } else if (!target.hasClass('vdr') && !target.hasClass('vdr-stick')) {
+
+                } else if (!isItemArea(target)) {
                     this.onDeselectItem();
                 }
             }
