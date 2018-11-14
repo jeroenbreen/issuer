@@ -124,32 +124,32 @@
             <div class="templates">
                 <div
                         v-for="(template, index) in getAll()"
-                        v-bind:class="{'template--current': isCurrentTemplate(template)}"
+                        :class="{'template--current': isCurrentTemplate(template)}"
                         class="template__container">
                     <div class="template__title">
                         {{template.title}}
                     </div>
-                    <div v-on:click="setTemplate(template)" class="template__select"></div>
+                    <div @click="setTemplate(template)" class="template__select"></div>
                     <doc-page
-                            v-bind:key="index"
-                            v-bind:page="document.pages[0]"
-                            v-bind:template="template"
-                            v-bind:editor="false"
-                            v-bind:factor="0.25"
-                            v-bind:tools="false"></doc-page>
+                            :key="index"
+                            :page="document.pages[0]"
+                            :template="template"
+                            :editor="false"
+                            :factor="0.25"
+                            :tools="false"></doc-page>
 
                     <div class="template__tools">
-                        <div class="icon-button" v-on:click="editTemplate(template)">
+                        <div class="icon-button" @click="editTemplate(template)">
                             <div class="icon-button__icon">
                                 <i class="fas fa-pen"></i>
                             </div>
                         </div>
-                        <div class="icon-button" v-on:click="cloneTemplate(template)">
+                        <div class="icon-button" @click="cloneTemplate(template)">
                             <div class="icon-button__icon">
                                 <i class="fas fa-clone"></i>
                             </div>
                         </div>
-                        <div class="icon-button" v-on:click="deleteTemplate(template)">
+                        <div class="icon-button" @click="deleteTemplate(template)">
                             <div class="icon-button__icon">
                                 <i class="fas fa-trash"></i>
                             </div>
@@ -159,13 +159,13 @@
             </div>
         </div>
         <div class="view-frame-section">
-            <md-button v-on:click="create()" class="md-primary">Create Template</md-button>
+            <md-button @click="create()" class="md-primary">Create Template</md-button>
         </div>
 
         <template-editor
             v-if="getCurrentTemplate()"
-            v-bind:template="getCurrentTemplate()"
-            v-bind:document="document"/>
+            :template="getCurrentTemplate()"
+            :document="document"/>
     </div>
 </template>
 

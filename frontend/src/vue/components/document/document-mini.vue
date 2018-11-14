@@ -19,7 +19,7 @@
 
 <template>
     <div
-        v-on:click="openDocument()"
+        @click="openDocument()"
         class="document-mini">
         <div class="document-mini__icon">
             <i class="fas fa-folder-open"></i>

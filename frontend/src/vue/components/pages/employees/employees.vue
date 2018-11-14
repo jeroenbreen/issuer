@@ -33,13 +33,13 @@
             <div class="employee-cards">
                 <employee-card
                         v-for="user in getAll()"
-                        v-bind:key="user._id"
-                        v-bind:user="user"/>
+                        :key="user._id"
+                        :user="user"/>
             </div>
         </div>
 
         <div class="view-frame-section">
-            <md-button v-on:click="create()" class="md-primary">Create Employee</md-button>
+            <md-button @click="create()" class="md-primary">Create Employee</md-button>
         </div>
     </div>
 </template>

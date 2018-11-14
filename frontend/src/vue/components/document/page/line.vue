@@ -30,8 +30,8 @@
 
 <template>
     <li
-        v-bind:style="{'height': scale(20) + 'px', 'min-height': scale(20) + 'px', 'margin-bottom': scale(4) + 'px'}"
-        v-bind:class="{'line--text': line.type === 'text'}"
+        :style="{'height': scale(20) + 'px', 'min-height': scale(20) + 'px', 'margin-bottom': scale(4) + 'px'}"
+        :class="{'line--text': line.type === 'text'}"
         class="line">
         <div v-if="isEditable()" class="line__grip handle" v-handle>
             <div class="grip__bar"></div>
@@ -42,32 +42,32 @@
 
         <hourly-line
                 v-if="line.type === 'hourly'"
-                v-bind:line="line"
-                v-bind:editable="isEditable()"/>
+                :line="line"
+                :editable="isEditable()"/>
         <sum-line
                 v-if="line.type === 'sum'"
-                v-bind:line="line"
-                v-bind:editable="isEditable()"/>
+                :line="line"
+                :editable="isEditable()"/>
 
         <subtotal-line
                 v-if="line.type === 'subtotal'"
-                v-bind:line="line"
-                v-bind:editable="isEditable()"/>
+                :line="line"
+                :editable="isEditable()"/>
 
         <text-line
                 v-if="line.type === 'text'"
-                v-bind:line="line"
-                v-bind:editable="isEditable()"/>
+                :line="line"
+                :editable="isEditable()"/>
 
         <break-line
                 v-if="line.type === 'break'"
-                v-bind:line="line"
-                v-bind:editable="isEditable()"/>
+                :line="line"
+                :editable="isEditable()"/>
 
 
         <div class="line__tools" v-if="isEditable()">
             <div
-                v-on:click="removeLine()"
+                @click="removeLine()"
                 class="line__tool">
                 <i class="fas fa-times"></i>
             </div>

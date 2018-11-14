@@ -12,7 +12,7 @@
 
 <template>
     <li class="mini-page"
-        v-bind:class="{'mini-page--current': page === page.document.state.currentPage}"></li>
+        :class="{'mini-page--current': page === page.document.state.currentPage}"></li>
 </template>
 
 

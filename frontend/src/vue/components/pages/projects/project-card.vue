@@ -12,7 +12,7 @@
 
 
 <template>
-    <div class="project-card"  v-on:click="update()">
+    <div class="project-card"  @click="update()">
         {{project.title}}
     </div>
 </template>

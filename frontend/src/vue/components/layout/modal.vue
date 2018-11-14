@@ -28,7 +28,7 @@
 
 
 <template>
-    <div class="cover" v-on:click="close()">
+    <div class="cover" @click="close()">
         <div class="modal">
             <div class="modal__body">
                 {{getModalData().message}}
@@ -36,12 +36,12 @@
 
             <div class="modal__footer">
                 <div v-if="getModalData().type === 'confirm'" class="modal__confirm">
-                    <md-button v-on:click="confirm()" class="md-primary">{{getModalData().buttons.yes}}</md-button>
-                    <md-button v-on:click="deny()" class="md-primary">{{getModalData().buttons.no}}</md-button>
+                    <md-button @click="confirm()" class="md-primary">{{getModalData().buttons.yes}}</md-button>
+                    <md-button @click="deny()" class="md-primary">{{getModalData().buttons.no}}</md-button>
                 </div>
             </div>
 
-            <div v-on:click="close()" class="modal__close"></div>
+            <div @click="close()" class="modal__close"></div>
         </div>
     </div>
 </template>

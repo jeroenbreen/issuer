@@ -32,7 +32,7 @@
     <div class="view-frame view-frame--client-create">
         <div class="view-frame__header">
             <div
-                    v-on:click="back()"
+                    @click="back()"
                     class="view-frame__header-button">
                 <i class="fas fa-arrow-left"></i>
             </div>
@@ -41,10 +41,10 @@
             </h1>
         </div>
 
-        <client-details v-bind:client="client"></client-details>
+        <client-details :client="client"></client-details>
 
         <div class="view-frame-section">
-            <md-button v-on:click="create()" class="md-primary">Create Client</md-button>
+            <md-button @click="create()" class="md-primary">Create Client</md-button>
         </div>
     </div>
 </template>

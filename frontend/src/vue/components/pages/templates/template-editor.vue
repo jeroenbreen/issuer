@@ -64,22 +64,22 @@
 
 
 <template>
-    <div class="cover" v-on:click="generalClick($event)">
+    <div class="cover" @click="generalClick($event)">
         <div class="template-editor">
             <doc-page
-                    v-bind:page="document.pages[0]"
-                    v-bind:template="clonedTemplate"
-                    v-bind:factor="1"
-                    v-bind:tools="false"
-                    v-bind:editor="!showTools"
-                    v-bind:onSelectItem="onSelectItem"></doc-page>
+                    :page="document.pages[0]"
+                    :template="clonedTemplate"
+                    :factor="1"
+                    :tools="false"
+                    :editor="!showTools"
+                    :onSelectItem="onSelectItem"></doc-page>
             <doc-page
-                    v-bind:page="document.pages[1]"
-                    v-bind:template="clonedTemplate"
-                    v-bind:factor="1"
-                    v-bind:tools="false"
-                    v-bind:editor="!showTools"
-                    v-bind:onSelectItem="onSelectItem"></doc-page>
+                    :page="document.pages[1]"
+                    :template="clonedTemplate"
+                    :factor="1"
+                    :tools="false"
+                    :editor="!showTools"
+                    :onSelectItem="onSelectItem"></doc-page>
         </div>
 
         <div class="template-editor__title">
@@ -90,14 +90,14 @@
         </div>
 
 
-        <div class="close-button" v-on:click="closeScreen()"></div>
+        <div class="close-button" @click="closeScreen()"></div>
 
         <template-margins
-                v-bind:template="clonedTemplate"></template-margins>
+                :template="clonedTemplate"></template-margins>
 
         <template-tools
-                v-bind:item="currentItem"
-                v-bind:template="clonedTemplate"></template-tools>
+                :item="currentItem"
+                :template="clonedTemplate"></template-tools>
 
         <div class="template__mode">
             <md-switch v-model="showTools">Hide tools</md-switch>

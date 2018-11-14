@@ -51,7 +51,7 @@
     <div class="view-frame view-frame--client-update">
         <div class="view-frame__header">
             <div
-                v-on:click="back()"
+                @click="back()"
                 class="view-frame__header-button">
                 <i class="fas fa-arrow-left"></i>
             </div>
@@ -60,11 +60,11 @@
             </h1>
         </div>
 
-        <client-details v-bind:client="client"></client-details>
+        <client-details :client="client"></client-details>
 
         <div class="view-frame-section">
-            <md-button v-on:click="update()" class="md-primary">Update Client</md-button>
-            <md-button v-on:click="deleteItem()" class="md-primary">Remove Client</md-button>
+            <md-button @click="update()" class="md-primary">Update Client</md-button>
+            <md-button @click="deleteItem()" class="md-primary">Remove Client</md-button>
         </div>
     </div>
 </template>

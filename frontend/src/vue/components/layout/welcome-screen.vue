@@ -39,10 +39,10 @@
         <h3>{{getGreeting()}}</h3>
         <user
             v-for="user in getUsers()"
-            v-on:click.native="setCurrent(user)"
-            v-bind:key="user.id"
-            v-bind:user="user"
-            v-bind:class="{'user--current': (user === getCurrentUser())}"/>
+            @click.native="setCurrent(user)"
+            :key="user.id"
+            :user="user"
+            :class="{'user--current': (user === getCurrentUser())}"/>
     </div>
 </template>
 

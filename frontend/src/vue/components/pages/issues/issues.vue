@@ -66,8 +66,8 @@
             <div class="issue-cards__body issue-cards">
                 <issue-card
                     v-for="issue in getFiltered()"
-                    v-bind:key="issue.id"
-                    v-bind:issue="issue"/>
+                    :key="issue.id"
+                    :issue="issue"/>
             </div>
         </div>
     </div>

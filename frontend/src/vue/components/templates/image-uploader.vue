@@ -66,8 +66,8 @@
                 id="x"
                 ref="dropzone"
                 :options="dropzoneOptions"
-                v-on:vdropzone-file-added="fileDropped"
-                v-on:vdropzone-success="fileAdded"></vue-dropzone>
+                @vdropzone-file-added="fileDropped"
+                @vdropzone-success="fileAdded"></vue-dropzone>
         <div
                 v-if="loading"
                 class="image-uploader__loader">

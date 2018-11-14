@@ -12,7 +12,7 @@
         <input
                 v-if="editable"
                 v-model="line[value]"
-                v-bind:class="['line-input--' + size]">
+                :class="['line-input--' + size]">
         <span v-if="!editable">
                 {{line[value]}}
             </span>

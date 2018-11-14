@@ -14,7 +14,7 @@
 
 <template>
     <div class="user">
-        <avatar v-bind:user="user"></avatar>
+        <avatar :user="user"></avatar>
         {{user.getFullName()}}
     </div>
 </template>

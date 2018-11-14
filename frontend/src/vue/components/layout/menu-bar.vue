@@ -52,8 +52,8 @@
                 <router-link to="/issues">
                     Issues
                     <avatar
-                        v-bind:user="getCurrentUser()"
-                        v-bind:size="24"/>
+                        :user="getCurrentUser()"
+                        :size="24"/>
                 </router-link>
             </li>
         </ul>

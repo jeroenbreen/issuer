@@ -18,7 +18,7 @@
 
 
 <template>
-    <a v-bind:href="issue.url" target="_blank" class="issue-card">
+    <a :href="issue.url" target="_blank" class="issue-card">
         <div class="issue-card__number">
             #{{issue.number}}
         </div>
@@ -46,7 +46,7 @@
         <div class="issue-card__assignees">
             <div
                 v-for="assignee in issue.assignees"
-                v-bind:style="{'background-image': 'url(' + assignee.avatar_url + ')'}"
+                :style="{'background-image': 'url(' + assignee.avatar_url + ')'}"
                 class="assignee-avatar"></div>
         </div>
     </a>

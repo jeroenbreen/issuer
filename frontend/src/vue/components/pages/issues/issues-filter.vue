@@ -28,8 +28,8 @@
 
 <template>
     <div class="issues-filter">
-        <select v-model="filter.project_id"  v-on:change="updateFilter()">
-            <option v-for="project in getProjects()" v-bind:value="project._id">
+        <select v-model="filter.project_id"  @change="updateFilter()">
+            <option v-for="project in getProjects()" :value="project._id">
                 {{project.title}}
             </option>
         </select>

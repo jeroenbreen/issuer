@@ -43,13 +43,13 @@
     <div class="template-tools">
         <div class="template-tools__section">
             <div class="template-tools__label">&nbsp;</div>
-            <button v-on:click="addImage()">
+            <button @click="addImage()">
                 Add Image
             </button>
         </div>
         <div v-if="item" class="template-tools__section">
             <div class="template-tools__label">&nbsp;</div>
-            <button v-on:click="removeItem()">
+            <button @click="removeItem()">
                 Remove Item
             </button>
         </div>
@@ -92,7 +92,7 @@
                 <div class="template-tools__label">
                     Horiz. centered
                 </div>
-                <div v-on:click="centerHorizontal()" class="template__tool">
+                <div @click="centerHorizontal()" class="template__tool">
                     <i class="fas fa-arrows-alt-h"></i>
                 </div>
             </div>

@@ -47,7 +47,7 @@
     <div class="view-frame view-frame--project-update" v-scrim>
         <div class="view-frame__header">
             <div
-                    v-on:click="back()"
+                    @click="back()"
                     class="view-frame__header-button">
                 <i class="fas fa-arrow-left"></i>
             </div>
@@ -56,12 +56,12 @@
             </h1>
         </div>
 
-        <project-details v-bind:project="project"/>
+        <project-details :project="project"/>
 
         <div class="view-frame-section">
-            <md-button v-on:click="deleteItem()" class="md-primary">Delete Project</md-button>
+            <md-button @click="deleteItem()" class="md-primary">Delete Project</md-button>
 
-            <md-button v-on:click="update()" class="md-primary">Update Project</md-button>
+            <md-button @click="update()" class="md-primary">Update Project</md-button>
         </div>
     </div>
 </template>

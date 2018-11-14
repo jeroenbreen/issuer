@@ -43,8 +43,8 @@
                                 placeholder="Client numbering">
                             <md-option
                                     v-for="(format, index) in getFormats()"
-                                    v-bind:value="format"
-                                    v-bind:key="index">{{format}}</md-option>
+                                    :value="format"
+                                    :key="index">{{format}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
@@ -56,8 +56,8 @@
                                 placeholder="Document numbering">
                             <md-option
                                     v-for="(format, index) in getFormats()"
-                                    v-bind:value="format"
-                                    v-bind:key="index">{{format}}</md-option>
+                                    :value="format"
+                                    :key="index">{{format}}</md-option>
                         </md-select>
                     </md-field>
                 </div>

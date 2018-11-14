@@ -33,21 +33,21 @@
 
 <template>
     <vue-drag-resize
-            v-bind:parentLimitation="true"
-            v-bind:minw="20"
-            v-bind:minh="20"
-            v-bind:w="scale(item.width)"
-            v-bind:h="scale(item.height)"
-            v-bind:x="scale(item.x)"
-            v-bind:y="scale(item.y)"
-            v-on:resizing="onResize"
-            v-on:dragging="onDrag">
+            :parentLimitation="true"
+            :minw="20"
+            :minh="20"
+            :w="scale(item.width)"
+            :h="scale(item.height)"
+            :x="scale(item.x)"
+            :y="scale(item.y)"
+            @resizing="onResize"
+            @dragging="onDrag">
         <image-uploader
                 v-if="editor && item.type === 'image'"
-                v-bind:item="item"
-                v-bind:template="template"/>
+                :item="item"
+                :template="template"/>
 
-        <img v-if="item.type === 'image'" v-bind:src="item.getSrc()">
+        <img v-if="item.type === 'image'" :src="item.getSrc()">
     </vue-drag-resize>
 </template>
 

@@ -20,8 +20,8 @@
     <div class="topbar">
         Welcome
         <avatar
-            v-bind:user="getCurrentUser()"
-            v-bind:size="48"
+            :user="getCurrentUser()"
+            :size="48"
             v-if="getCurrentUser()"/>
     </div>
 </template>

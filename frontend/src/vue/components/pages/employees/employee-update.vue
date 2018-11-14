@@ -43,7 +43,7 @@
     <div class="view-frame view-frame--employee-update" v-scrim>
         <div class="view-frame__header">
             <div
-                    v-on:click="back()"
+                    @click="back()"
                     class="view-frame__header-button">
                 <i class="fas fa-arrow-left"></i>
             </div>
@@ -52,10 +52,10 @@
             </h1>
         </div>
 
-        <employee-details v-bind:user="user"/>
+        <employee-details :user="user"/>
 
         <div class="view-frame-section">
-            <md-button v-on:click="update()" class="md-primary">Update Employee</md-button>
+            <md-button @click="update()" class="md-primary">Update Employee</md-button>
         </div>
     </div>
 </template>

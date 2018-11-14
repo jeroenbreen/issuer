@@ -30,12 +30,12 @@
             <div class="client-cards">
                 <client-card
                         v-for="client in getAll()"
-                        v-bind:key="client._id"
-                        v-bind:client="client"></client-card>
+                        :key="client._id"
+                        :client="client"></client-card>
             </div>
         </div>
         <div class="view-frame-section">
-            <md-button v-on:click="create()" class="md-primary">Create Client</md-button>
+            <md-button @click="create()" class="md-primary">Create Client</md-button>
         </div>
     </div>
 </template>

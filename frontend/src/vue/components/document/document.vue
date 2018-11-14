@@ -104,18 +104,18 @@
 
 <template>
     <div class="cover document__container">
-        <div class="document" v-bind:class="{'document--locked': document.locked}">
+        <div class="document" :class="{'document--locked': document.locked}">
             <doc-page
                     v-for="(page, index) in document.pages"
-                    v-bind:key="index"
-                    v-bind:page="page"
-                    v-bind:template="template"
-                    v-bind:editor="false"
-                    v-bind:factor="factor"
-                    v-bind:tools="true"></doc-page>
+                    :key="index"
+                    :page="page"
+                    :template="template"
+                    :editor="false"
+                    :factor="factor"
+                    :tools="true"></doc-page>
             <div v-if="!document.locked" class="page__tools">
                 <div
-                        v-on:click="createPage()"
+                        @click="createPage()"
                         class="icon-button icon-button--editing-mode">
                     <div class="icon-button__icon">
                         <i class="fas fa-plus"></i>
@@ -129,17 +129,17 @@
             <sortable-list
                     lockAxis="y"
                     v-model="document.pages"
-                    v-on:sortEnd="onSortEnd($event)">
+                    @sortEnd="onSortEnd($event)">
                 <mini-page
                         v-for="(page, index) in document.pages"
-                        v-bind:index="index"
-                        v-bind:key="index"
-                        v-bind:page="page"></mini-page>
+                        :index="index"
+                        :key="index"
+                        :page="page"></mini-page>
             </sortable-list>
         </div>
         <div class="document__tools">
 
-            <div class="tool-button tool-button--inverse" v-on:click="print()">
+            <div class="tool-button tool-button--inverse" @click="print()">
                 <div class="tool-button__icon">
                     <i class="fas fa-print"></i>
                 </div>
@@ -148,7 +148,7 @@
                 </div>
             </div>
 
-            <div class="tool-button tool-button--inverse tool-button--warning" v-on:click="deleteDocument()">
+            <div class="tool-button tool-button--inverse tool-button--warning" @click="deleteDocument()">
                 <div class="tool-button__icon">
                     <i class="fas fa-trash"></i>
                 </div>
@@ -162,7 +162,7 @@
             <span>Saved...</span>
         </md-snackbar>
 
-        <div class="close-button" v-on:click="closeScreen()"></div>
+        <div class="close-button" @click="closeScreen()"></div>
 
         <div class="document__mode">
             <md-switch v-model="document.locked">Locked</md-switch>

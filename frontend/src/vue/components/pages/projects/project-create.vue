@@ -35,7 +35,7 @@
     <div class="view-frame view-frame--project-create">
         <div class="view-frame__header">
             <div
-                    v-on:click="back()"
+                    @click="back()"
                     class="view-frame__header-button">
                 <i class="fas fa-arrow-left"></i>
             </div>
@@ -43,10 +43,10 @@
                 New Project
             </h1>
         </div>
-        <project-details v-bind:project="project"></project-details>
+        <project-details :project="project"></project-details>
 
         <div class="view-frame-section">
-            <div class="iss-button" v-on:click="create()">
+            <div class="iss-button" @click="create()">
                 Create Project
             </div>
         </div>

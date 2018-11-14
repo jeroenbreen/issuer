@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="view-frame-section">
-            <md-button v-on:click="update()" class="md-primary">Update company details</md-button>
+            <md-button @click="update()" class="md-primary">Update company details</md-button>
         </div>
     </div>
 </template>

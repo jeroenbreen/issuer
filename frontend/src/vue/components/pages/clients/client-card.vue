@@ -15,7 +15,7 @@
 
 
 <template>
-    <div class="client-card"  v-on:click="update()">
+    <div class="client-card"  @click="update()">
         <div class="client-card__number">
             {{formatId()}}
         </div>

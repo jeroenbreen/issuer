@@ -32,8 +32,8 @@
     <div class="employee">
         <div class="employee-card">
             <avatar
-                    v-bind:user="user"
-                    v-bind:size="96"></avatar>
+                    :user="user"
+                    :size="96"></avatar>
             <div class="employee-card__name">
                 {{user.getFullName()}}
             </div>
@@ -41,12 +41,12 @@
 
 
         <div class="employee-card__toolbar">
-            <div class="icon-button" v-on:click="update()">
+            <div class="icon-button" @click="update()">
                 <div class="icon-button__icon">
                     <i class="fas fa-pencil-alt"></i>
                 </div>
             </div>
-            <div class="icon-button" v-on:click="deleteItem()">
+            <div class="icon-button" @click="deleteItem()">
                 <div class="icon-button__icon">
                     <i class="fas fa-trash"></i>
                 </div>

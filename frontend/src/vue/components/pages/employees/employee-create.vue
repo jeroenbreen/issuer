@@ -31,7 +31,7 @@
     <div class="view-frame view-frame--employee-create" v-scrim>
         <div class="view-frame__header">
             <div
-                v-on:click="back()"
+                @click="back()"
                 class="view-frame__header-button">
                 <i class="fas fa-arrow-left"></i>
             </div>
@@ -39,10 +39,10 @@
                 New Employee
             </h1>
         </div>
-        <employee-details v-bind:user="user"></employee-details>
+        <employee-details :user="user"></employee-details>
 
         <div class="view-frame-section">
-            <md-button v-on:click="create()" class="md-primary">Create Employee</md-button>
+            <md-button @click="create()" class="md-primary">Create Employee</md-button>
         </div>
     </div>
 </template>

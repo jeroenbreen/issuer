@@ -29,12 +29,12 @@
             <div class="project-cards">
                 <project-card
                         v-for="project in getAll()"
-                        v-bind:key="project._id"
-                        v-bind:project="project"></project-card>
+                        :key="project._id"
+                        :project="project"></project-card>
             </div>
         </div>
         <div class="view-frame-section">
-            <md-button v-on:click="create()" class="md-primary">Create Project</md-button>
+            <md-button @click="create()" class="md-primary">Create Project</md-button>
         </div>
     </div>
 </template>

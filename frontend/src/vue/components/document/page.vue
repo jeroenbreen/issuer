@@ -98,42 +98,34 @@
 
 <template>
     <div
-            v-bind:style="{'font-size': scale(10) + 'px', 'width': scale(620) + 'px', 'height': scale(877) + 'px'}"
-            v-bind:class="{'template--active': editor}"
-            class="page">
-
-
+        :style="{'font-size': scale(10) + 'px', 'width': scale(620) + 'px', 'height': scale(877) + 'px'}"
+        :class="{'template--active': editor}"
+        class="page">
 
         <div class="document__elements"
-             v-bind:style="{'left': scale(template.margin.left) + 'px',
-                               'top': scale(template.margin.top) + 'px',
-                               'right': scale(template.margin.right) + 'px ',
-                               'bottom': scale(template.margin.bottom) + 'px'}">
-
-
-
+             :style="{'left': scale(template.margin.left) + 'px',
+                   'top': scale(template.margin.top) + 'px',
+                   'right': scale(template.margin.right) + 'px ',
+                   'bottom': scale(template.margin.bottom) + 'px'}">
 
             <item
-                    class="document__logo"
-                    v-if="page.getType() === 'front'"
-                    v-on:click.native="selectItem(template.logo)"
-                    v-bind:item="template.logo"
-                    v-bind:editor="editor"
-                    v-bind:factor="factor"
-                    v-bind:template="template"></item>
-
-
-
+                class="document__logo"
+                v-if="page.getType() === 'front'"
+                @click.native="selectItem(template.logo)"
+                :item="template.logo"
+                :editor="editor"
+                :factor="factor"
+                :template="template"/>
 
             <div class="document__info" v-if="page.getType() === 'front'">
                 <div
-                        v-bind:style="{'margin-right': scale(10) + 'px'}"
-                        class="document__date">
+                    :style="{'margin-right': scale(10) + 'px'}"
+                    class="document__date">
                     {{page.document.date | standardDate}}
                 </div>
                 <div
-                        v-bind:style="{'padding': scale(10) + 'px', 'font-size': scale(11) + 'px'}"
-                        class="document__document-id">
+                    :style="{'padding': scale(10) + 'px', 'font-size': scale(11) + 'px'}"
+                    class="document__document-id">
                         <span v-if="!editor">
                             {{template.dictionary.invoice}}
                         </span>
@@ -145,7 +137,7 @@
 
             <div class="document__addresses"
                  v-if="page.getType() === 'front'"
-                 v-bind:style="{'top': scale(template.settings.addresses.top) + 'px',
+                 :style="{'top': scale(template.settings.addresses.top) + 'px',
                                    'border-top': scale(template.settings.addresses.borderTop) + 'px solid #000'}">
                 <div class="document_address-own">
                     <b>{{company.name}}</b><br>
@@ -162,48 +154,48 @@
             </div>
 
             <div class="document__content"
-                 v-bind:style="{'top': getTop()}">
+                 :style="{'top': getTop()}">
                 <div class="document__subject"
                      v-if="page.getType() === 'front'"
-                     v-bind:style="{'border-top': scale(template.settings.subject.borderTop) + 'px solid #000',
-                                       'border-bottom': scale(template.settings.subject.borderBottom) + 'px solid #000',
-                                       'padding': scale(10) + 'px'}">
+                     :style="{'border-top': scale(template.settings.subject.borderTop) + 'px solid #000',
+                           'border-bottom': scale(template.settings.subject.borderBottom) + 'px solid #000',
+                           'padding': scale(10) + 'px'}">
                     <span class="document__subject-about" v-if="!editor">{{template.dictionary.subject}}:</span>
                     <input v-else v-model="template.dictionary.subject" class="template__input template__input--bold">
                     {{page.document.subject}}
                 </div>
 
                 <div
-                        v-bind:style="{'padding': scale(10) + 'px 0'}"
+                        :style="{'padding': scale(10) + 'px 0'}"
                         class="document__lines">
                     <sortable-list
-                            lockAxis="y"
-                            v-bind:useDragHandle="true"
-                            v-model="page.lines"
-                            v-on:sortStart="onSortStart($event)"
-                            v-on:sortEnd="onSortEnd($event)">
+                        lockAxis="y"
+                        :useDragHandle="true"
+                        v-model="page.lines"
+                        @sortStart="onSortStart($event)"
+                        @sortEnd="onSortEnd($event)">
                         <doc-line
-                                v-for="(line, index) in page.lines"
-                                v-bind:index="index"
-                                v-bind:key="index"
-                                v-bind:line="line"
-                                v-bind:tools="tools"
-                                v-bind:scale="scale"/>
+                            v-for="(line, index) in page.lines"
+                            :index="index"
+                            :key="index"
+                            :line="line"
+                            :tools="tools"
+                            :scale="scale"/>
                     </sortable-list>
                 </div>
 
                 <line-tools
-                        v-if="canAddLines && !page.document.locked && tools"
-                        v-bind:page="page"
-                        v-bind:canAddLines="canAddLines"/>
+                    v-if="canAddLines && !page.document.locked && tools"
+                    :page="page"
+                    :canAddLines="canAddLines"/>
             </div>
 
             <div class="document__total"
                  v-if="page.showTotal()"
-                 v-bind:style="{'top': getTotalTop() + 'px'}">
+                 :style="{'top': getTotalTop() + 'px'}">
                 <div
-                        v-bind:style="{'height': scale(20) + 'px'}"
-                        class="document__total-line">
+                    :style="{'height': scale(20) + 'px'}"
+                    class="document__total-line">
                     <div class="document__total-label">
                         Totaal
                     </div>
@@ -212,8 +204,8 @@
                     </div>
                 </div>
                 <div
-                        v-bind:style="{'height': scale(20) + 'px'}"
-                        class="document__total-line">
+                    :style="{'height': scale(20) + 'px'}"
+                    class="document__total-line">
                     <div class="document__total-label">
                         BTW 21%
                     </div>
@@ -222,7 +214,7 @@
                     </div>
                 </div>
                 <div
-                        v-bind:style="{'font-size': scale(15) + 'px', 'line-height': scale(16) + 'px', 'height': scale(20) + 'px'}"
+                        :style="{'font-size': scale(15) + 'px', 'line-height': scale(16) + 'px', 'height': scale(20) + 'px'}"
                         class="document__total-line document__total-line--big">
                     <div class="document__total-label">
                         Te betalen
@@ -233,11 +225,11 @@
                 </div>
 
                 <div class="document__footer-text"
-                     v-bind:style="{'font-size': scale(8) + 'px',
-                                       'margin-top': scale(20) + 'px',
-                                       'border-top': scale(template.settings.footerText.borderTop) + 'px solid #000',
-                                       'border-bottom': scale(template.settings.footerText.borderBottom) + 'px solid #000',
-                                       'padding': scale(10) + 'px'}">
+                     :style="{'font-size': scale(8) + 'px',
+                           'margin-top': scale(20) + 'px',
+                           'border-top': scale(template.settings.footerText.borderTop) + 'px solid #000',
+                           'border-bottom': scale(template.settings.footerText.borderBottom) + 'px solid #000',
+                           'padding': scale(10) + 'px'}">
                     <span v-html="template.dictionary.footer"></span>
                 </div>
             </div>
@@ -245,87 +237,91 @@
 
             <!-- custom items -->
             <item
-                    v-if="page.getType() === 'front'"
-                    v-for="(item, index) in template.frontPage.items"
-                    v-on:click.native="selectItem(item)"
-                    v-bind:key="index"
-                    v-bind:item="item"
-                    v-bind:editor="editor"
-                    v-bind:factor="factor"
-                    v-bind:template="template"></item>
+                v-if="page.getType() === 'front'"
+                v-for="(item, index) in template.frontPage.items"
+                @click.native="selectItem(item)"
+                :key="index"
+                :item="item"
+                :editor="editor"
+                :factor="factor"
+                :template="template"/>
 
 
             <div class="document__official"
-                 v-bind:style="{'font-size': scale(8) + 'px','top': scale(template.settings.official.top) + 'px'}">
+                :style="{'font-size': scale(8) + 'px','top': scale(template.settings.official.top) + 'px'}">
                 {{company.name}} | {{company.coc}}  | {{company.vat}}
             </div>
         </div>
 
         <vue-drag-resize
-                v-if="editor && page.getType() === 'front'"
-                class="iss-resizer iss-resizer--hor"
-                v-bind:parentLimitation="true"
-                v-bind:axis="'y'"
-                v-on:dragging="setMarginTop"
-                v-bind:isDraggable="editor"
-                v-bind:isResizable="false"
-                v-bind:y="scale(template.margin.top)"
-                v-bind:x="scale(template.margin.left)"
-                v-bind:h="1"
-                v-bind:minh="1"
-                v-bind:w="scale(620 - template.margin.left - template.margin.right)"/>
+            v-if="editor && page.getType() === 'front'"
+            class="iss-resizer iss-resizer--hor"
+            @dragging="setMarginTop"
+            :parentLimitation="true"
+            :axis="'y'"
+            :isDraggable="editor"
+            :isResizable="false"
+            :y="scale(template.margin.top)"
+            :x="scale(template.margin.left)"
+            :h="1"
+            :minh="1"
+            :w="scale(620 - template.margin.left - template.margin.right)"/>
 
         <vue-drag-resize
-                v-if="editor && page.getType() === 'front'"
-                class="iss-resizer iss-resizer--hor"
-                v-bind:parentLimitation="true"
-                v-bind:axis="'y'"
-                v-on:dragging="setMarginBottom"
-                v-bind:isDraggable="editor"
-                v-bind:isResizable="false"
-                v-bind:y="scale(877 - template.margin.top)"
-                v-bind:x="scale(template.margin.left)"
-                v-bind:h="1"
-                v-bind:minh="1"
-                v-bind:w="scale(620 - template.margin.left - template.margin.right)"/>
+            v-if="editor && page.getType() === 'front'"
+            class="iss-resizer iss-resizer--hor"
+            @dragging="setMarginBottom"
+            :parentLimitation="true"
+            :axis="'y'"
+            :isDraggable="editor"
+            :isResizable="false"
+            :y="scale(877 - template.margin.top)"
+            :x="scale(template.margin.left)"
+            :h="1"
+            :minh="1"
+            :w="scale(620 - template.margin.left - template.margin.right)"/>
 
         <vue-drag-resize
-                v-if="editor && page.getType() === 'front'"
-                class="iss-resizer iss-resizer--ver"
-                v-bind:parentLimitation="true"
-                v-bind:axis="'x'"
-                v-on:dragging="setMarginLeft"
-                v-bind:isDraggable="editor"
-                v-bind:isResizable="false"
-                v-bind:y="scale(template.margin.top)"
-                v-bind:x="scale(template.margin.left)"
-                v-bind:w="1"
-                v-bind:minw="1"
-                v-bind:h="scale(877 - template.margin.top - template.margin.bottom)"/>
+            v-if="editor && page.getType() === 'front'"
+            class="iss-resizer iss-resizer--ver"
+            @dragging="setMarginLeft"
+            :parentLimitation="true"
+            :axis="'x'"
+            :isDraggable="editor"
+            :isResizable="false"
+            :y="scale(template.margin.top)"
+            :x="scale(template.margin.left)"
+            :w="1"
+            :minw="1"
+            :h="scale(877 - template.margin.top - template.margin.bottom)"/>
 
         <vue-drag-resize
-                v-if="editor && page.getType() === 'front'"
-                class="iss-resizer iss-resizer--ver"
-                v-bind:parentLimitation="true"
-                v-bind:axis="'x'"
-                v-on:dragging="setMarginRight"
-                v-bind:isDraggable="editor"
-                v-bind:isResizable="false"
-                v-bind:y="scale(template.margin.top)"
-                v-bind:x="scale(620 - template.margin.right)"
-                v-bind:w="1"
-                v-bind:minw="1"
-                v-bind:h="scale(877 - template.margin.top - template.margin.bottom)"/>
+            v-if="editor && page.getType() === 'front'"
+            class="iss-resizer iss-resizer--ver"
+            @dragging="setMarginRight"
+            :parentLimitation="true"
+            :axis="'x'"
+            :isDraggable="editor"
+            :isResizable="false"
+            :y="scale(template.margin.top)"
+            :x="scale(620 - template.margin.right)"
+            :w="1"
+            :minw="1"
+            :h="scale(877 - template.margin.top - template.margin.bottom)"/>
 
 
-        <md-snackbar :md-position="'left'" :md-duration="2000" :md-active.sync="localState.showSnackbar" md-persistent>
+        <md-snackbar
+            :md-position="'left'"
+            :md-duration="2000"
+            :md-active.sync="localState.showSnackbar" md-persistent>
             <span>Saved...</span>
         </md-snackbar>
     </div>
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
 
 
     .page {

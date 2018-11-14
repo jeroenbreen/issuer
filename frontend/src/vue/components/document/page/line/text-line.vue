@@ -37,7 +37,7 @@
         <div class="line__row">
             <vue-editor
                     v-if="editable"
-                    v-bind:id="id"
+                    :id="id"
                     v-model="line.text"
                     :editorToolbar="customToolbar"
                     @focus="onEditorFocus"

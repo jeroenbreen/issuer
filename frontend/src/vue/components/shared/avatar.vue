@@ -7,7 +7,7 @@
 
 
 <template>
-    <div class="avatar" v-bind:style="{ 'background-image': 'url(' + user.thumbnail + ')', 'width': size + 'px', 'height': size + 'px' }"></div>
+    <div class="avatar" :style="{ 'background-image': 'url(' + user.thumbnail + ')', 'width': size + 'px', 'height': size + 'px' }"></div>
 </template>
 
 

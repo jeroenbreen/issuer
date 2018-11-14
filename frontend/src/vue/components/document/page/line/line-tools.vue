@@ -37,7 +37,7 @@
 <template>
     <div class="line__tools">
         <div
-                v-on:click="createLine('hourly')"
+                @click="createLine('hourly')"
                 class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-stopwatch"></i>
@@ -45,28 +45,28 @@
         </div>
 
         <div
-                v-on:click="createLine('sum')"
+                @click="createLine('sum')"
                 class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-money-bill-wave"></i>
             </div>
         </div>
         <div
-                v-on:click="createLine('subtotal')"
+                @click="createLine('subtotal')"
                 class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-calculator"></i>
             </div>
         </div>
         <div
-                v-on:click="createLine('text')"
+                @click="createLine('text')"
                 class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-text-height"></i>
             </div>
         </div>
         <div
-                v-on:click="createLine('break')"
+                @click="createLine('break')"
                 class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-paragraph"></i>

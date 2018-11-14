@@ -139,8 +139,8 @@
                                 placeholder="Client">
                             <md-option
                                     v-for="(client, index) in getClients()"
-                                    v-bind:value="client._id"
-                                    v-bind:key="index">{{client.companyName}}</md-option>
+                                    :value="client._id"
+                                    :key="index">{{client.companyName}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
@@ -152,8 +152,8 @@
                                 placeholder="Employee">
                             <md-option
                                     v-for="(user, index) in getUsers()"
-                                    v-bind:value="user._id"
-                                    v-bind:key="index">{{user.getFullName()}}</md-option>
+                                    :value="user._id"
+                                    :key="index">{{user.getFullName()}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
@@ -166,8 +166,8 @@
                                 placeholder="Repository">
                             <md-option
                                     v-for="(repository, index) in getRepositories()"
-                                    v-bind:value="repository.id"
-                                    v-bind:key="index">{{repository.name}}</md-option>
+                                    :value="repository.id"
+                                    :key="index">{{repository.name}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
@@ -179,11 +179,11 @@
                                 placeholder="Milestone">
                             <md-option
                                     v-for="(milestone, index) in milestones"
-                                    v-bind:value="milestone.id"
-                                    v-bind:key="index">{{milestone.title}}</md-option>
+                                    :value="milestone.id"
+                                    :key="index">{{milestone.title}}</md-option>
                         </md-select>
                     </md-field>
-                    <div class="icon-button" v-on:click="deleteMilestone()">
+                    <div class="icon-button" @click="deleteMilestone()">
                         <div class="icon-button__icon">
                             <i class="fas fa-trash"></i>
                         </div>
@@ -202,8 +202,8 @@
                 <div class="issues__container">
                     <div
                             v-for="issue in issues"
-                            v-bind:class="{'issue-mini--closed': issue.state === 'closed'}"
-                            v-bind:title="issue.title"
+                            :class="{'issue-mini--closed': issue.state === 'closed'}"
+                            :title="issue.title"
                             class="issue-mini">
                         {{issue.number}}
                     </div>
@@ -258,11 +258,11 @@
                     <div class="details-content">
                         <document-mini
                                 v-for="(document, index) in getDocuments('invoice')"
-                                v-bind:document="document"
-                                v-bind:key="index">
+                                :document="document"
+                                :key="index">
                         </document-mini>
 
-                        <md-button v-on:click="createDocument('invoice')" class="md-primary">Add Invoice</md-button>
+                        <md-button @click="createDocument('invoice')" class="md-primary">Add Invoice</md-button>
                     </div>
                 </div>
             </div>
