@@ -15,7 +15,6 @@
             }
         }
     }
-
 </script>
 
 
@@ -29,9 +28,9 @@
         <div class="view-frame-section">
             <div class="client-cards">
                 <client-card
-                        v-for="client in getAll()"
-                        :key="client._id"
-                        :client="client"></client-card>
+                    v-for="client in getAll()"
+                    :key="client._id"
+                    :client="client"/>
             </div>
         </div>
         <div class="view-frame-section">
@@ -41,7 +40,9 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .client-cards {
         margin-bottom: 20px;
     }

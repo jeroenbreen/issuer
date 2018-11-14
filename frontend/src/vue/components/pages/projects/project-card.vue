@@ -18,8 +18,8 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
-
+<style lang="scss">
+    @import '@styles/variables.scss';
 
     .project-card {
         border-bottom: $generalBorder;

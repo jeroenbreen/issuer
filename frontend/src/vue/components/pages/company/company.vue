@@ -16,7 +16,6 @@
             }
         }
     }
-
 </script>
 
 
@@ -32,37 +31,37 @@
                 <div class="details-row">
                     <md-field>
                         <label>Company name</label>
-                        <md-input v-model="company.name" placeholder="Company name"></md-input>
+                        <md-input v-model="company.name" placeholder="Company name"/>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
                         <label>Company address</label>
-                        <md-input v-model="company.address" placeholder="Company address"></md-input>
+                        <md-input v-model="company.address" placeholder="Company address"/>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
                         <label>Company postcode</label>
-                        <md-input v-model="company.postcode" placeholder="Company postcode"></md-input>
+                        <md-input v-model="company.postcode" placeholder="Company postcode"/>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
                         <label>Company city</label>
-                        <md-input v-model="company.city" placeholder="Company city"></md-input>
+                        <md-input v-model="company.city" placeholder="Company city"/>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
                         <label>Company githubHandle</label>
-                        <md-input v-model="company.githubHandle" placeholder="Company githubHandle"></md-input>
+                        <md-input v-model="company.githubHandle" placeholder="Company githubHandle"/>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
                         <label>Company githubKey</label>
-                        <md-input v-model="company.githubKey" placeholder="Company githubKey"></md-input>
+                        <md-input v-model="company.githubKey" placeholder="Company githubKey"/>
                     </md-field>
                 </div>
             </div>
@@ -74,4 +73,6 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';</style>
+<style lang="scss">
+    @import '@styles/variables.scss';
+</style>

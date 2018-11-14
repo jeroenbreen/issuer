@@ -47,7 +47,9 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .welcome-screen {
         width: 300px;
         background: #fff;

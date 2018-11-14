@@ -7,11 +7,15 @@
 
 
 <template>
-    <div class="avatar" :style="{ 'background-image': 'url(' + user.thumbnail + ')', 'width': size + 'px', 'height': size + 'px' }"></div>
+    <div
+        class="avatar"
+        :style="{ 'background-image': 'url(' + user.thumbnail + ')', 'width': size + 'px', 'height': size + 'px' }"></div>
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .avatar {
         width: 48px;
         height: 48px;

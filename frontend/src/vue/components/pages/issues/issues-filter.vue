@@ -28,8 +28,12 @@
 
 <template>
     <div class="issues-filter">
-        <select v-model="filter.project_id"  @change="updateFilter()">
-            <option v-for="project in getProjects()" :value="project._id">
+        <select
+            v-model="filter.project_id"
+            @change="updateFilter()">
+            <option
+                v-for="project in getProjects()"
+                :value="project._id">
                 {{project.title}}
             </option>
         </select>
@@ -37,4 +41,6 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';</style>
+<style lang="scss">
+    @import '@styles/variables.scss';
+</style>

@@ -3,24 +3,25 @@
         name: 'switch-input',
         props: ['line', 'value', 'size', 'editable']
     }
-
 </script>
 
 
 <template>
     <div class="switch-input">
         <input
-                v-if="editable"
-                v-model="line[value]"
-                :class="['line-input--' + size]">
+            v-if="editable"
+            v-model="line[value]"
+            :class="['line-input--' + size]">
         <span v-if="!editable">
-                {{line[value]}}
-            </span>
+            {{line[value]}}
+        </span>
     </div>
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .switch-input {
         display: contents;
     }

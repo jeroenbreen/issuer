@@ -14,7 +14,7 @@
                     Margin top
                 </div>
                 <md-field>
-                    <md-input v-model="template.margin.top" placeholder="Margin top" type="number"></md-input>
+                    <md-input v-model="template.margin.top" placeholder="Margin top" type="number"/>
                 </md-field>
             </div>
             <div class="template-tools__row">
@@ -22,7 +22,7 @@
                     Margin right
                 </div>
                 <md-field>
-                    <md-input v-model="template.margin.right" placeholder="Margin right" type="number"></md-input>
+                    <md-input v-model="template.margin.right" placeholder="Margin right" type="number"/>
                 </md-field>
             </div>
             <div class="template-tools__row">
@@ -30,7 +30,7 @@
                     Margin bottom
                 </div>
                 <md-field>
-                    <md-input v-model="template.margin.bottom" placeholder="Margin bottom" type="number"></md-input>
+                    <md-input v-model="template.margin.bottom" placeholder="Margin bottom" type="number"/>
                 </md-field>
             </div>
             <div class="template-tools__row">
@@ -38,7 +38,7 @@
                     Margin left
                 </div>
                 <md-field>
-                    <md-input v-model="template.margin.left" placeholder="Margin left" type="number"></md-input>
+                    <md-input v-model="template.margin.left" placeholder="Margin left" type="number"/>
                 </md-field>
             </div>
         </div>
@@ -46,7 +46,9 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .template-margins {
         position: fixed;
         left: 20px;

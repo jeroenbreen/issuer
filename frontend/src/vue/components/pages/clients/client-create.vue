@@ -32,8 +32,8 @@
     <div class="view-frame view-frame--client-create">
         <div class="view-frame__header">
             <div
-                    @click="back()"
-                    class="view-frame__header-button">
+                class="view-frame__header-button"
+                @click="back()">
                 <i class="fas fa-arrow-left"></i>
             </div>
             <h1>
@@ -41,7 +41,7 @@
             </h1>
         </div>
 
-        <client-details :client="client"></client-details>
+        <client-details :client="client"/>
 
         <div class="view-frame-section">
             <md-button @click="create()" class="md-primary">Create Client</md-button>

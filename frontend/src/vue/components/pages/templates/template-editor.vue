@@ -67,25 +67,25 @@
     <div class="cover" @click="generalClick($event)">
         <div class="template-editor">
             <doc-page
-                    :page="document.pages[0]"
-                    :template="clonedTemplate"
-                    :factor="1"
-                    :tools="false"
-                    :editor="!showTools"
-                    :onSelectItem="onSelectItem"></doc-page>
+                :page="document.pages[0]"
+                :template="clonedTemplate"
+                :factor="1"
+                :tools="false"
+                :editor="!showTools"
+                :on-select-item="onSelectItem"/>
             <doc-page
-                    :page="document.pages[1]"
-                    :template="clonedTemplate"
-                    :factor="1"
-                    :tools="false"
-                    :editor="!showTools"
-                    :onSelectItem="onSelectItem"></doc-page>
+                :page="document.pages[1]"
+                :template="clonedTemplate"
+                :factor="1"
+                :tools="false"
+                :editor="!showTools"
+                :on-select-item="onSelectItem"/>
         </div>
 
         <div class="template-editor__title">
             <md-field>
                 <label>Title</label>
-                <md-input v-model="clonedTemplate.title" placeholder="Title"></md-input>
+                <md-input v-model="clonedTemplate.title" placeholder="Title"/>
             </md-field>
         </div>
 
@@ -93,17 +93,21 @@
         <div class="close-button" @click="closeScreen()"></div>
 
         <template-margins
-                :template="clonedTemplate"></template-margins>
+            :template="clonedTemplate"/>
 
         <template-tools
-                :item="currentItem"
-                :template="clonedTemplate"></template-tools>
+            :item="currentItem"
+            :template="clonedTemplate"/>
 
         <div class="template__mode">
             <md-switch v-model="showTools">Hide tools</md-switch>
         </div>
 
-        <md-snackbar :md-position="'left'" :md-duration="2000" :md-active.sync="localState.showSnackbar" md-persistent>
+        <md-snackbar
+            :md-position="'left'"
+            :md-duration="2000"
+            :md-active.sync="localState.showSnackbar"
+            md-persistent>
             <span>Saved...</span>
         </md-snackbar>
     </div>

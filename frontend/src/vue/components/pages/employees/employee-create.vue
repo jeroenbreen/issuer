@@ -39,7 +39,7 @@
                 New Employee
             </h1>
         </div>
-        <employee-details :user="user"></employee-details>
+        <employee-details :user="user"/>
 
         <div class="view-frame-section">
             <md-button @click="create()" class="md-primary">Create Employee</md-button>
@@ -48,5 +48,7 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';</style>
+<style lang="scss">
+    @import '@styles/variables.scss';
+</style>
 

@@ -39,12 +39,12 @@
                     <md-field>
                         <label>Client numbering</label>
                         <md-select
-                                v-model="settings.clientIdFormat"
-                                placeholder="Client numbering">
+                            v-model="settings.clientIdFormat"
+                            placeholder="Client numbering">
                             <md-option
-                                    v-for="(format, index) in getFormats()"
-                                    :value="format"
-                                    :key="index">{{format}}</md-option>
+                                v-for="(format, index) in getFormats()"
+                                :value="format"
+                                :key="index">{{format}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
@@ -52,19 +52,22 @@
                     <md-field>
                         <label>Document numbering</label>
                         <md-select
-                                v-model="settings.documentIdFormat"
-                                placeholder="Document numbering">
+                            v-model="settings.documentIdFormat"
+                            placeholder="Document numbering">
                             <md-option
-                                    v-for="(format, index) in getFormats()"
-                                    :value="format"
-                                    :key="index">{{format}}</md-option>
+                                v-for="(format, index) in getFormats()"
+                                :value="format"
+                                :key="index">{{format}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
                         <label>Standard rate</label>
-                        <md-input v-model="settings.standardRate" placeholder="Standard rate" type="number"></md-input>
+                        <md-input
+                            v-model="settings.standardRate"
+                            placeholder="Standard rate"
+                            type="number"/>
                     </md-field>
                 </div>
             </div>
@@ -73,4 +76,6 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';</style>
+<style lang="scss">
+    @import '@styles/variables.scss';
+</style>

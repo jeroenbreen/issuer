@@ -65,19 +65,20 @@
         <vue-dropzone
                 id="x"
                 ref="dropzone"
-                :options="dropzoneOptions"
                 @vdropzone-file-added="fileDropped"
-                @vdropzone-success="fileAdded"></vue-dropzone>
+                @vdropzone-success="fileAdded"
+                :options="dropzoneOptions"></vue-dropzone>
         <div
-                v-if="loading"
-                class="image-uploader__loader">
+            v-if="loading"
+            class="image-uploader__loader">
             <i class="fas fa-spinner fa-spin"></i>
         </div>
     </div>
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
 
 
     .image-uploader {

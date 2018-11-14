@@ -187,7 +187,7 @@
                 <line-tools
                     v-if="canAddLines && !page.document.locked && tools"
                     :page="page"
-                    :canAddLines="canAddLines"/>
+                    :can-add-lines="canAddLines"/>
             </div>
 
             <div class="document__total"

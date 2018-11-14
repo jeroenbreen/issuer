@@ -35,8 +35,8 @@
     <div class="view-frame view-frame--project-create">
         <div class="view-frame__header">
             <div
-                    @click="back()"
-                    class="view-frame__header-button">
+                @click="back()"
+                class="view-frame__header-button">
                 <i class="fas fa-arrow-left"></i>
             </div>
             <h1>
@@ -54,4 +54,6 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';</style>
+<style lang="scss">
+    @import '@styles/variables.scss';
+</style>

@@ -32,8 +32,8 @@
     <div class="employee">
         <div class="employee-card">
             <avatar
-                    :user="user"
-                    :size="96"></avatar>
+                :user="user"
+                :size="96"/>
             <div class="employee-card__name">
                 {{user.getFullName()}}
             </div>

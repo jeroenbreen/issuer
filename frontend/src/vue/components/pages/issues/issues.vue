@@ -74,8 +74,8 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
-
+<style lang="scss">
+    @import '@styles/variables.scss';
 
     .issues-filter {
         height: 20px;

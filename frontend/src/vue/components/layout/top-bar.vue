@@ -20,14 +20,16 @@
     <div class="topbar">
         Welcome
         <avatar
+            v-if="getCurrentUser()"
             :user="getCurrentUser()"
-            :size="48"
-            v-if="getCurrentUser()"/>
+            :size="48"/>
     </div>
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .topbar {
 
         .avatar {

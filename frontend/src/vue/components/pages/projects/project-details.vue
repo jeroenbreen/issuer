@@ -121,7 +121,7 @@
                 <div class="details-row">
                     <md-field>
                         <label>Title</label>
-                        <md-input v-model="project.title" placeholder="Title"></md-input>
+                        <md-input v-model="project.title" placeholder="Title"/>
                     </md-field>
                 </div>
             </div>
@@ -135,12 +135,12 @@
                     <md-field>
                         <label>Client</label>
                         <md-select
-                                v-model="project.client_id"
-                                placeholder="Client">
+                            v-model="project.client_id"
+                            placeholder="Client">
                             <md-option
-                                    v-for="(client, index) in getClients()"
-                                    :value="client._id"
-                                    :key="index">{{client.companyName}}</md-option>
+                                v-for="(client, index) in getClients()"
+                                :value="client._id"
+                                :key="index">{{client.companyName}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
@@ -148,12 +148,12 @@
                     <md-field>
                         <label>Employee</label>
                         <md-select
-                                v-model="project.user_id"
-                                placeholder="Employee">
+                            v-model="project.user_id"
+                            placeholder="Employee">
                             <md-option
-                                    v-for="(user, index) in getUsers()"
-                                    :value="user._id"
-                                    :key="index">{{user.getFullName()}}</md-option>
+                                v-for="(user, index) in getUsers()"
+                                :value="user._id"
+                                :key="index">{{user.getFullName()}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
@@ -165,9 +165,9 @@
                                 @md-selected="updateMilestones()"
                                 placeholder="Repository">
                             <md-option
-                                    v-for="(repository, index) in getRepositories()"
-                                    :value="repository.id"
-                                    :key="index">{{repository.name}}</md-option>
+                                v-for="(repository, index) in getRepositories()"
+                                :value="repository.id"
+                                :key="index">{{repository.name}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
@@ -178,9 +178,9 @@
                                 v-model="project.milestone_id"
                                 placeholder="Milestone">
                             <md-option
-                                    v-for="(milestone, index) in milestones"
-                                    :value="milestone.id"
-                                    :key="index">{{milestone.title}}</md-option>
+                                v-for="(milestone, index) in milestones"
+                                :value="milestone.id"
+                                :key="index">{{milestone.title}}</md-option>
                         </md-select>
                     </md-field>
                     <div class="icon-button" @click="deleteMilestone()">
@@ -218,25 +218,25 @@
                 <div class="details-row">
                     <md-field>
                         <label>Currency</label>
-                        <md-input v-model="project.currency" placeholder="Currency"></md-input>
+                        <md-input v-model="project.currency" placeholder="Currency"/>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
                         <label>Rate</label>
-                        <md-input v-model="project.rate" type="number" placeholder="Rate"></md-input>
+                        <md-input v-model="project.rate" type="number" placeholder="Rate"/>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
                         <label>Hours</label>
-                        <md-input v-model="project.hours" type="number" placeholder="Hours"></md-input>
+                        <md-input v-model="project.hours" type="number" placeholder="Hours"/>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
                         <label>Discount</label>
-                        <md-input v-model="project.discount" type="number" placeholder="Discount"></md-input>
+                        <md-input v-model="project.discount" type="number" placeholder="Discount"/>
                     </md-field>
                 </div>
                 <div class="details-row">
@@ -257,9 +257,9 @@
                 <div class="details-row">
                     <div class="details-content">
                         <document-mini
-                                v-for="(document, index) in getDocuments('invoice')"
-                                :document="document"
-                                :key="index">
+                            v-for="(document, index) in getDocuments('invoice')"
+                            :document="document"
+                            :key="index">
                         </document-mini>
 
                         <md-button @click="createDocument('invoice')" class="md-primary">Add Invoice</md-button>
@@ -271,7 +271,9 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .issues__container {
         display: flex;
     }

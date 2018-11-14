@@ -8,20 +8,19 @@
         },
         props: ['user']
     }
-
 </script>
 
 
 <template>
     <div class="user">
-        <avatar :user="user"></avatar>
+        <avatar :user="user"/>
         {{user.getFullName()}}
     </div>
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
-
+<style lang="scss">
+    @import '@styles/variables.scss';
 
     .user {
         padding: 12px;

@@ -28,9 +28,9 @@
         <div class="view-frame-section">
             <div class="project-cards">
                 <project-card
-                        v-for="project in getAll()"
-                        :key="project._id"
-                        :project="project"></project-card>
+                    v-for="project in getAll()"
+                    :key="project._id"
+                    :project="project"/>
             </div>
         </div>
         <div class="view-frame-section">
@@ -40,7 +40,9 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .project-cards {
         margin-bottom: 20px;
     }

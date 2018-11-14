@@ -36,21 +36,22 @@
     <div class="line__text">
         <div class="line__row">
             <vue-editor
-                    v-if="editable"
-                    :id="id"
-                    v-model="line.text"
-                    :editorToolbar="customToolbar"
-                    @focus="onEditorFocus"
-                    @blur="onEditorBlur"></vue-editor>
+                v-if="editable"
+                @focus="onEditorFocus"
+                @blur="onEditorBlur"
+                v-model="line.text"
+                :id="id"
+                :editorToolbar="customToolbar"></vue-editor>
             <div
-                    v-if="!editable"
-                    v-html="line.text"></div>
+                v-if="!editable"
+                v-html="line.text"></div>
         </div>
     </div>
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
 
 
     body .quillWrapper .ql-container .ql-editor,

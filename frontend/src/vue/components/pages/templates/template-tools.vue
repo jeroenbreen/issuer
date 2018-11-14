@@ -59,7 +59,7 @@
                     Left
                 </div>
                 <md-field>
-                    <md-input v-model="item.x" placeholder="left" type="number"></md-input>
+                    <md-input v-model="item.x" placeholder="left" type="number"/>
                 </md-field>
             </div>
             <div class="template-tools__row">
@@ -67,7 +67,7 @@
                     Top
                 </div>
                 <md-field>
-                    <md-input v-model="item.y" placeholder="top" type="number"></md-input>
+                    <md-input v-model="item.y" placeholder="top" type="number"/>
                 </md-field>
             </div>
             <div class="template-tools__row">
@@ -75,7 +75,7 @@
                     Width
                 </div>
                 <md-field>
-                    <md-input v-model="item.width" placeholder="width" type="number"></md-input>
+                    <md-input v-model="item.width" placeholder="width" type="number"/>
                 </md-field>
             </div>
             <div class="template-tools__row">
@@ -83,7 +83,7 @@
                     Height
                 </div>
                 <md-field>
-                    <md-input v-model="item.height" placeholder="height" type="number"></md-input>
+                    <md-input v-model="item.height" placeholder="height" type="number"/>
                 </md-field>
             </div>
         </div>
@@ -101,8 +101,8 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
-
+<style lang="scss">
+    @import '@styles/variables.scss';
 
     .template-tools {
         position: fixed;

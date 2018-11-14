@@ -15,7 +15,7 @@
 
 
 <template>
-    <div class="client-card"  @click="update()">
+    <div class="client-card" @click="update()">
         <div class="client-card__number">
             {{formatId()}}
         </div>
@@ -26,7 +26,8 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
 
 
     .client-card {

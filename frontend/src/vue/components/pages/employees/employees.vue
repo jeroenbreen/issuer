@@ -32,9 +32,9 @@
         <div class="view-frame-section">
             <div class="employee-cards">
                 <employee-card
-                        v-for="user in getAll()"
-                        :key="user._id"
-                        :user="user"/>
+                    v-for="user in getAll()"
+                    :key="user._id"
+                    :user="user"/>
             </div>
         </div>
 
@@ -45,7 +45,9 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .employee-cards {
         display: flex;
         flex-wrap: wrap;

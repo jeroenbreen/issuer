@@ -37,37 +37,37 @@
 <template>
     <div class="line__tools">
         <div
-                @click="createLine('hourly')"
-                class="icon-button icon-button--editing-mode">
+            @click="createLine('hourly')"
+            class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-stopwatch"></i>
             </div>
         </div>
 
         <div
-                @click="createLine('sum')"
-                class="icon-button icon-button--editing-mode">
+            @click="createLine('sum')"
+            class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-money-bill-wave"></i>
             </div>
         </div>
         <div
-                @click="createLine('subtotal')"
-                class="icon-button icon-button--editing-mode">
+            @click="createLine('subtotal')"
+            class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-calculator"></i>
             </div>
         </div>
         <div
-                @click="createLine('text')"
-                class="icon-button icon-button--editing-mode">
+            @click="createLine('text')"
+            class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-text-height"></i>
             </div>
         </div>
         <div
-                @click="createLine('break')"
-                class="icon-button icon-button--editing-mode">
+            @click="createLine('break')"
+            class="icon-button icon-button--editing-mode">
             <div class="icon-button__icon">
                 <i class="fas fa-paragraph"></i>
             </div>
@@ -76,7 +76,9 @@
 </template>
 
 
-<style lang="scss">      @import '@styles/variables.scss';
+<style lang="scss">
+    @import '@styles/variables.scss';
+
     .line__tools {
         position: absolute;
         left: calc(100% + 20px);
