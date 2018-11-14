@@ -1,4 +1,5 @@
 <script>
+    import docPage from "@components/document/page";
     import templateTools from "./template-tools";
     import templateMargins from "./template-margins";
     import {Document} from "@models/Document";
@@ -10,7 +11,7 @@
     export default {
         name: 'template-editor',
         components: {
-            templateTools, templateMargins
+            docPage, templateTools, templateMargins
         },
         props: ['template', 'document'],
         data(){
@@ -38,7 +39,26 @@
                 },
                 deep: true
             }
-        }
+        },
+        methods: {
+            closeScreen() {
+                this.$store.commit('templates/unsetCurrent');
+            },
+            onSelectItem(item) {
+                this.currentItem = item;
+            },
+            onDeselectItem() {
+                this.currentItem = null;
+            },
+            generalClick(event) {
+                let target = $(event.target);
+                if (target.hasClass('cover')) {
+                    this.closeScreen();
+                } else if (!target.hasClass('vdr') && !target.hasClass('vdr-stick')) {
+                    this.onDeselectItem();
+                }
+            }
+        },
     }
 </script>
 
