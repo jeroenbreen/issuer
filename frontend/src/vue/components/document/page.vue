@@ -3,6 +3,7 @@
     import docLine from "./page/line";
     import lineTools from "./page/line/line-tools";
     import sortableList from "@components/shared/sortable-list";
+    import vueDragResize from '@components/shared/vue-drag-resize/vue-drag-resize'
     import $ from 'jquery'
 
     import {Template} from "@models/Template";
@@ -13,7 +14,7 @@
     export default {
         name: 'doc-page',
         components: {
-            item, docLine, lineTools, sortableList
+            item, docLine, lineTools, sortableList, vueDragResize
         },
         props: ['page', 'template', 'editor', 'factor', 'tools', 'onSelectItem'],
         watch: {
@@ -50,7 +51,7 @@
                 return value * this.factor;
             },
             getDocumentId() {
-                return this.page.document.getFormattedId(this.$root.$options.filters.formatId, this.$store.state.settings.documentIdFormat);
+                return this.page.document.getFormattedId(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.documentIdFormat);
             },
 
             // sortable
@@ -79,6 +80,13 @@
             },
             setMarginRight(event) {
                 this.template.margin.right = 620 - event.left;
+            },
+            resizeLinesContainer(event) {
+                this.template[this.page.getType()].lines.top = event.top;
+                this.template[this.page.getType()].lines.height = event.height;
+            },
+            dragLinesContainer(event) {
+                this.template[this.page.getType()].lines.top = event.top;
             },
             showCustomItem(item) {
                 return item.page === 'all' || item.page === this.page.getType();
@@ -184,6 +192,21 @@
                 :factor="factor"
                 :template="template"
                 :document="page.document"/>
+
+            <!-- page.lines container -->
+            <vue-drag-resize
+                    @resizing="resizeLinesContainer"
+                    @dragging="dragLinesContainer"
+                    :parentLimitation="true"
+                    :isDraggable="editor"
+                    :isResizable="editor"
+                    :y="scale(template[page.getType()].lines.top)"
+                    :x="0"
+                    :h="scale(template[page.getType()].lines.height)"
+                    :minh="100"
+                    :w="scale(template.getElementAreaWidth())"
+                    :sticks="['tm','bm']"/>
+
         </div>
 
         <vue-drag-resize

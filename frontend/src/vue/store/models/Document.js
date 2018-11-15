@@ -89,8 +89,8 @@ class Document {
         return total;
     }
 
-    getFormattedId(formatIdFilter, filterSetting) {
-        return this.date.getFullYear() + '-' + formatIdFilter(filterSetting, this.documentId);
+    getFormattedId(documentIdFormatter, documentIdFormat) {
+        return this.date.getFullYear() + '-' + documentIdFormatter(documentIdFormat, this.documentId);
     }
 
     //

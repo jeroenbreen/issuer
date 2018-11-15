@@ -6,8 +6,8 @@
             update: function() {
                 this.$router.push('clients/' + this.client._id)
             },
-            formatId: function() {
-                return this.client.getCustomCode(this.$root.$options.filters.formatId, this.$store.state.settings.clientIdFormat);
+            documentIdFormatter: function() {
+                return this.client.getCustomCode(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.clientIdFormat);
             }
         }
     }
@@ -17,7 +17,7 @@
 <template>
     <div class="client-card" @click="update()">
         <div class="client-card__number">
-            {{formatId()}}
+            {{documentIdFormatter()}}
         </div>
         <div class="client-card__name">
             {{client.companyName}}

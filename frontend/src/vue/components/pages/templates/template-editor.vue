@@ -77,7 +77,7 @@
 
 
 <template>
-    <div class="cover" @click="generalClick($event)">
+    <div class="cover">
         <div class="template-editor">
             <doc-page
                 :page="document.pages[0]"
@@ -155,7 +155,6 @@
                 background: $editing-mode-color-light;
 
                 .vdr {
-                    cursor: pointer;
 
                     &:before {
                         outline: 1px dashed $editing-mode-color;
@@ -165,6 +164,7 @@
                         top: 0;
                         left: 0;
                         position: absolute;
+                        pointer-events: none;
                     }
 
                     .vdr-stick {
@@ -172,10 +172,6 @@
                         background: #fff;
                         box-shadow: none;
                         -webkit-box-shadow: none;
-                    }
-
-                    &.active {
-                        z-index: 10000000!important;
                     }
                 }
 

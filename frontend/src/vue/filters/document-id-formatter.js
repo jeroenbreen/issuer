@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-const idFormatter = Vue.filter('formatId', function (type, value) {
+const documentIdFormatter = Vue.filter('documentIdFormatter', function (type, value) {
     switch (type) {
         case '3zeros':
             let s = String(value);
@@ -9,4 +9,4 @@ const idFormatter = Vue.filter('formatId', function (type, value) {
     }
 });
 
-export {idFormatter}
+export {documentIdFormatter}

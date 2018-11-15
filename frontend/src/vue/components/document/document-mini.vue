@@ -6,7 +6,7 @@
         props: ['document'],
         methods: {
             getDocumentId() {
-                return this.document.getFormattedId(this.$root.$options.filters.formatId, this.$store.state.settings.documentIdFormat);
+                return this.document.getFormattedId(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.documentIdFormat);
             },
             openDocument() {
                 this.$store.commit('documents/setCurrent', this.document);

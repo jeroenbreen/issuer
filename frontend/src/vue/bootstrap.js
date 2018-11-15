@@ -26,8 +26,8 @@ import templates from '@components/pages/templates/templates';
 
 
 // filters
-import {standardDateFilter} from './filters/standard-date-filter';
-import {idFormatter} from './filters/id-formatter';
+import {dateFormatter} from './filters/date-formatter';
+import {documentIdFormatter} from './filters/document-id-formatter';
 import VueCurrencyFilter from 'vue-currency-filter'
 
 // // directives
@@ -38,11 +38,11 @@ import VueMaterial from 'vue-material'
 Vue.use(VueMaterial);
 
 // draggable
-import VueDragResize from 'vue-drag-resize'
-Vue.component('vue-drag-resize', VueDragResize);
-
-import VueDraggableResizable from 'vue-draggable-resizable'
-Vue.component('vue-draggable-resizable', VueDraggableResizable);
+// import VueDragResize from 'vue-drag-resize'
+// Vue.component('vue-drag-resize', VueDragResize);
+//
+// import VueDraggableResizable from 'vue-draggable-resizable'
+// Vue.component('vue-draggable-resizable', VueDraggableResizable);
 
 
 

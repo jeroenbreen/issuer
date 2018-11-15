@@ -27,7 +27,7 @@
         },
         methods: {
             getFullLabel: function() {
-                return this.currentClient.getFullLabel(this.$root.$options.filters.formatId, this.$store.state.settings.clientIdFormat);
+                return this.currentClient.getFullLabel(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.clientIdFormat);
             },
             update: function() {
                 this.$store.dispatch('clients/update', this.client).then(() => {

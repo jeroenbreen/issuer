@@ -17,11 +17,11 @@
             doc.createPage();
             doc.currency = 'EUR';
             doc.rate = this.$store.state.settings.standardRate;
-            doc.clientCompanyName = 'The Company';
-            doc.clientContactName = 'M. Jones';
-            doc.clientStreet = 'Street 123';
+            doc.clientCompanyName = 'The Company Name';
+            doc.clientContactName = 'M. Jones-Gonzalez';
+            doc.clientStreet = 'East Street 1230';
             doc.clientPostcode = '1234 AA';
-            doc.clientCity = 'City';
+            doc.clientCity = 'City Name';
             doc.pages[0].createLine('hourly');
             doc.pages[1].createLine('hourly');
             return {

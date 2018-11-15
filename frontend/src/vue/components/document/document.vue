@@ -64,7 +64,7 @@
                 });
             },
             getDocumentId() {
-                return this.document.getFormattedId(this.$root.$options.filters.formatId, this.$store.state.settings.documentIdFormat);
+                return this.document.getFormattedId(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.documentIdFormat);
             },
             closeScreen() {
                 this.$store.commit('documents/unsetCurrent');

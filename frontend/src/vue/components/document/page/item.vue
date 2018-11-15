@@ -1,12 +1,13 @@
 <script>
-    import VueDraggableResizable from 'vue-draggable-resizable'
+    import vueDragResize from '@components/shared/vue-drag-resize/vue-drag-resize'
     import imageUploader from '@components/templates/image-uploader';
+    import contentParser from './content-parser'
     import $ from 'jquery';
 
     export default {
         name: 'item',
         components: {
-            imageUploader
+            vueDragResize, imageUploader
         },
         props: ['template', 'editor', 'factor', 'item', 'onClick', 'document'],
         methods: {
@@ -29,12 +30,16 @@
             },
             getContent() {
                 let company = this.$store.state.company;
-                return this.item.getContent(company, this.document);
+                let document = this.document;
+                let documentIdFormatter = this.$root.$options.filters.documentIdFormatter;
+                let documentIdFormat = this.$store.state.settings.documentIdFormat;
+                let dateFormatter = this.$root.$options.filters.dateFormatter;
+                return contentParser.parse(this.item.content, company, document, documentIdFormatter, documentIdFormat, dateFormatter);
             },
             select() {
                 this.onClick(this.item);
                 if ((this.item.type === 'text' || this.item.type === 'tag-text') && this.editor) {
-                    $(this.$el).find('textarea').focus();
+                    //$(this.$el).find('textarea').focus();
                 }
             }
         }
@@ -45,6 +50,7 @@
 <template>
     <vue-drag-resize
         @click.native="select()"
+        dragHandle=".drag-handle"
         :parentLimitation="true"
         :minw="20"
         :minh="20"
@@ -54,6 +60,12 @@
         :y="scale(item.y)"
         @resizing="onResize"
         @dragging="onDrag">
+
+        <div class="drag-handle">
+            <div class="drag-handle__bar"></div>
+            <div class="drag-handle__bar"></div>
+            <div class="drag-handle__bar"></div>
+        </div>
 
         <div
             :style="{'padding': scale(item.padding) + 'px',
@@ -89,6 +101,32 @@
     @import '@styles/variables.scss';
 
     .vdr {
+
+        .drag-handle {
+            position: absolute;
+            left: 0;
+            top: -30px;
+            width: 30px;
+            height: 30px;
+            cursor: move;
+            background: $editing-mode-color;
+            display: none;
+            padding: 10px 8px;
+
+            .drag-handle__bar {
+                height: 2px;
+                margin-bottom: 2px;
+                background: #fff;
+                pointer-events: none;
+            }
+        }
+
+        &.active {
+
+            .drag-handle {
+                display: block;
+            }
+        }
 
         .item__content {
             height: 100%;

@@ -63,10 +63,10 @@ class Template {
                 background: 'transparent'
             }, {
                 type: 'text',
-                content: 'Factuur {document_documentId}',
+                content: 'Factuur {document_id}',
                 x: 340,
                 y: 0,
-                width: 140,
+                width: 150,
                 height: 36,
                 page: 'front',
                 padding: 10,
@@ -75,14 +75,14 @@ class Template {
             }, {
                 type: 'text',
                 content: '{document_date}',
-                x: 280,
+                x: 225,
                 y: 0,
-                width: 90,
+                width: 116,
                 height: 36,
                 page: 'front',
                 padding: 10,
                 background: 'transparent',
-                textAlign: 'center'
+                textAlign: 'right'
             }, {
                 type: 'image',
                 src: 'icon.png',
@@ -95,7 +95,7 @@ class Template {
                 background: 'transparent'
             }, {
                 type: 'text',
-                content: '{company_name}<br>{company_address}<br>{company_postcode} {company_city}',
+                content: '<b>{company_name}</b><br>{company_address}<br>{company_postcode} {company_city}',
                 x: 0,
                 y: 180,
                 width: 240,
@@ -106,10 +106,10 @@ class Template {
                 textAlign: 'left'
             }, {
                 type: 'text',
-                content: '{document_clientCompanyName}<br>{document_clientContactName}<br>{document_clientStreet}<br>{document_clientPostcode} {document_clientCity}',
-                x: 253,
+                content: '<b>{document_clientCompanyName}</b><br>{document_clientContactName}<br>{document_clientStreet}<br>{document_clientPostcode} {document_clientCity}',
+                x: 250,
                 y: 180,
-                width: 240,
+                width: 230,
                 height: 80,
                 page: 'front',
                 padding: 10,
