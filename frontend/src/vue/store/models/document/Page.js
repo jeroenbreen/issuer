@@ -28,7 +28,7 @@ class Page {
     }
 
     getType() {
-        return this.document.pages.indexOf(this) === 0 ? 'front' : 'follow-up';
+        return this.document.pages.indexOf(this) === 0 ? 'front' : 'follow';
     }
 
     _getLineType(line, type) {

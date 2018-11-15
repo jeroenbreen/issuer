@@ -15,6 +15,15 @@
             doc.documentId = 1;
             doc.createPage();
             doc.createPage();
+            doc.currency = 'EUR';
+            doc.rate = this.$store.state.settings.standardRate;
+            doc.clientCompanyName = 'The Company';
+            doc.clientContactName = 'M. Jones';
+            doc.clientStreet = 'Street 123';
+            doc.clientPostcode = '1234 AA';
+            doc.clientCity = 'City';
+            doc.pages[0].createLine('hourly');
+            doc.pages[1].createLine('hourly');
             return {
                 document: doc,
                 currentTemplate: null
@@ -27,9 +36,7 @@
             create: function() {
                 let template = new Template();
                 this.$store.dispatch('templates/create', template.toBackend()).then((response) => {
-                    console.log(response);
                     let createdTemplate = this.$store.getters['templates/getItemById'](response._id);
-                    console.log(createdTemplate);
                     this.$store.commit('templates/setCurrent', createdTemplate);
                 });
             },

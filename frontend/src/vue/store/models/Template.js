@@ -11,43 +11,24 @@ class Template {
         this._id = template && template._id ? template._id : null;
         this.company_id = template && template.company_id ? template.company_id : '';
         this.title = template && template.title ? template.title : '';
-        this.settings = template ? template.settings : {
-            addresses: {
-                borderTop: 1,
-                top: 140
-            },
-            content: {
-                top: 250
-            },
-            subject: {
-                borderTop: 1,
-                borderBottom: 1
-            },
-            footerText: {
-                borderTop: 1,
-                borderBottom: 1
-            },
-            official: {
-                top: 730
-            }
-        };
-        this.logo = template ? new Image(template.logo) : new Image();
         this.margin = template ? template.margin : {
             top: 60,
             right: 70,
             bottom: 60,
             left: 70
         };
-        // this.footer = template && template.footer ? new TagText(template.footer) : new TagText();
-        this.dictionary = template ? template.dictionary : {
-            invoice: "Invoice",
-            subject: "Subject",
-            footer: "Please transfer this amount within four weeks, stating...</b>"
+        this.front = {
+            lines: {
+                top: 340,
+                height: 250
+            }
         };
-        // this.frontPage = {
-        //     items: []
-        // };
-
+        this.follow = {
+            lines: {
+                top: 70,
+                height: 500
+            }
+        };
         this.items = [];
         template.items = [
             {
@@ -74,15 +55,15 @@ class Template {
                 type: 'image',
                 src: 'slogan.png',
                 x: 198.5,
-                y: 600,
+                y: 680,
                 width: 80,
-                height: 100,
+                height: 80,
                 page: 'follow',
                 padding: 0,
                 background: 'transparent'
             }, {
                 type: 'text',
-                content: 'Factuur {document_id}',
+                content: 'Factuur {document_documentId}',
                 x: 340,
                 y: 0,
                 width: 140,
@@ -102,6 +83,38 @@ class Template {
                 padding: 10,
                 background: 'transparent',
                 textAlign: 'center'
+            }, {
+                type: 'image',
+                src: 'icon.png',
+                x: 0,
+                y: 0,
+                width: 92,
+                height: 42,
+                page: 'follow',
+                padding: 0,
+                background: 'transparent'
+            }, {
+                type: 'text',
+                content: '{company_name}<br>{company_address}<br>{company_postcode} {company_city}',
+                x: 0,
+                y: 180,
+                width: 240,
+                height: 80,
+                page: 'front',
+                padding: 10,
+                background: 'transparent',
+                textAlign: 'left'
+            }, {
+                type: 'text',
+                content: '{document_clientCompanyName}<br>{document_clientContactName}<br>{document_clientStreet}<br>{document_clientPostcode} {document_clientCity}',
+                x: 253,
+                y: 180,
+                width: 240,
+                height: 80,
+                page: 'front',
+                padding: 10,
+                background: 'transparent',
+                textAlign: 'left'
             }
         ];
 

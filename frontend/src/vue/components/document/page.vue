@@ -53,16 +53,6 @@
                 return this.page.document.getFormattedId(this.$root.$options.filters.formatId, this.$store.state.settings.documentIdFormat);
             },
 
-
-            // template methods
-            getTop() {
-                return this.page.getType() === 'front' ? this.scale(this.template.settings.content.top) + 'px' : 0;
-            },
-            getTotalTop() {
-                return 200;
-                //return this.page.getType() === 'front' ?  this.scale(this.template.settings.footerImage.top - 130) : this.scale(this.template.settings.footerImage.top + 30 - 130);
-            },
-
             // sortable
             onSortStart(event) {
                 $('.main').addClass('unselectable');
@@ -70,7 +60,6 @@
             onSortEnd(event) {
                 $('.main').removeClass('unselectable');
             },
-
 
 
             // template
@@ -90,7 +79,14 @@
             },
             setMarginRight(event) {
                 this.template.margin.right = 620 - event.left;
-            }
+            },
+            showCustomItem(item) {
+                return item.page === 'all' || item.page === this.page.getType();
+            },
+            getTotalTop() {
+                return 200;
+                //return this.page.getType() === 'front' ?  this.scale(this.template.settings.footerImage.top - 130) : this.scale(this.template.settings.footerImage.top + 30 - 130);
+            },
         }
     }
 </script>
@@ -110,17 +106,11 @@
 
 
 
-            <div class="document__content"
-                 :style="{'top': getTop()}">
-                <div class="document__subject"
-                     v-if="page.getType() === 'front'"
-                     :style="{'border-top': scale(template.settings.subject.borderTop) + 'px solid #000',
-                           'border-bottom': scale(template.settings.subject.borderBottom) + 'px solid #000',
-                           'padding': scale(10) + 'px'}">
-                    <span class="document__subject-about" v-if="!editor">{{template.dictionary.subject}}:</span>
-                    <input v-else v-model="template.dictionary.subject" class="template__input template__input--bold">
-                    {{page.document.subject}}
-                </div>
+            <div
+                class="document__content"
+                :style="{'top': scale(template[page.getType()].lines.top) + 'px',
+                         'height': scale(template[page.getType()].lines.height) + 'px'}">
+
 
                 <div
                         :style="{'padding': scale(10) + 'px 0'}"
@@ -186,12 +176,14 @@
             <!-- custom items -->
             <item
                 v-for="(item, index) in template.items"
+                v-if="showCustomItem(item)"
                 :on-click="selectItem"
                 :key="index"
                 :item="item"
                 :editor="editor"
                 :factor="factor"
-                :template="template"/>
+                :template="template"
+                :document="page.document"/>
         </div>
 
         <vue-drag-resize
@@ -282,53 +274,10 @@
     .document__elements {
         position: absolute;
 
-        .document__logo {
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-        }
-
-        .document__info {
-            position: absolute;
-            right: 0;
-            top: 0;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-
-            .document__date {
-                margin-right: $general-padding
-            }
-
-            .document__document-id {
-                background: #eee;
-                padding: $general-padding;
-            }
-        }
-
-        .document__addresses {
-            position: absolute;
-            left: -10px;
-            width: calc(100% + 20px);
-            display: flex;
-            padding: 10px;
-
-            .document_address-own {
-                width: 50%;
-                padding-right: 10px;
-            }
-
-            .document_address-client {
-                width: 50%;
-                padding-left: 10px;
-            }
-        }
-
         .document__content {
             position: absolute;
             width: 100%;
+            left: 0;
 
             .document__subject {
                 position: relative;

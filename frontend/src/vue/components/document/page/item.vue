@@ -8,7 +8,7 @@
         components: {
             imageUploader
         },
-        props: ['template', 'editor', 'factor', 'item', 'onClick'],
+        props: ['template', 'editor', 'factor', 'item', 'onClick', 'document'],
         methods: {
             onDrag (event) {
                 if (this.editor) {
@@ -29,7 +29,7 @@
             },
             getContent() {
                 let company = this.$store.state.company;
-                return this.item.getContent(company);
+                return this.item.getContent(company, this.document);
             },
             select() {
                 this.onClick(this.item);
@@ -55,25 +55,32 @@
         @resizing="onResize"
         @dragging="onDrag">
 
+        <div
+            :style="{'padding': scale(item.padding) + 'px',
+                     'background': item.background}"
+            class="item__content">
+            <img
+                    v-if="item.type === 'image'"
+                    :src="item.getSrc()">
+
+            <textarea
+                    v-if="item.type === 'text' && editor"
+                    v-model="item.content"
+                    :style="{'text-align': item.textAlign}"></textarea>
+
+            <div
+                    class="item__text"
+                    v-if="item.type === 'text' && !editor"
+                    v-html="getContent()"
+                    :style="{'text-align': item.textAlign}"></div>
+        </div>
+
         <image-uploader
                 v-if="editor && item.type === 'image'"
                 :item="item"
                 :template="template"/>
 
-        <img
-            v-if="item.type === 'image'"
-            :src="item.getSrc()">
 
-        <textarea
-            v-if="item.type === 'text' && editor"
-            v-model="item.content"
-            :style="{'text-align': item.align}"></textarea>
-
-        <div
-            class="item__text"
-            v-if="item.type === 'text' && !editor"
-            v-html="getContent()"
-            :style="{'text-align': item.align}"></div>
     </vue-drag-resize>
 </template>
 
@@ -83,22 +90,26 @@
 
     .vdr {
 
-        img {
-            width: 100%;
-        }
-
-        .item__text,
-        textarea {
-            width: 100%;
+        .item__content {
             height: 100%;
-            border: 0;
-            background: transparent;
-            padding: 0;
-            margin: 0;
-            resize: none;
-            font-family: inherit;
-            font-size: inherit;
-            outline: none;
+
+            img {
+                width: 100%;
+            }
+
+            .item__text,
+            textarea {
+                width: 100%;
+                height: 100%;
+                border: 0;
+                background: transparent;
+                padding: 0;
+                margin: 0;
+                resize: none;
+                font-family: inherit;
+                font-size: inherit;
+                outline: none;
+            }
         }
     }
 </style>
