@@ -199,6 +199,7 @@
                 @clicked="selectItem(template[page.getType()].lines)"
                 @resizing="resizeLinesContainer"
                 @dragging="dragLinesContainer"
+                :preventActiveBehavior="!editor"
                 :parentLimitation="true"
                 :isDraggable="editor"
                 :isResizable="editor"

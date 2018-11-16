@@ -52,6 +52,7 @@
     <vue-drag-resize
         @clicked="select()"
         dragHandle=".drag-handle"
+        :preventActiveBehavior="!editor"
         :parentLimitation="true"
         :minw="20"
         :minh="20"
