@@ -1,6 +1,6 @@
 <script>
     import vueDragResize from '@components/shared/vue-drag-resize/vue-drag-resize'
-    import imageUploader from '@components/templates/image-uploader';
+    import imageUploader from '@components/pages/templates/image-uploader';
     import contentParser from './content-parser'
     import $ from 'jquery';
 
@@ -50,7 +50,7 @@
 
 <template>
     <vue-drag-resize
-        @click.native="select()"
+        @clicked="select()"
         dragHandle=".drag-handle"
         :parentLimitation="true"
         :minw="20"

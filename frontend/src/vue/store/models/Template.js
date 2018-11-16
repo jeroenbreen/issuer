@@ -19,13 +19,15 @@ class Template {
         };
         this.front = {
             lines: {
-                top: 340,
+                type: 'box',
+                y: 340,
                 height: 250
             }
         };
         this.follow = {
             lines: {
-                top: 70,
+                type: 'box',
+                y: 70,
                 height: 500
             }
         };
@@ -95,7 +97,7 @@ class Template {
                 background: 'transparent'
             }, {
                 type: 'text',
-                content: '<b>{company_name}</b><br>{company_address}<br>{company_postcode} {company_city}',
+                content: '<b>{company_name}</b>\n{company_address}\n{company_postcode} {company_city}',
                 x: 0,
                 y: 180,
                 width: 240,
@@ -106,7 +108,7 @@ class Template {
                 textAlign: 'left'
             }, {
                 type: 'text',
-                content: '<b>{document_clientCompanyName}</b><br>{document_clientContactName}<br>{document_clientStreet}<br>{document_clientPostcode} {document_clientCity}',
+                content: '<b>{document_clientCompanyName}</b>\n{document_clientContactName}\n{document_clientStreet}\n{document_clientPostcode} {document_clientCity}',
                 x: 260,
                 y: 180,
                 width: 230,

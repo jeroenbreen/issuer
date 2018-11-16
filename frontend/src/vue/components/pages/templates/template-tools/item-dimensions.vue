@@ -11,7 +11,9 @@
 
 <template>
     <div class="template-tools__section">
-        <div class="template-tools__row">
+        <div
+            v-if="item.type !== 'box'"
+            class="template-tools__row">
             <div class="template-tools__label">
                 Left
             </div>
@@ -27,7 +29,9 @@
                 <md-input v-model="item.y" placeholder="top" type="number"/>
             </md-field>
         </div>
-        <div class="template-tools__row">
+        <div
+            v-if="item.type !== 'box'"
+            class="template-tools__row">
             <div class="template-tools__label">
                 Width
             </div>

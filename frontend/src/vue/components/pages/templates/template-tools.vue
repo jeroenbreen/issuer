@@ -1,5 +1,6 @@
 <script>
     import textAlign from './template-tools/text-align';
+    import itemAppearance from './template-tools/item-appearance';
     import colorPicker from './template-tools/color-picker';
     import itemText from './template-tools/item-text';
     import itemPadding from './template-tools/item-padding';
@@ -9,7 +10,7 @@
     export default {
         props: ['item', 'template'],
         components: {
-            textAlign, colorPicker, itemText, itemPadding, itemDimensions, itemPositioning
+            textAlign, itemAppearance, colorPicker, itemText, itemPadding, itemDimensions, itemPositioning
         },
         methods: {
             addImage() {
@@ -62,12 +63,18 @@
                 Add Text
             </button>
         </div>
-        <div v-if="item" class="template-tools__section">
+        <div
+            v-if="item && item.type !== 'box'"
+            class="template-tools__section">
             <div class="template-tools__label">&nbsp;</div>
             <button @click="removeItem()">
                 Remove Item
             </button>
         </div>
+
+        <item-appearance
+            v-if="item && item.type !== 'box'"
+            :item="item"/>
 
         <item-text
             v-if="item && item.type === 'text'"
@@ -78,11 +85,11 @@
             :item="item"/>
 
         <color-picker
-            v-if="item"
+            v-if="item && item.type !== 'box'"
             :item="item"/>
 
         <item-positioning
-            v-if="item"
+            v-if="item && item.type !== 'box'"
             :item="item"
             :template="template"/>
 
@@ -91,7 +98,7 @@
             :item="item"/>
 
         <item-padding
-            v-if="item"
+            v-if="item && item.type !== 'box'"
             :item="item"/>
     </div>
 </template>
@@ -106,7 +113,7 @@
         top: 40px;
         height: calc(100% - 40px);
         overflow: auto;
-        width: 220px;
+        width: 260px;
 
         .template-tools__set {
             display: flex;
@@ -159,7 +166,7 @@
             }
 
             .md-field {
-                width: 50px;
+                width: 100px;
                 padding: 0;
                 margin: 0;
                 min-height: 0;

@@ -10,8 +10,33 @@
             docPage, templateEditor
         },
         data() {
+            function getRandomLine() {
+                let words, index, subject;
+                words = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut quam sed arcu varius porttitor. Praesent sed tincidunt turpis. Cras condimentum lacus id ultrices imperdiet. Aliquam porttitor ut mi eu pellentesque. Sed fringilla turpis nunc, nec gravida metus suscipit ut. Sed a ipsum placerat, iaculis nulla ut, fermentum ipsum. Nam iaculis velit massa, eu rhoncus lorem mattis non. Integer ultrices a arcu sed consectetur. Ut scelerisque lectus sit amet sodales pharetra. Curabitur id tincidunt libero. Nullam consequat vestibulum rhoncus. Fusce in sapien ex.'.split(' ');
+                index = Math.max(Math.round(Math.random() * words.length) - 4, 0);
+                subject = words.splice(index, 4).join(' ');
+                subject = subject.charAt(0).toUpperCase() + subject.slice(1);
+
+                return {
+                    type: 'hourly',
+                    subject: subject,
+                    rate: doc.rate,
+                    hours: Math.round(Math.random() * 7) + 1
+                }
+            }
+
+            function getRandomSet() {
+                var lines = [];
+                while (lines.length < 4) {
+                    lines.push(getRandomLine());
+                }
+                return lines;
+            }
+
+
             // creates a blank document suitable to display the template
             const doc = new Document();
+            console.log(getRandomSet());
             doc.documentId = 1;
             doc.createPage();
             doc.createPage();
@@ -22,8 +47,9 @@
             doc.clientStreet = 'East Street 1230';
             doc.clientPostcode = '1234 AA';
             doc.clientCity = 'City Name';
-            doc.pages[0].createLine('hourly');
-            doc.pages[1].createLine('hourly');
+            doc.pages[0].importLines(getRandomSet());
+            doc.pages[1].importLines(getRandomSet());
+
             return {
                 document: doc,
                 currentTemplate: null

@@ -64,11 +64,8 @@
                 }
 
 
-                if (target.hasClass('cover')) {
-                    this.closeScreen();
-
-                } else if (!isItemArea(target)) {
-                    this.onDeselectItem(); // todo deze werkt niet
+                if (!isItemArea(target)) {
+                    this.onDeselectItem();
                 }
             }
         },
@@ -77,7 +74,7 @@
 
 
 <template>
-    <div class="cover">
+    <div class="cover" @click="generalClick($event)">
         <div class="template-editor">
             <doc-page
                 :page="document.pages[0]"

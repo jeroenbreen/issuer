@@ -82,18 +82,18 @@
                 this.template.margin.right = 620 - event.left;
             },
             resizeLinesContainer(event) {
-                this.template[this.page.getType()].lines.top = event.top;
+                this.template[this.page.getType()].lines.y = event.top;
                 this.template[this.page.getType()].lines.height = event.height;
             },
             dragLinesContainer(event) {
-                this.template[this.page.getType()].lines.top = event.top;
+                this.template[this.page.getType()].lines.y = event.top;
             },
             showCustomItem(item) {
                 return item.page === 'all' || item.page === this.page.getType();
             },
             getTotalTop() {
-                return 200;
-                //return this.page.getType() === 'front' ?  this.scale(this.template.settings.footerImage.top - 130) : this.scale(this.template.settings.footerImage.top + 30 - 130);
+                let pageTemplateSettings = this.template[this.page.getType()];
+                return this.scale(pageTemplateSettings.lines.y + pageTemplateSettings.lines.height - 60);
             },
         }
     }
@@ -116,13 +116,13 @@
 
             <div
                 class="document__content"
-                :style="{'top': scale(template[page.getType()].lines.top) + 'px',
+                :style="{'top': scale(template[page.getType()].lines.y) + 'px',
                          'height': scale(template[page.getType()].lines.height) + 'px'}">
 
 
                 <div
-                        :style="{'padding': scale(10) + 'px 0'}"
-                        class="document__lines">
+                    :style="{'padding': scale(10) + 'px 0'}"
+                    class="document__lines">
                     <sortable-list
                         lockAxis="y"
                         :useDragHandle="true"
@@ -196,17 +196,18 @@
 
             <!-- page.lines container -->
             <vue-drag-resize
-                    @resizing="resizeLinesContainer"
-                    @dragging="dragLinesContainer"
-                    :parentLimitation="true"
-                    :isDraggable="editor"
-                    :isResizable="editor"
-                    :y="scale(template[page.getType()].lines.top)"
-                    :x="0"
-                    :h="scale(template[page.getType()].lines.height)"
-                    :minh="100"
-                    :w="scale(template.getElementAreaWidth())"
-                    :sticks="['tm','bm']"/>
+                @clicked="selectItem(template[page.getType()].lines)"
+                @resizing="resizeLinesContainer"
+                @dragging="dragLinesContainer"
+                :parentLimitation="true"
+                :isDraggable="editor"
+                :isResizable="editor"
+                :y="scale(template[page.getType()].lines.y)"
+                :x="0"
+                :h="scale(template[page.getType()].lines.height)"
+                :minh="100"
+                :w="scale(template.getElementAreaWidth())"
+                :sticks="['tm','bm']"/>
 
         </div>
 

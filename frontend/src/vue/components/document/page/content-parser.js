@@ -1,7 +1,13 @@
 export default {
 
+    convertBreaks(content) {
+        return content.replace(new RegExp('\r?\n','g'), '<br />');
+    },
+
+
     parse(content, company, document, page, documentIdFormatter, documentIdFormat, dateFormatter){
-        return content.replace(/{\w+}/g, function(tag) {
+
+        return this.convertBreaks(content).replace(/{\w+}/g, function(tag) {
             let cleaned = tag.slice(1, -1);
             let obj = cleaned.split('_')[0];
             let property = cleaned.split('_')[1];
@@ -27,6 +33,7 @@ export default {
                         case 'i':
                             return document.pages.indexOf(page) + 1;
                     }
+                    break;
 
                 default:
                     return '';

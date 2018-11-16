@@ -73,7 +73,7 @@
             border: 1px solid #ddd;
             background: transparent;
             padding: 4px;
-            width: 55px;
+            width: 85px;
             margin: 0;
         }
 
