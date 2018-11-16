@@ -1,5 +1,6 @@
 import {Image} from './template/Image';
 import {Text} from './template/Text';
+import {Border} from './template/Border';
 import {Tools} from './../../tools/tools'
 import {pageWidth} from '@root/globals'
 
@@ -41,28 +42,24 @@ class Template {
 
     importItems(template) {
         for(let item of template.items) {
-            switch (item.type) {
-                case 'image':
-                    this.items.push(new Image(item));
-                    break;
-                case 'text':
-                    this.items.push(new Text(item));
-                    break;
-            }
+            this.addItem(item);
         }
     }
 
-    addItem(type, data, page) {
+    addItem(data) {
         let item;
-        switch (type) {
+        switch (data.type) {
             case 'image':
                 item = new Image(data);
                 break;
             case 'text':
                 item = new Text(data);
                 break;
+            case 'border':
+                item = new Border(data);
+                break;
         }
-        this[page].items.push(item);
+        this.items.push(item);
     }
 
     removeItem(item) {

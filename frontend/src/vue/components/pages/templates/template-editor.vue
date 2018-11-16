@@ -1,8 +1,9 @@
 <script>
     import documentIndex from "@components/document/document-index";
     import docPage from "@components/document/page";
-    import templateTools from "./template-tools";
-    import templateMargins from "./template-margins";
+    import templateDocumentTools from "./template-document-tools";
+    import templatePageTools from "./template-page-tools";
+    import templateItemTools from "./template-item-tools";
     import {Document} from "@models/Document";
     import {Template} from "@models/Template";
     import $ from 'jquery';
@@ -12,7 +13,7 @@
     export default {
         name: 'template-editor',
         components: {
-            documentIndex, docPage, templateTools, templateMargins
+            documentIndex, docPage, templateDocumentTools, templatePageTools, templateItemTools
         },
         props: ['template', 'document'],
         data(){
@@ -22,7 +23,8 @@
                 currentItem: null,
                 localState: {
                     showSnackbar: false
-                }
+                },
+                factor: 1
             }
         },
         watch: {
@@ -80,14 +82,14 @@
             <doc-page
                 :page="document.pages[0]"
                 :template="clonedTemplate"
-                :factor="1"
+                :factor="factor"
                 :tools="false"
                 :editor="!showTools"
                 :on-select-item="onSelectItem"/>
             <doc-page
                 :page="document.pages[1]"
                 :template="clonedTemplate"
-                :factor="1"
+                :factor="factor"
                 :tools="false"
                 :editor="!showTools"
                 :on-select-item="onSelectItem"/>
@@ -95,28 +97,38 @@
 
         <document-index
             :document="document"
-            :factor="1"/>
+            :factor="factor"/>
 
-        <div class="template-editor__title">
-            <md-field>
-                <label>Title</label>
-                <md-input v-model="clonedTemplate.title" placeholder="Title"/>
-            </md-field>
-        </div>
+
 
 
         <div class="close-button" @click="closeScreen()"></div>
 
-        <template-margins
-            :template="clonedTemplate"/>
+        <div class="template-tools__left">
+            <template-document-tools
+                :template="clonedTemplate"/>
 
-        <template-tools
-            :item="currentItem"
-            :template="clonedTemplate"/>
+            <template-page-tools
+                :template="clonedTemplate"
+                :current-page="document.state.currentPage"/>
+        </div>
+
+        <div class="template-tools__right">
+            <template-item-tools
+                v-if="currentItem"
+                :item="currentItem"
+                :template="clonedTemplate"
+                :current-page="document.state.currentPage"/>
+        </div>
+
+
+
 
         <div class="template__mode">
             <md-switch v-model="showTools">Hide tools</md-switch>
         </div>
+
+        <input class="document__zoom" v-model="factor">
 
         <md-snackbar
             :md-position="'left'"
@@ -131,14 +143,22 @@
 
 <style lang="scss">
     @import '@styles/variables.scss';
+    @import './template-tools.scss';
 
-    .template-editor__title {
+    .template-tools__left {
         position: fixed;
-        left: 20px;
+        left: 40px;
         top: 40px;
-        width: 250px;
-        background: #fff;
-        padding: 10px;
+        height: calc(100% - 40px);
+        overflow: auto;
+    }
+
+    .template-tools__right {
+        position: fixed;
+        right: 80px;
+        top: 40px;
+        height: calc(100% - 40px);
+        overflow: auto;
     }
 
     .template-editor {
@@ -258,6 +278,13 @@
         position: fixed;
         left: 20px;
         bottom: 20px;
+        color: #fff;
+    }
+
+    .document__zoom {
+        position: fixed;
+        left: 20px;
+        bottom: 80px;
         color: #fff;
     }
 

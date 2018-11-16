@@ -54,8 +54,8 @@
         dragHandle=".drag-handle"
         :preventActiveBehavior="!editor"
         :parentLimitation="true"
-        :minw="20"
-        :minh="20"
+        :minw="1"
+        :minh="1"
         :w="scale(item.width)"
         :h="scale(item.height)"
         :x="scale(item.x)"
@@ -73,6 +73,12 @@
             :style="{'padding': scale(item.padding) + 'px',
                      'background': item.background}"
             class="item__content">
+
+            <div
+                v-if="item.type === 'border'"
+                :style="{'background': item.color}"
+                class="item__border"></div>
+
             <img
                     v-if="item.type === 'image'"
                     :src="item.getSrc()">
@@ -132,6 +138,10 @@
 
         .item__content {
             height: 100%;
+
+            .item__border {
+                height: 100%;
+            }
 
             img {
                 width: 100%;

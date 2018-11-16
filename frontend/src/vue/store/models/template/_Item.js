@@ -11,16 +11,6 @@ class _Item {
         this.background = item.background;
     }
 
-    getX(template) {
-        switch (this.horizontal) {
-
-            case '':
-                return this.x;
-            case 'centered':
-                return (template.getElementAreaWidth() - this.width) / 2;
-        }
-    }
-
     clone() {
         return {...this}
     }

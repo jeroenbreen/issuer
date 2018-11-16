@@ -51,6 +51,7 @@
             doc.pages[1].importLines(getRandomSet());
 
             return {
+                settingsTemplate: this.$store.state.settings.template_id,
                 document: doc,
                 currentTemplate: null
             }
@@ -139,6 +140,11 @@
                 const settings = {...this.$store.state.settings};
                 settings.template_id = template._id;
                 this.$store.commit('settings/update', settings);
+            },
+            setTemplateViaSelect(){
+                const settings = {...this.$store.state.settings};
+                settings.template_id = this.settingsTemplate;
+                this.$store.commit('settings/update', settings);
             }
         }
     }
@@ -153,6 +159,34 @@
             </h1>
         </div>
         <div class="view-frame-section">
+            <div class="template__picker">
+                <md-field>
+                    <label>Standard invoice template</label>
+                    <md-select
+                        @md-selected="setTemplateViaSelect()"
+                        v-model="settingsTemplate"
+                        placeholder="Standard invoice template">
+                        <md-option
+                                v-for="(template, index) in getAll()"
+                                :value="template._id"
+                                :key="index">{{template.title}}</md-option>
+                    </md-select>
+                </md-field>
+                <md-field>
+                    <label>Standard quotation template</label>
+                    <md-select
+                            @md-selected="setTemplateViaSelect()"
+                            v-model="settingsTemplate"
+                            placeholder="Standard quotation template">
+                        <md-option
+                                v-for="(template, index) in getAll()"
+                                :value="template._id"
+                                :key="index">{{template.title}}</md-option>
+                    </md-select>
+                </md-field>
+            </div>
+        </div>
+        <div class="view-frame-section">
             <div class="templates">
                 <div
                     v-for="(template, index) in getAll()"
@@ -161,8 +195,8 @@
                     <div class="template__title">
                         {{template.title}}
                     </div>
-                    <div @click="setTemplate(template)" class="template__select"></div>
                     <doc-page
+                        @click.native="editTemplate(template)"
                         :key="index"
                         :page="document.pages[0]"
                         :template="template"
@@ -171,12 +205,7 @@
                         :tools="false"/>
 
                     <div class="template__tools">
-                        <div class="icon-button" @click="editTemplate(template)">
-                            <div class="icon-button__icon">
-                                <i class="fas fa-pen"></i>
-                            </div>
-                        </div>
-                        <div class="icon-button" @click="cloneTemplate(template)">
+                         <div class="icon-button" @click="cloneTemplate(template)">
                             <div class="icon-button__icon">
                                 <i class="fas fa-clone"></i>
                             </div>
@@ -204,6 +233,10 @@
 
 <style lang="scss">
     @import '@styles/variables.scss';
+
+    .template__picker {
+        width: 300px;
+    }
 
     .templates {
         display: flex;
