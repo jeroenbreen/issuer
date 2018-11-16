@@ -1,7 +1,7 @@
 import {Image} from './template/Image';
 import {Text} from './template/Text';
-import {pageWidth} from './../globals'
 import {Tools} from './../../tools/tools'
+import {pageWidth} from '@root/globals'
 
 
 
@@ -17,14 +17,14 @@ class Template {
             bottom: 60,
             left: 70
         };
-        this.front = {
+        this.front = template ? template.front : {
             lines: {
                 type: 'box',
                 y: 340,
                 height: 250
             }
         };
-        this.follow = {
+        this.follow = template ? template.follow : {
             lines: {
                 type: 'box',
                 y: 70,
@@ -32,105 +32,6 @@ class Template {
             }
         };
         this.items = [];
-        template.items = [
-            {
-                type: 'image',
-                src: 'logo.png',
-                x: 0,
-                y: 0,
-                width: 160,
-                height: 100,
-                page: 'front',
-                padding: 0,
-                background: 'transparent'
-            }, {
-                type: 'image',
-                src: 'slogan.png',
-                x: 178.5,
-                y: 590,
-                width: 120,
-                height: 100,
-                page: 'front',
-                padding: 0,
-                background: 'transparent'
-            }, {
-                type: 'image',
-                src: 'slogan.png',
-                x: 198.5,
-                y: 680,
-                width: 80,
-                height: 80,
-                page: 'follow',
-                padding: 0,
-                background: 'transparent'
-            }, {
-                type: 'text',
-                content: 'Factuur {document_id}',
-                x: 340,
-                y: 0,
-                width: 150,
-                height: 36,
-                page: 'front',
-                padding: 10,
-                background: '#F44E3B',
-                textAlign: 'center'
-            }, {
-                type: 'text',
-                content: '{document_date}',
-                x: 225,
-                y: 0,
-                width: 116,
-                height: 36,
-                page: 'front',
-                padding: 10,
-                background: 'transparent',
-                textAlign: 'right'
-            }, {
-                type: 'image',
-                src: 'icon.png',
-                x: 0,
-                y: 0,
-                width: 92,
-                height: 42,
-                page: 'follow',
-                padding: 0,
-                background: 'transparent'
-            }, {
-                type: 'text',
-                content: '<b>{company_name}</b>\n{company_address}\n{company_postcode} {company_city}',
-                x: 0,
-                y: 180,
-                width: 240,
-                height: 80,
-                page: 'front',
-                padding: 10,
-                background: 'transparent',
-                textAlign: 'left'
-            }, {
-                type: 'text',
-                content: '<b>{document_clientCompanyName}</b>\n{document_clientContactName}\n{document_clientStreet}\n{document_clientPostcode} {document_clientCity}',
-                x: 260,
-                y: 180,
-                width: 230,
-                height: 80,
-                page: 'front',
-                padding: 10,
-                background: 'transparent',
-                textAlign: 'left'
-            }, {
-                type: 'text',
-                content: '{page_i}/{document_l}',
-                x: 460,
-                y: 0,
-                width: 30,
-                height: 24,
-                page: 'follow',
-                padding: 4,
-                background: '#ddd',
-                textAlign: 'center'
-            }
-        ];
-
         if (template) {
             this.importItems(template);
         }
@@ -165,9 +66,9 @@ class Template {
     }
 
     removeItem(item) {
-        let index = this.frontPage.items.indexOf(item);
+        let index = this.items.indexOf(item);
         if (index > -1) {
-            this.frontPage.items.splice(index, 1);
+            this.items.splice(index, 1);
         }
     }
 
@@ -177,9 +78,6 @@ class Template {
         return pageWidth - this.margin.left - this.margin.right;
     }
 
-    getLogoSrc() {
-            return config.fromFrontend + config.templateUrl + this.settings.logo.src;
-    }
 
     //
 

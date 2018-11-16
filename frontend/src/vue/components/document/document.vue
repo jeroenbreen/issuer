@@ -1,31 +1,15 @@
 <script>
-    import sortableList from "@components/shared/sortable-list";
+    import documentIndex from "./document-index";
     import docPage from "./page";
-    import miniPage from "./mini-page";
-
     import {Document} from "@models/Document";
     import $ from "jquery";
 
-    const pageHeight = 877;
-    const pageMargin = 40;
-    const scrollBuffer = 20;
     let saveBuffer = null;
 
     export default {
         name: 'document',
         components: {
-            sortableList, docPage, miniPage
-        },
-        mounted () {
-            const container = $('.document__container');
-            const document = this.document;
-            const factor = this.factor;
-            container.scroll(function(event){
-                let scroll = container.scrollTop(),
-                    pageIndex = Math.floor((scroll + scrollBuffer) / (pageHeight * factor + pageMargin));
-                document.state.currentPage = document.pages[pageIndex];
-
-            })
+            documentIndex, docPage
         },
         data(){
             return {
@@ -91,11 +75,6 @@
                 }).done(function(response){
                     window.open(config.fromFrontend + config.pdfUrl + response);
                 });
-            },
-            onSortEnd(event) {
-                $('.document__container').animate({
-                    scrollTop: event.newIndex * (pageHeight * this.factor + pageMargin) - scrollBuffer
-                }, 1000);
             }
         }
     }
@@ -123,20 +102,10 @@
                 </div>
             </div>
         </div>
-        <div
-                v-if="document.pages.length > 1"
-                class="document__index">
-            <sortable-list
-                    lockAxis="y"
-                    v-model="document.pages"
-                    @sortEnd="onSortEnd($event)">
-                <mini-page
-                        v-for="(page, index) in document.pages"
-                        :index="index"
-                        :key="index"
-                        :page="page"></mini-page>
-            </sortable-list>
-        </div>
+        <document-index
+            v-if="document.pages.length > 1"
+            :document="document"
+            :factor="factor"/>
         <div class="document__tools">
 
             <div class="tool-button tool-button--inverse" @click="print()">
@@ -188,20 +157,6 @@
             &:last-child {
                 margin-bottom: 200px;
             }
-        }
-    }
-
-    .document__index {
-        position: fixed;
-        right: calc(50% + 340px);
-        top: 40px;
-        width: 50px;
-        height: calc(100% + 80px);
-        overflow: auto;
-
-        ul {
-            padding: 0;
-            margin: 0;
         }
     }
 

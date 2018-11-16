@@ -10,12 +10,13 @@ class Template {
         this._id = template._id ? ObjectId(template._id) : ObjectId();
         this.company_id = template.company_id ? ObjectId(template.company_id) : ObjectId();
         this.title = String(template.title);
-        this.logo = Object(template.logo);
-        this.settings = Object(template.settings);
         this.margin = Object(template.margin);
-        this.footer = Object(template.footer);
-        this.dictionary = Object(template.dictionary);
-        this.frontPage = template.frontPage;
+        this.front = Object(template.front);
+        this.follow = Object(template.follow);
+        this.items = [];
+        for (let item of template.items) {
+            this.items.push(Object(item));
+        }
     }
 }
 

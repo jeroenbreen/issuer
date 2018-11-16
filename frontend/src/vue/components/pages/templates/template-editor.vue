@@ -1,4 +1,5 @@
 <script>
+    import documentIndex from "@components/document/document-index";
     import docPage from "@components/document/page";
     import templateTools from "./template-tools";
     import templateMargins from "./template-margins";
@@ -11,7 +12,7 @@
     export default {
         name: 'template-editor',
         components: {
-            docPage, templateTools, templateMargins
+            documentIndex, docPage, templateTools, templateMargins
         },
         props: ['template', 'document'],
         data(){
@@ -74,7 +75,7 @@
 
 
 <template>
-    <div class="cover" @click="generalClick($event)">
+    <div class="cover document__container" @click="generalClick($event)">
         <div class="template-editor">
             <doc-page
                 :page="document.pages[0]"
@@ -91,6 +92,10 @@
                 :editor="!showTools"
                 :on-select-item="onSelectItem"/>
         </div>
+
+        <document-index
+            :document="document"
+            :factor="1"/>
 
         <div class="template-editor__title">
             <md-field>
