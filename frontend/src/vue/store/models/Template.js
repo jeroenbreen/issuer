@@ -70,7 +70,7 @@ class Template {
                 height: 36,
                 page: 'front',
                 padding: 10,
-                background: '#ddd',
+                background: '#F44E3B',
                 textAlign: 'center'
             }, {
                 type: 'text',
@@ -107,7 +107,7 @@ class Template {
             }, {
                 type: 'text',
                 content: '<b>{document_clientCompanyName}</b><br>{document_clientContactName}<br>{document_clientStreet}<br>{document_clientPostcode} {document_clientCity}',
-                x: 250,
+                x: 260,
                 y: 180,
                 width: 230,
                 height: 80,
@@ -115,6 +115,17 @@ class Template {
                 padding: 10,
                 background: 'transparent',
                 textAlign: 'left'
+            }, {
+                type: 'text',
+                content: '{page_i}/{document_l}',
+                x: 460,
+                y: 0,
+                width: 30,
+                height: 24,
+                page: 'follow',
+                padding: 4,
+                background: '#ddd',
+                textAlign: 'center'
             }
         ];
 

@@ -32,6 +32,8 @@
         }
     };
 
+    import $ from 'jquery';
+
     export default {
         name: 'vue-drag-resize',
         props: {
@@ -237,8 +239,7 @@
                 if (this.preventActiveBehavior) {
                     return
                 }
-
-                if (e.target !== this.$el && !this.$el.contains(e.target)) {
+                if (e.target !== this.$el && !this.$el.contains(e.target) && $(e.target).parents('.template-tools').length === 0) {
                     this.active = false;
                 }
             },

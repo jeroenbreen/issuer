@@ -191,7 +191,8 @@
                 :editor="editor"
                 :factor="factor"
                 :template="template"
-                :document="page.document"/>
+                :document="page.document"
+                :page="page"/>
 
             <!-- page.lines container -->
             <vue-drag-resize

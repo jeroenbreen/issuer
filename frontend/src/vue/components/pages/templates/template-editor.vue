@@ -68,7 +68,7 @@
                     this.closeScreen();
 
                 } else if (!isItemArea(target)) {
-                    this.onDeselectItem();
+                    this.onDeselectItem(); // todo deze werkt niet
                 }
             }
         },
@@ -254,7 +254,7 @@
 
     .template__mode {
         position: fixed;
-        right: 20px;
+        left: 20px;
         bottom: 20px;
         color: #fff;
     }

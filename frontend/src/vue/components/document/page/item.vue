@@ -9,7 +9,7 @@
         components: {
             vueDragResize, imageUploader
         },
-        props: ['template', 'editor', 'factor', 'item', 'onClick', 'document'],
+        props: ['template', 'editor', 'factor', 'item', 'onClick', 'document', 'page'],
         methods: {
             onDrag (event) {
                 if (this.editor) {
@@ -31,10 +31,11 @@
             getContent() {
                 let company = this.$store.state.company;
                 let document = this.document;
+                let page = this.page;
                 let documentIdFormatter = this.$root.$options.filters.documentIdFormatter;
                 let documentIdFormat = this.$store.state.settings.documentIdFormat;
                 let dateFormatter = this.$root.$options.filters.dateFormatter;
-                return contentParser.parse(this.item.content, company, document, documentIdFormatter, documentIdFormat, dateFormatter);
+                return contentParser.parse(this.item.content, company, document, page, documentIdFormatter, documentIdFormat, dateFormatter);
             },
             select() {
                 this.onClick(this.item);

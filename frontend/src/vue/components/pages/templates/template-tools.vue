@@ -1,12 +1,16 @@
 <script>
+    import textAlign from './template-tools/text-align';
+    import colorPicker from './template-tools/color-picker';
+    import itemText from './template-tools/item-text';
+    import itemPadding from './template-tools/item-padding';
+    import itemDimensions from './template-tools/item-dimensions';
+    import itemPositioning from './template-tools/item-positioning';
+
     export default {
         props: ['item', 'template'],
-        data(){
-            return {
-
-            }
+        components: {
+            textAlign, colorPicker, itemText, itemPadding, itemDimensions, itemPositioning
         },
-
         methods: {
             addImage() {
                 let image = {
@@ -41,9 +45,7 @@
                     callback: callback
                 });
             },
-            centerHorizontal() {
-                this.item.x = (this.template.getElementAreaWidth() - this.item.width) / 2;
-            }
+
         }
     }
 </script>
@@ -66,50 +68,31 @@
                 Remove Item
             </button>
         </div>
-        <div v-if="item" class="template-tools__section">
-            <div class="template-tools__row">
-                <div class="template-tools__label">
-                    Left
-                </div>
-                <md-field>
-                    <md-input v-model="item.x" placeholder="left" type="number"/>
-                </md-field>
-            </div>
-            <div class="template-tools__row">
-                <div class="template-tools__label">
-                    Top
-                </div>
-                <md-field>
-                    <md-input v-model="item.y" placeholder="top" type="number"/>
-                </md-field>
-            </div>
-            <div class="template-tools__row">
-                <div class="template-tools__label">
-                    Width
-                </div>
-                <md-field>
-                    <md-input v-model="item.width" placeholder="width" type="number"/>
-                </md-field>
-            </div>
-            <div class="template-tools__row">
-                <div class="template-tools__label">
-                    Height
-                </div>
-                <md-field>
-                    <md-input v-model="item.height" placeholder="height" type="number"/>
-                </md-field>
-            </div>
-        </div>
-        <div v-if="item" class="template-tools__section">
-            <div class="template-tools__row">
-                <div class="template-tools__label">
-                    Horiz. centered
-                </div>
-                <div @click="centerHorizontal()" class="template__tool">
-                    <i class="fas fa-arrows-alt-h"></i>
-                </div>
-            </div>
-        </div>
+
+        <item-text
+            v-if="item && item.type === 'text'"
+            :item="item"/>
+
+        <item-dimensions
+            v-if="item"
+            :item="item"/>
+
+        <color-picker
+            v-if="item"
+            :item="item"/>
+
+        <item-positioning
+            v-if="item"
+            :item="item"
+            :template="template"/>
+
+        <text-align
+            v-if="item && item.type === 'text'"
+            :item="item"/>
+
+        <item-padding
+            v-if="item"
+            :item="item"/>
     </div>
 </template>
 
@@ -119,13 +102,19 @@
 
     .template-tools {
         position: fixed;
-        right: 120px;
-        top: 20px;
-        padding: 20px;
+        right: 80px;
+        top: 40px;
+        height: calc(100% - 40px);
+        overflow: auto;
+        width: 220px;
+
+        .template-tools__set {
+            display: flex;
+        }
 
         .template__tool {
-            background: #fff;
-            border: 1px solid #ddd;
+            background: #ddd;
+            border: 1px solid transparent;
             border-radius: 2px;
             width: 24px;
             display: flex;
@@ -133,23 +122,38 @@
             align-items: center;
             height: 24px;
             cursor: pointer;
+            font-size: 14px;
+            margin-right: 2px;
 
             &:hover {
-                background: $editing-mode-color;
+                border: 1px solid #000;
+            }
+
+            &.template__tool--current {
+                border: 1px solid #000;
             }
         }
     }
 
     .template-tools__section {
-        margin-bottom: 20px;
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+        background: #fff;
+
+        .template-tools__header {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
 
         .template-tools__row {
             display: flex;
             margin-bottom: 4px;
+            align-items: center;
 
             .template-tools__label {
                 width: 100px;
-                color: #fff;
+                color: #000;
                 text-align: right;
                 padding: 3px 10px 0 0;
             }
@@ -164,7 +168,7 @@
                     width: 100%;
                     height: 26px;
                     border: 0;
-                    background: #fff;
+                    background: #ddd;
                     color: #000;
                     padding: 4px;
                     margin: 0;
