@@ -47,11 +47,11 @@
             closeScreen() {
                 this.$store.commit('templates/unsetCurrent');
             },
-            onSelectItem(item) {
-                this.currentItem = item;
+            getCurrentItem() {
+                return this.$store.state.templateEditor.currentItem;
             },
             onDeselectItem() {
-                this.currentItem = null;
+                this.$store.commit('templateEditor/unsetCurrentItem');
             },
             generalClick(event) {
                 let target = $(event.target);
@@ -84,15 +84,13 @@
                 :template="clonedTemplate"
                 :factor="factor"
                 :tools="false"
-                :editor="!showTools"
-                :on-select-item="onSelectItem"/>
+                :editor="!showTools"/>
             <doc-page
                 :page="document.pages[1]"
                 :template="clonedTemplate"
                 :factor="factor"
                 :tools="false"
-                :editor="!showTools"
-                :on-select-item="onSelectItem"/>
+                :editor="!showTools"/>
         </div>
 
         <document-index
@@ -104,19 +102,20 @@
 
         <div class="close-button" @click="closeScreen()"></div>
 
-        <div class="template-tools__left">
+        <div class="template-tools__left" v-if="!showTools">
             <template-document-tools
                 :template="clonedTemplate"/>
 
             <template-page-tools
+                v-if="document.state.currentPage"
                 :template="clonedTemplate"
                 :current-page="document.state.currentPage"/>
         </div>
 
-        <div class="template-tools__right">
+        <div class="template-tools__right" v-if="!showTools">
             <template-item-tools
-                v-if="currentItem"
-                :item="currentItem"
+                v-if="getCurrentItem()"
+                :item="getCurrentItem()"
                 :template="clonedTemplate"
                 :current-page="document.state.currentPage"/>
         </div>

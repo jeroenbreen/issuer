@@ -42,6 +42,9 @@
                 if ((this.item.type === 'text' || this.item.type === 'tag-text') && this.editor) {
                     //$(this.$el).find('textarea').focus();
                 }
+            },
+            isActive() {
+                return this.$store.state.templateEditor.currentItem === this.item;
             }
         }
     }
@@ -60,6 +63,7 @@
         :h="scale(item.height)"
         :x="scale(item.x)"
         :y="scale(item.y)"
+        :is-active="isActive()"
         @resizing="onResize"
         @dragging="onDrag">
 

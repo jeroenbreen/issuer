@@ -16,7 +16,7 @@
         components: {
             item, docLine, lineTools, sortableList, vueDragResize
         },
-        props: ['page', 'template', 'editor', 'factor', 'tools', 'onSelectItem'],
+        props: ['page', 'template', 'editor', 'factor', 'tools'],
         watch: {
             clonedTemplate: {
                 handler: function() {
@@ -66,7 +66,7 @@
             // template
             selectItem(item) {
                 if (this.editor) {
-                    this.onSelectItem(item);
+                    this.$store.commit('templateEditor/setCurrentItem', item);
                 }
             },
             setMarginTop(event) {
@@ -180,20 +180,6 @@
                 </div>
             </div>
 
-
-            <!-- custom items -->
-            <item
-                v-for="(item, index) in template.items"
-                v-if="showCustomItem(item)"
-                :on-click="selectItem"
-                :key="index"
-                :item="item"
-                :editor="editor"
-                :factor="factor"
-                :template="template"
-                :document="page.document"
-                :page="page"/>
-
             <!-- page.lines container -->
             <vue-drag-resize
                 @clicked="selectItem(template[page.getType()].lines)"
@@ -209,6 +195,19 @@
                 :minh="100"
                 :w="scale(template.getElementAreaWidth())"
                 :sticks="['tm','bm']"/>
+
+            <!-- custom items -->
+            <item
+                    v-for="(item, index) in template.items"
+                    v-if="showCustomItem(item)"
+                    :on-click="selectItem"
+                    :key="index"
+                    :item="item"
+                    :editor="editor"
+                    :factor="factor"
+                    :template="template"
+                    :document="page.document"
+                    :page="page"/>
 
         </div>
 

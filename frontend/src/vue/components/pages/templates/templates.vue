@@ -36,7 +36,6 @@
 
             // creates a blank document suitable to display the template
             const doc = new Document();
-            console.log(getRandomSet());
             doc.documentId = 1;
             doc.createPage();
             doc.createPage();

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import settings from './modules/settings'
+import templateEditor from './modules/template-editor'
 import templates from './modules/templates'
 import users from './modules/users'
 import clients from './modules/clients'
@@ -99,6 +100,7 @@ export default new Vuex.Store({
     actions,
     modules: {
         settings,
+        templateEditor,
         templates,
         users,
         clients,

@@ -1,9 +1,10 @@
 <script>
+    import itemList from './template-tools/item-list'
     export default {
         name: 'template-page-tools',
         props: ['template', 'currentPage'],
         components: {
-
+            itemList
         },
         methods: {
             addImage() {
@@ -66,6 +67,11 @@
                 </span>
             </div>
         </div>
+
+        <item-list
+            :template="template"
+            :page="currentPage"></item-list>
+
         <div class="template-tools__section">
             <button @click="addImage()">
                 Add Image

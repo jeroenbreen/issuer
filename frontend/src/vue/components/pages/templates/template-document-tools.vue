@@ -41,6 +41,6 @@
     @import '@styles/variables.scss';
 
     .template-document-tools {
-        
+
     }
 </style>
