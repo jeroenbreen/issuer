@@ -50,7 +50,10 @@
             doc.pages[1].importLines(getRandomSet());
 
             return {
-                settingsTemplate: this.$store.state.settings.template_id,
+                standardTemplate: {
+                    invoice: this.$store.state.settings.template_invoice_id,
+                    quotation: this.$store.state.settings.template_quotation_id
+                },
                 document: doc,
                 currentTemplate: null
             }
@@ -132,17 +135,17 @@
                     callback: callback
                 });
             },
-            isCurrentTemplate(template) {
-                return this.$store.state.settings.template_id === template._id;
+            isCurrentTemplate(template, type) {
+                return this.$store.state.settings['template_' + type + '_id'] === template._id;
             },
             setTemplate(template) {
                 const settings = {...this.$store.state.settings};
                 settings.template_id = template._id;
                 this.$store.commit('settings/update', settings);
             },
-            setTemplateViaSelect(){
+            setTemplateViaSelect(type){
                 const settings = {...this.$store.state.settings};
-                settings.template_id = this.settingsTemplate;
+                settings['template_' + type + '_id'] = this.standardTemplate[type];
                 this.$store.commit('settings/update', settings);
             }
         }
@@ -158,38 +161,45 @@
             </h1>
         </div>
         <div class="view-frame-section">
-            <div class="template__picker">
-                <md-field>
-                    <label>Standard invoice template</label>
-                    <md-select
-                        @md-selected="setTemplateViaSelect()"
-                        v-model="settingsTemplate"
-                        placeholder="Standard invoice template">
-                        <md-option
-                                v-for="(template, index) in getAll()"
-                                :value="template._id"
-                                :key="index">{{template.title}}</md-option>
-                    </md-select>
-                </md-field>
-                <md-field>
-                    <label>Standard quotation template</label>
-                    <md-select
-                            @md-selected="setTemplateViaSelect()"
-                            v-model="settingsTemplate"
-                            placeholder="Standard quotation template">
-                        <md-option
-                                v-for="(template, index) in getAll()"
-                                :value="template._id"
-                                :key="index">{{template.title}}</md-option>
-                    </md-select>
-                </md-field>
+            <div class="template__pickers">
+                <div class="template__picker">
+                    <md-field>
+                        <label>Standard invoice template</label>
+                        <md-select
+                                @md-selected="setTemplateViaSelect('invoice')"
+                                v-model="standardTemplate.invoice"
+                                placeholder="Standard invoice template">
+                            <md-option
+                                    v-for="(template, index) in getAll()"
+                                    :value="template._id"
+                                    :key="index">{{template.title}}</md-option>
+                        </md-select>
+                    </md-field>
+                    <div class="colored-bullet colored-bullet--invoice"></div>
+                </div>
+                <div class="template__picker">
+                    <md-field>
+                        <label>Standard quotation template</label>
+                        <md-select
+                                @md-selected="setTemplateViaSelect('quotation')"
+                                v-model="standardTemplate.quotation"
+                                placeholder="Standard quotation template">
+                            <md-option
+                                    v-for="(template, index) in getAll()"
+                                    :value="template._id"
+                                    :key="index">{{template.title}}</md-option>
+                        </md-select>
+                    </md-field>
+                    <div class="colored-bullet colored-bullet--quotation"></div>
+                </div>
             </div>
         </div>
         <div class="view-frame-section">
             <div class="templates">
                 <div
                     v-for="(template, index) in getAll()"
-                    :class="{'template--current': isCurrentTemplate(template)}"
+                    :class="{'template--invoice': isCurrentTemplate(template, 'invoice'),
+                    'template--quotation': isCurrentTemplate(template, 'quotation')}"
                     class="template__container">
                     <div class="template__title">
                         {{template.title}}
@@ -233,8 +243,29 @@
 <style lang="scss">
     @import '@styles/variables.scss';
 
-    .template__picker {
-        width: 300px;
+    .template__pickers {
+
+        .template__picker {
+            width: 300px;
+            display: flex;
+            align-items: center;
+
+            .colored-bullet {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                margin-left: 4px;
+
+                &.colored-bullet--quotation {
+                    background: $quotation-color;
+                }
+
+                &.colored-bullet--invoice {
+                    background: $invoice-color;
+                }
+            }
+        }
     }
 
     .templates {
@@ -246,9 +277,14 @@
             border: 1px solid transparent;
             cursor: pointer;
             position: relative;
+            margin: 2px;
 
-            &.template--current {
-                border: 1px solid $main-theme-color;
+            &.template--invoice {
+                border: 1px solid $invoice-color;
+            }
+
+            &.template--quotation {
+                border: 1px solid $quotation-color;
             }
 
             .page {

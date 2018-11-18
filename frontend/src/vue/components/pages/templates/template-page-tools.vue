@@ -55,19 +55,8 @@
 <template>
     <div class="template-page-tools template-tools">
         <div class="template-tools__header">
-            Page
+            Page ({{currentPage.getType()}})
         </div>
-        <div class="template-tools__section">
-            <div class="template-tools__row">
-                <div class="template-tools__label">
-                    Page type
-                </div>
-                <span>
-                    {{currentPage.getType()}}
-                </span>
-            </div>
-        </div>
-
         <item-list
             :template="template"
             :page="currentPage"></item-list>

@@ -36,7 +36,7 @@
 <template>
     <div class="template-item-tools template-tools">
         <div class="template-tools__header">
-            Item
+            Item ({{item.type}})
         </div>
         <div
             v-if="item && item.type !== 'box'"

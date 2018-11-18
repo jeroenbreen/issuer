@@ -1,5 +1,6 @@
 const state = {
-    template_id: '5bee9f703b6286106a2f6c34',
+    template_invoice_id: '5beed8f4d3ddfb12fd4e275e',
+    template_quotation_id: '5befe6bb738f4a0421b82f74',
     documentIdFormat: '3zeros',
     clientIdFormat: '3zeros',
     standardRate: 70
