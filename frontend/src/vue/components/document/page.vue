@@ -66,7 +66,7 @@
             // template
             selectItem(item) {
                 if (this.editor) {
-                    this.$store.commit('templateEditor/setCurrentItem', item);
+                    this.$store.commit('templateEditor/setCurrentItemIndex', this.template.items.indexOf(item));
                 }
             },
             setMarginTop(event) {
@@ -182,7 +182,6 @@
 
             <!-- page.lines container -->
             <vue-drag-resize
-                @clicked="selectItem(template[page.getType()].lines)"
                 @resizing="resizeLinesContainer"
                 @dragging="dragLinesContainer"
                 :preventActiveBehavior="!editor"
@@ -198,16 +197,16 @@
 
             <!-- custom items -->
             <item
-                    v-for="(item, index) in template.items"
-                    v-if="showCustomItem(item)"
-                    :on-click="selectItem"
-                    :key="index"
-                    :item="item"
-                    :editor="editor"
-                    :factor="factor"
-                    :template="template"
-                    :document="page.document"
-                    :page="page"/>
+                v-for="(item, index) in template.items"
+                v-if="showCustomItem(item)"
+                :on-click="selectItem"
+                :key="index"
+                :item="item"
+                :editor="editor"
+                :factor="factor"
+                :template="template"
+                :document="page.document"
+                :page="page"/>
 
         </div>
 

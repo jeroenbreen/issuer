@@ -1,5 +1,8 @@
 const state = {
-    currentItem: null
+    // currently storing the index instead of the item itself
+    // this is a way to avoid storing part of the edited template
+    // in the store. Open for discussion to find a better way for this.
+    currentItemIndex: null
 };
 
 
@@ -13,11 +16,11 @@ const actions = {
 };
 
 const mutations = {
-    setCurrentItem(state, item) {
-        state.currentItem = item;
+    setCurrentItemIndex(state, index) {
+        state.currentItemIndex = index;
     },
-    unsetCurrentItem(state) {
-        state.currentItem = null;
+    unsetCurrentItemIndex(state) {
+        state.currentItemIndex = null;
     }
 };
 

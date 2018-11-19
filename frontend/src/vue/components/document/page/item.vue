@@ -44,7 +44,7 @@
                 }
             },
             isActive() {
-                return this.$store.state.templateEditor.currentItem === this.item;
+                return this.$store.state.templateEditor.currentItemIndex === this.template.items.indexOf(this.item);
             }
         }
     }

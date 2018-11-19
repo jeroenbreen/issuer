@@ -48,10 +48,10 @@
                 this.$store.commit('templates/unsetCurrent');
             },
             getCurrentItem() {
-                return this.$store.state.templateEditor.currentItem;
+                return this.$store.state.templateEditor.currentItemIndex !== null ? this.template.items[this.$store.state.templateEditor.currentItemIndex] : null;
             },
             onDeselectItem() {
-                this.$store.commit('templateEditor/unsetCurrentItem');
+                this.$store.commit('templateEditor/unsetCurrentItemIndex');
             },
             generalClick(event) {
                 let target = $(event.target);

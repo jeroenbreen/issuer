@@ -15,10 +15,10 @@
                 })
             },
             onClick(item) {
-                this.$store.commit('templateEditor/setCurrentItem', item);
+                this.$store.commit('templateEditor/setCurrentItemIndex', this.template.items.indexOf(item));
             },
-            getCurrentItem() {
-                return this.$store.state.templateEditor.currentItem;
+            isCurrentItem(item) {
+                return this.$store.state.templateEditor.currentItemIndex === this.template.items.indexOf(item);
             }
         }
     }
@@ -32,7 +32,7 @@
             v-for="(item, index) in getItems()"
             @click="onClick(item)"
             :key="index"
-            :class="{'item-list__item--current': item === getCurrentItem()}">
+            :class="{'item-list__item--current': isCurrentItem(item)}">
             <div class="item-list__item-icon">
                 <div
                     v-if="item.type === 'image'"
