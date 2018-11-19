@@ -17,9 +17,11 @@
             removeItem() {
                 const template = this.template;
                 const item = this.item;
+                const store = this.$store;
 
                 function callback() {
                     template.removeItem(item);
+                    store.commit('templateEditor/unsetCurrentItemIndex');
                 }
 
                 this.$store.commit('confirm', {

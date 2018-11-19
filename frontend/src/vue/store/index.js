@@ -16,9 +16,9 @@ import _base from "./modules/_base-module";
 Vue.use(Vuex);
 
 const getters = {
-    template(state, getters, rootState) {
+    template: (state, getters, rootState) => (type) => {
         const getTemplate = getters['templates/getItemById'];
-        return getTemplate(rootState.settings.template_id);
+        return getTemplate(rootState.settings['template_' + type + '_id']);
     }
 };
 

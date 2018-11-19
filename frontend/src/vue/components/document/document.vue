@@ -12,10 +12,11 @@
             documentIndex, docPage
         },
         data(){
+            let document = this.$store.state.documents.current.clone();
             return {
                 factor: 1,
-                document: new Document(this.$store.state.documents.current.clone()),
-                template: this.$store.getters.template,
+                document: new Document(document),
+                template: this.$store.getters.template(document.type),
                 company: this.$store.state.company,
                 localState: {
                     showSnackbar: false

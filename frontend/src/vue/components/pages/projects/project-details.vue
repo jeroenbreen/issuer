@@ -34,6 +34,9 @@
             getUsers() {
                 return this.$store.state.users.all;
             },
+            showIssues() {
+                return this.$store.state.settings.issues;
+            },
             getRepository() {
                 const getItem = this.$store.getters['repositories/getItemByProperty'];
                 return getItem('id', this.project.repository_id);
@@ -157,7 +160,7 @@
                         </md-select>
                     </md-field>
                 </div>
-                <div class="details-row">
+                <div v-if="showIssues()" class="details-row">
                     <md-field>
                         <label>Repository</label>
                         <md-select
@@ -171,7 +174,7 @@
                         </md-select>
                     </md-field>
                 </div>
-                <div class="details-row">
+                <div v-if="showIssues()" class="details-row">
                     <md-field>
                         <label>Milestone</label>
                         <md-select
@@ -191,7 +194,7 @@
                 </div>
             </div>
         </div>
-        <div class="view-frame-section" v-if="this.currentMilestone">
+        <div class="view-frame-section" v-if="showIssues() && this.currentMilestone">
             <div class="view-frame-section__header">
                 Issues
             </div>

@@ -3,7 +3,8 @@ const state = {
     template_quotation_id: '5befe6bb738f4a0421b82f74',
     documentIdFormat: '3zeros',
     clientIdFormat: '3zeros',
-    standardRate: 70
+    standardRate: 70,
+    issues: false
 };
 
 
