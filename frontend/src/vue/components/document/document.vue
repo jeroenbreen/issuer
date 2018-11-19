@@ -43,10 +43,22 @@
         },
         methods: {
             deleteDocument() {
-                // use the current document for deleting, since this.document is a clone of it
-                this.$store.dispatch('documents/delete', this.$store.state.documents.current).then(() => {
-                    this.closeScreen();
+                const store = this.$store;
+                let self = this;
+
+                function callback() {
+                    // use the current document for deleting, since this.document is a clone of it
+                    store.dispatch('documents/delete', store.state.documents.current).then(() => {
+                        self.closeScreen();
+                    });
+                }
+
+                this.$store.commit('confirm', {
+                    message: 'Are you sure?',
+                    callback: callback
                 });
+
+
             },
             getDocumentId() {
                 return this.document.getFormattedId(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.documentIdFormat);

@@ -1,11 +1,11 @@
 <script>
     import $ from 'jquery';
-    import { vueEditor } from "vue2-editor";
+    import { VueEditor } from "vue2-editor";
 
     export default {
         name: 'text-line',
         components: {
-            vueEditor
+            VueEditor
         },
         props: ['line', 'editable'],
         data() {
@@ -35,13 +35,13 @@
 <template>
     <div class="line__text">
         <div class="line__row">
-            <vue-editor
+            <Vue-editor
                 v-if="editable"
                 @focus="onEditorFocus"
                 @blur="onEditorBlur"
                 v-model="line.text"
                 :id="id"
-                :editorToolbar="customToolbar"></vue-editor>
+                :editorToolbar="customToolbar"></Vue-editor>
             <div
                 v-if="!editable"
                 v-html="line.text"></div>

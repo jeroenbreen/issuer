@@ -116,6 +116,7 @@
 
             <div
                 class="document__content"
+                :class="{'document__content--on-top': !editor}"
                 :style="{'top': scale(template[page.getType()].lines.y) + 'px',
                          'height': scale(template[page.getType()].lines.height) + 'px'}">
 
@@ -303,14 +304,8 @@
             width: 100%;
             left: 0;
 
-            .document__subject {
-                position: relative;
-                left: -10px;
-                width: calc(100% + 20px);
-
-                .document__subject-about {
-                    font-weight: 700;
-                }
+            &.document__content--on-top {
+                z-index: 10;
             }
 
             .document__lines {
