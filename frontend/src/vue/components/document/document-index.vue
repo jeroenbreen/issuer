@@ -5,7 +5,7 @@
     import {pageHeight} from "@root/globals"
 
     const pageMargin = 40;
-    const scrollBuffer = 20;
+    const scrollBuffer = 200;
 
     export default {
         name: 'document-index',

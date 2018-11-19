@@ -65,14 +65,14 @@
 <style lang="scss">
     @import '@styles/variables.scss';
 
-    .item-list__item{
-        margin: 4px 0;
+    .item-list__item {
         background: #fff;
-        box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        border-bottom: 1px solid #ddd;
         cursor: pointer;
         display: flex;
         height: 20px;
         align-items: center;
+        font-size: 9px;
 
         &:hover,
         &.item-list__item--current {

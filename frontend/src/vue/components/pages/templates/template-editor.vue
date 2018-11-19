@@ -20,7 +20,6 @@
             return {
                 clonedTemplate: new Template(this.template.clone()),
                 showTools: false,
-                currentItem: null,
                 localState: {
                     showSnackbar: false
                 },
@@ -48,7 +47,7 @@
                 this.$store.commit('templates/unsetCurrent');
             },
             getCurrentItem() {
-                return this.$store.state.templateEditor.currentItemIndex !== null ? this.template.items[this.$store.state.templateEditor.currentItemIndex] : null;
+                return this.$store.state.templateEditor.currentItemIndex !== null ? this.clonedTemplate.items[this.$store.state.templateEditor.currentItemIndex] : null;
             },
             onDeselectItem() {
                 this.$store.commit('templateEditor/unsetCurrentItemIndex');
@@ -126,8 +125,6 @@
         <div class="template__mode">
             <md-switch v-model="showTools">Hide tools</md-switch>
         </div>
-
-        <input class="document__zoom" v-model="factor">
 
         <md-snackbar
             :md-position="'left'"
@@ -277,13 +274,6 @@
         position: fixed;
         left: 20px;
         bottom: 20px;
-        color: #fff;
-    }
-
-    .document__zoom {
-        position: fixed;
-        left: 20px;
-        bottom: 80px;
         color: #fff;
     }
 
