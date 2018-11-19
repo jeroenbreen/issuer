@@ -1,5 +1,7 @@
 <script>
     import documentIndex from "./document-index";
+    import documentProperties from "./document-properties";
+    import {DocumentPropertyHandler} from "./document-property-handler";
     import docPage from "./page";
     import {Document} from "@models/Document";
     import $ from "jquery";
@@ -9,23 +11,33 @@
     export default {
         name: 'document',
         components: {
-            documentIndex, docPage
+            documentIndex, docPage, documentProperties
         },
         data(){
-            let document = this.$store.state.documents.current.clone();
+            let document = new Document(this.$store.state.documents.current.clone());
+            let company = this.$store.state.company;
+            let template = this.$store.getters.template(document.type);
+            let documentIdFormatter = this.$root.$options.filters.documentIdFormatter;
+            let documentIdFormat = this.$store.state.settings.documentIdFormat;
+            let dateFormatter = this.$root.$options.filters.dateFormatter;
+            let store = this.$store;
             return {
                 factor: 1,
-                document: new Document(document),
-                template: this.$store.getters.template(document.type),
-                company: this.$store.state.company,
+                document: document,
+                template: template,
+                company: company,
                 localState: {
                     showSnackbar: false
-                }
+                },
+                documentPropertyHandler: new DocumentPropertyHandler(
+                    store, template, company, document, null, documentIdFormatter, documentIdFormat, dateFormatter
+                )
             }
         },
         watch: {
             document: {
                 handler: function() {
+                    console.log("!");
                     // todo document.state should either be excluded from the watch
                     // or be stored in the database
                     if (saveBuffer) {
@@ -119,8 +131,11 @@
             v-if="document.pages.length > 1"
             :document="document"
             :factor="factor"/>
-        <div class="document__tools">
 
+        <document-properties
+                :document-property-handler="documentPropertyHandler"/>
+
+        <div class="document__tools">
             <div class="tool-button tool-button--inverse" @click="print()">
                 <div class="tool-button__icon">
                     <i class="fas fa-print"></i>

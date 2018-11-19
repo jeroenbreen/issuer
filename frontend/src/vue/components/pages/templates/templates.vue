@@ -37,6 +37,7 @@
             // creates a blank document suitable to display the template
             const doc = new Document();
             doc.documentId = 1;
+            doc.subject = 'Dummy document';
             doc.createPage();
             doc.createPage();
             doc.currency = 'EUR';
