@@ -40,6 +40,7 @@
             doc.subject = 'Dummy document';
             doc.createPage();
             doc.createPage();
+            doc.userName = this.$store.state.users.current.getFullName();
             doc.currency = 'EUR';
             doc.rate = this.$store.state.settings.standardRate;
             doc.clientCompanyName = 'The Company Name';

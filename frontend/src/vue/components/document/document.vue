@@ -37,7 +37,6 @@
         watch: {
             document: {
                 handler: function() {
-                    console.log("!");
                     // todo document.state should either be excluded from the watch
                     // or be stored in the database
                     if (saveBuffer) {
@@ -46,7 +45,6 @@
                     saveBuffer = setTimeout(() => {
                         this.$store.dispatch('documents/update', this.document.toBackend()).then(() => {
                             this.localState.showSnackbar = true;
-                            console.log('saved...');
                         });
                     }, 500)
                 },

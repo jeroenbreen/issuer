@@ -28,7 +28,11 @@ class Page {
     }
 
     getType() {
-        return this.document.pages.indexOf(this) === 0 ? 'front' : 'follow';
+        return this.getIndex() === 0 ? 'front' : 'follow';
+    }
+
+    getIndex() {
+        return this.document.pages.indexOf(this);
     }
 
     _getLineType(line, type) {

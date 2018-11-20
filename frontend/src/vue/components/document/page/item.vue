@@ -1,8 +1,10 @@
 <script>
     import vueDragResize from '@components/shared/vue-drag-resize/vue-drag-resize'
     import imageUploader from '@components/pages/templates/image-uploader';
+    import {DocumentPropertyHandler} from "./../document-property-handler";
     import contentParser from './content-parser'
     import $ from 'jquery';
+
 
     export default {
         name: 'item',
@@ -10,6 +12,21 @@
             vueDragResize, imageUploader
         },
         props: ['template', 'editor', 'factor', 'item', 'onClick', 'document', 'page'],
+        data() {
+            let company = this.$store.state.company;
+            let document = this.document;
+            let page = this.page;
+            let documentIdFormatter = this.$root.$options.filters.documentIdFormatter;
+            let documentIdFormat = this.$store.state.settings.documentIdFormat;
+            let dateFormatter = this.$root.$options.filters.dateFormatter;
+            let template = this.template;
+            let store = this.$store;
+            return {
+                DocumentPropertyHandler: new DocumentPropertyHandler(
+                    store, template, company, document, page, documentIdFormatter, documentIdFormat, dateFormatter
+                )
+            }
+        },
         methods: {
             onDrag (event) {
                 if (this.editor) {
@@ -35,7 +52,10 @@
                 let documentIdFormatter = this.$root.$options.filters.documentIdFormatter;
                 let documentIdFormat = this.$store.state.settings.documentIdFormat;
                 let dateFormatter = this.$root.$options.filters.dateFormatter;
-                return contentParser.parse(this.item.content, company, document, page, documentIdFormatter, documentIdFormat, dateFormatter);
+                let template = this.template;
+                let store = this.$store;
+
+                return contentParser.parse(this.item.content, this.DocumentPropertyHandler);
             },
             select() {
                 this.onClick(this.item);

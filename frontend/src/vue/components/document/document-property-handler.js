@@ -116,6 +116,17 @@ class DocumentPropertyHandler {
                             return ['company', 'name']
                         }
                     }, {
+                        title: 'User name',
+                        tag: 'user_name',
+                        type: 'input',
+                        editable: true,
+                        getParsedValue: () => {
+                            return this.document.userName;
+                        },
+                        getObjectPath() {
+                            return ['document', 'userName']
+                        }
+                    }, {
                         title: 'Company address',
                         tag: 'company_address',
                         type: 'input',
@@ -151,6 +162,66 @@ class DocumentPropertyHandler {
                     }
                 ]
             }, {
+                title: 'Client Info',
+                items: [
+                    {
+                        title: 'Client company name',
+                        tag: 'client_name',
+                        type: 'input',
+                        editable: true,
+                        getParsedValue: () => {
+                            return this.document.clientCompanyName;
+                        },
+                        getObjectPath() {
+                            return ['document', 'clientCompanyName'];
+                        }
+                    }, {
+                        title: 'Client contact name',
+                        tag: 'client_contact',
+                        type: 'input',
+                        editable: true,
+                        getParsedValue: () => {
+                            return this.document.clientContactName;
+                        },
+                        getObjectPath() {
+                            return ['document', 'clientContactName'];
+                        }
+                    }, {
+                        title: 'Client address',
+                        tag: 'client_address',
+                        type: 'input',
+                        editable: true,
+                        getParsedValue: () => {
+                            return this.document.clientStreet;
+                        },
+                        getObjectPath() {
+                            return ['document', 'clientStreet'];
+                        }
+                    }, {
+                        title: 'Client postcode',
+                        tag: 'client_postcode',
+                        type: 'input',
+                        editable: true,
+                        getParsedValue: () => {
+                            return this.document.clientPostcode;
+                        },
+                        getObjectPath() {
+                            return ['document', 'clientPostcode'];
+                        }
+                    }, {
+                        title: 'Client city',
+                        tag: 'client_city',
+                        type: 'input',
+                        editable: true,
+                        getParsedValue: () => {
+                            return this.document.clientCity;
+                        },
+                        getObjectPath() {
+                            return ['document', 'clientCity'];
+                        }
+                    }
+                ]
+            }, {
                 title: 'Misc',
                 items: [
                     {
@@ -159,7 +230,7 @@ class DocumentPropertyHandler {
                         type: 'input',
                         editable: false,
                         getParsedValue: () => {
-                            return null;
+                            return this.page.getIndex() + 1;
                         },
                         getObjectPath() {
                             return null;
