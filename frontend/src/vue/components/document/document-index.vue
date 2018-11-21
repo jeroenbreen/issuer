@@ -57,7 +57,8 @@
                 v-for="(page, index) in document.pages"
                 :index="index"
                 :key="index"
-                :page="page"></mini-page>
+                :page="page"
+                title="Drag to reorder"></mini-page>
         </sortable-list>
     </div>
 </template>
@@ -66,7 +67,7 @@
 <style lang="scss">
     .document-index {
         position: fixed;
-        right: calc(50% + 340px);
+        left: 520px;
         top: 40px;
         width: 50px;
         height: calc(100% + 80px);

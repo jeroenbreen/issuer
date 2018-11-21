@@ -89,7 +89,7 @@ class DocumentPropertyHandler {
                             return ['document', 'documentId']
                         }
                     }, {
-                        title: 'Document subject',
+                        title: 'Subject',
                         tag: 'document_subject',
                         type: 'input',
                         editable: true,
@@ -165,7 +165,7 @@ class DocumentPropertyHandler {
                 title: 'Client Info',
                 items: [
                     {
-                        title: 'Client company name',
+                        title: 'Client',
                         tag: 'client_name',
                         type: 'input',
                         editable: true,
@@ -176,7 +176,7 @@ class DocumentPropertyHandler {
                             return ['document', 'clientCompanyName'];
                         }
                     }, {
-                        title: 'Client contact name',
+                        title: 'Client contact',
                         tag: 'client_contact',
                         type: 'input',
                         editable: true,
@@ -198,7 +198,7 @@ class DocumentPropertyHandler {
                             return ['document', 'clientStreet'];
                         }
                     }, {
-                        title: 'Client postcode',
+                        title: 'Client zipcode',
                         tag: 'client_postcode',
                         type: 'input',
                         editable: true,
@@ -250,14 +250,14 @@ class DocumentPropertyHandler {
         ]
     }
 
-    getUsedPropertyHandlers() {
+    getUsedPropertyHandlers(getOnlyIfEditable) {
         let propertyHandlers = [];
         for (let set of this.propertyHandlers) {
             let thisSet = {};
             thisSet.title = set.title;
             thisSet.items = [];
             for (let propertyHandler of set.items) {
-                if (this.showPropertyHandler(propertyHandler.tag)) {
+                if (this.showPropertyHandler(propertyHandler.tag) && (!getOnlyIfEditable || propertyHandler.editable)) {
                     thisSet.items.push(propertyHandler);
                 }
             }

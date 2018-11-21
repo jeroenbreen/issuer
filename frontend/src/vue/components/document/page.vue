@@ -1,7 +1,6 @@
 <script>
     import item from "./page/item";
     import docLine from "./page/line";
-    import lineTools from "./page/line/line-tools";
     import sortableList from "@components/shared/sortable-list";
     import vueDragResize from '@components/shared/vue-drag-resize/vue-drag-resize'
     import $ from 'jquery'
@@ -14,7 +13,7 @@
     export default {
         name: 'doc-page',
         components: {
-            item, docLine, lineTools, sortableList, vueDragResize
+            item, docLine, sortableList, vueDragResize
         },
         props: ['page', 'template', 'editor', 'factor', 'tools'],
         watch: {
@@ -139,11 +138,6 @@
                             :scale="scale"/>
                     </sortable-list>
                 </div>
-
-                <line-tools
-                    v-if="canAddLines && !page.document.locked && tools"
-                    :page="page"
-                    :can-add-lines="canAddLines"/>
             </div>
 
             <div class="document__total"
@@ -288,14 +282,6 @@
         line-height: 1.6;
     }
 
-    .page__tools {
-        margin: 60px 0;
-        position: relative;
-        left: calc(100% + 20px);
-        display: flex;
-        width: 100px;
-    }
-
     .document__elements {
         position: absolute;
 
@@ -314,13 +300,6 @@
                     padding: 0;
                     margin: 0;
                 }
-            }
-
-            .lines_tools {
-                position: relative;
-                left: calc(100% + 100px);
-                display: flex;
-                width: 200px;
             }
         }
 

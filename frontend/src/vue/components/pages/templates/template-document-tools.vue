@@ -17,11 +17,11 @@
 
 
 <template>
-    <div class="template-document-tools template-tools">
-        <div class="template-tools__header">
+    <div class="template-document-tools tool-box">
+        <div class="tool-box__header">
             Document
         </div>
-        <div class="template-tools__section">
+        <div class="tool-box__section">
             <div class="template-document-tools__title">
                 <md-field>
                     <label>Title</label>
@@ -29,7 +29,7 @@
                 </md-field>
             </div>
         </div>
-        <div class="template-tools__section">
+        <div class="tool-box__section">
             <template-margins
                 :template="template"/>
         </div>

@@ -1,6 +1,6 @@
 .tool-button {
     padding: 4px 8px;
-    color: #fff;
+    color: #000;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -8,7 +8,12 @@
     &:hover {
 
         .tool-button__icon {
-            border: 1px solid #000;
+            background: #000;
+            color: @editing-mode-color;
+        }
+
+        .tool-button__label {
+            text-decoration: underline;
         }
     }
 
@@ -19,22 +24,30 @@
         }
     }
 
+    &.tool-button--small {
+        padding: 0;
+
+        .tool-button__icon {
+            width: 16px;
+            height: 16px;
+            font-size: 9px;
+        }
+
+    }
+
     .tool-button__icon {
-        font-size: 9px;
+        font-size: 11px;
         margin-right: 6px;
         width: 24px;
         height: 24px;
         border-radius: 50%;
-        background: @blue;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        border: 1px solid #fff;
+        background: @editing-mode-color;
         display: flex;
         align-items: center;
         justify-content: space-around;
     }
 
     .tool-button__label {
-        color: #000;
         white-space: nowrap;
     }
 

@@ -10,9 +10,9 @@
 
 
 <template>
-    <div class="template-tools__section">
-        <div class="template-tools__row">
-            <div class="template-tools__label">
+    <div class="tool-box__section">
+        <div class="tool-box__row">
+            <div class="tool-box__label">
                 Padding
             </div>
             <md-field>

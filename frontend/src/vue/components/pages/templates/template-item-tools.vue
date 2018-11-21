@@ -36,14 +36,14 @@
 
 
 <template>
-    <div class="template-item-tools template-tools">
-        <div class="template-tools__header">
+    <div class="template-item-tools tool-box">
+        <div class="tool-box__header">
             Item ({{item.type}})
         </div>
         <div
             v-if="item && item.type !== 'box'"
-            class="template-tools__section">
-            <div class="template-tools__label">&nbsp;</div>
+            class="tool-box__section">
+            <div class="tool-box__label">&nbsp;</div>
             <button @click="removeItem()">
                 Remove Item
             </button>

@@ -239,7 +239,7 @@
                 if (this.preventActiveBehavior) {
                     return
                 }
-                if (e.target !== this.$el && !this.$el.contains(e.target) && $(e.target).parents('.template-tools').length === 0) {
+                if (e.target !== this.$el && !this.$el.contains(e.target) && $(e.target).parents('.tool-box').length === 0) {
                     this.active = false;
                 }
             },

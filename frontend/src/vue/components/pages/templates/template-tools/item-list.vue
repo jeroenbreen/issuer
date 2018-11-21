@@ -29,7 +29,7 @@
 
 
 <template>
-    <div class="template-tools__section">
+    <div class="tool-box__section">
         <div
             class="item-list-item"
             v-for="(item, index) in getItems()"

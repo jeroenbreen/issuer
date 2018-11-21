@@ -1,31 +1,31 @@
-.template-tools {
+.tool-box {
     width: 220px;
     margin-bottom: 20px;
 
-    .template-tools__header {
+    .tool-box__header {
         padding: 4px 20px;
         border-bottom: 1px solid #ddd;
         background: #ddd;
         font-weight: 700;
     }
 
-    .template-tools__section {
+    .tool-box__section {
         padding: 8px 20px;
         border-bottom: 1px solid #ddd;
         background: #fff;
 
-        .template-tools__header {
+        .tool-box__header {
             font-weight: 700;
             font-size: 15px;
             margin-bottom: 6px;
         }
 
-        .template-tools__row {
+        .tool-box__row {
             display: flex;
             margin-bottom: 2px;
             align-items: center;
 
-            .template-tools__label {
+            .tool-box__label {
                 width: 100px;
                 color: #000;
                 text-align: right;
@@ -53,7 +53,7 @@
         }
     }
 
-    .template-tools__set {
+    .tool-box__set {
         display: flex;
     }
 
@@ -77,5 +77,27 @@
         &.template__tool--current {
             border: 1px solid #000;
         }
+    }
+}
+
+
+.tool-box__left {
+    position: fixed;
+    left: 40px;
+    top: 40px;
+    height: calc(100% - 80px);
+    overflow: auto;
+}
+
+.tool-box__right {
+    position: fixed;
+    left: 280px;
+    top: 40px;
+    height: calc(100% - 80px);
+    overflow: auto;
+
+    @media (max-width: 1024px) {
+        left: auto;
+        right: 40px;
     }
 }

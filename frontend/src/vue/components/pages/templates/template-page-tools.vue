@@ -53,15 +53,15 @@
 
 
 <template>
-    <div class="template-page-tools template-tools">
-        <div class="template-tools__header">
+    <div class="template-page-tools tool-box">
+        <div class="tool-box__header">
             Page ({{currentPage.getType()}})
         </div>
         <item-list
             :template="template"
             :page="currentPage"></item-list>
 
-        <div class="template-tools__section">
+        <div class="tool-box__section">
             <button @click="addImage()">
                 Add Image
             </button>

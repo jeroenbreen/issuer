@@ -1,6 +1,7 @@
 <script>
     import documentIndex from "./document-index";
     import documentProperties from "./document-properties";
+    import lineTools from "./page/line/line-tools";
     import {DocumentPropertyHandler} from "./document-property-handler";
     import docPage from "./page";
     import {Document} from "@models/Document";
@@ -11,7 +12,7 @@
     export default {
         name: 'document',
         components: {
-            documentIndex, docPage, documentProperties
+            documentIndex, lineTools, docPage, documentProperties
         },
         data(){
             let document = new Document(this.$store.state.documents.current.clone());
@@ -115,43 +116,87 @@
                     :editor="false"
                     :factor="factor"
                     :tools="true"></doc-page>
-            <div v-if="!document.locked" class="page__tools">
-                <div
-                        @click="createPage()"
-                        class="icon-button icon-button--editing-mode">
-                    <div class="icon-button__icon">
-                        <i class="fas fa-plus"></i>
-                    </div>
-                </div>
-            </div>
         </div>
         <document-index
             v-if="document.pages.length > 1"
             :document="document"
             :factor="factor"/>
 
-        <document-properties
-                :document-property-handler="documentPropertyHandler"/>
-
-        <div class="document__tools">
-            <div class="tool-button tool-button--inverse" @click="print()">
-                <div class="tool-button__icon">
-                    <i class="fas fa-print"></i>
+        <div class="tool-box__left">
+            <div class="tool-box">
+                <div class="tool-box__header">
+                    Document
                 </div>
-                <div class="tool-button__label">
-                    Print
+                <div class="tool-box__section">
+                    <div class="tool-button" @click="print()">
+                        <div class="tool-button__icon">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <div class="tool-button__label">
+                            Print
+                        </div>
+                    </div>
+
+                    <div
+                        v-if="!document.locked"
+                        @click="deleteDocument()"
+                        class="tool-button">
+                        <div class="tool-button__icon">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                        <div class="tool-button__label">
+                            Remove
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="tool-button tool-button--inverse tool-button--warning" @click="deleteDocument()">
-                <div class="tool-button__icon">
-                    <i class="fas fa-trash"></i>
+            <document-properties
+                v-if="!document.locked"
+                :document-property-handler="documentPropertyHandler"/>
+        </div>
+
+        <div class="tool-box__right" v-if="!document.locked">
+            <div class="template-item-tools tool-box">
+                <div class="tool-box__header">
+                    Document
                 </div>
-                <div class="tool-button__label">
-                    Remove
+                <div class="tool-box__section">
+                    <div
+                        @click="createPage()"
+                        class="tool-button">
+                        <div class="tool-button__icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="tool-button__label">
+                            Add page
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="tool-box">
+                <div class="tool-box__header">
+                    Page ({{(document.state.currentPage.getIndex() + 1)}})
+                </div>
+                <div class="tool-box__section">
+                    <div
+                        class="tool-button">
+                        <div class="tool-button__icon">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                        <div class="tool-button__label">
+                            Remove current page
+                        </div>
+                    </div>
+                </div>
+                <line-tools
+                    v-if="!document.locked"
+                    :page="document.state.currentPage"
+                    :can-add-lines="true"/>
             </div>
         </div>
+
 
         <md-snackbar :md-position="'left'" :md-duration="2000" :md-active.sync="localState.showSnackbar" md-persistent>
             <span>Saved...</span>
@@ -171,7 +216,7 @@
 
     .document {
         position: absolute;
-        left: calc(50% - 310px);
+        left: 580px;
         width: 620px;
         line-height: 1.6;
 
@@ -183,19 +228,6 @@
             &:last-child {
                 margin-bottom: 200px;
             }
-        }
-    }
-
-    .document__tools {
-        position: fixed;
-        left: calc(50% + 340px);
-        top: 40px;
-        width: 100px;
-        display: flex;
-        flex-wrap: wrap;
-
-        .iss-button {
-            margin-bottom: 4px;
         }
     }
 

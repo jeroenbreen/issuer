@@ -10,7 +10,7 @@
 
 
 <template>
-    <div class="template-tools__section">
+    <div class="tool-box__section">
         <textarea v-model="item.content"></textarea>
     </div>
 </template>

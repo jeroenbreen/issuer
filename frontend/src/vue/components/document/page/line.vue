@@ -65,11 +65,13 @@
                 :editable="isEditable()"/>
 
 
-        <div class="line__tools" v-if="isEditable()">
+        <div class="line__tool-set" v-if="isEditable()">
             <div
                 @click="removeLine()"
-                class="line__tool">
-                <i class="fas fa-times"></i>
+                class="tool-button tool-button--small">
+                <div class="tool-button__icon">
+                    <i class="fas fa-times"></i>
+                </div>
             </div>
         </div>
     </li>
@@ -84,6 +86,14 @@
         position: relative;
         background: #fff;
         list-style: none;
+
+        .line__tool-set {
+            position: absolute;
+            left: calc(100% + 20px);
+            top: 0;
+            display: flex;
+            flex-wrap: nowrap;
+        }
 
         &.line--text {
             height: auto!important;

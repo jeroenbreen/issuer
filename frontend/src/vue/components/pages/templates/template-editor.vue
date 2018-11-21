@@ -56,7 +56,7 @@
                 let target = $(event.target);
 
                 function isItemArea(element) {
-                    const areas = ['vdr', 'template-tools'];
+                    const areas = ['vdr', 'tool-box'];
                     for (let area of areas) {
                         if (element.parents('.' + area).length > 0 || element.hasClass(area)) {
                             return true;
@@ -101,7 +101,7 @@
 
         <div class="close-button" @click="closeScreen()"></div>
 
-        <div class="template-tools__left" v-if="!showTools">
+        <div class="tool-box__left" v-if="!showTools">
             <template-document-tools
                 :template="clonedTemplate"/>
 
@@ -111,7 +111,7 @@
                 :current-page="document.state.currentPage"/>
         </div>
 
-        <div class="template-tools__right" v-if="!showTools">
+        <div class="tool-box__right" v-if="!showTools">
             <template-item-tools
                 v-if="getCurrentItem()"
                 :item="getCurrentItem()"
@@ -139,27 +139,10 @@
 
 <style lang="scss">
     @import '@styles/variables.scss';
-    @import './template-tools.scss';
-
-    .template-tools__left {
-        position: fixed;
-        left: 40px;
-        top: 40px;
-        height: calc(100% - 40px);
-        overflow: auto;
-    }
-
-    .template-tools__right {
-        position: fixed;
-        right: 80px;
-        top: 40px;
-        height: calc(100% - 40px);
-        overflow: auto;
-    }
 
     .template-editor {
         position: absolute;
-        left: calc(50% - 310px);
+        left: 580px;
         width: 620px;
         line-height: 1.6;
 
@@ -272,7 +255,7 @@
 
     .template__mode {
         position: fixed;
-        left: 20px;
+        right: 20px;
         bottom: 20px;
         color: #fff;
     }

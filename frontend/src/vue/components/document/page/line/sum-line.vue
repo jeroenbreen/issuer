@@ -17,14 +17,14 @@
             <switch-input
                 :value="'subject'"
                 :line="line"
-                :editbale="editable"></switch-input>
+                :editable="editable"></switch-input>
         </div>
         <div class="line-part line-part--25 line-part--end">
             <switch-input
                 :value="'value'"
                 :line="line"
                 :size="'number'"
-                :editbale="editable"></switch-input>&nbsp;{{line.document.currency}}
+                :editable="editable"></switch-input>&nbsp;{{line.document.currency}}
         </div>
     </div>
 </template>

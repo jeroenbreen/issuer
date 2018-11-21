@@ -35,41 +35,55 @@
 
 
 <template>
-    <div class="line__tools">
+    <div class="tool-box__section">
         <div
-            @click="createLine('hourly')"
-            class="icon-button icon-button--editing-mode">
-            <div class="icon-button__icon">
+                @click="createLine('hourly')"
+                class="tool-button">
+            <div class="tool-button__icon">
                 <i class="fas fa-stopwatch"></i>
             </div>
+            <div class="tool-button__label">
+                Add hourly line
+            </div>
         </div>
-
         <div
-            @click="createLine('sum')"
-            class="icon-button icon-button--editing-mode">
-            <div class="icon-button__icon">
+                @click="createLine('sum')"
+                class="tool-button">
+            <div class="tool-button__icon">
                 <i class="fas fa-money-bill-wave"></i>
             </div>
+            <div class="tool-button__label">
+                Add sum line
+            </div>
         </div>
         <div
-            @click="createLine('subtotal')"
-            class="icon-button icon-button--editing-mode">
-            <div class="icon-button__icon">
+                @click="createLine('subtotal')"
+                class="tool-button">
+            <div class="tool-button__icon">
                 <i class="fas fa-calculator"></i>
             </div>
-        </div>
-        <div
-            @click="createLine('text')"
-            class="icon-button icon-button--editing-mode">
-            <div class="icon-button__icon">
-                <i class="fas fa-text-height"></i>
+            <div class="tool-button__label">
+                Add subtotal
             </div>
         </div>
         <div
-            @click="createLine('break')"
-            class="icon-button icon-button--editing-mode">
-            <div class="icon-button__icon">
+                @click="createLine('text')"
+                class="tool-button">
+            <div class="tool-button__icon">
+                <i class="fas fa-font"></i>
+            </div>
+            <div class="tool-button__label">
+                Add text element
+            </div>
+        </div>
+        <div
+                @click="createLine('break')"
+                class="tool-button">
+            <div class="tool-button__icon">
                 <i class="fas fa-paragraph"></i>
+            </div>
+            <div class="tool-button__label">
+                Insert break
             </div>
         </div>
     </div>
@@ -78,29 +92,5 @@
 
 <style lang="scss">
     @import '@styles/variables.scss';
-
-    .line__tools {
-        position: absolute;
-        left: calc(100% + 20px);
-        top: 0;
-        display: flex;
-        flex-wrap: nowrap;
-
-        .line__tool {
-            cursor: pointer;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: $editing-mode-color;
-            color: $editing-mode-color-contra;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-
-            &:hover {
-                background: $editing-mode-color-hover;
-            }
-        }
-    }
 </style>
 
