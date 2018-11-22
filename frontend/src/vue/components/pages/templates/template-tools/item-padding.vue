@@ -15,9 +15,11 @@
             <div class="tool-box__label">
                 Padding
             </div>
-            <md-field>
-                <md-input v-model="item.padding" placeholder="Padding" type="number"/>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-input v-model="item.padding" placeholder="Padding" type="number"/>
+                </md-field>
+            </div>
         </div>
     </div>
 </template>

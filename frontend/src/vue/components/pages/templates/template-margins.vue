@@ -12,33 +12,41 @@
             <div class="tool-box__label">
                 Margin top
             </div>
-            <md-field>
-                <md-input v-model="template.margin.top" placeholder="Margin top" type="number"/>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-input v-model="template.margin.top" placeholder="Margin top" type="number"/>
+                </md-field>
+            </div>
         </div>
         <div class="tool-box__row">
             <div class="tool-box__label">
                 Margin right
             </div>
-            <md-field>
-                <md-input v-model="template.margin.right" placeholder="Margin right" type="number"/>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-input v-model="template.margin.right" placeholder="Margin right" type="number"/>
+                </md-field>
+            </div>
         </div>
         <div class="tool-box__row">
             <div class="tool-box__label">
                 Margin bottom
             </div>
-            <md-field>
-                <md-input v-model="template.margin.bottom" placeholder="Margin bottom" type="number"/>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-input v-model="template.margin.bottom" placeholder="Margin bottom" type="number"/>
+                </md-field>
+            </div>
         </div>
         <div class="tool-box__row">
             <div class="tool-box__label">
                 Margin left
             </div>
-            <md-field>
-                <md-input v-model="template.margin.left" placeholder="Margin left" type="number"/>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-input v-model="template.margin.left" placeholder="Margin left" type="number"/>
+                </md-field>
+            </div>
         </div>
     </div>
 </template>

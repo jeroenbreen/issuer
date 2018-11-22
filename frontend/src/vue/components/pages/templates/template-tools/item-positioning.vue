@@ -17,8 +17,10 @@
             <div class="tool-box__label">
                 Horiz. centered
             </div>
-            <div @click="centerHorizontal()" class="template__tool">
-                <i class="fas fa-arrows-alt-h"></i>
+            <div class="tool-box__content">
+                <div @click="centerHorizontal()" class="template__tool">
+                    <i class="fas fa-arrows-alt-h"></i>
+                </div>
             </div>
         </div>
     </div>

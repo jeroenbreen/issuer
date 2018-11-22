@@ -254,6 +254,24 @@
         </div>
         <div class="view-frame-section">
             <div class="view-frame-section__header">
+                Quotations
+            </div>
+            <div class="view-frame-section__content">
+                <div class="details-row">
+                    <div class="details-content">
+                        <document-mini
+                                v-for="(document, index) in getDocuments('quotation')"
+                                :document="document"
+                                :key="index">
+                        </document-mini>
+
+                        <md-button @click="createDocument('quotation')" class="md-primary">Add Quotation</md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-frame-section">
+            <div class="view-frame-section__header">
                 Invoices
             </div>
             <div class="view-frame-section__content">

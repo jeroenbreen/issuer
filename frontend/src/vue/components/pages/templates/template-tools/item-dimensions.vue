@@ -17,17 +17,21 @@
             <div class="tool-box__label">
                 Left
             </div>
-            <md-field>
-                <md-input v-model="item.x" placeholder="left" type="number"/>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-input v-model="item.x" placeholder="left" type="number"/>
+                </md-field>
+            </div>
         </div>
         <div class="tool-box__row">
             <div class="tool-box__label">
                 Top
             </div>
-            <md-field>
-                <md-input v-model="item.y" placeholder="top" type="number"/>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-input v-model="item.y" placeholder="top" type="number"/>
+                </md-field>
+            </div>
         </div>
         <div
             v-if="item.type !== 'box'"
@@ -35,17 +39,21 @@
             <div class="tool-box__label">
                 Width
             </div>
-            <md-field>
-                <md-input v-model="item.width" placeholder="width" type="number"/>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-input v-model="item.width" placeholder="width" type="number"/>
+                </md-field>
+            </div>
         </div>
         <div class="tool-box__row">
             <div class="tool-box__label">
                 Height
             </div>
-            <md-field>
-                <md-input v-model="item.height" placeholder="height" type="number"/>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-input v-model="item.height" placeholder="height" type="number"/>
+                </md-field>
+            </div>
         </div>
     </div>
 </template>

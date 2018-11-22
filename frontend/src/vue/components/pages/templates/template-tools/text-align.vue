@@ -31,17 +31,23 @@
             <div class="tool-box__label">
                 Text Align
             </div>
-            <div
-                    v-for="(aligning, index) in alignings"
-                    @click="setAligning(aligning)"
-                    :key="index"
-                    :class="{'template__tool--current': aligning.type === item.textAlign}"
-                    class="template__tool">
-                <i class="fas" :class="[aligning.icon]"></i>
+            <div class="tool-box__content">
+                <div
+                        v-for="(aligning, index) in alignings"
+                        @click="setAligning(aligning)"
+                        :key="index"
+                        :class="{'template__tool--current': aligning.type === item.textAlign}"
+                        class="template__tool">
+                    <i class="fas" :class="[aligning.icon]"></i>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+    .tool-box__content {
+        display: flex;
+    }
+</style>

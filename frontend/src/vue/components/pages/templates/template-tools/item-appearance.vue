@@ -20,15 +20,17 @@
             <div class="tool-box__label">
                 Displayed on
             </div>
-            <md-field>
-                <md-select
-                    v-model="item.page">
-                    <md-option
-                        v-for="(option, index) in options"
-                        :value="option"
-                        :key="index">{{option}}</md-option>
-                </md-select>
-            </md-field>
+            <div class="tool-box__content">
+                <md-field>
+                    <md-select
+                            v-model="item.page">
+                        <md-option
+                                v-for="(option, index) in options"
+                                :value="option"
+                                :key="index">{{option}}</md-option>
+                    </md-select>
+                </md-field>
+            </div>
         </div>
     </div>
 </template>

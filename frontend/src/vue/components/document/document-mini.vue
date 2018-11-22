@@ -20,6 +20,7 @@
 <template>
     <div
         @click="openDocument()"
+        :class="['document-mini--' + document.type]"
         class="document-mini">
         <div class="document-mini__icon">
             <i class="fas fa-folder-open"></i>
@@ -36,13 +37,21 @@
 
     .document-mini {
         display: flex;
-        background: $blue;
         height: 26px;
         border-radius: 13px;
         padding: 0 12px;
         align-items: center;
         margin: 0 3px 3px 0;
         cursor: pointer;
+        color: #fff;
+
+        &.document-mini--invoice {
+            @include invoiceBackground();
+        }
+
+        &.document-mini--quotation {
+            @include quotationBackground();
+        }
 
         &:hover {
              box-shadow: 1px 1px 3px rgba(0,0,0,0.2);

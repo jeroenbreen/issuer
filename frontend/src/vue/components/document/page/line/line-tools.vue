@@ -40,7 +40,7 @@
                 @click="createLine('hourly')"
                 class="tool-button">
             <div class="tool-button__icon">
-                <i class="fas fa-stopwatch"></i>
+                <i class="fas fa-hourglass-half"></i>
             </div>
             <div class="tool-button__label">
                 Add hourly line

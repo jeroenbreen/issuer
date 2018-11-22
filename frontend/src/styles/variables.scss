@@ -7,8 +7,29 @@ $topbar-height: 68px;
 $grey-10: #ddd;
 $grey-20: #aaa;
 
-$invoice-color: blue;
-$quotation-color: green;
+
+
+$invoice-color-1: #6db3f2;
+$invoice-color-2: #449FE2;
+$quotation-color-1: #93D64C;
+$quotation-color-2: #80CC2F;
+
+
+@mixin invoiceBackground() {
+    background: -moz-linear-gradient(top, $invoice-color-1 0%, $invoice-color-2 100%);
+    background: -webkit-linear-gradient(top, $invoice-color-1 0%, $invoice-color-2 100%);
+    background: linear-gradient(to bottom, $invoice-color-1 0%, $invoice-color-2 100%);
+}
+
+@mixin quotationBackground() {
+    background: -moz-linear-gradient(top, $quotation-color-1 0%, $quotation-color-2 100%);
+    background: -webkit-linear-gradient(top, $quotation-color-1 0%, $quotation-color-2 100%);
+    background: linear-gradient(to bottom, $quotation-color-1 0%, $quotation-color-2 100%);
+}
+
+
+
+
 
 $blue: #00B7FF;
 $blue-dark: #176C82;

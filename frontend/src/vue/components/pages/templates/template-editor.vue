@@ -123,7 +123,8 @@
 
 
         <div class="template__mode">
-            <md-switch v-model="showTools">Hide tools</md-switch>
+            Hide tools<br>
+            <md-switch v-model="showTools"></md-switch>
         </div>
 
         <md-snackbar
@@ -255,9 +256,13 @@
 
     .template__mode {
         position: fixed;
-        right: 20px;
+        right: 10px;
         bottom: 20px;
         color: #fff;
+
+        .md-switch {
+            margin-top: 6px;
+        }
     }
 
     .template__input {

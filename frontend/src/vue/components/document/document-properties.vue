@@ -1,6 +1,10 @@
 <script>
+
     export default {
         name: 'document-properties',
+        components: {
+
+        },
         props: ['documentPropertyHandler']
     }
 </script>
@@ -22,10 +26,24 @@
                 <div class="tool-box__label">
                     {{item.title}}
                 </div>
-                <md-field>
-                    <md-input
-                            v-model="documentPropertyHandler[item.getObjectPath()[0]][item.getObjectPath()[1]]"/>
-                </md-field>
+                <div class="tool-box__content">
+                    <md-field v-if="item.type === 'input'">
+                        <md-input
+                                v-model="documentPropertyHandler[item.getObjectPath()[0]][item.getObjectPath()[1]]"/>
+                    </md-field>
+
+                    <md-field v-if="item.type === 'input--number'">
+                        <md-input
+                                v-model="documentPropertyHandler[item.getObjectPath()[0]][item.getObjectPath()[1]]"
+                                type="number"/>
+                    </md-field>
+                    <span v-if="item.type === 'date'">
+                    <md-datepicker
+
+                            v-model="documentPropertyHandler[item.getObjectPath()[0]][item.getObjectPath()[1]]"
+                            md-immediately/>
+                </span>
+                </div>
             </div>
         </div>
     </div>
@@ -34,4 +52,15 @@
 
 <style lang="scss">
 
+    .md-datepicker {
+
+        > .md-date-icon,
+        > button {
+            display: none;
+        }
+    }
+
+    .md-datepicker-dialog {
+        z-index: 10000000000;
+    }
 </style>

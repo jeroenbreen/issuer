@@ -260,11 +260,11 @@
                 margin-left: 4px;
 
                 &.colored-bullet--quotation {
-                    background: $quotation-color;
+                    @include quotationBackground();
                 }
 
                 &.colored-bullet--invoice {
-                    background: $invoice-color;
+                    @include invoiceBackground();
                 }
             }
         }
@@ -282,11 +282,11 @@
             margin: 2px;
 
             &.template--invoice {
-                border: 1px solid $invoice-color;
+                border: 2px solid $invoice-color-1;
             }
 
             &.template--quotation {
-                border: 1px solid $quotation-color;
+                border: 2px solid $quotation-color-1;
             }
 
             .page {

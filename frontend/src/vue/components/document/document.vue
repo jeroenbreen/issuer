@@ -71,6 +71,19 @@
 
 
             },
+            deletePage(page) {
+                let document = this.document;
+
+                function callback() {
+                    let index = document.pages.indexOf(page);
+                    document.pages.splice(index, 1);
+                }
+
+                this.$store.commit('confirm', {
+                    message: 'Are you sure you want to delete page ' + (page.getIndex() + 1) + '? You will lose the content of this page.',
+                    callback: callback
+                });
+            },
             getDocumentId() {
                 return this.document.getFormattedId(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.documentIdFormat);
             },
@@ -181,6 +194,7 @@
                 </div>
                 <div class="tool-box__section">
                     <div
+                        @click="deletePage(document.state.currentPage)"
                         class="tool-button">
                         <div class="tool-button__icon">
                             <i class="fas fa-trash"></i>
@@ -205,7 +219,8 @@
         <div class="close-button" @click="closeScreen()"></div>
 
         <div class="document__mode">
-            <md-switch v-model="document.locked">Locked</md-switch>
+            Locked<br>
+            <md-switch v-model="document.locked"></md-switch>
         </div>
     </div>
 </template>
@@ -233,8 +248,12 @@
 
     .document__mode {
         position: fixed;
-        right: 20px;
+        right: 10px;
         bottom: 20px;
         color: #fff;
+
+        .md-switch {
+            margin-top: 6px;
+        }
     }
 </style>
