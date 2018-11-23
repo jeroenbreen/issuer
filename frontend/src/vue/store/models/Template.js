@@ -1,6 +1,7 @@
 import {Image} from './template/Image';
 import {Text} from './template/Text';
 import {Border} from './template/Border';
+import {Total} from './template/Total';
 import {Tools} from './../../tools/tools'
 import {pageWidth} from '@root/globals'
 
@@ -36,6 +37,15 @@ class Template {
         if (template) {
             this.importItems(template);
         }
+        let temp = {};
+        temp.items = [
+            {
+                type: 'total',
+                position: 'bottom',
+                content: '[total_net=Totaal]\n[total_vat=BTW {document_vat}%]\n[total_gross=Te betalen]\n\nGelieve dit bedrag binnen vier weken over te maken onder vermelding van factuurnummer op NL 30 TRIO 033 876 7924.\n\n<b>Let op dit is een nieuw rekeningnummer!</b>'
+            }
+        ];
+        this.importItems(temp);
     }
 
     // actions
@@ -57,6 +67,9 @@ class Template {
                 break;
             case 'border':
                 item = new Border(data);
+                break;
+            case 'total':
+                item = new Total(data);
                 break;
         }
         this.items.push(item);

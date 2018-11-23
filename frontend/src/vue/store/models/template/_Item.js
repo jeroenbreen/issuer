@@ -2,6 +2,7 @@
 class _Item {
 
     constructor(item) {
+        this.draggable = true;
         this.x = item.x;
         this.y = item.y;
         this.width = item.width;

@@ -88,12 +88,8 @@
                 this.template[this.page.getType()].lines.y = event.top;
             },
             showCustomItem(item) {
-                return item.page === 'all' || item.page === this.page.getType();
-            },
-            getTotalTop() {
-                let pageTemplateSettings = this.template[this.page.getType()];
-                return this.scale(pageTemplateSettings.lines.y + pageTemplateSettings.lines.height - 60);
-            },
+                return (item.page === 'all' || item.page === this.page.getType()) || (item.type === 'total' && this.page.showTotal());
+            }
         }
     }
 </script>
@@ -140,45 +136,11 @@
                 </div>
             </div>
 
-            <div class="document__total"
-                 v-if="page.showTotal()"
-                 :style="{'top': getTotalTop() + 'px'}">
-                <div
-                    :style="{'height': scale(20) + 'px'}"
-                    class="document__total-line">
-                    <div class="document__total-label">
-                        Totaal
-                    </div>
-                    <div class="document__total-value">
-                        {{page.document.getTotal() | currency}} {{page.document.currency}}
-                    </div>
-                </div>
-                <div
-                    :style="{'height': scale(20) + 'px'}"
-                    class="document__total-line">
-                    <div class="document__total-label">
-                        BTW 21%
-                    </div>
-                    <div class="document__total-value">
-                        {{page.document.getTotal() * 0.21 | currency}} {{page.document.currency}}
-                    </div>
-                </div>
-                <div
-                        :style="{'font-size': scale(15) + 'px', 'line-height': scale(16) + 'px', 'height': scale(20) + 'px'}"
-                        class="document__total-line document__total-line--big">
-                    <div class="document__total-label">
-                        Te betalen
-                    </div>
-                    <div class="document__total-value">
-                        {{page.document.getTotal() * 1.21 | currency}} {{page.document.currency}}
-                    </div>
-                </div>
-            </div>
-
             <!-- page.lines container -->
             <vue-drag-resize
                 @resizing="resizeLinesContainer"
                 @dragging="dragLinesContainer"
+                container=".document__elements"
                 :preventActiveBehavior="!editor"
                 :parentLimitation="true"
                 :isDraggable="editor"
@@ -200,66 +162,11 @@
                 :editor="editor"
                 :factor="factor"
                 :template="template"
-                :document="page.document"
                 :page="page"/>
 
         </div>
 
-        <vue-drag-resize
-            v-if="editor && page.getType() === 'front'"
-            class="iss-resizer iss-resizer--hor"
-            @dragging="setMarginTop"
-            :parentLimitation="true"
-            :axis="'y'"
-            :isDraggable="editor"
-            :isResizable="false"
-            :y="scale(template.margin.top)"
-            :x="scale(template.margin.left)"
-            :h="1"
-            :minh="1"
-            :w="scale(620 - template.margin.left - template.margin.right)"/>
 
-        <vue-drag-resize
-            v-if="editor && page.getType() === 'front'"
-            class="iss-resizer iss-resizer--hor"
-            @dragging="setMarginBottom"
-            :parentLimitation="true"
-            :axis="'y'"
-            :isDraggable="editor"
-            :isResizable="false"
-            :y="scale(877 - template.margin.top)"
-            :x="scale(template.margin.left)"
-            :h="1"
-            :minh="1"
-            :w="scale(620 - template.margin.left - template.margin.right)"/>
-
-        <vue-drag-resize
-            v-if="editor && page.getType() === 'front'"
-            class="iss-resizer iss-resizer--ver"
-            @dragging="setMarginLeft"
-            :parentLimitation="true"
-            :axis="'x'"
-            :isDraggable="editor"
-            :isResizable="false"
-            :y="scale(template.margin.top)"
-            :x="scale(template.margin.left)"
-            :w="1"
-            :minw="1"
-            :h="scale(877 - template.margin.top - template.margin.bottom)"/>
-
-        <vue-drag-resize
-            v-if="editor && page.getType() === 'front'"
-            class="iss-resizer iss-resizer--ver"
-            @dragging="setMarginRight"
-            :parentLimitation="true"
-            :axis="'x'"
-            :isDraggable="editor"
-            :isResizable="false"
-            :y="scale(template.margin.top)"
-            :x="scale(620 - template.margin.right)"
-            :w="1"
-            :minw="1"
-            :h="scale(877 - template.margin.top - template.margin.bottom)"/>
 
 
         <md-snackbar
@@ -300,54 +207,6 @@
                     padding: 0;
                     margin: 0;
                 }
-            }
-        }
-
-        .document__total {
-            position: absolute;
-            width: 100%;
-
-            .document__total-line {
-                display: flex;
-
-                .document__total-label {
-                    width: 50%;
-                }
-
-                .document__total-value {
-                    width: 50%;
-                    text-align: right;
-                }
-
-                &.document__total-line--big {
-                    font-weight: 700;
-
-                    .document__total-label {
-
-                    }
-
-                    .document__total-value {
-
-                    }
-                }
-            }
-
-            .document__footer-text {
-                position: relative;
-                left: -10px;
-                width: calc(100% + 20px);
-                text-align: center;
-            }
-        }
-
-
-
-        .document__footer-image {
-            position: absolute;
-
-            img {
-                width: 100%;
-                height: auto;
             }
         }
     }

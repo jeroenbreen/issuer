@@ -145,6 +145,10 @@
                 validator: function (val) {
                     return ['x', 'y', 'both', 'none'].indexOf(val) !== -1
                 }
+            },
+            container: {
+                type: String,
+                default: null
             }
         },
 
@@ -190,12 +194,12 @@
         },
 
         mounted: function () {
-            this.parentElement = this.$el.parentNode;
-            this.parentWidth = this.parentW ? this.parentW : this.parentElement.clientWidth;
-            this.parentHeight = this.parentH ? this.parentH : this.parentElement.clientHeight;
-
-            this.rawRight = this.parentWidth - this.rawWidth - this.rawLeft;
-            this.rawBottom = this.parentHeight - this.rawHeight - this.rawTop;
+            if (this.container) {
+                this.parentElement = $(this.container)[0];
+            } else {
+                this.parentElement = this.$el.parentNode;
+            }
+            this.updateParent();
 
             document.documentElement.addEventListener('mousemove', this.move);
             document.documentElement.addEventListener('mouseup', this.up);
@@ -235,6 +239,13 @@
         },
 
         methods: {
+            updateParent() {
+                this.parentWidth = this.parentW ? this.parentW : this.parentElement.clientWidth;
+                this.parentHeight = this.parentH ? this.parentH : this.parentElement.clientHeight;
+
+                this.rawRight = this.parentWidth - this.rawWidth - this.rawLeft;
+                this.rawBottom = this.parentHeight - this.rawHeight - this.rawTop;
+            },
             deselect(e) {
                 if (this.preventActiveBehavior) {
                     return
@@ -270,6 +281,7 @@
 
             bodyDown: function (ev) {
                 let target = ev.target || ev.srcElement;
+                this.updateParent();
 
                 if (!this.preventActiveBehavior) {
                     this.active = true;
