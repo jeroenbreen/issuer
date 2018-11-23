@@ -3,6 +3,8 @@
     import docLine from "./page/line";
     import sortableList from "@components/shared/sortable-list";
     import vueDragResize from '@components/shared/vue-drag-resize/vue-drag-resize'
+    import {pageHeight, pageWidth} from '@root/globals';
+
     import $ from 'jquery'
 
     import {Template} from "@models/Template";
@@ -38,6 +40,7 @@
         },
         data(){
             return {
+                pageHeight: pageHeight,
                 company: this.$store.state.company,
                 canAddLines: true,
                 localState: {
@@ -72,13 +75,13 @@
                 this.template.margin.top = event.top;
             },
             setMarginBottom(event) {
-                this.template.margin.bottom = 877 - event.top;
+                this.template.margin.bottom = this.pageHeight - event.top;
             },
             setMarginLeft(event) {
                 this.template.margin.left = event.left;
             },
             setMarginRight(event) {
-                this.template.margin.right = 620 - event.left;
+                this.template.margin.right = pageWidth - event.left;
             },
             resizeLinesContainer(event) {
                 this.template[this.page.getType()].lines.y = event.top;
@@ -97,7 +100,7 @@
 
 <template>
     <div
-        :style="{'font-size': scale(10) + 'px', 'width': scale(620) + 'px', 'height': scale(877) + 'px'}"
+        :style="{'font-size': scale(10) + 'px', 'width': scale(620) + 'px', 'height': scale(pageHeight) + 'px'}"
         :class="{'template--active': editor}"
         class="page">
 

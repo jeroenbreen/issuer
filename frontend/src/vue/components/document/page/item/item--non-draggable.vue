@@ -6,7 +6,7 @@
         components: {
             itemTotal
         },
-        props: ['template', 'editor', 'factor', 'item', 'onClick', 'page'],
+        props: ['template', 'editor', 'factor', 'item', 'onClick', 'page', 'documentPropertyHandler'],
         methods: {
             selectItem() {
                 if (this.editor) {
@@ -27,7 +27,8 @@
             :item="item"
             :template="template"
             :page="page"
-            :factor="factor"/>
+            :factor="factor"
+            :document-property-handler="documentPropertyHandler"/>
     </div>
 </template>
 

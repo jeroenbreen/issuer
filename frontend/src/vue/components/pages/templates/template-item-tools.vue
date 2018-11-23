@@ -6,12 +6,13 @@
     import itemPadding from './template-tools/item-padding';
     import itemDimensions from './template-tools/item-dimensions';
     import itemPositioning from './template-tools/item-positioning';
+    import itemTotalContent from './template-tools/item-total-content';
 
     export default {
         name: 'template-item-tools',
         props: ['item', 'template', 'currentPage'],
         components: {
-            textAlign, itemAppearance, colorPicker, itemText, itemPadding, itemDimensions, itemPositioning
+            textAlign, itemAppearance, colorPicker, itemText, itemPadding, itemDimensions, itemPositioning, itemTotalContent
         },
         methods: {
             removeItem() {
@@ -53,7 +54,7 @@
             :item="item"/>
 
         <item-text
-            v-if="item.type === 'total' || item.type === 'text'"
+            v-if="item.type === 'text'"
             :item="item"/>
 
         <item-dimensions
@@ -75,6 +76,10 @@
 
         <item-padding
             v-if="item.styleable"
+            :item="item"/>
+
+        <item-total-content
+            v-if="item.type === 'total'"
             :item="item"/>
     </div>
 </template>

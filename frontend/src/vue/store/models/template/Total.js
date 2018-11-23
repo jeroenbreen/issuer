@@ -1,10 +1,15 @@
 import {_NonDraggable} from './_Non-Draggable';
+
 class Total {
-    constructor(text) {
+    constructor(total) {
         this.type = 'total';
         this.required = true;
         this.styleable = false;
-        this.content = text.content;
+        this.position = total.position;
+        this.totalNet = total.totalNet;
+        this.totalVat = total.totalVat;
+        this.totalGross = total.totalGross;
+        this.extraContent = total.extraContent;
     }
 }
 

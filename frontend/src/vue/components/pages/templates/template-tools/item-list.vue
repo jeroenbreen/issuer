@@ -3,18 +3,19 @@
     import itemListImage from "./item-list-image";
     import itemListText from "./item-list-text";
     import itemListBorder from "./item-list-border";
+    import itemListTotal from "./item-list-total";
 
     export default {
         name: 'item-list',
         components: {
-            sortableList, itemListImage, itemListText, itemListBorder
+            sortableList, itemListImage, itemListText, itemListBorder, itemListTotal
         },
         props: ['template', 'page'],
         methods: {
             getItems() {
                 let page = this.page;
                 return this.template.items.filter(function(item){
-                    return item.page === 'all' || item.page === page.getType();
+                    return item.page === 'all' || item.page === page.getType() || (item.type === 'total' && page.showTotal());
                 })
             },
             onClick(item) {
@@ -48,6 +49,10 @@
             <item-list-border
                 v-if="item.type === 'border'"
                 :item="item"/>
+
+            <item-list-total
+                    v-if="item.type === 'total'"
+                    :item="item"/>
 
         </div>
     </div>

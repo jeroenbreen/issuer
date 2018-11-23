@@ -1,5 +1,5 @@
 <script>
-    import contentParser from './../content-parser';
+    import contentParser from './content-parser';
 
     export default {
         name: 'item-text',

@@ -22,6 +22,7 @@ class Document {
         this.clientCity = document && document.clientCity ? document.clientCity : '';
 
         // financial
+        this.vat = 21;
         this.rate = document && document.rate ? document.rate : 0;
         this.currency = document && document.currency ? document.currency : 0;
 

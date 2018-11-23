@@ -1,15 +1,57 @@
 <script>
+    import {pageHeight} from '@root/globals';
+    import contentParser from './content-parser';
+
+    import $ from 'jquery';
+
     export default {
         name: 'item-total',
-        props: ['item', 'page', 'template', 'factor'],
+        props: ['item', 'page', 'template', 'factor', 'documentPropertyHandler'],
         methods: {
             scale(value) {
                 return value * this.factor;
             },
-            getTotalTop() {
-                let pageTemplateSettings = this.template[this.page.getType()];
-                return this.scale(pageTemplateSettings.lines.y + pageTemplateSettings.lines.height - 60);
+            getStyleObject() {
+                if (this.item.position === 'bottom') {
+                    let pageTemplateSettings = this.template[this.page.getType()],
+                        linePosition = pageTemplateSettings.lines.y + pageTemplateSettings.lines.height;
+                    return {
+                        bottom: this.scale(pageHeight - linePosition - this.template.margin.top - this.template.margin.bottom) + 'px'
+                    };
+                } else {
+                    setTimeout(() => {
+                        if (this.documentLines) {
+                            let thisPageLines = this.template[this.page.getType()].lines;
+                            return {
+                                top: this.scale(thisPageLines.y + 20) + Number($(this.documentLines).outerHeight()) + 'px'
+                            }
+                        } else {
+                            return {
+                                top: this.scale(100) + 'px'
+                            }
+                        }
+                    }, 1000);
+
+
+
+                }
+            },
+
+            getTotalNetContent() {
+                return contentParser.parse(this.item.totalNet.content, this.documentPropertyHandler);
+            },
+            getTotalVatContent() {
+                return contentParser.parse(this.item.totalVat.content, this.documentPropertyHandler);
+            },
+            getTotalGrossContent() {
+                return contentParser.parse(this.item.totalGross.content, this.documentPropertyHandler);
+            },
+            getExtraContent() {
+                return contentParser.parse(this.item.extraContent.content, this.documentPropertyHandler);
             }
+        },
+        mounted() {
+            this.documentLines = this.$el.parentNode.parentNode.parentNode.firstChild.firstChild;
         }
     }
 </script>
@@ -18,42 +60,49 @@
 <template>
     <div
         class="item__total"
-        :style="{'top': getTotalTop() + 'px'}">
-        Item total
+        :style="getStyleObject()">
+
+
+        <div
+            v-if="item.totalNet.display"
+            :style="{'height': scale(20) + 'px'}"
+            class="item-total__line">
+            <div class="item-total__label">
+                {{getTotalNetContent()}}
+            </div>
+            <div class="item-total__value">
+                {{page.document.getTotal() | currency}} {{page.document.currency}}
+            </div>
+        </div>
+
+        <div
+            v-if="item.totalVat.display"
+            :style="{'height': scale(20) + 'px'}"
+            class="item-total__line">
+            <div class="item-total__label">
+                {{getTotalVatContent()}}
+            </div>
+            <div class="item-total__value">
+                {{page.document.getTotal() * 0.21 | currency}} {{page.document.currency}}
+            </div>
+        </div>
+
+        <div
+            v-if="item.totalGross.display"
+            :style="{'font-size': scale(15) + 'px', 'line-height': scale(16) + 'px', 'height': scale(20) + 'px'}"
+            class="item-total__line item-total__line--big">
+            <div class="item-total__label">
+                {{getTotalGrossContent()}}
+            </div>
+            <div class="item-total__value">
+                {{page.document.getTotal() * 1.21 | currency}} {{page.document.currency}}
+            </div>
+        </div>
+
+        <div class="item-total__extra-content">
+            <span v-html="getExtraContent()"></span>
+        </div>
     </div>
-    <!--<div class="document__total"-->
-    <!--:style="{'top': getTotalTop() + 'px'}">-->
-    <!--<div-->
-    <!--:style="{'height': scale(20) + 'px'}"-->
-    <!--class="document__total-line">-->
-    <!--<div class="document__total-label">-->
-    <!--Totaal-->
-    <!--</div>-->
-    <!--<div class="document__total-value">-->
-    <!--{{page.document.getTotal() | currency}} {{page.document.currency}}-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div-->
-    <!--:style="{'height': scale(20) + 'px'}"-->
-    <!--class="document__total-line">-->
-    <!--<div class="document__total-label">-->
-    <!--BTW 21%-->
-    <!--</div>-->
-    <!--<div class="document__total-value">-->
-    <!--{{page.document.getTotal() * 0.21 | currency}} {{page.document.currency}}-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div-->
-    <!--:style="{'font-size': scale(15) + 'px', 'line-height': scale(16) + 'px', 'height': scale(20) + 'px'}"-->
-    <!--class="document__total-line document__total-line&#45;&#45;big">-->
-    <!--<div class="document__total-label">-->
-    <!--Te betalen-->
-    <!--</div>-->
-    <!--<div class="document__total-value">-->
-    <!--{{page.document.getTotal() * 1.21 | currency}} {{page.document.currency}}-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
 </template>
 
 
@@ -62,28 +111,27 @@
         position: absolute;
         width: 100%;
         height: 60px;
-        background: pink;
 
-        .document__total-line {
+        .item-total__line {
             display: flex;
 
-            .document__total-label {
+            .item-total__label {
                 width: 50%;
             }
 
-            .document__total-value {
+            .item-total__value {
                 width: 50%;
                 text-align: right;
             }
 
-            &.document__total-line--big {
+            &.item-total__line--big {
                 font-weight: 700;
 
-                .document__total-label {
+                .item-total__label {
 
                 }
 
-                .document__total-value {
+                .item-total__value {
 
                 }
             }

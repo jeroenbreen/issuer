@@ -99,6 +99,17 @@ class DocumentPropertyHandler {
                         getObjectPath() {
                             return ['document', 'subject']
                         }
+                    }, {
+                        title: 'Document vat',
+                        tag: 'document_vat',
+                        type: 'input--number',
+                        editable: true,
+                        getParsedValue: () => {
+                            return this.document.vat;
+                        },
+                        getObjectPath() {
+                            return ['document', 'vat']
+                        }
                     }
                 ]
             }, {
@@ -158,6 +169,17 @@ class DocumentPropertyHandler {
                         },
                         getObjectPath() {
                             return ['company', 'city']
+                        }
+                    }, {
+                        title: 'Company bank',
+                        tag: 'company_bank',
+                        type: 'input',
+                        editable: false,
+                        getParsedValue: () => {
+                            return this.company.bank;
+                        },
+                        getObjectPath() {
+                            return ['company', 'bank']
                         }
                     }
                 ]
@@ -246,7 +268,6 @@ class DocumentPropertyHandler {
                     }
                 ]
             }
-
         ]
     }
 
