@@ -56,7 +56,7 @@
                 let target = $(event.target);
 
                 function isItemArea(element) {
-                    const areas = ['vdr', 'tool-box'];
+                    const areas = ['item', 'tool-box'];
                     for (let area of areas) {
                         if (element.parents('.' + area).length > 0 || element.hasClass(area)) {
                             return true;

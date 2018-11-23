@@ -1,7 +1,7 @@
 <script>
-    import itemDraggable from './item/item--draggable';
-    import itemNonDraggable from './item/item--non-draggable';
-    import {DocumentPropertyHandler} from "./../document-property-handler";
+    import itemDraggable from './item--draggable';
+    import itemNonDraggable from './item--non-draggable';
+    import {DocumentPropertyHandler} from "./../../document-property-handler";
 
 
 

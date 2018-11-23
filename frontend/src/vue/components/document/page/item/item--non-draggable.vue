@@ -8,14 +8,20 @@
         },
         props: ['template', 'editor', 'factor', 'item', 'onClick', 'page'],
         methods: {
-
+            selectItem() {
+                if (this.editor) {
+                    this.$store.commit('templateEditor/setCurrentItemIndex', this.template.items.indexOf(this.item));
+                }
+            }
         }
     }
 </script>
 
 
 <template>
-    <div class="item--no-draggable">
+    <div
+        @click="selectItem()"
+        class="item--no-draggable">
         <item-total
             v-if="item.type === 'total'"
             :item="item"

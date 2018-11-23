@@ -37,15 +37,15 @@ class Template {
         if (template) {
             this.importItems(template);
         }
-        let temp = {};
-        temp.items = [
-            {
-                type: 'total',
-                position: 'bottom',
-                content: '[total_net=Totaal]\n[total_vat=BTW {document_vat}%]\n[total_gross=Te betalen]\n\nGelieve dit bedrag binnen vier weken over te maken onder vermelding van factuurnummer op NL 30 TRIO 033 876 7924.\n\n<b>Let op dit is een nieuw rekeningnummer!</b>'
-            }
-        ];
-        this.importItems(temp);
+        // let temp = {};
+        // temp.items = [
+        //     {
+        //         type: 'total',
+        //         position: 'bottom',
+        //         content: '[total_net=Totaal]\n[total_vat=BTW {document_vat}%]\n[total_gross=Te betalen]\n\nGelieve dit bedrag binnen vier weken over te maken onder vermelding van factuurnummer op NL 30 TRIO 033 876 7924.\n\n<b>Let op dit is een nieuw rekeningnummer!</b>'
+        //     }
+        // ];
+        // this.importItems(temp);
     }
 
     // actions

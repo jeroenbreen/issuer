@@ -1,11 +1,11 @@
-import {_Item} from './_Item';
+import {_Draggable} from './_Draggable';
 
 
-class Border extends _Item {
+class Border extends _Draggable {
     constructor(border) {
         super(border);
         this.type = 'border';
-        this.color = border.color;
+        this.required = false;
     }
 
     toPrint() {

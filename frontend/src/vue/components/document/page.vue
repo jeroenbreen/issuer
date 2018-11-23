@@ -1,5 +1,5 @@
 <script>
-    import item from "./page/item";
+    import item from "./page/item/item";
     import docLine from "./page/line";
     import sortableList from "@components/shared/sortable-list";
     import vueDragResize from '@components/shared/vue-drag-resize/vue-drag-resize'

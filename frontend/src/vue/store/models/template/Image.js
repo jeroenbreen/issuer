@@ -1,10 +1,11 @@
-import {_Item} from './_Item';
+import {_Draggable} from './_Draggable';
 
 
-class Image extends _Item {
+class Image extends _Draggable {
     constructor(image) {
         super(image);
         this.type = 'image';
+        this.required = false;
         this.src = image ? image.src : 'image-placeholder.png';
     }
 

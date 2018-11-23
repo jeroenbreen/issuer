@@ -28,8 +28,7 @@
                     message: 'Are you sure?',
                     callback: callback
                 });
-            },
-
+            }
         }
     }
 </script>
@@ -41,7 +40,7 @@
             Item ({{item.type}})
         </div>
         <div
-            v-if="item && item.type !== 'box'"
+            v-if="!item.required"
             class="tool-box__section">
             <div class="tool-box__label">&nbsp;</div>
             <button @click="removeItem()">
@@ -50,32 +49,32 @@
         </div>
 
         <item-appearance
-            v-if="item && item.type !== 'box'"
+            v-if="!item.required"
             :item="item"/>
 
         <item-text
-            v-if="item && item.type === 'text'"
+            v-if="item.type === 'total' || item.type === 'text'"
             :item="item"/>
 
         <item-dimensions
-            v-if="item"
+            v-if="item.draggable"
             :item="item"/>
 
         <color-picker
-            v-if="item && item.type !== 'box'"
+            v-if="item.styleable"
             :item="item"/>
 
         <item-positioning
-            v-if="item && item.type !== 'box'"
+            v-if="item.draggable"
             :item="item"
             :template="template"/>
 
         <text-align
-            v-if="item && item.type === 'text'"
+            v-if="item.type === 'text'"
             :item="item"/>
 
         <item-padding
-            v-if="item && item.type !== 'box'"
+            v-if="item.styleable"
             :item="item"/>
     </div>
 </template>

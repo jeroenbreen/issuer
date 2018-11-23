@@ -16,7 +16,9 @@
 
 
 <template>
-    <div>
+    <div
+        class="item__total"
+        :style="{'top': getTotalTop() + 'px'}">
         Item total
     </div>
     <!--<div class="document__total"-->
@@ -56,9 +58,11 @@
 
 
 <style lang="scss">
-    .document__total {
+    .item__total {
         position: absolute;
         width: 100%;
+        height: 60px;
+        background: pink;
 
         .document__total-line {
             display: flex;
