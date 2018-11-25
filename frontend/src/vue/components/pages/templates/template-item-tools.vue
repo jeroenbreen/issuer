@@ -7,12 +7,13 @@
     import itemDimensions from './template-tools/item-dimensions';
     import itemPositioning from './template-tools/item-positioning';
     import itemTotalContent from './template-tools/item-total-content';
+    import itemZIndex from './template-tools/item-z-index';
 
     export default {
         name: 'template-item-tools',
         props: ['item', 'template', 'currentPage'],
         components: {
-            textAlign, itemAppearance, colorPicker, itemText, itemPadding, itemDimensions, itemPositioning, itemTotalContent
+            textAlign, itemAppearance, colorPicker, itemText, itemPadding, itemDimensions, itemPositioning, itemTotalContent, itemZIndex
         },
         methods: {
             removeItem() {
@@ -52,6 +53,10 @@
         <item-appearance
             v-if="!item.required"
             :item="item"/>
+
+        <item-z-index
+            :item="item"
+            :template="template"/>
 
         <item-text
             v-if="item.type === 'text'"
