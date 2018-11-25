@@ -4,11 +4,12 @@
     import itemListText from "./item-list-text";
     import itemListBorder from "./item-list-border";
     import itemListTotal from "./item-list-total";
+    import itemListLines from "./item-list-lines";
 
     export default {
         name: 'item-list',
         components: {
-            sortableList, itemListImage, itemListText, itemListBorder, itemListTotal
+            sortableList, itemListImage, itemListText, itemListBorder, itemListTotal, itemListLines
         },
         props: ['template', 'page'],
         methods: {
@@ -54,6 +55,9 @@
                     v-if="item.type === 'total'"
                     :item="item"/>
 
+            <item-list-lines
+                    v-if="item.type === 'lines'"
+                    :item="item"/>
         </div>
     </div>
 </template>

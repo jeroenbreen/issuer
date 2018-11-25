@@ -13,27 +13,22 @@
             },
             getStyleObject() {
                 if (this.item.position === 'bottom') {
-                    let pageTemplateSettings = this.template[this.page.getType()],
-                        linePosition = pageTemplateSettings.lines.y + pageTemplateSettings.lines.height;
+                    let pageTemplateSettings = this.template.getLinesItem(this.page.getType()),
+                        linePosition = pageTemplateSettings.y + pageTemplateSettings.height;
                     return {
                         bottom: this.scale(pageHeight - linePosition - this.template.margin.top - this.template.margin.bottom) + 'px'
                     };
                 } else {
-                    setTimeout(() => {
-                        if (this.documentLines) {
-                            let thisPageLines = this.template[this.page.getType()].lines;
-                            return {
-                                top: this.scale(thisPageLines.y + 20) + Number($(this.documentLines).outerHeight()) + 'px'
-                            }
-                        } else {
-                            return {
-                                top: this.scale(100) + 'px'
-                            }
+                    if (this.documentLines) {
+                        let thisPageLines = this.template.getLinesItem(this.page.getType());
+                        return {
+                            top: this.scale(thisPageLines.y + 20) + Number($(this.documentLines).outerHeight()) + 'px'
                         }
-                    }, 1000);
-
-
-
+                    } else {
+                        return {
+                            top: this.scale(100) + 'px'
+                        }
+                    }
                 }
             },
 
@@ -51,7 +46,7 @@
             }
         },
         mounted() {
-            this.documentLines = this.$el.parentNode.parentNode.parentNode.firstChild.firstChild;
+            this.page.documentLines = this.$el.parentNode.parentNode.parentNode.firstChild.firstChild;
         }
     }
 </script>

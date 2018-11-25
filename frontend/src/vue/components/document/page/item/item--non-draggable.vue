@@ -21,7 +21,7 @@
 <template>
     <div
         @click="selectItem()"
-        class="item--no-draggable">
+        class="item--non-draggable">
         <item-total
             v-if="item.type === 'total'"
             :item="item"
@@ -34,5 +34,25 @@
 
 
 <style lang="scss">
+    @import '@styles/variables.scss';
 
+    .template--active {
+
+        .item--non-draggable {
+
+            > div {
+                outline: 1px dashed $editing-mode-color;
+            }
+        }
+
+        .item--current {
+
+            .item--non-draggable {
+
+                > div {
+                    outline: 1px solid $editing-mode-color;
+                }
+            }
+        }
+    }
 </style>

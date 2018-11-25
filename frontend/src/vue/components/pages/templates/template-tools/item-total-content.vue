@@ -4,7 +4,7 @@
         props: ['item'],
         data(){
             return {
-                positions: ['connecting', 'bottom']
+                positions: ['bottom']
             }
         },
         methods: {

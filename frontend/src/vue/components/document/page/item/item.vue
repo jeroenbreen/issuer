@@ -10,7 +10,7 @@
         components: {
             itemDraggable, itemNonDraggable
         },
-        props: ['template', 'editor', 'factor', 'item', 'onClick', 'page'],
+        props: ['template', 'editor', 'tools', 'factor', 'item', 'onClick', 'page'],
         data() {
             let company = this.$store.state.company;
             let document = this.page.document;
@@ -39,6 +39,7 @@
             v-if="item.draggable"
             :item="item"
             :editor="editor"
+            :tools="tools"
             :factor="factor"
             :template="template"
             :page="page"

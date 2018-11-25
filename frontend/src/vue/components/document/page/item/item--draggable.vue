@@ -3,15 +3,16 @@
     import itemBorder from './item--border';
     import itemText from './item--text';
     import itemImage from './item--image';
+    import itemLines from './item--lines';
 
 
 
     export default {
         name: 'item-draggable',
         components: {
-            vueDragResize, itemBorder, itemText, itemImage
+            vueDragResize, itemBorder, itemText, itemImage, itemLines
         },
-        props: ['template', 'editor', 'factor', 'item', 'onClick', 'page', 'documentPropertyHandler'],
+        props: ['template', 'editor', 'tools', 'factor', 'item', 'onClick', 'page', 'documentPropertyHandler'],
         methods: {
             onDrag (event) {
                 if (this.editor) {
@@ -45,7 +46,7 @@
     <vue-drag-resize
             @clicked="select()"
             dragHandle=".drag-handle"
-            container=".document__elements"
+            container=".document__items"
             :preventActiveBehavior="!editor && item.type !== 'total'"
             :parentLimitation="true"
             :minw="1"
@@ -66,6 +67,13 @@
 
 
         <div class="item__content" :style="{'padding': scale(item.padding) + 'px', 'background': item.background}">
+
+            <item-lines
+                v-if="item.type === 'lines'"
+                :item="item"
+                :tools="tools"
+                :page="page"
+                :factor="factor"/>
 
             <item-border
                 v-if="item.type === 'border'"
@@ -121,6 +129,41 @@
 
         .item__content {
             height: 100%;
+        }
+    }
+
+    .template--active {
+        background: $editing-mode-color-light;
+
+        .vdr {
+
+            &:before {
+                outline: 1px dashed $editing-mode-color;
+                content: '';
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                position: absolute;
+                pointer-events: none;
+            }
+
+            .vdr-stick {
+                border: 1px solid $editing-mode-color;
+                background: #fff;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+        }
+
+        .item--current {
+
+            .vdr {
+
+                &:before {
+                    outline: 1px solid $editing-mode-color;
+                }
+            }
         }
     }
 </style>

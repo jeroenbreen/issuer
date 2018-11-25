@@ -1,7 +1,8 @@
 import {_NonDraggable} from './_Non-Draggable';
 
-class Total {
+class Total extends _NonDraggable {
     constructor(total) {
+        super(total);
         this.type = 'total';
         this.required = true;
         this.styleable = false;
