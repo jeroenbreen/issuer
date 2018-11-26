@@ -62,15 +62,30 @@
             :page="currentPage"></item-list>
 
         <div class="tool-box__section">
-            <button @click="addImage()">
-                Add Image
-            </button>
-            <button @click="addText()">
-                Add Text
-            </button>
-            <button @click="addBorder()">
-                Add Border
-            </button>
+            <div class="tool-button" @click="addImage()">
+                <div class="tool-button__icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <div class="tool-button__label">
+                    Add image
+                </div>
+            </div>
+            <div class="tool-button" @click="addText()">
+                <div class="tool-button__icon">
+                    <i class="fas fa-font"></i>
+                </div>
+                <div class="tool-button__label">
+                    Add text
+                </div>
+            </div>
+            <div class="tool-button" @click="addBorder()">
+                <div class="tool-button__icon">
+                    <i class="fas fa-vector-square"></i>
+                </div>
+                <div class="tool-button__label">
+                    Add border
+                </div>
+            </div>
         </div>
     </div>
 </template>

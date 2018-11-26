@@ -32,7 +32,8 @@
                 },
                 documentPropertyHandler: new DocumentPropertyHandler(
                     store, template, company, document, null, documentIdFormatter, documentIdFormat, dateFormatter
-                )
+                ),
+                test: document.subject
             }
         },
         watch: {

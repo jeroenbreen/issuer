@@ -14,12 +14,12 @@
 <template>
     <div class="tool-box__section">
         <div class="tool-box__row">
-            <div class="tool-box__label">
-                Horiz. centered
-            </div>
-            <div class="tool-box__content">
-                <div @click="centerHorizontal()" class="template__tool">
+            <div class="tool-button" @click="centerHorizontal()">
+                <div class="tool-button__icon">
                     <i class="fas fa-arrows-alt-h"></i>
+                </div>
+                <div class="tool-button__label">
+                    Place in center
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@
                     icon: 'fas fa-align-left'
                 }, {
                     type: 'center',
-                    icon: 'fas fa-align-left'
+                    icon: 'fas fa-align-center'
                 }, {
                     type: 'right',
                     icon: 'fas fa-align-right'
@@ -33,11 +33,11 @@
             </div>
             <div class="tool-box__content">
                 <div
-                        v-for="(aligning, index) in alignings"
-                        @click="setAligning(aligning)"
-                        :key="index"
-                        :class="{'template__tool--current': aligning.type === item.textAlign}"
-                        class="template__tool">
+                    v-for="(aligning, index) in alignings"
+                    @click="setAligning(aligning)"
+                    :key="index"
+                    :class="{'template__tool--current': aligning.type === item.textAlign}"
+                    class="template__tool">
                     <i class="fas" :class="[aligning.icon]"></i>
                 </div>
             </div>

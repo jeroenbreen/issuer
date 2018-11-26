@@ -10,7 +10,7 @@
     <div class="item-list-item__container">
         <div class="item-list__icon">
             <span>
-               <i class="fas fa-receipt"></i>
+                <i class="fas fa-table"></i>
             </span>
         </div>
         <div class="item-list__label">

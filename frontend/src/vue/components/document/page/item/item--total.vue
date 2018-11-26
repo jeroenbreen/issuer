@@ -46,7 +46,7 @@
             }
         },
         mounted() {
-            this.page.documentLines = this.$el.parentNode.parentNode.parentNode.firstChild.firstChild;
+            this.documentLines = this.$el.parentNode.parentNode.parentNode.firstChild.firstChild;
         }
     }
 </script>

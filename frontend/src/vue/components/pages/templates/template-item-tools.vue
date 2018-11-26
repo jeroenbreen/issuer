@@ -45,9 +45,15 @@
             v-if="!item.required"
             class="tool-box__section">
             <div class="tool-box__label">&nbsp;</div>
-            <button @click="removeItem()">
-                Remove Item
-            </button>
+
+            <div class="tool-button" @click="removeItem()">
+                <div class="tool-button__icon">
+                    <i class="fas fa-trash"></i>
+                </div>
+                <div class="tool-button__label">
+                    Remove item
+                </div>
+            </div>
         </div>
 
         <item-appearance
