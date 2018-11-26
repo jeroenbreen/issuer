@@ -22,6 +22,13 @@
             },
             isEditable() {
                 return !this.line.document.locked && this.tools;
+            },
+            getHeight() {
+                if (this.line.type === 'subtotal') {
+                    return 'auto';
+                } else {
+                    return this.scale(20) + 'px';
+                }
             }
         }
     }
@@ -30,7 +37,7 @@
 
 <template>
     <li
-        :style="{'height': scale(20) + 'px', 'min-height': scale(20) + 'px', 'margin-bottom': scale(4) + 'px'}"
+        :style="{'height': getHeight(), 'min-height': scale(20) + 'px', 'margin-bottom': scale(4) + 'px'}"
         :class="{'line--text': line.type === 'text'}"
         class="line">
         <div v-if="isEditable()" class="line__grip handle" v-handle>
@@ -199,10 +206,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-
-        .line__subtotal {
-            margin-bottom: 28px;
         }
     }
 </style>

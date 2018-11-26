@@ -14,9 +14,9 @@ function getStyleObject($item, $page, $template, $scale) {
     style="<?php echo getStyleObject($item, $page, $this->template, $scale); ?>">
     <?php if ($item->totalNet->display) { ?>
     <div style="height: <?php echo ($scale * 20) . 'px'; ?>" class="item-total__line"><div class="item-total__label">
-            XXX
+            <?php echo $item->totalNet->content; ?>
         </div><div class="item-total__value">
-            EUR
+            <?php echo $this->document->currency; ?> <?php echo $this->document->total->formattedValue->net; ?>
         </div></div>
     <?php } ?>
 
@@ -24,9 +24,9 @@ function getStyleObject($item, $page, $template, $scale) {
 
     <?php if ($item->totalVat->display) { ?>
     <div style="height: <?php echo ($scale * 20) . 'px'; ?>" class="item-total__line"><div class="item-total__label">
-            XXX
+        <?php echo $item->totalVat->content; ?>
         </div><div class="item-total__value">
-            EUR
+            <?php echo $this->document->currency; ?> <?php echo $this->document->total->formattedValue->vat; ?>
         </div></div>
     <?php } ?>
 
@@ -36,9 +36,9 @@ function getStyleObject($item, $page, $template, $scale) {
     <div
         style="height: <?php echo ($scale * 20); ?>px; font-size: <?php echo ($scale * 15); ?>px; line-height: <?php echo ($scale * 16); ?>px;"
         class="item-total__line item-total__line--big"><div class="item-total__label">
-            Te betalen
+        <?php echo $item->totalGross->content; ?>
         </div><div class="item-total__value">
-            EUR
+            <?php echo $this->document->currency; ?> <?php echo $this->document->total->formattedValue->gross; ?>
         </div></div>
     <?php } ?>
 

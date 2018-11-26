@@ -104,7 +104,7 @@ class Document {
             formattedValue: {
                 net: currencyFilter(this.getTotal()),
                 vat: currencyFilter(this.getTotal() * 0.21),
-                total: currencyFilter(this.getTotal() * 1.21)
+                gross: currencyFilter(this.getTotal() * 1.21)
             }
         };
         for (let page of this.pages) {

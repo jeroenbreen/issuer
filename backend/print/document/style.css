@@ -113,36 +113,58 @@ html {
 
 
 
-
-
-
-
-/* line sum/hourly */
+/* line */
 
 .line {
     clear: both;
+}
+
+.line__row {
     width: 100%;
 }
 
-
-
-.line > * {
+.line-part {
     float: left;
-    white-space: nowrap;
 }
 
-.line .line__multiply {
-    width: 10px;
-    text-align: center;
+.line-part--25 {
+    width: 25%;
 }
 
-.line .line__rate {
+.line-part--50 {
+    width: 50%;
 }
 
-.line .line__value {
-    text-align: right;
+.line-part--75 {
+    width: 75%;
+}
+
+.line-part--start {
+    padding-right: 10px;
+}
+
+.line-part--middle {
+    padding: 0 10px;
+}
+
+.line-part--end {
+    padding-left: 10px;
     float: right;
+    text-align: right;
 }
+
+.line-part--end input {
+    text-align: right;
+}
+
+.line__row--heavy {
+    font-weight: 700;
+    font-size: 120%;
+}
+
+
+
+
 
 
 /* text line */

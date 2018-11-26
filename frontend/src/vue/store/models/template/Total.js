@@ -1,4 +1,9 @@
 import {_NonDraggable} from './_Non-Draggable';
+import contentParser from '@components/document/page/item/content-parser';
+
+import {Tools} from './../../../tools/tools'
+
+
 
 class Total extends _NonDraggable {
     constructor(total) {
@@ -11,6 +16,14 @@ class Total extends _NonDraggable {
         this.totalVat = total.totalVat;
         this.totalGross = total.totalGross;
         this.extraContent = total.extraContent;
+    }
+
+    toPrint(documentPropertyHandler) {
+        let obj = Tools.deepclone(this);
+        obj.totalNet.content = contentParser.parse(this.totalNet.content, documentPropertyHandler);
+        obj.totalVat.content = contentParser.parse(this.totalVat.content, documentPropertyHandler);
+        obj.totalGross.content = contentParser.parse(this.totalGross.content, documentPropertyHandler);
+        return obj;
     }
 }
 

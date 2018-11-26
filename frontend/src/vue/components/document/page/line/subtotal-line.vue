@@ -17,19 +17,14 @@
                 {{line.document.currency}}
             </div>
         </div>
-        <div class="line__row">
-            <div class="line-part line-part--75 line-part--start">
-                BTW 21%
-            </div>
-            <div class="line-part line-part--25 line-part--end">
-                {{line.getValue(21) | currency}}
-                {{line.document.currency}}
-            </div>
-        </div>
     </div>
 </template>
 
 
 <style lang="scss">
     @import '@styles/variables.scss';
+
+    .line__subtotal {
+        margin-bottom: 28px;
+    }
 </style>

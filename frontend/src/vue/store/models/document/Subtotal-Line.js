@@ -22,6 +22,18 @@ class SubtotalLine extends _Line {
         }
         return Math.round(value * pct) / 100;
     }
+
+    toPrint(currencyFilter) {
+        const obj = {...this};
+        if (currencyFilter) {
+            obj.value = currencyFilter(this.getValue(100));
+        } else {
+            obj.value = this.getValue(100);
+        }
+        delete obj.page;
+        delete obj.document;
+        return obj;
+    }
 }
 
 export {SubtotalLine};

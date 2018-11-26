@@ -1,5 +1,5 @@
-import contentParser from '@components/document/page/item/content-parser';
 import {_Draggable} from './_Draggable';
+import contentParser from '@components/document/page/item/content-parser';
 
 
 class Text extends _Draggable {

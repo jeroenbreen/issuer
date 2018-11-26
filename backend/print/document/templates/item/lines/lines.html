@@ -1,7 +1,17 @@
 <style>
-    .line > * {
-        padding-top:<?php echo $scale * 5; ?>px;
+    .line, .line__row, .line-part {
+        height: <?php echo $scale * 18; ?>px;
     }
+
+    .line {
+        padding-top: <?php echo $scale * 2; ?>px;
+        margin-bottom: <?php echo $scale * 4; ?>px;
+    }
+
+    .line.line--subtotal {
+        height: auto;
+    }
+
 
     .line--text,
     .line--text p {
@@ -40,6 +50,9 @@
                     break;
                 case 'break';
                     include("line--break.html");
+                    break;
+                case 'subtotal';
+                    include("line--subtotal.html");
                     break;
             }
         }

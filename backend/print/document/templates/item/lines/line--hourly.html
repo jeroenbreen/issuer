@@ -1,23 +1,15 @@
-<div class="line"
-     style="height:<?php echo (24 * $scale); ?>px">
-    <div class="line__subject"
-         style="width:<?php echo $col_width_50 - $spacing; ?>px;">
-        <?php echo $line->subject; ?>
-    </div>
-    <div class="line__center-line" style="width:<?php echo 2 * $spacing; ?>px;">&nbsp;</div>
-    <div class="line__hours"
-         style="width:<?php echo $scale * 30; ?>px">
-        <?php echo $line->hours; ?>
-    </div>
-    <div class="line__multiply"
-         style="width:<?php echo $scale * 10; ?>px">
-        ×
-    </div>
-    <div class="line__rate"
-         style="width:<?php echo $scale * 50; ?>px">
-        <?php echo $line->rate; ?> <?php echo $this->document->currency; ?>
-    </div>
-    <div class="line__value">
-        <?php echo $line->value; ?> <?php echo $this->document->currency; ?>
+<div class="line line--hourly">
+    <div class="line__row">
+        <div class="line-part line-part--50 line-part--start">
+            <?php echo $line->subject; ?>
+        </div>
+        <div class="line-part line-part--25 line-part--middle line-part__set">
+            <?php echo $line->hours; ?> ×
+            <?php echo $line->rate; ?>
+            <?php echo $this->document->currency; ?>
+        </div>
+        <div class="line-part line-part--end line-part--25">
+            <?php echo $line->value; ?> <?php echo $this->document->currency; ?>
+        </div>
     </div>
 </div>

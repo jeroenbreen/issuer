@@ -46,7 +46,7 @@ class _Line {
         delete obj.page;
         delete obj.document;
         return obj;
-        return {};
+        return obj;
     }
 
     clone() {
