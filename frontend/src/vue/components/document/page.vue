@@ -2,6 +2,7 @@
     import item from "./page/item/item";
     import {pageHeight, pageWidth} from '@root/globals';
     import {Template} from "@models/Template";
+    import {Page} from "@models/document/Page";
 
 
 
@@ -13,7 +14,27 @@
         components: {
             item
         },
-        props: ['page', 'template', 'editor', 'factor', 'tools'],
+        props: {
+            page: {
+                type: Page,
+                required: true
+            }, template: {
+                type: Template,
+                required: true
+            }, editor: {
+                type: Boolean,
+                required: true
+            }, factor: {
+                type: Number,
+                required: true,
+                validator: function (value) {
+                    return value > 0;
+                }
+            }, tools: {
+                type: Boolean,
+                required: true
+            }
+        },
         watch: {
             clonedTemplate: {
                 handler: function() {
