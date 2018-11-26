@@ -100,7 +100,6 @@ class Document {
         const obj = {...this};
         obj.pages = [];
         obj.total = {
-            page: this.pages.indexOf(this.getPageWithTotal()),
             value: this.getTotal(),
             formattedValue: {
                 net: currencyFilter(this.getTotal()),

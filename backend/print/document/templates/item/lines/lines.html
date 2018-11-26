@@ -23,17 +23,24 @@
     }
 </style>
 
-<div class="document__lines">
+<div class="item__lines">
     <?php
         foreach ($page->lines as $line) {
-            if ($line->type == 'hourly') {
-                include("templates/line--hourly.html");
-            } else if ($line->type == 'text') {
-                include("templates/line--text.html");
-            } else if ($line->type == 'sum') {
-                include("templates/line--sum.html");
-            } else if ($line->type == 'break') {
-                include("templates/line--break.html");
+            $lineType = $line->type;
+
+            switch ($lineType) {
+                case 'hourly';
+                    include("line--hourly.html");
+                    break;
+                case 'text';
+                    include("line--text.html");
+                    break;
+                case 'sum';
+                    include("line--sum.html");
+                    break;
+                case 'break';
+                    include("line--break.html");
+                    break;
             }
         }
     ?>

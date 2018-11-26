@@ -94,6 +94,8 @@ class Page {
         for (let line of this.lines) {
             obj.lines.push(line.toPrint(currencyFilter));
         }
+        obj.type = this.getType();
+        obj.showTotal = this.showTotal();
         return obj;
     }
 

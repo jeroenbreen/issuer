@@ -1,0 +1,50 @@
+<?php
+
+function getStyleObject($item, $page, $template, $scale) {
+    if ($item->position == 'bottom') {
+        return 'bottom: ' . ($scale * ($template->margin->bottom + $template->total->style->bottom->{$page->type})) . 'px';
+    }
+    // todo implement other position options
+}
+
+?>
+
+<div
+    class="item__total"
+    style="<?php echo getStyleObject($item, $page, $this->template, $scale); ?>">
+    <?php if ($item->totalNet->display) { ?>
+    <div style="height: <?php echo ($scale * 20) . 'px'; ?>" class="item-total__line"><div class="item-total__label">
+            XXX
+        </div><div class="item-total__value">
+            EUR
+        </div></div>
+    <?php } ?>
+
+
+
+    <?php if ($item->totalVat->display) { ?>
+    <div style="height: <?php echo ($scale * 20) . 'px'; ?>" class="item-total__line"><div class="item-total__label">
+            XXX
+        </div><div class="item-total__value">
+            EUR
+        </div></div>
+    <?php } ?>
+
+
+
+    <?php if ($item->totalGross->display) { ?>
+    <div
+        style="height: <?php echo ($scale * 20); ?>px; font-size: <?php echo ($scale * 15); ?>px; line-height: <?php echo ($scale * 16); ?>px;"
+        class="item-total__line item-total__line--big"><div class="item-total__label">
+            Te betalen
+        </div><div class="item-total__value">
+            EUR
+        </div></div>
+    <?php } ?>
+
+
+
+    <!--<div class="item-total__extra-content">-->
+        <!--<span v-html="getExtraContent()"></span>-->
+    <!--</div>-->
+</div>

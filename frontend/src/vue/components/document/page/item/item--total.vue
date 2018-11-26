@@ -105,7 +105,6 @@
     .item__total {
         position: absolute;
         width: 100%;
-        height: 60px;
 
         .item-total__line {
             display: flex;

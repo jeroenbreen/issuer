@@ -1,0 +1,29 @@
+<div
+    class="item"
+    style="<?php echo
+        'left:' . ($scale * $item->x) . 'px;
+         top:' . ($scale * $item->y) . 'px;
+         width:' . ($scale * ($item->width - 2 * $item->padding)) . 'px;
+         height:' . ($scale * ($item->height - 2 * $item->padding)) . 'px;
+         padding: ' . ($scale * $item->padding) . 'px;
+         background: ' . $item->background . ';
+         '; ?>">
+
+    <?php
+
+        switch($type) {
+            case 'image':
+                include('item--image.html');
+                break;
+            case 'text':
+                include('item--text.html');
+                break;
+            case 'border':
+                // no template needed
+                break;
+            case 'lines':
+                include('lines/lines.html');
+                break;
+        }
+    ?>
+</div>

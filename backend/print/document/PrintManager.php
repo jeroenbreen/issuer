@@ -20,9 +20,8 @@ class PrintManager
         $data_raw = file_get_contents("php://input");
         $data = json_decode($data_raw);
         $this->document = $data->document;
-        $this->template = $data->template->settings;
+        $this->template = $data->template;
         $this->company = $data->company;
-        $this->dictionary = $data->template->settings->dictionary;
         $this->resize = 1;
 
         $dompdf = new Dompdf();
@@ -41,7 +40,7 @@ class PrintManager
 
     protected function getFileName()
     {
-        return strtolower($this->dictionary->{$this->document->type} . "-" . $this->document->documentIdFormatted . ".pdf");
+        return strtolower("Dcoument -" . $this->document->documentIdFormatted . ".pdf");
     }
 
     protected function getHMTL()
@@ -61,11 +60,7 @@ class PrintManager
         $i = 0;
         foreach ($this->document->pages as $page) {
             ob_start();
-            if ($i == 0) {
-                include("templates/page--front.html");
-            } else {
-                include("templates/page--regular.html");
-            }
+            include("templates/page.html");
             $html .= ob_get_clean();
             $i++;
         }

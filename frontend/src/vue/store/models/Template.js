@@ -4,7 +4,7 @@ import {Border} from './template/Border';
 import {Total} from './template/Total';
 import {Lines} from './template/Lines';
 import {Tools} from './../../tools/tools'
-import {pageWidth} from '@root/globals'
+import {pageHeight, pageWidth} from '@root/globals'
 import {fallBackDocumentMargin} from '@models/fallbacks'
 
 
@@ -87,14 +87,20 @@ class Template {
         return this.clone();
     }
 
-    toPrint() {
+    toPrint(documentPropertyHandler) {
         let obj = {...this};
-        obj.settings = Tools.deepclone(obj.settings);
-        obj.settings.logo.src = config.fromPrint + config.templateUrl + this.settings.logo.src;
-        obj.frontPage.items = [];
-        for (let item of this.frontPage.items) {
-            obj.frontPage.items.push(item.toPrint());
+        obj.items = [];
+        for (let item of this.items) {
+            obj.items.push(item.toPrint(documentPropertyHandler))
         }
+        obj.total = {
+            style: {
+                bottom: {
+                    front: pageHeight - (this.getLinesItem('front').y + this.getLinesItem('front').height) - this.margin.top - this.margin.bottom,
+                    follow: pageHeight - (this.getLinesItem('follow').y + this.getLinesItem('follow').height) - this.margin.top - this.margin.bottom,
+                }
+            }
+        };
         return obj;
     }
 

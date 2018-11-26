@@ -252,7 +252,12 @@ class DocumentPropertyHandler {
                         type: 'input',
                         editable: false,
                         getParsedValue: () => {
-                            return this.page.getIndex() + 1;
+                            // todo inside print the page is unknown
+                            if (this.page) {
+                                return this.page.getIndex() + 1;
+                            } else {
+                                return '?';
+                            }
                         },
                         getObjectPath() {
                             return null;

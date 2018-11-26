@@ -17,7 +17,16 @@
         components: {
             documentIndex, docPage, templateToolsDocument, templateToolsPage, templateToolsItem
         },
-        props: ['template', 'document'],
+        props: {
+            template: {
+                type: Template,
+                required: true
+            },
+            document: {
+                type: Document,
+                required: true
+            }
+        },
         data(){
             return {
                 clonedTemplate: new Template(this.template.clone()),

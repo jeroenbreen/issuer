@@ -7,6 +7,10 @@ class _Item {
     clone() {
         return {...this}
     }
+
+    toPrint(documentPropertyHandler) {
+        return {...this}
+    }
 }
 
 

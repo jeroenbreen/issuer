@@ -1,5 +1,5 @@
 <script>
-    import imageUploader from '@components/pages/templates/image-uploader';
+    import imageUploader from '@components/pages/templates/template-tools/image-uploader';
 
     export default {
         name: 'item-image',

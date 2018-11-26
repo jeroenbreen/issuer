@@ -1,0 +1,27 @@
+<style>
+    body {
+        font-size: <?php echo $scale * 9; ?>px;
+        line-height: <?php echo $scale * 9 * 1.1; ?>px;
+    }
+
+    .page {
+        width: <?php echo $page_width; ?>px;
+        height: <?php echo $page_height; ?>px;
+    }
+</style>
+
+<div class='page'>
+    <div class="document__items"
+         style="left: <?php echo $scale * $this->template->margin->left; ?>px;
+                top: <?php echo $scale * $this->template->margin->top; ?>px;
+                right: <?php echo $scale * $this->template->margin->right; ?>px;
+                bottom: <?php echo $scale * $this->template->margin->left; ?>px">
+        <?php
+        foreach ($this->template->items as $item) {
+            if (($item->type == 'total' && $page->showTotal) || ($item->type != 'total' && ($item->page == 'all' || $item->page == $page->type))) {
+                include("item/item.html");
+            }
+        }
+        ?>
+    </div>
+</div>

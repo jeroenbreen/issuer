@@ -9,6 +9,7 @@
         },
         props: ['item', 'template'],
         data() {
+            // todo remove double posting
             return {
                 loading: false,
                 dropzoneOptions: {
