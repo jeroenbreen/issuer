@@ -1,19 +1,36 @@
 <script>
-    import textAlign from './template-tools/text-align';
-    import itemAppearance from './template-tools/item-appearance';
-    import colorPicker from './template-tools/color-picker';
-    import itemText from './template-tools/item-text';
-    import itemPadding from './template-tools/item-padding';
-    import itemDimensions from './template-tools/item-dimensions';
-    import itemPositioning from './template-tools/item-positioning';
-    import itemTotalContent from './template-tools/item-total-content';
-    import itemZIndex from './template-tools/item-z-index';
+    import itemToolTextAlign from './item-tools/item-tool-text-align';
+    import itemToolAppearance from './item-tools/item-tool-appearance';
+    import itemToolBackground from './item-tools/item-tool-background';
+    import itemToolText from './item-tools/item-tool-text';
+    import itemToolPadding from './item-tools/item-tool-padding';
+    import itemToolDimensions from './item-tools/item-tool-dimensions';
+    import itemToolPositioning from './item-tools/item-tool-positioning';
+    import itemTotalContent from './item-tools/item-total-content';
+    import itemToolZIndex from './item-tools/item-tool-z-index';
+
+    import {Template} from '@models/Template';
+    import {Page} from '@models/document/Page';
+    import {_Item} from '@models/template/_Item';
 
     export default {
         name: 'template-item-tools',
-        props: ['item', 'template', 'currentPage'],
+        props: {
+            item: {
+                type: _Item,
+                required: true
+            },
+            template: {
+                type: Template,
+                required: true
+            },
+            currentPage: {
+                type: Page,
+                required: true
+            }
+        },
         components: {
-            textAlign, itemAppearance, colorPicker, itemText, itemPadding, itemDimensions, itemPositioning, itemTotalContent, itemZIndex
+            itemToolTextAlign, itemToolAppearance, itemToolBackground, itemToolText, itemToolPadding, itemToolDimensions, itemToolPositioning, itemTotalContent, itemToolZIndex
         },
         methods: {
             removeItem() {
@@ -56,36 +73,36 @@
             </div>
         </div>
 
-        <item-appearance
+        <item-tool-appearance
             v-if="!item.required"
             :item="item"/>
 
-        <item-z-index
+        <item-tool-z-index
             :item="item"
             :template="template"/>
 
-        <item-text
+        <item-tool-text
             v-if="item.type === 'text'"
             :item="item"/>
 
-        <item-dimensions
+        <item-tool-dimensions
             v-if="item.draggable"
             :item="item"/>
 
-        <color-picker
+        <item-tool-background
             v-if="item.styleable"
             :item="item"/>
 
-        <item-positioning
+        <item-tool-positioning
             v-if="item.draggable"
             :item="item"
             :template="template"/>
 
-        <text-align
+        <item-tool-text-align
             v-if="item.type === 'text'"
             :item="item"/>
 
-        <item-padding
+        <item-tool-padding
             v-if="item.styleable"
             :item="item"/>
 

@@ -1,6 +1,6 @@
 <script>
     export default {
-        name: 'item-text',
+        name: 'item-tool-text',
         props: ['item'],
         methods: {
 

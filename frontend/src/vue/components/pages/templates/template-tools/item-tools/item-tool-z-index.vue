@@ -1,6 +1,6 @@
 <script>
     export default {
-        name: 'item-z-index',
+        name: 'item-tool-z-index',
         props: ['item', 'template'],
         methods: {
             placeOnTop() {

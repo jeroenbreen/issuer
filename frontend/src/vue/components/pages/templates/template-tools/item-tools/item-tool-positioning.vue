@@ -1,6 +1,6 @@
 <script>
     export default {
-        name: 'item-positioning',
+        name: 'item-tool-positioning',
         props: ['item', 'template'],
         methods: {
             centerHorizontal() {

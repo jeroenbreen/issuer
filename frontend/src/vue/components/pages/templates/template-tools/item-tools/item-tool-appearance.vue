@@ -1,6 +1,6 @@
 <script>
     export default {
-        name: 'item-appearance',
+        name: 'item-tool-appearance',
         props: ['item'],
         data(){
             return {

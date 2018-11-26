@@ -2,7 +2,7 @@
     import vueColor from 'vue-color';
 
     export default {
-        name: 'color-picker',
+        name: 'item-tool-background',
         components: {
             'compact-picker': vueColor.Compact
         },

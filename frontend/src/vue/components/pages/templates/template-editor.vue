@@ -1,11 +1,13 @@
 <script>
     import documentIndex from "@components/document/document-index";
     import docPage from "@components/document/page";
-    import templateDocumentTools from "./template-document-tools";
-    import templatePageTools from "./template-page-tools";
-    import templateItemTools from "./template-item-tools";
+    import templateToolsDocument from "./template-tools/template-tools-document";
+    import templateToolsPage from "./template-tools/template-tools-page";
+    import templateToolsItem from "./template-tools/template-tools-item";
+
     import {Document} from "@models/Document";
     import {Template} from "@models/Template";
+
     import $ from 'jquery';
 
     let saveBuffer = null;
@@ -13,7 +15,7 @@
     export default {
         name: 'template-editor',
         components: {
-            documentIndex, docPage, templateDocumentTools, templatePageTools, templateItemTools
+            documentIndex, docPage, templateToolsDocument, templateToolsPage, templateToolsItem
         },
         props: ['template', 'document'],
         data(){
@@ -102,17 +104,17 @@
         <div class="close-button" @click="closeScreen()"></div>
 
         <div class="tool-box__left" v-if="!showTools">
-            <template-document-tools
+            <template-tools-document
                 :template="clonedTemplate"/>
 
-            <template-page-tools
+            <template-tools-page
                 v-if="document.state.currentPage"
                 :template="clonedTemplate"
                 :current-page="document.state.currentPage"/>
         </div>
 
         <div class="tool-box__right" v-if="!showTools">
-            <template-item-tools
+            <template-tools-item
                 v-if="getCurrentItem()"
                 :item="getCurrentItem()"
                 :template="clonedTemplate"

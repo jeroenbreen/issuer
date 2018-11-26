@@ -1,23 +1,25 @@
 <script>
     import templateMargins from "./template-margins";
 
+    import {Template} from "@models/Template";
 
     export default {
-        name: 'template-document-tools',
-        props: ['template'],
+        name: 'template-tools-document',
+        props: {
+            template: {
+                type: Template,
+                required: true
+            }
+        },
         components: {
             templateMargins
-        },
-        methods: {
-
-
         }
     }
 </script>
 
 
 <template>
-    <div class="template-document-tools tool-box">
+    <div class="tool-box">
         <div class="tool-box__header">
             Document
         </div>
@@ -39,8 +41,4 @@
 
 <style lang="scss">
     @import '@styles/variables.scss';
-
-    .template-document-tools {
-
-    }
 </style>

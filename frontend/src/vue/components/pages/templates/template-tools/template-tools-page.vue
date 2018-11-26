@@ -1,8 +1,22 @@
 <script>
-    import itemList from './template-tools/item-list'
+    import itemList from './item-list/item-list';
+
+    import {Template} from "@models/Template";
+    import {Page} from "@models/document/Page";
+
+
     export default {
         name: 'template-page-tools',
-        props: ['template', 'currentPage'],
+        props: {
+            template: {
+                type: Template,
+                required: true
+            },
+            currentPage: {
+                type: Page,
+                required: true
+            }
+        },
         components: {
             itemList
         },

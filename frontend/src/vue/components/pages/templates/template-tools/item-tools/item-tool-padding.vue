@@ -1,6 +1,6 @@
 <script>
     export default {
-        name: 'item-padding',
+        name: 'item-tool-padding',
         props: ['item'],
         methods: {
 

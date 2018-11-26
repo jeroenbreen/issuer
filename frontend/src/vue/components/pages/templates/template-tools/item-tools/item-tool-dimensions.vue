@@ -1,6 +1,6 @@
 <script>
     export default {
-        name: 'item-dimensions',
+        name: 'item-tool-dimensions',
         props: ['item'],
         methods: {
 
