@@ -1,11 +1,11 @@
 <script>
-    import avatar from '@components/shared/avatar';
+    import logo from './logo';
 
     export default {
         name: 'top-bar',
         props: ['model'],
         components: {
-            avatar
+            logo
         },
         methods: {
             getCurrentUser() {
@@ -18,11 +18,7 @@
 
 <template>
     <div class="topbar">
-        Welcome
-        <avatar
-            v-if="getCurrentUser()"
-            :user="getCurrentUser()"
-            :size="48"/>
+        <logo/>
     </div>
 </template>
 
@@ -31,6 +27,8 @@
     @import '@styles/variables.scss';
 
     .topbar {
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 
         .avatar {
             position: absolute;
