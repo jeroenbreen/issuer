@@ -15,49 +15,65 @@ const getters = {
 const actions = {
     create(context, item, route) {
         return new Promise((resolve, reject) => {
-            delete item._id;
-            $.ajax({
-                'url': (config.backend + route),
-                'type': 'POST',
-                'data': JSON.stringify(item),
-                'headers': {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            }).done(function(response){
-                context.commit('create', response);
-                resolve(response);
-            });
+            if (config.useBackend) {
+                delete item._id;
+                $.ajax({
+                    'url': (config.backend + route),
+                    'type': 'POST',
+                    'data': JSON.stringify(item),
+                    'headers': {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }).done(function(response){
+                    context.commit('create', response);
+                    resolve(response);
+                });
+            } else {
+                context.commit('create', item);
+                resolve(item);
+            }
+
         })
     },
     update(context, item, route) {
         return new Promise((resolve, reject) => {
-            $.ajax({
-                'url': (config.backend + route + '/' + item._id),
-                'type': 'PUT',
-                'data': JSON.stringify(item),
-                'headers': {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            }).done(function(response){
-                context.commit('update', response);
+            if (config.useBackend) {
+                $.ajax({
+                    'url': (config.backend + route + '/' + item._id),
+                    'type': 'PUT',
+                    'data': JSON.stringify(item),
+                    'headers': {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }).done(function (response) {
+                    context.commit('update', response);
+                    resolve();
+                });
+            } else {
+                context.commit('update', item);
                 resolve();
-            });
+            }
         })
     },
     delete(context, item, route) {
         return new Promise((resolve, reject) => {
-            $.ajax({
-                'url': (config.backend + route + '/' + item._id),
-                'type': 'DELETE',
-                'headers': {
-                    'Accept': 'application/json'
-                }
-            }).done(function(response){
+            if (config.useBackend) {
+                $.ajax({
+                    'url': (config.backend + route + '/' + item._id),
+                    'type': 'DELETE',
+                    'headers': {
+                        'Accept': 'application/json'
+                    }
+                }).done(function (response) {
+                    context.commit('delete', item);
+                    resolve();
+                });
+            } else {
                 context.commit('delete', item);
                 resolve();
-            });
+            }
         })
     }
 };
