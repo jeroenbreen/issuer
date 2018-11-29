@@ -15,6 +15,10 @@ class User {
         return this.firstName + ' ' + this.lastName;
     }
 
+    toBackend() {
+        return {...this};
+    }
+
 }
 
 export {User};

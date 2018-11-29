@@ -9,6 +9,7 @@ import repositories from './modules/repositories'
 import projects from './modules/projects'
 import issues from './modules/issues'
 import documents from './modules/documents'
+import statuses from './modules/statuses'
 import {Company} from "./models/Company";
 import _base from "./modules/_base-module";
 
@@ -107,7 +108,8 @@ export default new Vuex.Store({
         projects,
         repositories,
         issues,
-        documents
+        documents,
+        statuses
     },
     strict: true
 })

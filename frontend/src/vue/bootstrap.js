@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource';
 import theStore from './store'
+import {dataToStore} from '@root/vue/data-to-store'
 
 // components
 import app from './app';
@@ -83,16 +84,11 @@ const router = new VueRouter({
 
 const bootstrapVue = function(response) {
     const store = theStore;
-    theStore.commit('initCompany', response.company);
-    theStore.commit('users/init', response.users);
-    theStore.commit('clients/init', response.clients);
-    theStore.commit('projects/init', response.projects);
-    theStore.commit('repositories/init', response.repositories);
-    theStore.commit('templates/init', response.templates);
-    theStore.commit('documents/init', response.documents);
 
-    theStore.commit('users/setCurrent', theStore.state.users.all[0]);
-    theStore.dispatch('issues/read', theStore.state.users.current.githubKey);
+    if (response) {
+        dataToStore(theStore, response);
+    }
+
 
 
     new Vue({

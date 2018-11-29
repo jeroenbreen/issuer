@@ -39,23 +39,6 @@
             <li>
                 <router-link to="/projects">Projects</router-link>
             </li>
-            <li>
-                <router-link to="/">Documents</router-link>
-            </li>
-            <!--<li>-->
-            <!--<router-link to="/">Todo's</router-link>-->
-            <!--</li>-->
-        </ul>
-
-        <ul class="menu__index">
-            <li>
-                <router-link to="/issues">
-                    Issues
-                    <avatar
-                        :user="getCurrentUser()"
-                        :size="24"/>
-                </router-link>
-            </li>
         </ul>
     </div>
 </template>
@@ -83,6 +66,7 @@
                     border-bottom: $generalBorder;
                     text-decoration: none;
                     color: #000;
+                    transition: none;
 
                     .avatar {
                         margin-left: 8px;
@@ -92,6 +76,7 @@
                     &:hover,
                     &.router-link-exact-active {
                         background: $grey-10;
+                        color: #000;
                     }
                 }
             }

@@ -37,34 +37,40 @@
 
     .document-mini {
         display: flex;
-        height: 26px;
-        border-radius: 13px;
-        padding: 0 12px;
         align-items: center;
-        margin: 0 3px 3px 0;
+        height: 30px;
+        margin-right: 4px;
         cursor: pointer;
-        color: #fff;
 
         &.document-mini--invoice {
-            @include invoiceBackground();
+            border-bottom: 2px solid $invoice-color-1;
         }
 
         &.document-mini--quotation {
-            @include quotationBackground();
+            border-bottom: 2px solid $quotation-color-1;
         }
 
         &:hover {
-             box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-         }
+            margin-top: 2px;
+
+            &.document-mini--invoice {
+                border-bottom: 4px solid $invoice-color-1;
+            }
+
+            &.document-mini--quotation {
+                border-bottom: 4px solid $quotation-color-1;
+            }
+        }
+
 
         .document-mini__icon {
             font-size: 12px;
-            margin-right: 6px;
+            margin-right: 2px;
             width: 16px;
         }
 
         .document-mini__label {
-
+            white-space: nowrap;
         }
     }
 </style>

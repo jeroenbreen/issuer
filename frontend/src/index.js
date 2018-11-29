@@ -7,14 +7,20 @@ import {bootstrapVue} from './vue/bootstrap';
 function getBackendData() {
     const url = config.backend + 'bootstrap';
 
-    $.ajax({
-        'url' : url,
-        'headers': {
-            'Accept': 'application/json'
-        }
-    }).done(function(response){
-        getGitData(response);
-    });
+    if (config.useBackend) {
+        $.ajax({
+            'url' : url,
+            'headers': {
+                'Accept': 'application/json'
+            }
+        }).done(function(response){
+            getGitData(response);
+        });
+    } else {
+        bootstrapVue(null);
+    }
+
+
 }
 
 

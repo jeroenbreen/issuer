@@ -1,4 +1,5 @@
-import {Document} from './Document'
+import {Document} from './Document';
+import {Tools} from './../../tools/tools';
 
 
 class Project {
@@ -8,7 +9,7 @@ class Project {
         this.company_id = project ? project.company_id : '';
         this.projectId = project ? project.projectId : null;
         this.title = project ? project.title : '';
-        this.status = project ? project.projectStatus : 0;
+        this.status_id = project ? project.status_id : null;
         this.repository_id = project ? project.repository_id : 0;
         this.milestone_id = project ? project.milestone_id : 0;
 
@@ -26,7 +27,7 @@ class Project {
     }
 
     getBudget() {
-        return (this.rate * this.hours - this.discount) + ' ' +  this.currency;
+        return this.rate * this.hours - this.discount;
     }
 
     getDocument(type) {
@@ -46,6 +47,12 @@ class Project {
             currency: this.currency,
             pages: [{}]
         })
+    }
+
+    //
+
+    toBackend() {
+        return Tools.deepclone(this);
     }
 }
 

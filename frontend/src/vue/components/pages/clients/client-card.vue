@@ -32,34 +32,30 @@
 
     .client-card {
         display: flex;
-        border-bottom: $generalBorder;
         height: 40px;
         cursor: pointer;
+        margin-bottom: 8px;
+        box-shadow: 1px 1px 7px rgba(0,0,0,0.2);
+        background: #fff;
 
         &:hover {
             background: $grey-10;
         }
 
-        &:first-child {
-            border-top: $generalBorder;
-        }
 
         > * {
-            border-right: $generalBorder;
             padding: $general-padding;
             height: 100%;
             display: flex;
             align-items: center;
-
-            &:first-child {
-                border-left: $generalBorder;
-            }
         }
 
         .client-card__number {
             width: 50px;
             flex-grow: 0;
             justify-content: space-around;
+            background: $main-theme-color;
+            color: #fff;
         }
 
         .client-card__name {

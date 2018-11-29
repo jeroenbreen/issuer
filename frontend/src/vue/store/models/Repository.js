@@ -6,6 +6,10 @@ class Repository {
         this.url = repository.url;
         this.owner = {...repository.owner};
     }
+
+    toBackend() {
+        return {...this};
+    }
 }
 
 export {Repository}

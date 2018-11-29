@@ -1,16 +1,16 @@
 class Company {
 
     constructor(company) {
-        this._id = company._id;
-        this.name = company.name;
-        this.address = company.address;
-        this.postcode = company.postcode;
-        this.city = company.city;
-        this.bank = company.bank;
-        this.githubHandle = company.githubHandle;
-        this.githubKey = company.githubKey;
-        this.coc = company.coc;
-        this.vat = company.vat;
+        this._id = company ? company._id : '';
+        this.name = company ? company.name : '';
+        this.address = company ? company.address : '';
+        this.postcode = company ? company.postcode : '';
+        this.city = company ? company.city : '';
+        this.bank = company ? company.bank : '';
+        this.githubHandle = company ? company.githubHandle : '';
+        this.githubKey = company ? company.githubKey : '';
+        this.coc = company ? company.coc : '';
+        this.vat = company ? company.vat : '';
     }
 
     getCustomCode() {

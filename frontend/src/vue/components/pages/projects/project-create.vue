@@ -46,9 +46,7 @@
         <project-details :project="project"></project-details>
 
         <div class="view-frame-section">
-            <div class="iss-button" @click="create()">
-                Create Project
-            </div>
+            <md-button @click="create()" class="md-primary">Create Project</md-button>
         </div>
     </div>
 </template>

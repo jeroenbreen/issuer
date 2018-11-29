@@ -1,8 +1,8 @@
-import {Project} from './../models/Project';
+import {Status} from './../models/project/Status';
 import _base from './_base-module';
 
-const route = 'projects';
-const Model = Project;
+const route = 'templates';
+const Model = Status;
 
 const state = {
     all: [],
@@ -11,15 +11,21 @@ const state = {
 
 const getters = {
     ..._base.getters,
-    getAllSorted: (state, getters, rootState, rootGetters) => () => {
-        return [...state.all].sort((a, b) => {
-
-            function getStatus(item) {
-                return rootGetters['statuses/getItemById'](item.status_id);
+    getInOrder: (state) => (order, direction) => {
+        let newStatus = null;
+        for (let status of state.all) {
+            if (direction === 1) {
+                if (status.order > order && (!newStatus || status.order < newStatus.order)) {
+                    newStatus = status;
+                }
+            } else {
+                if (status.order < order && (!newStatus || status.order > newStatus.order)) {
+                    newStatus = status;
+                }
             }
-            return getStatus(a).order - getStatus(b).order;
-        });
-    }
+        }
+        return newStatus;
+    },
 };
 
 const actions = {
@@ -40,6 +46,9 @@ const mutations = {
     },
     setCurrent(state, item) {
         return _base.mutations.setCurrent(state, item)
+    },
+    unsetCurrent(state, item) {
+        return _base.mutations.unsetCurrent(state, item)
     },
     create(state, item) {
         return _base.mutations.create(state, item, Model);

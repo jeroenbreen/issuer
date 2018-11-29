@@ -1,15 +1,29 @@
 <script>
     import projectCard from './project-card';
+    import searchBox from '@components/layout/search-box';
 
     export default {
         name: 'projects',
         components: {
-            projectCard
+            projectCard, searchBox
+        },
+        data() {
+            return {
+                search: {
+                    label: 'Search projects',
+                    value: ''
+                }
+            }
+        },
+        computed: {
+            projects() {
+                return this.$store.getters['projects/getAllSorted']().filter(project => {
+                    let value = this.search.value.toLocaleLowerCase();
+                    return project.title.toLowerCase().indexOf(value) > -1;
+                });
+            }
         },
         methods: {
-            getAll: function(){
-                return this.$store.state.projects.all;
-            },
             create: function() {
                 this.$router.push('projects/new');
             }
@@ -26,9 +40,13 @@
             </h1>
         </div>
         <div class="view-frame-section">
+            <search-box
+                    :search-data="search"/>
+        </div>
+        <div class="view-frame-section">
             <div class="project-cards">
                 <project-card
-                    v-for="project in getAll()"
+                    v-for="project in projects"
                     :key="project._id"
                     :project="project"/>
             </div>

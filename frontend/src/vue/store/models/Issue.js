@@ -11,6 +11,10 @@ class Issue {
         this.updatedAt = new Date(issue.updated_at);
         this.createdBy = issue.user.login;
     }
+
+    toBackend() {
+        return {...this};
+    }
 }
 
 export {Issue};

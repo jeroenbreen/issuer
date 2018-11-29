@@ -12,7 +12,7 @@
         },
         computed: {
             company () {
-                return new Company(this.$store.state.company.toBackend())
+                return this.$store.state.company ? new Company(this.$store.state.company.toBackend()) : new Company()
             }
         }
     }

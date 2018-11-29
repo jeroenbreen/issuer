@@ -16,6 +16,9 @@
     @import '@styles/variables.scss';
 
     .branding-logo {
-
+        img {
+            border: 1px solid #ddd;
+            border-radius: 2px;
+        }
     }
 </style>

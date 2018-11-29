@@ -50,6 +50,6 @@
 </template>
 
 
-<script lang="less"></script>
+<style lang="less"></style>
 
 

@@ -1,11 +1,10 @@
 <script>
-    import {Document} from '@models/Document';
-    import documentMini from '@components/document/document-mini';
+    import documentList from './document-list';
 
     export default {
         name: 'project-details',
         components: {
-            documentMini
+            documentList
         },
         props: ['project'],
         mounted () {
@@ -82,35 +81,6 @@
                         // error
                     });
                 }
-            },
-            getDocuments(type) {
-                const getSet = this.$store.getters['documents/getSet'];
-                return getSet(type, this.project._id);
-            },
-            createDocument(type) {
-                let client, document;
-                const getItemById = this.$store.getters['clients/getItemById'];
-                client = getItemById(this.project.client_id);
-                document = {
-                    type: type,
-                    documentId: 1,
-                    project_id: this.project._id,
-                    locked: false,
-                    date: '2010-01-01',
-                    subject: this.project.title,
-                    userName: this.$store.state.users.current.getFullName(),
-                    clientCompanyName: client.companyName,
-                    clientContactName: client.contactFirstName + ' ' + client.contactLastName,
-                    clientStreet: client.street,
-                    clientPostcode: client.postcode,
-                    clientCity: client.city,
-                    rate: this.project.rate,
-                    currency: this.project.currency,
-                    pages: [{}]
-                };
-                this.$store.dispatch('documents/create', document).then(() => {
-                    this.$store.commit('documents/setCurrent', new Document(document));
-                });
             }
         }
     }
@@ -252,6 +222,7 @@
                 </div>
             </div>
         </div>
+        <a name="quotation"></a>
         <div class="view-frame-section">
             <div class="view-frame-section__header">
                 Quotations
@@ -259,17 +230,15 @@
             <div class="view-frame-section__content">
                 <div class="details-row">
                     <div class="details-content">
-                        <document-mini
-                                v-for="(document, index) in getDocuments('quotation')"
-                                :document="document"
-                                :key="index">
-                        </document-mini>
+                        <document-list
+                            :type="'quotation'"
+                            :project="project"/>
 
-                        <md-button @click="createDocument('quotation')" class="md-primary">Add Quotation</md-button>
                     </div>
                 </div>
             </div>
         </div>
+        <a name="invoice"></a>
         <div class="view-frame-section">
             <div class="view-frame-section__header">
                 Invoices
@@ -277,13 +246,9 @@
             <div class="view-frame-section__content">
                 <div class="details-row">
                     <div class="details-content">
-                        <document-mini
-                            v-for="(document, index) in getDocuments('invoice')"
-                            :document="document"
-                            :key="index">
-                        </document-mini>
-
-                        <md-button @click="createDocument('invoice')" class="md-primary">Add Invoice</md-button>
+                        <document-list
+                            :type="'invoice'"
+                            :project="project"/>
                     </div>
                 </div>
             </div>
