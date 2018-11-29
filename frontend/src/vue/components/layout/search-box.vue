@@ -24,6 +24,10 @@
         max-width: 400px;
         position: relative;
 
+        .md-field {
+            padding-top: 0;
+        }
+
         .search-box__icon {
             position: absolute;
             right: 0;

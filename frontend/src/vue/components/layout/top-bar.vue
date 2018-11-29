@@ -103,6 +103,7 @@
                 border: 0;
                 background: transparent;
                 outline: none;
+                width: 60px;
             }
             .custom-file-input::-webkit-file-upload-button {
                 visibility: hidden;
