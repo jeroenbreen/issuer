@@ -119,14 +119,22 @@
             cursor: pointer;
             white-space: nowrap;
             font-size: 9px;
+            margin-right: 4px;
 
             &:hover {
-                background: #eee;
+                background: #aaa;
             }
         }
 
         .icon-button {
-            margin-left: 10px;
+            //opacity: 0.3;
+        }
+
+        &:hover {
+
+            .icon-button {
+                opacity: 1
+            }
         }
     }
 

@@ -78,44 +78,50 @@
 
 
 <template>
-    <div class="project-card">
+    <div
+        class="project-card">
         <div
-            @click="gotoUpdate()"
+            :style="{'border-bottom': '1px solid ' + statusColor}"
             class="project-card__main">
             <div
-                :style="{'background': statusColor}"
-                class="project-card__status">
-                {{statusTitle}}
+                @click="gotoUpdate()"
+                class="project-card__content">
+                <div
+                    :style="{'border-left': '8px solid ' + statusColor}"
+                    class="project-card__status">
+                    {{statusTitle}}
+                </div>
+                <div class="project-card__client">
+                    {{client}}
+                </div>
+                <div class="project-card__title">
+                    {{project.title}}
+                </div>
+                <div class="project-card__budget">
+                    {{project.getBudget() | currency}} {{project.currency}}
+                </div>
+                <div class="project-card__user">
+                    <avatar
+                            v-if="user"
+                            :user="user"
+                            :size="20"
+                            :max="2"/>
+                </div>
             </div>
-            <div class="project-card__client">
-                {{client}}
-            </div>
-            <div class="project-card__title">
-                {{project.title}}
-            </div>
-            <div class="project-card__budget">
-                {{project.getBudget() | currency}} {{project.currency}}
-            </div>
-            <div class="project-card__user">
-                <avatar
-                    v-if="user"
-                    :user="user"
-                    :size="20"
-                    :max="2"/>
-            </div>
-        </div>
 
-        <div class="project-card__document-list">
-            <document-list
-                    :type="'quotation'"
-                    :project="project"/>
-        </div>
 
-        <div class="project-card__document-list">
-            <document-list
-                    :type="'invoice'"
-                    :project="project"
-                    :max="2"/>
+            <div class="project-card__document-list">
+                <document-list
+                        :type="'quotation'"
+                        :project="project"/>
+            </div>
+
+            <div class="project-card__document-list">
+                <document-list
+                        :type="'invoice'"
+                        :project="project"
+                        :max="2"/>
+            </div>
         </div>
 
         <div class="project-card__toolbar">
@@ -156,78 +162,87 @@
 
     .project-card {
         display: flex;
-        height: 40px;
-        margin-bottom: 2px;
+        height: 50px;
+        margin-bottom: 4px;
 
         .project-card__main {
-            width: calc(100% - 700px);
+            width: calc(100% - 92px);
             cursor: pointer;
             display: flex;
             height: 100%;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+            border-radius: 2px;
 
-            &:hover {
+            .project-card__content {
+                width: calc(100% - 476px);
+                display: flex;
+                height: 100%;
+                box-shadow: 2px 0 3px rgba(0,0,0,0.2);
+
+                &:hover {
+
+                    > * {
+                        background: $grey-10;
+                    }
+                }
 
                 > * {
-                    background: $grey-10;
+                    height: 100%;
+                    padding: $general-padding;
+                    overflow: hidden;
+                    margin-right: 2px;
+                    background: #fff;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .project-card__status {
+                    width: 80px;
+                }
+
+                .project-card__client {
+                    width: calc(50% - 110px);
+                }
+
+                .project-card__title {
+                    width: calc(50% - 110px);
+                }
+
+                .project-card__budget {
+                    width: 100px;
+                    text-align: right;
+                }
+
+                .project-card__user {
+                    width: 40px;
                 }
             }
 
-            > * {
-                height: 100%;
+
+
+            .project-card__document-list {
+                width: 238px;
                 padding: $general-padding;
-                overflow: hidden;
-                margin-right: 2px;
                 background: #fff;
-            }
-
-            .project-card__status {
-                width: 80px;
-                color: #fff;
-                text-transform: uppercase;
-                font-size: 10px;
-                text-align: center;
-            }
-
-            .project-card__client {
-                width: 150px
-            }
-
-            .project-card__title {
-                width: calc(100% - 370px);
-            }
-
-            .project-card__budget {
-                width: 100px;
-                text-align: right;
-            }
-
-            .project-card__user {
-                width: 40px;
-            }
-        }
-
-        .project-card__document-list {
-            width: 250px;
-            padding: $general-padding;
-
-            .document-list {
                 height: 100%;
+
+                .document-list {
+                    height: 100%;
+                }
             }
         }
+
+
 
         .project-card__toolbar {
-            width: 200px;
+            width: 92px;
             display: flex;
-            padding-left: 20px;
+            padding-left: 10px;
 
            .icon-button-placeholder {
                 width: 32px;
                 margin-right: 4px;
            }
         }
-
-
-
-
     }
 </style>

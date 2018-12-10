@@ -18,9 +18,6 @@
             },
             showModal() {
                 return this.$store.state.modal.show;
-            },
-            hasContent() {
-                return this.$store.state.company && this.$store.state.company._id !== '';
             }
         },
     }
@@ -30,7 +27,7 @@
 <template>
     <div class="main">
         <top-bar/>
-        <div class="content" v-if="hasContent()">
+        <div class="content">
             <menu-bar/>
             <router-view></router-view>
         </div>

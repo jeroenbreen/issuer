@@ -1,6 +1,6 @@
 let createError, express, path, cookieParser, logger, cors,
     mongo, monk, db,
-    indexRouter, bootstrapRouter, companyRouter, usersRouter, clientsRouter, projectsRouter, documentsRouter, templatesRouter, statusesRouter,
+    indexRouter, bootstrapRouter, companyRouter, usersRouter, clientsRouter, projectsRouter, documentsRouter, templatesRouter, statusesRouter, objectIdRouter,
     app;
 
 createError = require('http-errors');
@@ -25,6 +25,7 @@ projectsRouter = require('./routes/projects');
 documentsRouter = require('./routes/documents');
 templatesRouter = require('./routes/templates');
 statusesRouter = require('./routes/statuses');
+objectIdRouter = require('./routes/object-id');
 
 app = express();
 
@@ -57,6 +58,7 @@ app.use('/projects', projectsRouter);
 app.use('/documents', documentsRouter);
 app.use('/templates', templatesRouter);
 app.use('/statuses', statusesRouter);
+app.use('/get-object-id', objectIdRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

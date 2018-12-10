@@ -25,20 +25,24 @@
         position: relative;
 
         .md-field {
-            padding-top: 0;
+            padding-top: 12px;
+
+            input {
+                margin-bottom: 0;
+            }
         }
 
         .search-box__icon {
             position: absolute;
             right: 0;
             bottom: 0;
-            height: 42px;
+            height: 36px;
             color: #aaa;
-            width: 42px;
+            width: 36px;
             display: flex;
             align-items: center;
             justify-content: space-around;
-            font-size: 18px;
+            font-size: 14px;
         }
     }
 </style>

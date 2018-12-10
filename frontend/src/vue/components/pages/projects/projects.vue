@@ -77,6 +77,8 @@
 
     .projects__tools {
         display: flex;
+
+
     }
 
     .project-cards {

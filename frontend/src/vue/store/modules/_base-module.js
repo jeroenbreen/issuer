@@ -1,4 +1,13 @@
+import {storeToFile, getObjectId} from '@root/vue/store/store-functions'
 import $ from "jquery";
+
+
+function saveInLocalStorage(state) {
+    let file = storeToFile(state);
+    localStorage.setItem('doculator', JSON.stringify(file));
+}
+
+
 
 const getters = {
     getAll(state) {
@@ -30,10 +39,16 @@ const actions = {
                     resolve(response);
                 });
             } else {
-                context.commit('create', item);
-                resolve(item);
-            }
+                getObjectId().then((id) => {
+                    item._id = id;
+                    context.commit('create', item);
+                    resolve(item);
 
+                    if (config.useLocalStorage) {
+                        saveInLocalStorage(context.rootState);
+                    }
+                });
+            }
         })
     },
     update(context, item, route) {
@@ -54,6 +69,10 @@ const actions = {
             } else {
                 context.commit('update', item);
                 resolve();
+
+                if (config.useLocalStorage) {
+                    saveInLocalStorage(context.rootState);
+                }
             }
         })
     },
@@ -73,6 +92,10 @@ const actions = {
             } else {
                 context.commit('delete', item);
                 resolve();
+
+                if (config.useLocalStorage) {
+                    saveInLocalStorage(context.rootState);
+                }
             }
         })
     }

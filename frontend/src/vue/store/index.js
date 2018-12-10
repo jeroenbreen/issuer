@@ -106,8 +106,6 @@ export default new Vuex.Store({
         users,
         clients,
         projects,
-        repositories,
-        issues,
         documents,
         statuses
     },
