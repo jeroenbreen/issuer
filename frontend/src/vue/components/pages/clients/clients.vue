@@ -1,17 +1,22 @@
 <script>
     import clientCard from './client-card';
     import searchBox from '@components/layout/search-box';
+    import viewModus from '@components/shared/view-modus';
+
 
     export default {
         name: 'clients-page',
         components: {
-            clientCard, searchBox
+            clientCard, searchBox, viewModus
         },
         data() {
             return {
                 search: {
                     label: 'Search clients',
                     value: ''
+                },
+                localState: {
+                    compact: this.$store.state.settings.viewModusCompact__clients
                 }
             }
         },
@@ -35,7 +40,9 @@
 
 
 <template>
-    <div class="view-frame view-frame--clients">
+    <div
+        :class="{'clients--compact': localState.compact}"
+        class="view-frame view-frame--clients">
         <div class="view-frame-section">
             <h1>
                 Clients
@@ -44,6 +51,10 @@
         <div class="view-frame-section">
             <search-box
                 :search-data="search"/>
+
+            <view-modus
+                    :state="localState"
+                    :type="'clients'"/>
         </div>
         <div class="view-frame-section">
             <md-button @click="create()" class="md-primary">Create Client</md-button>

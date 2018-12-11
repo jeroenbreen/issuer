@@ -21,6 +21,9 @@
             },
             showModal() {
                 return this.$store.state.modal.show;
+            },
+            isViewModusCompact() {
+                return this.$store.state.settings.viewModusCompact__overall;
             }
         },
     }
@@ -30,7 +33,10 @@
 <template>
     <div class="main">
         <top-bar/>
-        <div v-if="isLoaded()" class="content">
+        <div
+            v-if="isLoaded()"
+            :class="{'content--compact': isViewModusCompact()}"
+            class="content">
             <menu-bar/>
             <router-view></router-view>
         </div>
@@ -46,5 +52,4 @@
 
 <style lang="scss">
     @import '@styles/variables.scss';
-
 </style>

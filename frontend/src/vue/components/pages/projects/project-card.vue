@@ -2,6 +2,7 @@
     import avatar from "@components/shared/avatar";
     import documentList from './document-list';
     import {Tools} from "@root/vue/tools/tools";
+    import {Project} from "@models/Project";
 
 
     export default {
@@ -9,7 +10,12 @@
         components: {
             avatar, documentList
         },
-        props: ['project'],
+        props: {
+            project: {
+                type: Project,
+                required: true
+            }
+        },
         data() {
             return {
                 localState: {
@@ -18,20 +24,39 @@
             }
         },
         methods: {
-            gotoUpdate: function() {
-                this.$router.push('projects/' + this.project._id)
+            setCurrent() {
+                this.$store.commit('projects/setCurrentById', this.project._id);
+            },
+            gotoUpdate() {
+                this.$router.push('projects/' + this.project._id);
+                this.setCurrent();
             },
             statusNew(direction) {
-                let project = this.project.toBackend();
-                let status = this.getNewStatus(direction);
+                let frame, project, oldProject, status;
+
+                frame = {};
+                oldProject = this.project.toBackend();
+                project = this.project.toBackend();
+                status = this.getNewStatus(direction);
                 if (status) {
                     project.status_id = status._id;
                 } else {
                     project.status_id = null;
                 }
-                this.$store.dispatch('projects/update', project).then(() => {
-                    this.localState.showSnackbar = true;
-                });
+
+                frame.undo = () => {
+                    this.$store.dispatch('projects/update', oldProject).then(() => {
+                        this.localState.showSnackbar = true;
+                        this.setCurrent();
+                    });
+                };
+                frame.redo = () => {
+                    this.$store.dispatch('projects/update', project).then(() => {
+                        this.localState.showSnackbar = true;
+                        this.setCurrent();
+                    });
+                };
+                this.$history.addFrameAndExecute(frame);
             },
             getNewStatus(direction) {
                 let status = this.status;
@@ -75,6 +100,9 @@
                 } else {
                     return '-';
                 }
+            },
+            viewModusCompact() {
+                return this.$store.state.settings.viewModusCompact__projects;
             }
         }
     }
@@ -134,22 +162,30 @@
             <div
                 v-if="getNewStatus(-1)"
                 @click="statusNew(-1)"
+                :class="{'icon-button--small': viewModusCompact}"
                 class="icon-button">
                 <div class="icon-button__icon">
                     <i class="fas fa-arrow-up"></i>
                 </div>
             </div>
-            <div v-else class="icon-button-placeholder"></div>
+            <div
+                v-else
+                class="icon-button-placeholder"
+                :class="{'icon-button--small': viewModusCompact}"></div>
 
             <div
                 v-if="getNewStatus(1)"
                 @click="statusNew(1)"
+                :class="{'icon-button--small': viewModusCompact}"
                 class="icon-button">
                 <div class="icon-button__icon">
                     <i class="fas fa-arrow-down"></i>
                 </div>
             </div>
-            <div v-else class="icon-button-placeholder"></div>
+            <div
+                v-else
+                class="icon-button-placeholder"
+                :class="{'icon-button--small': viewModusCompact}"></div>
         </div>
 
         <md-snackbar
@@ -170,6 +206,31 @@
         display: flex;
         height: 50px;
         margin-bottom: 4px;
+        transition: $compact-transition;
+        position: relative;
+
+        &:hover {
+
+            .project-card__title,
+            .project-card__client {
+                font-weight: 700;
+            }
+        }
+
+        &.project--current {
+
+            &:after {
+                position: absolute;
+                left: -15px;
+                top: 50%;
+                content: '';
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #000;
+                transform: translateY(-50%);
+            }
+        }
 
         .project-card__main {
             width: calc(100% - 92px);
@@ -178,12 +239,12 @@
             height: 100%;
             box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
             border-radius: 2px;
+            line-height: 1;
 
             .project-card__content {
                 width: calc(100% - 476px);
                 display: flex;
                 height: 100%;
-                box-shadow: 2px 0 3px rgba(0,0,0,0.2);
 
                 &:hover {
 
@@ -244,11 +305,18 @@
             width: 92px;
             display: flex;
             padding-left: 10px;
+        }
+    }
 
-           .icon-button-placeholder {
-                width: 32px;
-                margin-right: 4px;
-           }
+    .projects--compact {
+
+        .project-card {
+            height: 30px;
+            margin-bottom: 2px;
+
+            .project-card__main {
+                box-shadow: none;
+            }
         }
     }
 </style>

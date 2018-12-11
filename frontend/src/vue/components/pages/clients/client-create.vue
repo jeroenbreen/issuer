@@ -16,8 +16,18 @@
         },
         methods: {
             create: function() {
-                this.$store.dispatch('clients/create', this.client).then(() => {
+                let frame = {};
+
+                this.$store.dispatch('clients/create', this.client).then((client) => {
                     this.$router.push({path: '/clients'});
+
+                    frame.undo = () => {
+                        this.$store.dispatch('clients/delete', client);
+                    };
+                    frame.redo = () => {
+                        this.$store.dispatch('clients/create', client);
+                    };
+                    this.$history.addFrame(frame);
                 });
             },
             back: function() {

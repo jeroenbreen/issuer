@@ -29,19 +29,25 @@
                 return this.client.getFullLabel(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.clientIdFormat);
             },
             deleteItem: function() {
-                const store = this.$store;
-                const client = this.client.toBackend();
-                const router = this.$router;
-
-                function callback() {
-                    store.dispatch('clients/delete', client).then((response) => {
-                        router.push('/clients');
-                    });
-                }
+                let frame, client;
+                frame = {};
+                client = this.client.toBackend();
 
                 this.$store.commit('confirm', {
                     message: 'Are you sure?',
-                    callback: callback
+                    callback: () => {
+                        this.$store.dispatch('clients/delete', client).then(() => {
+                            this.$router.push('/clients');
+
+                            frame.undo = () => {
+                                this.$store.dispatch('clients/create', client);
+                            };
+                            frame.redo = () => {
+                                this.$store.dispatch('clients/delete', client);
+                            };
+                            this.$history.addFrame(frame);
+                        });
+                    }
                 });
             },
             back: function() {

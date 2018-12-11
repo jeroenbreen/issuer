@@ -1,16 +1,18 @@
 <script>
+    import viewModus from '@components/shared/view-modus';
+
     export default {
         name: 'settings',
-        methods: {
-            getFormats() {
-                return [
-                    '3zeros', 'roman'
-                ];
-            }
+        components: {
+            viewModus
         },
         data() {
             return {
-                settings: {...this.$store.state.settings}
+                settings: {...this.$store.state.settings},
+                formats: ['3zeros', 'roman'],
+                localState: {
+                    compact: this.$store.state.settings.viewModusCompact__overall
+                }
             }
         },
         watch: {
@@ -42,7 +44,7 @@
                             v-model="settings.clientIdFormat"
                             placeholder="Client numbering">
                             <md-option
-                                v-for="(format, index) in getFormats()"
+                                v-for="(format, index) in formats"
                                 :value="format"
                                 :key="index">{{format}}</md-option>
                         </md-select>
@@ -55,7 +57,7 @@
                             v-model="settings.documentIdFormat"
                             placeholder="Document numbering">
                             <md-option
-                                v-for="(format, index) in getFormats()"
+                                v-for="(format, index) in formats"
                                 :value="format"
                                 :key="index">{{format}}</md-option>
                         </md-select>
@@ -77,6 +79,11 @@
                                 v-model="settings.standardCurrency"
                                 placeholder="Standard currency"/>
                     </md-field>
+                </div>
+                <div class="details-row">
+                    <view-modus
+                        :state="localState"
+                        :type="'overall'"/>
                 </div>
             </div>
         </div>

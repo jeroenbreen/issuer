@@ -25,7 +25,6 @@ const actions = {
     create(context, item, route) {
         return new Promise((resolve, reject) => {
             if (config.useBackend) {
-                delete item._id;
                 $.ajax({
                     'url': (config.backend + route),
                     'type': 'POST',
@@ -108,6 +107,9 @@ const mutations = {
             state.all.push(new Model(item));
         }
     },
+    setCurrentById(state, id) {
+        state.currentId = id;
+    },
     setCurrent(state, item) {
         state.current = item;
     },
@@ -130,10 +132,9 @@ const mutations = {
         state.all = newState;
     },
     delete(state, item) {
-        let index = state.all.indexOf(item);
-        if (index > -1) {
-            state.all.splice(index, 1);
-        }
+        state.all = state.all.filter(function(thisItem){
+            return thisItem._id !== item._id;
+        });
     }
 };
 

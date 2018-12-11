@@ -1,9 +1,45 @@
+.content--compact {
+
+    .view-frame {
+
+        .view-frame__header {
+            height: 51px;
+
+            .view-frame__header-button {
+                height: 100%;
+                width: 51px;
+                font-size: 20px;
+            }
+
+            h1 {
+                font-size: 16px;
+                margin-left: 10px;
+            }
+        }
+
+        .view-frame-section {
+            padding: 15px 20px;
+
+            h1 {
+                font-size: 16px;
+            }
+
+            .view-frame-section__header {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
+
+
 .view-frame {
 
     .view-frame__header {
         border-bottom: 1px solid #ddd;
         height: 80px;
         display: flex;
+        transition: @compact-transition;
 
         .view-frame__header-button {
             height: 100%;
@@ -15,6 +51,7 @@
             font-size: 24px;
             cursor: pointer;
             color: #aaa;
+            transition: @compact-transition;
 
             &:hover {
                 color: #000;
@@ -27,12 +64,14 @@
             font-size: 32px;
             font-weight: 700;
             margin-left: 30px;
+            transition: @compact-transition;
         }
     }
 
     .view-frame-section {
         padding: 30px;
         border-bottom: 1px solid #ddd;
+        transition: @compact-transition;
 
         h1 {
             margin: 0;
@@ -79,6 +118,4 @@
             }
         }
     }
-
-
 }

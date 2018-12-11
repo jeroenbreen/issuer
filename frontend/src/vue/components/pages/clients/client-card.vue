@@ -37,6 +37,7 @@
         margin-bottom: 8px;
         box-shadow: 1px 1px 7px rgba(0,0,0,0.2);
         background: #fff;
+        transition: $compact-transition;
 
         &:hover {
             background: $grey-10;
@@ -56,6 +57,7 @@
             justify-content: space-around;
             background: $main-theme-color;
             color: #fff;
+            transition: $compact-transition;
         }
 
         .client-card__name {
@@ -63,6 +65,23 @@
             flex-grow: 20;
             display: flex;
 
+        }
+    }
+
+    .clients--compact {
+
+        .client-card {
+            height: 28px;
+            box-shadow: none;
+            margin-bottom: 2px;
+
+            > * {
+                padding: $general-padding;
+            }
+
+            .client-card__number {
+                width: 30px;
+            }
         }
     }
 </style>

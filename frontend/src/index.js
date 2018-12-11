@@ -6,11 +6,6 @@ import {dataToStore, getObjectId} from '@root/vue/store/store-functions'
 
 // components
 import app from './vue/app';
-import topBar from '@components/layout/top-bar';
-import menuBar from '@components/layout/menu-bar';
-import document from '@components/document/document';
-import welcomeScreen from '@components/layout/welcome-screen';
-import modal from '@components/layout/modal';
 import company from '@components/pages/company/company';
 import settings from '@components/pages/settings/settings';
 import employees from '@components/pages/employees/employees';
@@ -26,6 +21,8 @@ import issues from '@components/pages/issues/issues';
 import templates from '@components/pages/templates/templates';
 
 
+
+
 // filters
 import {dateFormatter} from './vue/filters/date-formatter';
 import {documentIdFormatter} from './vue/filters/document-id-formatter';
@@ -34,6 +31,13 @@ import VueCurrencyFilter from 'vue-currency-filter'
 
 // // directives
 import {scrimDirective} from './vue/directives/scrim'
+
+// undo/redo
+import History from '@store/history';
+Vue.use(History);
+// Vue.use(History, {
+//     store: new History.Store({ count: 0 })
+// });
 
 // google material for Vue
 import VueMaterial from 'vue-material'
@@ -98,6 +102,7 @@ const bootstrapVue = function(response) {
         el: '#app',
         store,
         router,
+        History,
         components: {
             app
         },

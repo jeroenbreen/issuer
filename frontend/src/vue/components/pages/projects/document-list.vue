@@ -67,10 +67,8 @@
                 };
                 this.$store.dispatch('documents/create', document).then(() => {
                     this.$store.commit('documents/setCurrent', new Document(document));
+                    this.$store.commit('projects/setCurrentById', this.project._id);
                 });
-            },
-            gotoDetails() {
-                this.$router.push('projects/' + this.project._id + '#' + this.type)
             }
         }
     }
@@ -93,7 +91,8 @@
 
             <md-menu-content class="document-list__popup">
                 <md-menu-item
-                    v-for="document in moreDocuments">
+                    v-for="(document, index) in moreDocuments"
+                    :key="index">
                     <document-mini :document="document">
                     </document-mini>
                 </md-menu-item>

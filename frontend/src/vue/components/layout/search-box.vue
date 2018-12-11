@@ -35,7 +35,7 @@
         .search-box__icon {
             position: absolute;
             right: 0;
-            bottom: 0;
+            top: 12px;
             height: 36px;
             color: #aaa;
             width: 36px;

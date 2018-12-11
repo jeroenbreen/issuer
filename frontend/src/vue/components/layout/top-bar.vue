@@ -10,6 +10,14 @@
         components: {
             logo
         },
+        computed: {
+            canUndo() {
+                return this.$history.canUndo();
+            },
+            canRedo() {
+                return this.$history.canRedo();
+            }
+        },
         methods: {
             getCurrentUser() {
                 return this.$store.state.users.current;
@@ -48,6 +56,12 @@
                         console.log('Error reading file');
                     };
                 }
+            },
+            undo() {
+                this.$history.undo();
+            },
+            redo() {
+                this.$history.redo();
             }
         }
     }
@@ -57,6 +71,16 @@
 <template>
     <div class="topbar">
         <logo/>
+
+        <div class="history">
+            <button
+                    v-if="canUndo"
+                    @click="undo()">undo</button>
+
+            <button
+                    v-if="canRedo"
+                    @click="redo()">redo</button>
+        </div>
 
         <md-menu md-size="small">
             <div class="md-menu__trigger" md-menu-trigger>
@@ -85,6 +109,12 @@
 
 <style lang="scss">
     @import '@styles/variables.scss';
+
+    .history {
+        position: absolute;
+        left: 50%;
+        transform: translate(50%, 50%);
+    }
 
     .md-menu-content {
         width: 200px;

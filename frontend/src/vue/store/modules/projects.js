@@ -6,7 +6,8 @@ const Model = Project;
 
 const state = {
     all: [],
-    current: null
+    current: null,
+    currentId: null
 };
 
 const getters = {
@@ -40,6 +41,9 @@ const mutations = {
     },
     setCurrent(state, item) {
         return _base.mutations.setCurrent(state, item)
+    },
+    setCurrentById(state, id) {
+        return _base.mutations.setCurrentById(state, id)
     },
     create(state, item) {
         return _base.mutations.create(state, item, Model);

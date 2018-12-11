@@ -10,7 +10,10 @@
             },
             openDocument() {
                 this.$store.commit('documents/setCurrent', this.document);
-                this.$router.push({query: {document: this.document._id}})
+                this.$router.push({query: {document: this.document._id}});
+                if (this.document.project_id) {
+                    this.$store.commit('projects/setCurrentById', this.document.project_id);
+                }
             }
         }
     }
@@ -38,7 +41,7 @@
     .document-mini {
         display: flex;
         align-items: center;
-        height: 30px;
+        height: 24px;
         margin-right: 4px;
         cursor: pointer;
 

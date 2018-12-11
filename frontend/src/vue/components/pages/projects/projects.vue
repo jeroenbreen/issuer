@@ -2,12 +2,13 @@
     import projectCard from './project-card';
     import projectsFilter from './projects-filter';
     import searchBox from '@components/layout/search-box';
+    import viewModus from '@components/shared/view-modus';
 
 
     export default {
         name: 'projects',
         components: {
-            projectCard, searchBox, projectsFilter
+            projectCard, searchBox, projectsFilter, viewModus
         },
         data() {
             return {
@@ -19,6 +20,9 @@
                     status_id: 0,
                     client_id: 0,
                     user_id: 0
+                },
+                localState: {
+                    compact: this.$store.state.settings.viewModusCompact__projects
                 }
             }
         },
@@ -60,10 +64,17 @@
                     }
                 }
                 return false;
+            },
+            currentProject() {
+                if (!this.$store.state.projects.currentId) {
+                    return null;
+                } else {
+                    return this.$store.getters['projects/getItemById'](this.$store.state.projects.currentId);
+                }
             }
         },
         methods: {
-            create: function() {
+            create() {
                 this.$router.push('projects/new');
             },
             getCurrency() {
@@ -75,12 +86,16 @@
 
 
 <template>
-    <div class="view-frame view-frame--projects" v-scrim>
+    <div
+        :class="{'projects--compact': localState.compact}"
+        class="view-frame view-frame--projects"
+        v-scrim>
         <div class="view-frame-section">
             <h1>
                 Projects
             </h1>
         </div>
+
         <div class="view-frame-section">
             <div class="projects__tools">
                 <search-box
@@ -88,15 +103,24 @@
 
                 <projects-filter
                         :filter="filter"/>
+
+                <view-modus
+                    :state="localState"
+                    :type="'projects'"/>
             </div>
         </div>
+
         <div class="view-frame-section">
-            <md-button @click="create()" class="md-primary">Create Project</md-button>
+            <md-button
+                @click="create()"
+                class="md-primary">Create Project</md-button>
         </div>
+
         <div class="view-frame-section">
             <div class="project-cards">
                 <project-card
                     v-for="project in projects"
+                    :class="{'project--current': project === currentProject}"
                     :key="project._id"
                     :project="project"/>
             </div>
