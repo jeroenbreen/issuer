@@ -30,16 +30,15 @@
             </h1>
         </div>
         <div class="view-frame-section">
+            <md-button @click="create()" class="md-primary">Create Employee</md-button>
+        </div>
+        <div class="view-frame-section">
             <div class="employee-cards">
                 <employee-card
                     v-for="user in getAll()"
                     :key="user._id"
                     :user="user"/>
             </div>
-        </div>
-
-        <div class="view-frame-section">
-            <md-button @click="create()" class="md-primary">Create Employee</md-button>
         </div>
     </div>
 </template>

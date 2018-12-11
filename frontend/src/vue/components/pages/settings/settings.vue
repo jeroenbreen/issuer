@@ -4,7 +4,7 @@
         methods: {
             getFormats() {
                 return [
-                    '3zeros'
+                    '3zeros', 'roman'
                 ];
             }
         },
@@ -68,6 +68,14 @@
                             v-model="settings.standardRate"
                             placeholder="Standard rate"
                             type="number"/>
+                    </md-field>
+                </div>
+                <div class="details-row">
+                    <md-field>
+                        <label>Standard currency</label>
+                        <md-input
+                                v-model="settings.standardCurrency"
+                                placeholder="Standard currency"/>
                     </md-field>
                 </div>
             </div>

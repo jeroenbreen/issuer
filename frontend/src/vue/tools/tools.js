@@ -1,3 +1,5 @@
+import Chromath from 'chromath'
+
 class Tools {
     constructor() {}
 
@@ -29,6 +31,10 @@ class Tools {
         } else {
             return obj;
         }
+    }
+
+    static colorTone(color, tone) {
+        return Chromath.tint(color, tone).toRGBString();
     }
 }
 

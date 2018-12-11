@@ -1,12 +1,24 @@
 <script>
     import documentList from './document-list';
+    import autoSaver from '@components/shared/auto-saver';
+    import Project from '@models/Project';
+
 
     export default {
         name: 'project-details',
         components: {
-            documentList
+            documentList, autoSaver
         },
-        props: ['project'],
+        props: {
+            project: {
+                type: Project,
+                required: true
+            },
+            autoSave: {
+                type: Boolean,
+                required: true
+            }
+        },
         mounted () {
             if (this.$route.query.document) {
                 const getItem = this.$store.getters['documents/getItemById'];
@@ -16,71 +28,15 @@
                 }
             }
         },
-        created: function(){
-            this.updateMilestones();
-        },
-        data: function(){
-            return {
-                milestones: [],
-                currentMilestone: null,
-                issues: []
-            }
-        },
-        methods: {
-            getClients() {
+        computed: {
+            statuses() {
+                return this.$store.state.statuses.all;
+            },
+            clients() {
                 return this.$store.state.clients.all;
             },
-            getUsers() {
+            users() {
                 return this.$store.state.users.all;
-            },
-            showIssues() {
-                return this.$store.state.settings.issues;
-            },
-            getRepository() {
-                const getItem = this.$store.getters['repositories/getItemByProperty'];
-                return getItem('id', this.project.repository_id);
-            },
-            getRepositories() {
-                return this.$store.state.repositories.all;
-            },
-            deleteRespository() {
-                this.project.repository_id = 0;
-                this.updateMilestones();
-            },
-            deleteMilestone() {
-                this.project.milestone_id = 0;
-            },
-            updateMilestones() {
-                let repository, url;
-                if (this.project.repository_id !== 0) {
-                    repository = this.getRepository();
-                    url = 'https://api.github.com/repos/' + this.$store.state.company.githubHandle + '/' + repository.name + '/milestones?access_token=' + this.$store.state.company.githubKey;
-                    this.$http.get(url).then(response => {
-                        this.milestones = response.body;
-                        this.setCurrentMilestone();
-                        this.updateIssues();
-                    }, response => {
-                        // error
-                    });
-                }
-            },
-            setCurrentMilestone() {
-                if (this.project.milestone_id !== 0) {
-                    this.currentMilestone = this.milestones.find(item => item.id === this.project.milestone_id);
-                    this.updateIssues();
-                }
-            },
-            updateIssues() {
-                if (this.project.milestone_id !== 0) {
-                    let repository, url;
-                    repository = this.getRepository();
-                    url = 'https://api.github.com/repos/' + this.$store.state.company.githubHandle + '/' + repository.name + '/issues?per_page=500&milestone=' + this.currentMilestone.number + '&state=all&access_token=' + this.$store.state.company.githubKey;
-                    this.$http.get(url).then(response => {
-                        this.issues = response.body;
-                    }, response => {
-                        // error
-                    });
-                }
             }
         }
     }
@@ -101,7 +57,7 @@
         </div>
         <div class="view-frame-section">
             <div class="view-frame-section__header">
-                Relations
+                Management
             </div>
             <div class="view-frame-section__content">
                 <div class="details-row">
@@ -111,7 +67,7 @@
                             v-model="project.client_id"
                             placeholder="Client">
                             <md-option
-                                v-for="(client, index) in getClients()"
+                                v-for="(client, index) in clients"
                                 :value="client._id"
                                 :key="index">{{client.companyName}}</md-option>
                         </md-select>
@@ -124,65 +80,28 @@
                             v-model="project.user_id"
                             placeholder="Employee">
                             <md-option
-                                v-for="(user, index) in getUsers()"
+                                v-for="(user, index) in users"
                                 :value="user._id"
                                 :key="index">{{user.getFullName()}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
-                <div v-if="showIssues()" class="details-row">
+                <div class="details-row">
                     <md-field>
-                        <label>Repository</label>
+                        <label>Status</label>
                         <md-select
-                                v-model="project.repository_id"
-                                @md-selected="updateMilestones()"
-                                placeholder="Repository">
+                                v-model="project.status_id"
+                                placeholder="Status">
                             <md-option
-                                v-for="(repository, index) in getRepositories()"
-                                :value="repository.id"
-                                :key="index">{{repository.name}}</md-option>
+                                    v-for="(status, index) in statuses"
+                                    :value="status._id"
+                                    :key="index">{{status.title}}</md-option>
                         </md-select>
                     </md-field>
                 </div>
-                <div v-if="showIssues()" class="details-row">
-                    <md-field>
-                        <label>Milestone</label>
-                        <md-select
-                                v-model="project.milestone_id"
-                                placeholder="Milestone">
-                            <md-option
-                                v-for="(milestone, index) in milestones"
-                                :value="milestone.id"
-                                :key="index">{{milestone.title}}</md-option>
-                        </md-select>
-                    </md-field>
-                    <div class="icon-button" @click="deleteMilestone()">
-                        <div class="icon-button__icon">
-                            <i class="fas fa-trash"></i>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="view-frame-section" v-if="showIssues() && this.currentMilestone">
-            <div class="view-frame-section__header">
-                Issues
-            </div>
-            <div class="view-frame-section__content">
-                {{this.currentMilestone.open_issues}} /
-                {{this.currentMilestone.closed_issues + this.currentMilestone.open_issues}}
-                <br>
-                <div class="issues__container">
-                    <div
-                            v-for="issue in issues"
-                            :class="{'issue-mini--closed': issue.state === 'closed'}"
-                            :title="issue.title"
-                            class="issue-mini">
-                        {{issue.number}}
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="view-frame-section">
             <div class="view-frame-section__header">
                 Financial
@@ -253,6 +172,11 @@
                 </div>
             </div>
         </div>
+
+        <auto-saver
+            v-if="autoSave"
+            :watch="project"
+            :store-module="'projects'"/>
     </div>
 </template>
 

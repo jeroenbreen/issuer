@@ -46,15 +46,15 @@
                 :search-data="search"/>
         </div>
         <div class="view-frame-section">
+            <md-button @click="create()" class="md-primary">Create Client</md-button>
+        </div>
+        <div class="view-frame-section">
             <div class="client-cards">
                 <client-card
                     v-for="client in clients"
                     :key="client._id"
                     :client="client"/>
             </div>
-        </div>
-        <div class="view-frame-section">
-            <md-button @click="create()" class="md-primary">Create Client</md-button>
         </div>
     </div>
 </template>

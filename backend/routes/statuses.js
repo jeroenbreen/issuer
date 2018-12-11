@@ -12,6 +12,7 @@ class Status {
         this.order = Number(status.order);
         this.title = String(status.title);
         this.color = String(status.color);
+        this.type = String(status.type);
     }
 }
 

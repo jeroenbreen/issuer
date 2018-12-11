@@ -14,6 +14,15 @@ const getters = {
     getSet: (state) => (type, project_id) => {
         return state.all.filter(item => item.type === type && item.project_id === project_id);
     },
+    getDocumentId: (state) => (type) => {
+        let max = 0;
+        for (let document of state.all) {
+            if (document.type === type && document.documentId > max) {
+                max = document.documentId;
+            }
+        }
+        return max + 1;
+    }
 };
 
 const actions = {

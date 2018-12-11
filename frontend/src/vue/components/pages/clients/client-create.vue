@@ -41,7 +41,8 @@
             </h1>
         </div>
 
-        <client-details :client="client"/>
+        <client-details
+            :client="client"/>
 
         <div class="view-frame-section">
             <md-button @click="create()" class="md-primary">Create Client</md-button>

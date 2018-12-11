@@ -1,6 +1,7 @@
 <script>
     import avatar from "@components/shared/avatar";
     import documentList from './document-list';
+    import {Tools} from "@root/vue/tools/tools";
 
 
     export default {
@@ -39,6 +40,9 @@
                 } else {
                     return null;
                 }
+            },
+            getLightColor() {
+                return Tools.colorTone(this.statusColor, 0.2);
             }
         },
         computed: {
@@ -81,10 +85,11 @@
     <div
         class="project-card">
         <div
-            :style="{'border-bottom': '1px solid ' + statusColor}"
+            :style="{'border': '1px solid ' + statusColor}"
             class="project-card__main">
             <div
                 @click="gotoUpdate()"
+                :style="{'background': getLightColor()}"
                 class="project-card__content">
                 <div
                     :style="{'border-left': '8px solid ' + statusColor}"
@@ -92,7 +97,7 @@
                     {{statusTitle}}
                 </div>
                 <div class="project-card__client">
-                    {{client}}
+                    {{client | kebabFormatter}}
                 </div>
                 <div class="project-card__title">
                     {{project.title}}
@@ -113,7 +118,8 @@
             <div class="project-card__document-list">
                 <document-list
                         :type="'quotation'"
-                        :project="project"/>
+                        :project="project"
+                        :max="2"/>
             </div>
 
             <div class="project-card__document-list">
@@ -182,7 +188,8 @@
                 &:hover {
 
                     > * {
-                        background: $grey-10;
+                        background: #fff;
+                        border-right: 1px solid #ddd;
                     }
                 }
 
@@ -190,8 +197,7 @@
                     height: 100%;
                     padding: $general-padding;
                     overflow: hidden;
-                    margin-right: 2px;
-                    background: #fff;
+                    border-right: 1px solid #fff;
                     display: flex;
                     align-items: center;
                 }

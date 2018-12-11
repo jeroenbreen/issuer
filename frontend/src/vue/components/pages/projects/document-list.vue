@@ -37,9 +37,9 @@
             moreDocuments() {
                 if (this.max) {
                     let getSet = this.$store.getters['documents/getSet'](this.type, this.project._id);
-                    return getSet.length - this.max;
+                    return getSet.splice(this.max);
                 } else {
-                    return 0;
+                    return [];
                 }
             }
         },
@@ -50,7 +50,7 @@
                 client = getItemById(this.project.client_id);
                 document = {
                     type: this.type,
-                    documentId: 1,
+                    documentId: this.$store.getters['documents/getDocumentId'](this.type),
                     project_id: this.project._id,
                     locked: false,
                     date: '2010-01-01',
@@ -85,12 +85,20 @@
                 :key="index">
         </document-mini>
 
-        <div
-            v-if="moreDocuments > 0"
-            @click="gotoDetails()"
-            class="document-list__more">
-            {{moreDocuments}} more...
-        </div>
+
+        <md-menu v-if="moreDocuments.length > 0">
+            <div class="document-list__more" md-menu-trigger>
+                {{moreDocuments.length}} more...
+            </div>
+
+            <md-menu-content class="document-list__popup">
+                <md-menu-item
+                    v-for="document in moreDocuments">
+                    <document-mini :document="document">
+                    </document-mini>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
 
         <div
             @click="createDocument()"
@@ -135,6 +143,14 @@
             .icon-button {
                 opacity: 1
             }
+        }
+    }
+
+    .document-list__popup {
+        width: 112px;
+
+        .md-list-item-container {
+            font-size: 11px;
         }
     }
 

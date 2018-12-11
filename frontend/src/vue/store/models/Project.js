@@ -13,7 +13,7 @@ class Project {
         this.repository_id = project ? project.repository_id : 0;
         this.milestone_id = project ? project.milestone_id : 0;
 
-        this.currency = project ? project.currency : 'EUR';
+        this.currency = project ? project.currency : '';
         this.rate = project ? project.rate : 70;
         this.hours = project ? project.hours : 0;
         this.discount = project ? project.discount : 0;

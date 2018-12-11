@@ -1,7 +1,23 @@
 <script>
+    import autoSaver from '@components/shared/auto-saver';
+    import Client from '@models/Client';
+
     export default {
         name: 'client-details',
-        props: ['client']
+        components: {
+            autoSaver
+        },
+        props: {
+            client: {
+                type: Client,
+                required: true
+            },
+            autoSave: {
+                type: Boolean,
+                required: false,
+                default: false
+            }
+        }
     }
 </script>
 
@@ -70,6 +86,11 @@
                 </md-field>
             </div>
         </div>
+
+        <auto-saver
+                v-if="autoSave"
+                :watch="client"
+                :store-module="'clients'"/>
     </div>
 </template>
 

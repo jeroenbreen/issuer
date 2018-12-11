@@ -15,7 +15,6 @@
                 client = getItemById(id);
                 if (client) {
                     return {
-                        currentClient: client,
                         client: new Client(client.toBackend())
                     }
                 } else {
@@ -27,16 +26,22 @@
         },
         methods: {
             getFullLabel: function() {
-                return this.currentClient.getFullLabel(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.clientIdFormat);
-            },
-            update: function() {
-                this.$store.dispatch('clients/update', this.client).then(() => {
-                    this.$router.push({path: '/clients'});
-                });
+                return this.client.getFullLabel(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.clientIdFormat);
             },
             deleteItem: function() {
-                this.$store.dispatch('clients/delete', this.currentClient).then(() => {
-                    this.$router.push({path: '/clients'});
+                const store = this.$store;
+                const client = this.client.toBackend();
+                const router = this.$router;
+
+                function callback() {
+                    store.dispatch('clients/delete', client).then((response) => {
+                        router.push('/clients');
+                    });
+                }
+
+                this.$store.commit('confirm', {
+                    message: 'Are you sure?',
+                    callback: callback
                 });
             },
             back: function() {
@@ -60,10 +65,11 @@
             </h1>
         </div>
 
-        <client-details :client="client"></client-details>
+        <client-details
+            :client="client"
+            :auto-save="true"></client-details>
 
         <div class="view-frame-section">
-            <md-button @click="update()" class="md-primary">Update Client</md-button>
             <md-button @click="deleteItem()" class="md-primary">Remove Client</md-button>
         </div>
     </div>

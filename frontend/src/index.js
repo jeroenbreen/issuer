@@ -29,6 +29,7 @@ import templates from '@components/pages/templates/templates';
 // filters
 import {dateFormatter} from './vue/filters/date-formatter';
 import {documentIdFormatter} from './vue/filters/document-id-formatter';
+import {kebabFormatter} from './vue/filters/kebab-formatter';
 import VueCurrencyFilter from 'vue-currency-filter'
 
 // // directives

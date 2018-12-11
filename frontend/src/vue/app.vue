@@ -16,6 +16,9 @@
             hasDocument() {
                 return this.$store.state.documents.current !== null;
             },
+            isLoaded() {
+                return this.$store.state.company;
+            },
             showModal() {
                 return this.$store.state.modal.show;
             }
@@ -27,7 +30,7 @@
 <template>
     <div class="main">
         <top-bar/>
-        <div class="content">
+        <div v-if="isLoaded()" class="content">
             <menu-bar/>
             <router-view></router-view>
         </div>

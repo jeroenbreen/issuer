@@ -197,6 +197,9 @@
             </div>
         </div>
         <div class="view-frame-section">
+            <md-button @click="create()" class="md-primary">Create Template</md-button>
+        </div>
+        <div class="view-frame-section">
             <div class="templates">
                 <div
                     v-for="(template, index) in getAll()"
@@ -229,9 +232,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="view-frame-section">
-            <md-button @click="create()" class="md-primary">Create Template</md-button>
         </div>
 
         <template-editor

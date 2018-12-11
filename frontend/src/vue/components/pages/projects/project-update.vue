@@ -15,8 +15,7 @@
                 project = getItemById(id);
                 if (project) {
                     return {
-                        currentProject: project,
-                        project: new Project(project)
+                        project: new Project(project.toBackend())
                     }
                 } else {
                     return null;
@@ -26,13 +25,21 @@
             }
         },
         methods: {
-            update: function() {
-                this.$store.dispatch('projects/update', this.project).then(() => {
-                    this.$router.push({path: '/projects'});
-                });
-            },
             deleteItem: function() {
-                this.$store.dispatch('projects/delete', this.currentProject);
+                const store = this.$store;
+                const project = this.project.toBackend();
+                const router = this.$router;
+
+                function callback() {
+                    store.dispatch('projects/delete', project).then((response) => {
+                        router.push('/projects');
+                    });
+                }
+
+                this.$store.commit('confirm', {
+                    message: 'Are you sure?',
+                    callback: callback
+                });
             },
             back: function() {
                 this.$router.push('/projects');
@@ -51,16 +58,16 @@
                 <i class="fas fa-arrow-left"></i>
             </div>
             <h1>
-                {{currentProject.title}}
+                {{project.title}}
             </h1>
         </div>
 
-        <project-details :project="project"/>
+        <project-details
+            :project="project"
+            :auto-save="true"/>
 
         <div class="view-frame-section">
             <md-button @click="deleteItem()" class="md-primary">Delete Project</md-button>
-
-            <md-button @click="update()" class="md-primary">Update Project</md-button>
         </div>
     </div>
 </template>

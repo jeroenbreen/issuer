@@ -39,27 +39,15 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
     let db, collection, document;
-    console.log(req.body);
     document = new Document(req.body);
     document.company_id = company_id;
     db = req.db;
     collection = db.get('documents');
-    collection.find({}, {}, function(e, docs){
-        let lastId = 0;
-        for (let doc of docs) {
-            if (doc.documentId > lastId) {
-                lastId = Number(doc.documentId);
-            }
+    collection.insert(document, {}, function(error, docs){
+        if(error) {
+            throw error;
         }
-        lastId++;
-        document.documentId = lastId;
-
-        collection.insert(document, {}, function(error, docs){
-            if(error) {
-                throw error;
-            }
-            res.send(docs);
-        });
+        res.send(docs);
     });
 });
 

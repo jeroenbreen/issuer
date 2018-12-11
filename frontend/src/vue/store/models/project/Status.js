@@ -5,6 +5,7 @@ class Status  {
         this.title = status.title;
         this.color = status.color;
         this.order = status.order;
+        this.type = status.type;
     }
 
     toBackend() {

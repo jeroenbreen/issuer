@@ -9,7 +9,8 @@
         },
         data() {
             const project = new Project();
-            console.log(this.$store.state.users.current);
+            project.status_id = this.$store.state.statuses.all[0]._id;
+            project.currency = this.$store.state.settings.standardCurrency;
             if (this.$store.state.users.current) {
                 project.user_id = this.$store.state.users.current._id;
             }
@@ -43,7 +44,9 @@
                 New Project
             </h1>
         </div>
-        <project-details :project="project"></project-details>
+        <project-details
+            :project="project"
+            :auto-save="false"></project-details>
 
         <div class="view-frame-section">
             <md-button @click="create()" class="md-primary">Create Project</md-button>
