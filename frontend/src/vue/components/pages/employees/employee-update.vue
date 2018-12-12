@@ -15,8 +15,7 @@
                 user = getItemById(id);
                 if (user) {
                     return {
-                        currentUser: user,
-                        user: new User(user)
+                        user: new User(user.toBackend())
                     }
                 } else {
                     return null;
@@ -26,9 +25,14 @@
             }
         },
         methods: {
-            update: function() {
-                this.$store.dispatch('users/update', this.user).then(() => {
-                    this.$router.push({path: '/employees'});
+            deleteItem: function() {
+                this.$store.commit('confirm', {
+                    message: 'Are you sure?',
+                    callback: () => {
+                        this.$store.dispatch('users/delete', this.user).then(() => {
+                            this.$router.push('/employees');
+                        });
+                    }
                 });
             },
             back: function() {
@@ -48,14 +52,16 @@
                 <i class="fas fa-arrow-left"></i>
             </div>
             <h1>
-                {{currentUser.getFullName()}}
+                {{user.getFullName()}}
             </h1>
         </div>
 
-        <employee-details :user="user"/>
+        <employee-details
+            :user="user"
+            :auto-save="true"/>
 
         <div class="view-frame-section">
-            <md-button @click="update()" class="md-primary">Update Employee</md-button>
+            <md-button @click="deleteItem()" class="md-primary">Remove Employee</md-button>
         </div>
     </div>
 </template>

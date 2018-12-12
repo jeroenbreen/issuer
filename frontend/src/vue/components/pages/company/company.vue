@@ -1,18 +1,15 @@
 <script>
+    import autoSaver from '@components/shared/auto-saver';
     import {Company} from "@models/Company";
 
     export default {
         name: 'company',
-        methods: {
-            update() {
-                this.$store.dispatch('updateCompany', this.company.toBackend()).then(() => {
-                    console.log('saved');
-                });
-            }
+        components: {
+            autoSaver
         },
-        computed: {
-            company () {
-                return this.$store.state.company ? new Company(this.$store.state.company.toBackend()) : new Company()
+        data() {
+            return {
+                company: new Company(this.$store.state.company.toBackend())
             }
         }
     }
@@ -27,6 +24,9 @@
             </h1>
         </div>
         <div class="view-frame-section">
+            <div class="view-frame-section__header">
+                Address
+            </div>
             <div class="view-frame-section__content">
                 <div class="details-row">
                     <md-field>
@@ -52,23 +52,38 @@
                         <md-input v-model="company.city" placeholder="Company city"/>
                     </md-field>
                 </div>
+            </div>
+        </div>
+
+        <div class="view-frame-section">
+            <div class="view-frame-section__header">
+                Financial
+            </div>
+            <div class="view-frame-section__content">
                 <div class="details-row">
                     <md-field>
-                        <label>Company githubHandle</label>
-                        <md-input v-model="company.githubHandle" placeholder="Company githubHandle"/>
+                        <label>Bank account</label>
+                        <md-input v-model="company.bank" placeholder="Bank account"/>
                     </md-field>
                 </div>
                 <div class="details-row">
                     <md-field>
-                        <label>Company githubKey</label>
-                        <md-input v-model="company.githubKey" placeholder="Company githubKey"/>
+                        <label>Chamber of Commerce</label>
+                        <md-input v-model="company.coc" placeholder="Chamber of Commerce"/>
+                    </md-field>
+                </div>
+                <div class="details-row">
+                    <md-field>
+                        <label>VAT number</label>
+                        <md-input v-model="company.vat" placeholder="VAT number"/>
                     </md-field>
                 </div>
             </div>
         </div>
-        <div class="view-frame-section">
-            <md-button @click="update()" class="md-primary">Update company details</md-button>
-        </div>
+
+        <auto-saver
+            :watch="company"
+            :store-module="'updateCompany'"/>
     </div>
 </template>
 

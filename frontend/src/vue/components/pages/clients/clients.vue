@@ -49,12 +49,14 @@
             </h1>
         </div>
         <div class="view-frame-section">
-            <search-box
-                :search-data="search"/>
+            <div class="view-frame-tools">
+                <search-box
+                        :search-data="search"/>
 
-            <view-modus
-                    :state="localState"
-                    :type="'clients'"/>
+                <view-modus
+                        :state="localState"
+                        :type="'clients'"/>
+            </div>
         </div>
         <div class="view-frame-section">
             <md-button @click="create()" class="md-primary">Create Client</md-button>

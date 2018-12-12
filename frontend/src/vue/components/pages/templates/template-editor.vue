@@ -1,6 +1,7 @@
 <script>
     import documentIndex from "@components/document/document-index";
     import docPage from "@components/document/page";
+    import autoSaver from '@components/shared/auto-saver';
     import templateToolsDocument from "./template-tools/template-tools-document";
     import templateToolsPage from "./template-tools/template-tools-page";
     import templateToolsItem from "./template-tools/template-tools-item";
@@ -15,7 +16,7 @@
     export default {
         name: 'template-editor',
         components: {
-            documentIndex, docPage, templateToolsDocument, templateToolsPage, templateToolsItem
+            documentIndex, docPage, autoSaver, templateToolsDocument, templateToolsPage, templateToolsItem
         },
         props: {
             template: {
@@ -29,28 +30,12 @@
         },
         data(){
             return {
-                clonedTemplate: new Template(this.template.clone()),
+                clonedTemplate: new Template(this.template.toBackend()),
                 showTools: false,
                 localState: {
                     showSnackbar: false
                 },
                 factor: 1
-            }
-        },
-        watch: {
-            clonedTemplate: {
-                handler: function() {
-                    if (saveBuffer) {
-                        clearTimeout(saveBuffer);
-                    }
-
-                    saveBuffer = setTimeout(() => {
-                        this.$store.dispatch('templates/update', this.clonedTemplate.toBackend()).then(() => {
-                            this.localState.showSnackbar = true;
-                        });
-                    }, 500);
-                },
-                deep: true
             }
         },
         methods: {
@@ -130,21 +115,14 @@
                 :current-page="document.state.currentPage"/>
         </div>
 
-
-
-
         <div class="template__mode">
             Hide tools<br>
             <md-switch v-model="showTools"></md-switch>
         </div>
 
-        <md-snackbar
-            :md-position="'left'"
-            :md-duration="2000"
-            :md-active.sync="localState.showSnackbar"
-            md-persistent>
-            <span>Saved...</span>
-        </md-snackbar>
+        <auto-saver
+            :watch="clonedTemplate"
+            :store-module="'templates/update'"/>
     </div>
 </template>
 

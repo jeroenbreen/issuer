@@ -176,7 +176,7 @@
         <auto-saver
             v-if="autoSave"
             :watch="project"
-            :store-module="'projects'"/>
+            :store-module="'projects/update'"/>
     </div>
 </template>
 

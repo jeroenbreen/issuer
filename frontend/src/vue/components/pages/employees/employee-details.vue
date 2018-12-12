@@ -1,7 +1,23 @@
 <script>
+    import autoSaver from '@components/shared/auto-saver';
+    import {User} from '@models/User';
+
     export default {
         name: 'employee-details',
-        props: ['user']
+        components: {
+            autoSaver
+        },
+        props: {
+            user: {
+                type: User,
+                required: true
+            },
+            autoSave: {
+                type: Boolean,
+                required: false,
+                default: false
+            }
+        }
     }
 </script>
 
@@ -39,13 +55,11 @@
                     <md-input v-model="user.email" placeholder="Email"/>
                 </md-field>
             </div>
-            <div class="details-row">
-                <md-field>
-                    <label>Github Key</label>
-                    <md-input v-model="user.githubKey" placeholder="Github Key"/>
-                </md-field>
-            </div>
         </div>
+        <auto-saver
+                v-if="autoSave"
+                :watch="user"
+                :store-module="'users/update'"/>
     </div>
 </template>
 

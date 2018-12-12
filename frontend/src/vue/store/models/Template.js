@@ -80,11 +80,13 @@ class Template {
     //
 
     clone() {
-        return Tools.deepclone(this);
+        let obj = Tools.deepclone(this);
+        obj._id = '';
+        return obj;
     }
 
     toBackend() {
-        return this.clone();
+        return Tools.deepclone(this);
     }
 
     toPrint(documentPropertyHandler) {

@@ -1,4 +1,10 @@
 <script>
+    import {Company} from '@models/Company';
+    import {Client} from '@models/Client';
+    import {Project} from '@models/Project';
+    import {User} from '@models/User';
+    import {Template} from '@models/Template';
+
     let saveBuffer = null;
 
     export default {
@@ -6,7 +12,10 @@
         props: {
             watch: {
                 type: Object,
-                required: true
+                required: true,
+                validator: function (value) {
+                    return value.constructor === Company || value.constructor === Client || value.constructor === Project || value.constructor === Template || value.constructor === User;
+                }
             },
             storeModule: {
                 type: String,
@@ -23,14 +32,12 @@
         watch: {
             watch: {
                 handler: function() {
-                    const url = this.storeModule + '/update';
-
                     if (saveBuffer) {
                         clearTimeout(this.saveBuffer);
                     }
 
                     saveBuffer = setTimeout(() => {
-                        this.$store.dispatch(url, this.watch).then(() => {
+                        this.$store.dispatch(this.storeModule, this.watch.toBackend()).then(() => {
                             this.localState.showSnackbar = true;
                         });
                     }, 500);

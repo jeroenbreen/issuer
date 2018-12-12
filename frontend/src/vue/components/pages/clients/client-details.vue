@@ -90,7 +90,7 @@
         <auto-saver
                 v-if="autoSave"
                 :watch="client"
-                :store-module="'clients'"/>
+                :store-module="'clients/update'"/>
     </div>
 </template>
 

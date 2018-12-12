@@ -97,7 +97,7 @@
         </div>
 
         <div class="view-frame-section">
-            <div class="projects__tools">
+            <div class="view-frame-tools">
                 <search-box
                         :search-data="search"/>
 
@@ -160,10 +160,6 @@
 
 <style lang="scss">
     @import '@styles/variables.scss';
-
-    .projects__tools {
-        display: flex;
-    }
 
     .project-cards {
         margin-bottom: 20px;
