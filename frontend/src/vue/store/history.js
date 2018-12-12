@@ -6,10 +6,6 @@ class $History {
         this.store = new Vue({ data })
     }
 
-    get state () {
-        return this.store.$data
-    }
-
     addFrameAndExecute(frame) {
         this.addFrame(frame);
         frame.redo();

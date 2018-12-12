@@ -28,6 +28,9 @@
 
 <template>
     <div class="template-tags">
+        <div class="template-tags__title">
+            Click to add a tag to this text item.
+        </div>
         <div
             v-for="section in sections"
             class="template-tags__section">
@@ -47,6 +50,11 @@
     .template-tags {
         display: flex;
         flex-wrap: wrap;
+        margin-bottom: 6px;
+
+        .template-tags__title {
+            margin-bottom: 4px;
+        }
 
         .template-tags__section {
             display: flex;

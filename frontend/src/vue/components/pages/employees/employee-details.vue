@@ -59,7 +59,7 @@
         <auto-saver
                 v-if="autoSave"
                 :watch="user"
-                :store-module="'users/update'"/>
+                :store-update="'users/update'"/>
     </div>
 </template>
 

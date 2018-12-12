@@ -1,7 +1,9 @@
-class Client {
+import _Updatable_Object from './_Updatable_Object'
+
+class Client extends _Updatable_Object {
 
     constructor(client) {
-        this._id = client ? client._id : null;
+        super(client);
         this.company_id = client ? client.company_id : '';
         this.clientId = client ? client.clientId : null;
         this.companyName = client ? client.companyName : '';
@@ -23,10 +25,6 @@ class Client {
 
     getCustomCode(formatter, formatSetting) {
         return formatter(formatSetting, this.clientId);
-    }
-
-    toBackend() {
-        return {...this};
     }
 }
 

@@ -122,7 +122,7 @@
 
         <auto-saver
             :watch="clonedTemplate"
-            :store-module="'templates/update'"/>
+            :store-update="'templates/update'"/>
     </div>
 </template>
 

@@ -83,7 +83,7 @@
 
         <auto-saver
             :watch="company"
-            :store-module="'updateCompany'"/>
+            :store-update="'updateCompany'"/>
     </div>
 </template>
 
