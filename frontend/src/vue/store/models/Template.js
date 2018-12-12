@@ -12,7 +12,7 @@ import {fallBackDocumentMargin} from '@models/fallbacks'
 class Template {
 
     constructor(template) {
-        this._id = template && template._id ? template._id : null;
+        this._id = template && template._id ? template._id : '';
         this.company_id = template && template.company_id ? template.company_id : '';
         this.title = template && template.title ? template.title : '';
         this.margin = template ? template.margin : fallBackDocumentMargin;

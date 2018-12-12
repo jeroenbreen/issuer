@@ -1,9 +1,17 @@
 <script>
+    import itemToolTemplateTags from './item-tool-template-tags';
+    import _Item from '@models/template/_Item';
+
     export default {
         name: 'item-tool-text',
-        props: ['item'],
-        methods: {
-
+        components: {
+            itemToolTemplateTags
+        },
+        props: {
+            item: {
+                type: _Item,
+                required: true
+            }
         }
     }
 </script>
@@ -11,6 +19,8 @@
 
 <template>
     <div class="tool-box__section">
+        <item-tool-template-tags
+            :item="item"/>
         <textarea v-model="item.content"></textarea>
     </div>
 </template>

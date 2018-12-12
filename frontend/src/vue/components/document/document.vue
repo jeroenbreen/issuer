@@ -2,7 +2,7 @@
     import documentIndex from "./document-index";
     import documentProperties from "./document-properties";
     import lineTools from "./page/line/line-tools";
-    import {DocumentPropertyHandler} from "./document-property-handler";
+    import {DocumentPropertyHandler} from "@tools/document-properties/document-property-handler";
     import docPage from "./page";
     import {Document} from "@models/Document";
     import $ from "jquery";
@@ -22,6 +22,8 @@
             let documentIdFormat = this.$store.state.settings.documentIdFormat;
             let dateFormatter = this.$root.$options.filters.dateFormatter;
             let store = this.$store;
+            let documentPropertyHandler = new DocumentPropertyHandler();
+            documentPropertyHandler.attachedContent(store, template, company, document, null, documentIdFormatter, documentIdFormat, dateFormatter);
             return {
                 factor: 1,
                 document: document,
@@ -30,9 +32,7 @@
                 localState: {
                     showSnackbar: false
                 },
-                documentPropertyHandler: new DocumentPropertyHandler(
-                    store, template, company, document, null, documentIdFormatter, documentIdFormat, dateFormatter
-                ),
+                documentPropertyHandler: documentPropertyHandler,
                 test: document.subject
             }
         },

@@ -1,6 +1,11 @@
 class DocumentPropertyHandler {
 
-    constructor(store, template, company, document, page, documentIdFormatter, documentIdFormat, dateFormatter) {
+    constructor() {
+
+    }
+
+
+    attachedContent(store, template, company, document, page, documentIdFormatter, documentIdFormat, dateFormatter) {
         this.store = store;
         this.template = template;
         this.company = company;
@@ -12,9 +17,6 @@ class DocumentPropertyHandler {
         this.propertyHandlers = this.getAll();
         this.usedPropertyHandlers = this.getUsedPropertyHandlers();
     }
-
-
-
 
 
     getParsedValueOfTag(tag) {
@@ -62,7 +64,6 @@ class DocumentPropertyHandler {
 
     getAll() {
         return [
-
             {
                 title: 'General info',
                 items: [
@@ -273,7 +274,7 @@ class DocumentPropertyHandler {
                     }
                 ]
             }
-        ]
+        ];
     }
 
     getUsedPropertyHandlers(getOnlyIfEditable) {

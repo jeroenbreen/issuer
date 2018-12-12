@@ -1,6 +1,6 @@
 <script>
     import {pageHeight} from '@root/globals';
-    import contentParser from './content-parser';
+    import contentParser from '@tools/document-properties/content-parser';
 
     import $ from 'jquery';
 

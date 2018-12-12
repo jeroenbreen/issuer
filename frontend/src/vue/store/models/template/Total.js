@@ -1,7 +1,6 @@
 import {_NonDraggable} from './_Non-Draggable';
-import contentParser from '@components/document/page/item/content-parser';
-
-import {Tools} from './../../../tools/tools'
+import contentParser from '@tools/document-properties/content-parser';
+import {Tools} from '@tools/tools'
 
 
 

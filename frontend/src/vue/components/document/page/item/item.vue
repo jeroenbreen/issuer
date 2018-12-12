@@ -1,7 +1,7 @@
 <script>
     import itemDraggable from './item--draggable';
     import itemNonDraggable from './item--non-draggable';
-    import {DocumentPropertyHandler} from "./../../document-property-handler";
+    import {DocumentPropertyHandler} from "@tools/document-properties/document-property-handler";
 
 
 
@@ -20,10 +20,10 @@
             let dateFormatter = this.$root.$options.filters.dateFormatter;
             let template = this.template;
             let store = this.$store;
+            let documentPropertyHandler = new DocumentPropertyHandler();
+            documentPropertyHandler.attachedContent(store, template, company, document, page, documentIdFormatter, documentIdFormat, dateFormatter);
             return {
-                documentPropertyHandler: new DocumentPropertyHandler(
-                    store, template, company, document, page, documentIdFormatter, documentIdFormat, dateFormatter
-                )
+                documentPropertyHandler: documentPropertyHandler
             }
         },
         methods: {
