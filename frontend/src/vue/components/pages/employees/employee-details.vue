@@ -59,6 +59,7 @@
         <auto-saver
                 v-if="autoSave"
                 :watch="user"
+                :store-get="'users/getItemById'"
                 :store-update="'users/update'"/>
     </div>
 </template>

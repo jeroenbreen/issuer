@@ -42,7 +42,7 @@
 
 
                     if (saveBuffer) {
-                        clearTimeout(this.saveBuffer);
+                        clearTimeout(saveBuffer);
                     }
 
                     // if we get the corresponding element via the store,
@@ -67,6 +67,8 @@
                                 this.watch.updateAllPropertiesByClone(newObject);
                                 this.watch.$$watchIgnore = true;
                             };
+
+                            frame.action = 'Update ' + this.watch.getActionTitle();
 
                             this.$history.addFrame(frame);
                         } else {

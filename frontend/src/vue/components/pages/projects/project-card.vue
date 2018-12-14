@@ -56,6 +56,8 @@
                         this.setCurrent();
                     });
                 };
+
+                frame.action = 'change status of ' + this.project.title;
                 this.$history.addFrameAndExecute(frame);
             },
             getNewStatus(direction) {
@@ -68,6 +70,14 @@
             },
             getLightColor() {
                 return Tools.colorTone(this.statusColor, 0.2);
+            },
+            getStatusName(direction) {
+                let status = this.getNewStatus(direction);
+                if (!status) {
+                    return '';
+                } else {
+                    return status.title;
+                }
             }
         },
         computed: {
@@ -140,6 +150,8 @@
                             :size="20"
                             :max="2"/>
                 </div>
+
+                <md-tooltip md-delay="500">Open project</md-tooltip>
             </div>
 
 
@@ -167,6 +179,7 @@
                 <div class="icon-button__icon">
                     <i class="fas fa-arrow-up"></i>
                 </div>
+                <md-tooltip md-delay="500">Change status to {{getStatusName(-1)}}</md-tooltip>
             </div>
             <div
                 v-else
@@ -181,6 +194,7 @@
                 <div class="icon-button__icon">
                     <i class="fas fa-arrow-down"></i>
                 </div>
+                <md-tooltip md-delay="500">Change status to {{getStatusName(1)}}</md-tooltip>
             </div>
             <div
                 v-else

@@ -58,6 +58,8 @@
             <item-list-lines
                     v-if="item.type === 'lines'"
                     :item="item"/>
+
+            <md-tooltip md-delay="500">Select item</md-tooltip>
         </div>
     </div>
 </template>

@@ -1,7 +1,9 @@
-class User {
+import _Updatable_Object from './_Updatable_Object'
+
+class User extends _Updatable_Object {
 
     constructor(user) {
-        this._id = user ? user._id : null;
+        super(user);
         this.company_id = user ? user.company_id : '';
         this.firstName = user ? user.firstName : '';
         this.lastName = user ? user.lastName : '';
@@ -15,10 +17,10 @@ class User {
         return this.firstName + ' ' + this.lastName;
     }
 
-    toBackend() {
-        return {...this};
+    // action label in the history
+    getActionTitle() {
+        return 'profile of ' + this.getFullName();
     }
-
 }
 
 export {User};

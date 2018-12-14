@@ -31,6 +31,7 @@
         <div class="document-mini__label">
             {{getDocumentId()}}
         </div>
+        <md-tooltip md-delay="500">Open document</md-tooltip>
     </div>
 </template>
 

@@ -65,6 +65,7 @@
                 @click="back()"
                 class="view-frame__header-button">
                 <i class="fas fa-arrow-left"></i>
+                <md-tooltip md-delay="300" md-direction="bottom">Back to clients</md-tooltip>
             </div>
             <h1>
                 {{getFullLabel()}}

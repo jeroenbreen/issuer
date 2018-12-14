@@ -1,11 +1,11 @@
+import _Updatable_Object from './_Updatable_Object'
 import {Document} from './Document';
-import {Tools} from './../../tools/tools';
 
 
-class Project {
+class Project extends _Updatable_Object {
 
     constructor(project) {
-        this._id = project ? project._id : '';
+        super(project);
         this.company_id = project ? project.company_id : '';
         this.projectId = project ? project.projectId : null;
         this.title = project ? project.title : '';
@@ -49,11 +49,12 @@ class Project {
         })
     }
 
-    //
-
-    toBackend() {
-        return Tools.deepclone(this);
+    // action label in the history
+    getActionTitle() {
+        return this.title;
     }
+
+
 }
 
 export {Project};

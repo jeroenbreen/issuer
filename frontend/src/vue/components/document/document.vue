@@ -218,7 +218,9 @@
             <span>Saved...</span>
         </md-snackbar>
 
-        <div class="close-button" @click="closeScreen()"></div>
+        <div class="close-button" @click="closeScreen()">
+            <md-tooltip md-delay="300" md-direction="left">Close</md-tooltip>
+        </div>
 
         <div class="document__mode">
             Locked<br>

@@ -1,11 +1,13 @@
-class _Updatable_Object {
+import {Tools} from "@tools/tools";
 
+
+class _Updatable_Object {
     constructor(obj) {
         this._id = obj ? obj._id : null;
     }
 
     toBackend() {
-        return {...this};
+        return Tools.deepclone(this);
     }
 
     updateAllPropertiesByClone(clone) {

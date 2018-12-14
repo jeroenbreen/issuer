@@ -26,6 +26,11 @@ class Client extends _Updatable_Object {
     getCustomCode(formatter, formatSetting) {
         return formatter(formatSetting, this.clientId);
     }
+
+    // action label in the history
+    getActionTitle() {
+        return 'profile of ' + this.companyName;
+    }
 }
 
 export {Client};

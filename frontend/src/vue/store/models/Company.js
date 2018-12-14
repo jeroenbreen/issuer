@@ -1,7 +1,9 @@
-class Company {
+import _Updatable_Object from './_Updatable_Object'
+
+class Company extends _Updatable_Object {
 
     constructor(company) {
-        this._id = company ? company._id : '';
+        super(company);
         this.name = company ? company.name : '';
         this.address = company ? company.address : '';
         this.postcode = company ? company.postcode : '';
@@ -20,10 +22,10 @@ class Company {
         }
     }
 
-    toBackend() {
-        return {...this};
+    // action label in the history
+    getActionTitle() {
+        return 'your company profile';
     }
-
 }
 
 export {Company};

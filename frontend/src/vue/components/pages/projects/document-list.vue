@@ -105,6 +105,7 @@
             <div class="icon-button__icon">
                 <i class="fas fa-plus"></i>
             </div>
+            <md-tooltip md-delay="500">Create new document for this project</md-tooltip>
         </div>
     </div>
 

@@ -12,9 +12,14 @@ class $History {
     }
 
     addFrame(frame) {
+        if (this.store.currentFrameIndex !== this.store.frames.length - 1) {
+            let l = this.store.currentFrameIndex - (this.store.frames.length - 1);
+            this.store.frames.splice(l);
+        }
+
         this.store.frames.push(frame);
         this.store.currentFrameIndex = this.store.frames.length - 1;
-        // todo chop of end if canRedo()
+
     }
 
     canUndo() {
@@ -27,7 +32,7 @@ class $History {
 
     undo() {
         if (this.canUndo()) {
-            let frame = this._getCurrentFrame();
+            let frame = this.getCurrentFrame();
             frame.undo();
             this.store.currentFrameIndex--;
         }
@@ -41,7 +46,7 @@ class $History {
         }
     }
 
-    _getCurrentFrame() {
+    getCurrentFrame() {
         return this.store.frames[this.store.currentFrameIndex];
     }
 

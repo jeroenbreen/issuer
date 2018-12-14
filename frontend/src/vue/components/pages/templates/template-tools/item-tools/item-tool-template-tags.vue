@@ -19,7 +19,15 @@
         data() {
             let documentPropertyHandler = new DocumentPropertyHandler();
             return {
-                sections: documentPropertyHandler.getAll()
+                sections: documentPropertyHandler.getAll(),
+                localState: {
+                    bodyOpen: false
+                }
+            }
+        },
+        methods: {
+            toggle() {
+                this.localState.bodyOpen = !this.localState.bodyOpen;
             }
         }
     }
@@ -27,18 +35,32 @@
 
 
 <template>
-    <div class="template-tags">
-        <div class="template-tags__title">
-            Click to add a tag to this text item.
+    <div
+        :class="{'template-tags--body-open': localState.bodyOpen}"
+        class="template-tags">
+        <div
+            @click="toggle()"
+            class="template-tags__head">
+            <div class="template-tags__caret">
+                <i class="fas fa-caret-right"></i>
+            </div>
+            Add tags to text
         </div>
         <div
-            v-for="section in sections"
-            class="template-tags__section">
-            <template-tag
-                v-for="(tag,id) in section.items"
-                :key="id"
-                :tag="tag"
-                :item="item"/>
+
+            class="template-tags__body">
+            <div class="template-tags__content">
+                <div
+                        v-for="section in sections"
+                        class="template-tags__section">
+                    <template-tag
+                            v-for="(tag,id) in section.items"
+                            :key="id"
+                            :tag="tag"
+                            :item="item"/>
+            </div>
+
+            </div>
         </div>
     </div>
 </template>
@@ -48,17 +70,57 @@
     @import '@styles/variables.scss';
 
     .template-tags {
-        display: flex;
-        flex-wrap: wrap;
         margin-bottom: 6px;
 
-        .template-tags__title {
-            margin-bottom: 4px;
+        &.template-tags--body-open {
+
+            .template-tags__head {
+
+                .template-tags__caret {
+                    transform: rotate(90deg);
+                }
+            }
+
+            .template-tags__body {
+                max-height: 500px;
+            }
         }
 
-        .template-tags__section {
+        .template-tags__head {
+            cursor: pointer;
             display: flex;
-            flex-wrap: wrap;
+
+            .template-tags__caret {
+                width: 16px;
+                margin-right: 2px;
+                font-size: 15px;
+                text-align: center;
+                transition: all 0.5s ease;
+            }
+        }
+
+        .template-tags__body {
+            padding-top: 6px;
+            max-height: 0;
+            transition: all 0.5s ease;
+            overflow: hidden;
+
+
+
+
+            .template-tags__title {
+                margin-bottom: 4px;
+            }
+
+            .template-tags__content {
+                display: flex;
+                flex-wrap: wrap;
+
+                .template-tags__section {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+            }
         }
     }
 </style>

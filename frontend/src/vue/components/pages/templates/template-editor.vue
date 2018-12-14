@@ -95,7 +95,9 @@
 
 
 
-        <div class="close-button" @click="closeScreen()"></div>
+        <div class="close-button" @click="closeScreen()">
+            <md-tooltip md-delay="300" md-direction="left">Close</md-tooltip>
+        </div>
 
         <div class="tool-box__left" v-if="!showTools">
             <template-tools-document
@@ -122,6 +124,7 @@
 
         <auto-saver
             :watch="clonedTemplate"
+            :store-get="'templates/getItemById'"
             :store-update="'templates/update'"/>
     </div>
 </template>

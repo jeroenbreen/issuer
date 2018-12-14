@@ -218,16 +218,19 @@
                         :factor="0.25"
                         :tools="false"/>
 
+
                     <div class="template__tools">
                          <div class="icon-button" @click="cloneTemplate(template)">
                             <div class="icon-button__icon">
                                 <i class="fas fa-clone"></i>
                             </div>
+                             <md-tooltip md-delay="500">Clone template</md-tooltip>
                         </div>
                         <div class="icon-button" @click="deleteTemplate(template)">
                             <div class="icon-button__icon">
                                 <i class="fas fa-trash"></i>
                             </div>
+                            <md-tooltip md-delay="500">Remove template</md-tooltip>
                         </div>
                     </div>
                 </div>

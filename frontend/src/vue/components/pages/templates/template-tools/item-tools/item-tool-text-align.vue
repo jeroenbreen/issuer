@@ -39,6 +39,7 @@
                     :class="{'template__tool--current': aligning.type === item.textAlign}"
                     class="template__tool">
                     <i class="fas" :class="[aligning.icon]"></i>
+                    <md-tooltip md-delay="500" md-direction="top">{{aligning.type}}</md-tooltip>
                 </div>
             </div>
         </div>
