@@ -42,10 +42,14 @@
         <div class="history__tools">
             <button
                 v-if="canUndo"
+                v-shortkey.once="['ctrl', 'z']"
+                @shortkey="undo()"
                 @click="undo()">undo</button>
 
             <button
                 v-if="canRedo"
+                v-shortkey.once="['ctrl', 'y']"
+                @shortkey="redo()"
                 @click="redo()">redo</button>
         </div>
     </div>

@@ -10,7 +10,5 @@
   "author": "",
   "license": "",
   "devDependencies": {},
-  "dependencies": {
-    "chromath": "0.0.7"
-  }
+  "dependencies": {}
 }

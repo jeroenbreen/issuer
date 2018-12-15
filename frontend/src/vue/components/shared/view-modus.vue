@@ -24,14 +24,24 @@
 
 
 <template>
-    <md-switch
-            @change="updateViewModus()"
-            v-model="state.compact">Compact view {{type}}</md-switch>
+    <div class="view-modus">
+        <md-switch
+                @change="updateViewModus()"
+                v-model="state.compact"></md-switch>
+        <div class="view-modus__label">
+            Compact mode
+        </div>
+    </div>
 </template>
 
 
 <style lang="scss">
     @import '@styles/variables.scss';
 
+    .view-modus {
 
+        .view-modus__label {
+            text-align: right;
+        }
+    }
 </style>

@@ -3,7 +3,7 @@ import {Tools} from "@tools/tools";
 
 class _Updatable_Object {
     constructor(obj) {
-        this._id = obj ? obj._id : null;
+        this._id = obj ? obj._id : '';
     }
 
     toBackend() {

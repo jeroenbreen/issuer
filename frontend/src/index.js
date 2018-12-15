@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource';
 import store from './vue/store';
+import vueShortkey from 'vue-shortkey';
 import {dataToStore, getObjectId} from '@root/vue/store/store-functions'
 
 // components
@@ -38,6 +39,9 @@ Vue.use(History);
 // Vue.use(History, {
 //     store: new History.Store({ count: 0 })
 // });
+
+Vue.use(vueShortkey);
+
 
 // google material for Vue
 import VueMaterial from 'vue-material'

@@ -1,4 +1,5 @@
 <script>
+    import crudMixin from '@mixins/crud-mixin';
     import employeeDetails from './employee-details';
     import {User} from '@models/User';
 
@@ -7,6 +8,7 @@
         components: {
             employeeDetails
         },
+        mixins: [crudMixin],
         data() {
             return {
                 user: new User()
@@ -14,8 +16,9 @@
         },
         methods: {
             create: function() {
-                this.$store.dispatch('users/create', this.user).then(() => {
-                    this.$router.push({path: '/employees'});
+                this.$_crudMixin_create(this.user, 'users', 'employees').then((frame) => {
+                    // todo create module that can put the frame into an undo action inside
+                    // a snackbar
                 });
             },
             back: function() {

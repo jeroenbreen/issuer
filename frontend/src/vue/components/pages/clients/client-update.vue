@@ -1,4 +1,5 @@
 <script>
+    import crudMixin from '@mixins/crud-mixin';
     import clientDetails from './client-details';
     import {Client} from '@models/Client';
 
@@ -7,6 +8,7 @@
         components: {
             clientDetails
         },
+        mixins: [crudMixin],
         data() {
             const getItemById = this.$store.getters['clients/getItemById'];
             let id, client;
@@ -29,26 +31,7 @@
                 return this.client.getFullLabel(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.clientIdFormat);
             },
             deleteItem: function() {
-                let frame, client;
-                frame = {};
-                client = this.client.toBackend();
-
-                this.$store.commit('confirm', {
-                    message: 'Are you sure?',
-                    callback: () => {
-                        this.$store.dispatch('clients/delete', client).then(() => {
-                            this.$router.push('/clients');
-
-                            frame.undo = () => {
-                                this.$store.dispatch('clients/create', client);
-                            };
-                            frame.redo = () => {
-                                this.$store.dispatch('clients/delete', client);
-                            };
-                            this.$history.addFrame(frame);
-                        });
-                    }
-                });
+                this.$_crudMixin_delete(this.client, 'clients', 'clients');
             },
             back: function() {
                 this.$router.push('/clients');

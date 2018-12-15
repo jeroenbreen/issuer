@@ -1,4 +1,5 @@
 <script>
+    import crudMixin from '@mixins/crud-mixin';
     import clientDetails from './client-details';
     import {Client} from '@models/Client';
 
@@ -7,6 +8,7 @@
         components: {
             clientDetails
         },
+        mixins: [crudMixin],
         data() {
             const client = new Client();
             client.rate = this.$store.state.settings.standardRate;
@@ -16,19 +18,7 @@
         },
         methods: {
             create: function() {
-                let frame = {};
-
-                this.$store.dispatch('clients/create', this.client).then((client) => {
-                    this.$router.push({path: '/clients'});
-
-                    frame.undo = () => {
-                        this.$store.dispatch('clients/delete', client);
-                    };
-                    frame.redo = () => {
-                        this.$store.dispatch('clients/create', client);
-                    };
-                    this.$history.addFrame(frame);
-                });
+                this.$_crudMixin_create(this.client, 'clients', 'clients');
             },
             back: function() {
                 this.$router.push('/clients');

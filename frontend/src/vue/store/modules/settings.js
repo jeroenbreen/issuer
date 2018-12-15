@@ -7,7 +7,7 @@ const state = {
     standardCurrency: 'EUR',
     viewModusCompact__overall: true,
     viewModusCompact__clients: false,
-    viewModusCompact__projects: true,
+    viewModusCompact__projects: false,
     //
     issues: false
 };

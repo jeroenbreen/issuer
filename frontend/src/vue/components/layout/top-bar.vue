@@ -57,7 +57,7 @@
 
 <template>
     <div class="topbar">
-        <logo/>
+        <!--<logo/>-->
 
         <history/>
 

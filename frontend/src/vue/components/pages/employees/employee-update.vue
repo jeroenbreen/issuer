@@ -1,4 +1,5 @@
 <script>
+    import crudMixin from '@mixins/crud-mixin';
     import employeeDetails from './employee-details';
     import {User} from '@models/User';
 
@@ -7,6 +8,7 @@
         components: {
             employeeDetails
         },
+        mixins: [crudMixin],
         data() {
             const getItemById = this.$store.getters['users/getItemById'];
             let id, user;
@@ -26,14 +28,7 @@
         },
         methods: {
             deleteItem: function() {
-                this.$store.commit('confirm', {
-                    message: 'Are you sure?',
-                    callback: () => {
-                        this.$store.dispatch('users/delete', this.user).then(() => {
-                            this.$router.push('/employees');
-                        });
-                    }
-                });
+                this.$_crudMixin_delete(this.user, 'users', 'employees');
             },
             back: function() {
                 this.$router.push('/employees');
