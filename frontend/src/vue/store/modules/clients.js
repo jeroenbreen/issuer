@@ -10,7 +10,16 @@ const state = {
 };
 
 const getters = {
-    ..._base.getters
+    ..._base.getters,
+    getClientId: (state) => () => {
+        if (state.all.length) {
+            return Math.max.apply(Math, state.all.map(function (o) {
+                return o.clientId;
+            })) + 1;
+        } else {
+            return 1;
+        }
+    },
 };
 
 const actions = {

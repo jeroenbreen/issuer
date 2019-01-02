@@ -40,7 +40,7 @@ class PrintManager
 
     protected function getFileName()
     {
-        return strtolower("Dcoument -" . $this->document->documentIdFormatted . ".pdf");
+        return strtolower("Document -" . $this->document->documentIdFormatted . ".pdf");
     }
 
     protected function getHMTL()

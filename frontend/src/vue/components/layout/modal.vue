@@ -30,8 +30,9 @@
 <template>
     <div class="cover" @click="close()">
         <div class="modal">
-            <div class="modal__body">
-                {{getModalData().message}}
+            <div
+                v-html="getModalData().message"
+                class="modal__body">
             </div>
 
             <div class="modal__footer">

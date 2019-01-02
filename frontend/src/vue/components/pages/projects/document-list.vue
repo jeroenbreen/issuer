@@ -45,30 +45,67 @@
         },
         methods: {
             createDocument() {
-                let client, document;
-                const getItemById = this.$store.getters['clients/getItemById'];
-                client = getItemById(this.project.client_id);
-                document = {
-                    type: this.type,
-                    documentId: this.$store.getters['documents/getDocumentId'](this.type),
-                    project_id: this.project._id,
-                    locked: false,
-                    date: '2010-01-01',
-                    subject: this.project.title,
-                    userName: this.$store.state.users.current.getFullName(),
-                    clientCompanyName: client.companyName,
-                    clientContactName: client.contactFirstName + ' ' + client.contactLastName,
-                    clientStreet: client.street,
-                    clientPostcode: client.postcode,
-                    clientCity: client.city,
-                    rate: this.project.rate,
-                    currency: this.project.currency,
-                    pages: [{}]
-                };
-                this.$store.dispatch('documents/create', document).then(() => {
-                    this.$store.commit('documents/setCurrent', new Document(document));
-                    this.$store.commit('projects/setCurrentById', this.project._id);
-                });
+                let client, document, hasTemplate, hasClient, router, projectId, fullName;
+                client = this.$store.getters['clients/getItemById'](this.project.client_id);
+                router = this.$router;
+                hasTemplate = this.$store.state.settings['template_' + this.type + '_id'] !== '';
+                hasClient = Boolean(client);
+                projectId = this.project._id;
+                fullName = this.$store.state.users.current ? this.$store.state.users.current.getFullName() : '';
+
+
+                function callbackTemplate() {
+                    router.push({path: '/templates'});
+                }
+
+                function callbackClient() {
+                    router.push({path: '/projects/' + projectId});
+                }
+
+
+                if (!hasTemplate || !hasClient) {
+                    if (!hasTemplate) {
+                        this.$store.commit('confirm', {
+                            message: 'You didnt set the template for this type of document (or didnt even created it).<br><br>You need to do so, in order to create this document.',
+                            callback: callbackTemplate,
+                            buttons: {
+                                yes: 'Take me to the templates',
+                                no: 'Cancel'
+                            }
+                        });
+                    } else {
+                        this.$store.commit('confirm', {
+                            message: 'You didnt select a client for this project.<br><br>You need to do so, in order to create this document.',
+                            callback: callbackClient,
+                            buttons: {
+                                yes: 'Take me to the project details',
+                                no: 'Cancel'
+                            }
+                        });
+                    }
+                } else {
+                    document = {
+                        type: this.type,
+                        documentId: this.$store.getters['documents/getDocumentId'](this.type),
+                        project_id: this.project._id,
+                        locked: false,
+                        date: '2010-01-01',
+                        subject: this.project.title,
+                        userName: fullName,
+                        clientCompanyName: client.companyName,
+                        clientContactName: client.contactFirstName + ' ' + client.contactLastName,
+                        clientStreet: client.street,
+                        clientPostcode: client.postcode,
+                        clientCity: client.city,
+                        rate: this.project.rate,
+                        currency: this.project.currency,
+                        pages: [{}]
+                    };
+                    this.$store.dispatch('documents/create', document).then(() => {
+                        this.$store.commit('documents/setCurrent', new Document(document));
+                        this.$store.commit('projects/setCurrentById', this.project._id);
+                    });
+                }
             }
         }
     }
@@ -105,7 +142,7 @@
             <div class="icon-button__icon">
                 <i class="fas fa-plus"></i>
             </div>
-            <md-tooltip md-delay="500">Create new document for this project</md-tooltip>
+            <md-tooltip md-delay="500">Create new {{type}} for this project</md-tooltip>
         </div>
     </div>
 

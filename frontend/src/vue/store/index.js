@@ -8,6 +8,7 @@ import clients from './modules/clients'
 import projects from './modules/projects'
 import documents from './modules/documents'
 import statuses from './modules/statuses'
+import ui from './modules/ui'
 import {Company} from "./models/Company";
 import _base from "./modules/_base-module";
 
@@ -108,7 +109,8 @@ export default new Vuex.Store({
         clients,
         projects,
         documents,
-        statuses
+        statuses,
+        ui
     },
     strict: true
 })

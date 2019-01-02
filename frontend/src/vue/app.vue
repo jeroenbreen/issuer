@@ -44,12 +44,10 @@
         <document v-if="hasDocument()"/>
 
         <modal v-if="showModal()"></modal>
-
-        <welcome-screen v-if="!hasCurrentUser()"></welcome-screen>
     </div>
 </template>
 
 
 <style lang="scss">
-    @import '@styles/variables.scss';
+    @import '@styles/index.scss';
 </style>

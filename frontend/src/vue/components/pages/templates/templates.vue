@@ -166,21 +166,6 @@
             <div class="template__pickers">
                 <div class="template__picker">
                     <md-field>
-                        <label>Standard invoice template</label>
-                        <md-select
-                                @md-selected="setTemplateViaSelect('invoice')"
-                                v-model="standardTemplate.invoice"
-                                placeholder="Standard invoice template">
-                            <md-option
-                                    v-for="(template, index) in getAll()"
-                                    :value="template._id"
-                                    :key="index">{{template.title}}</md-option>
-                        </md-select>
-                    </md-field>
-                    <div class="colored-bullet colored-bullet--invoice"></div>
-                </div>
-                <div class="template__picker">
-                    <md-field>
                         <label>Standard quotation template</label>
                         <md-select
                                 @md-selected="setTemplateViaSelect('quotation')"
@@ -193,6 +178,21 @@
                         </md-select>
                     </md-field>
                     <div class="colored-bullet colored-bullet--quotation"></div>
+                </div>
+                <div class="template__picker">
+                    <md-field>
+                        <label>Standard invoice template</label>
+                        <md-select
+                                @md-selected="setTemplateViaSelect('invoice')"
+                                v-model="standardTemplate.invoice"
+                                placeholder="Standard invoice template">
+                            <md-option
+                                    v-for="(template, index) in getAll()"
+                                    :value="template._id"
+                                    :key="index">{{template.title}}</md-option>
+                        </md-select>
+                    </md-field>
+                    <div class="colored-bullet colored-bullet--invoice"></div>
                 </div>
             </div>
         </div>

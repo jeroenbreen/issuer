@@ -9,7 +9,7 @@
 
         .tool-button__icon {
             background: #000;
-            color: @editing-mode-color;
+            color: $editing-mode-color;
         }
 
         .tool-button__label {
@@ -41,7 +41,7 @@
         width: 24px;
         height: 24px;
         border-radius: 50%;
-        background: @editing-mode-color;
+        background: $editing-mode-color;
         display: flex;
         align-items: center;
         justify-content: space-around;

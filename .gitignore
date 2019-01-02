@@ -1,3 +1,4 @@
 backend/node_modules
-backend/print/pdf
 frontend/node_modules
+print/pdf
+library/uploads

@@ -40,22 +40,11 @@ router.post('/', function(req, res) {
     client.company_id = company_id;
     db = req.db;
     collection = db.get('clients');
-    collection.find({}, {}, function(e, docs){
-        let lastId = 0;
-        for (let doc of docs) {
-            if (doc.clientId > lastId) {
-                lastId = Number(doc.clientId);
-            }
+    collection.insert(client, {}, function(error, docs){
+        if(error) {
+            throw error;
         }
-        lastId++;
-        client.clientId = lastId;
-
-        collection.insert(client, {}, function(error, docs){
-            if(error) {
-                throw error;
-            }
-            res.send(docs);
-        });
+        res.send(docs);
     });
 });
 

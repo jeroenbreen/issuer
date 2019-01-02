@@ -39,7 +39,7 @@
         border-bottom: 1px solid #ddd;
         height: 80px;
         display: flex;
-        transition: @compact-transition;
+        transition: $compact-transition;
 
         .view-frame__header-button {
             height: 100%;
@@ -51,7 +51,7 @@
             font-size: 24px;
             cursor: pointer;
             color: #aaa;
-            transition: @compact-transition;
+            transition: $compact-transition;
 
             &:hover {
                 color: #000;
@@ -64,14 +64,14 @@
             font-size: 32px;
             font-weight: 700;
             margin-left: 30px;
-            transition: @compact-transition;
+            transition: $compact-transition;
         }
     }
 
     .view-frame-section {
         padding: 30px;
         border-bottom: 1px solid #ddd;
-        transition: @compact-transition;
+        transition: $compact-transition;
 
         h1 {
             margin: 0;
@@ -81,15 +81,15 @@
             font-size: 22px;
             margin-bottom: 16px;
             font-weight: 700;
-            font-family: @main-theme-font-2;
-            color: @main-theme-color;
+            font-family: $main-theme-font-2;
+            color: $main-theme-color;
         }
 
         .view-frame-section__content {
 
             .details-row {
                 display: flex;
-                padding: @general-padding 0;
+                padding: $general-padding 0;
                 align-items: center;
 
                 .md-field {
@@ -112,7 +112,7 @@
                     }
 
                     input, select {
-                        margin-right: @general-padding;
+                        margin-right: $general-padding;
                     }
                 }
             }

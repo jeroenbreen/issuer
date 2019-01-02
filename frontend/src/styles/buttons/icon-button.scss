@@ -15,7 +15,7 @@
         color: #000;
         margin-right: 4px;
         background: #ddd;
-        transition: @compact-transition;
+        transition: $compact-transition;
     }
 
     .icon-button__label {
@@ -26,7 +26,7 @@
     &:hover {
 
         .icon-button__icon {
-            background: @main-theme-color;
+            background: $main-theme-color;
             color: #fff;
         }
     }
@@ -44,7 +44,7 @@
         &:hover {
 
             .icon-button__icon {
-                background: @blue-dark;
+                background: $blue-dark;
             }
         }
     }
@@ -53,7 +53,7 @@
 
         .icon-button__icon {
             color: #fff;
-            background: @blue;
+            background: $blue;
         }
 
         .icon-button__label {
@@ -63,7 +63,7 @@
         &:hover {
 
             .icon-button__icon {
-                background: @blue-dark;
+                background: $blue-dark;
             }
         }
     }
@@ -71,8 +71,8 @@
     &.icon-button--editing-mode {
 
         .icon-button__icon {
-            color: @editing-mode-color-contra;
-            background: @editing-mode-color;
+            color: $editing-mode-color-contra;
+            background: $editing-mode-color;
         }
 
         .icon-button__label {
@@ -82,7 +82,7 @@
         &:hover {
 
             .icon-button__icon {
-                background: @editing-mode-color-hover;
+                background: $editing-mode-color-hover;
             }
         }
     }
@@ -119,7 +119,7 @@
 .icon-button-placeholder {
     width: 32px;
     margin-right: 4px;
-    transition: @compact-transition;
+    transition: $compact-transition;
 
     &.icon-button--small {
         width: 22px;

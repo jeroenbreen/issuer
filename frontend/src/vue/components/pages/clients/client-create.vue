@@ -12,6 +12,7 @@
         data() {
             const client = new Client();
             client.rate = this.$store.state.settings.standardRate;
+            client.clientId = this.$store.getters['clients/getClientId']();
             return {
                 client: client
             }

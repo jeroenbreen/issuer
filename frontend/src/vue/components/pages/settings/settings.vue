@@ -36,6 +36,9 @@
             </h1>
         </div>
         <div class="view-frame-section">
+            <i>(Settings aren't saved yet)</i>
+        </div>
+        <div class="view-frame-section">
             <div class="view-frame-section__content">
                 <div class="details-row">
                     <md-field>

@@ -107,6 +107,11 @@ class Template {
     }
 
 
+    // action label in the history
+    getActionTitle() {
+        return this.title;
+    }
+
 
 
 }

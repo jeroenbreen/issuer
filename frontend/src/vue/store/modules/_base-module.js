@@ -38,15 +38,13 @@ const actions = {
                     resolve(response);
                 });
             } else {
-                getObjectId().then((id) => {
-                    item._id = id;
-                    context.commit('create', item);
-                    resolve(item);
+                item._id =  getObjectId();
+                context.commit('create', item);
+                resolve(item);
 
-                    if (config.useLocalStorage) {
-                        saveInLocalStorage(context.rootState);
-                    }
-                });
+                if (config.useLocalStorage) {
+                    saveInLocalStorage(context.rootState);
+                }
             }
         })
     },

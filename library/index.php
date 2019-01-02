@@ -4,7 +4,7 @@ $data_raw = file_get_contents("php://input");
 $data = json_decode($data_raw);
 $base64_string = $data->image;
 
-$path = '../template/';
+$path = 'uploads/';
 $random = bin2hex(openssl_random_pseudo_bytes(10));
 $extension = '.jpg';
 $file_name =  $random . $extension;

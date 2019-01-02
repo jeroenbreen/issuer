@@ -105,14 +105,14 @@
                 };
                 console.log(data);
                 $.ajax({
-                    'url': (config.fromFrontend + config.printUrl + 'document/print.php'),
+                    'url': config.printLocation + 'document/print.php',
                     'type': 'POST',
                     'data': JSON.stringify(data),
                     'headers': {
                         'Accept': 'application/json'
                     }
                 }).done(function(response){
-                    window.open(config.fromFrontend + config.pdfUrl + response);
+                    window.open(config.printLocation + 'pdf/' + response);
                 });
             }
         }

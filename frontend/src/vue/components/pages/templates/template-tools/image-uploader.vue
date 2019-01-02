@@ -32,7 +32,7 @@
                 let image = file.dataURL.split(',')[1];
                 let self = this;
                 $.ajax({
-                    'url': (config.fromFrontend + 'image-uploader/index.php'),
+                    'url': (config.imageUploaderLocation + 'index.php'),
                     'type': 'POST',
                     'data': JSON.stringify({image: image}),
                     'headers': {

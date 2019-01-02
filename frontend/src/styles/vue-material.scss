@@ -30,21 +30,21 @@
             svg {
 
                 path:first-child {
-                    fill: @main-theme-color;
+                    fill: $main-theme-color;
                 }
             }
         }
     }
 
     &:before {
-        background-color: @main-theme-color!important;
+        background-color: $main-theme-color!important;
     }
 
     &.md-has-value {
 
         label {
             font-size: 10px;
-            color: @main-theme-color;
+            color: $main-theme-color;
         }
 
         input.md-input {
@@ -55,7 +55,7 @@
     &.md-focused {
 
         label {
-            color: @main-theme-color!important;
+            color: $main-theme-color!important;
         }
     }
 }

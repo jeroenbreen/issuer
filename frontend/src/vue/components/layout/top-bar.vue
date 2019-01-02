@@ -15,6 +15,9 @@
             getCurrentUser() {
                 return this.$store.state.users.current;
             },
+            toggleMenu() {
+                this.$store.commit('ui/toggleMenu')
+            },
             exportToFile() {
                 let file = storeToFile(this.$store.state);
 
@@ -31,24 +34,56 @@
                 download(JSON.stringify(file), 'doculator-state-' + this.$store.state.company.name  + '.txt', 'text/plain');
             },
             openFile() {
-                let file, store;
+                let file, store, router;
                 file = document.getElementById("open-file").files[0];
                 store = this.$store;
-                if (file) {
+                router = this.$router;
+
+                function callback() {
                     let reader = new FileReader();
                     reader.readAsText(file, "UTF-8");
                     reader.onload = function (evt) {
                         let data = JSON.parse(evt.target.result);
                         if (data.type === 'doculator') {
                             dataToStore(store, data.state);
+                            store.commit('message', {
+                                message: 'File imported. Due to a known bug, you first have press a page in the menu (left) to view the applied data.'
+                            });
                         } else {
-                            console.log('This doesnt look like a doculator file');
+                            store.commit('message', {
+                                message: 'This doesnt look like a doculator file'
+                            });
                         }
                     };
                     reader.onerror = function (evt) {
                         console.log('Error reading file');
                     };
+                    store.commit('ui/toggleMenu');
                 }
+
+                if (file) {
+
+
+                    let fileData = localStorage.getItem('doculator');
+
+                    if (fileData) {
+                        this.$store.commit('confirm', {
+                            message: 'Importing this data will overwrite your local storage data. Proceed?',
+                            callback: callback
+                        });
+
+                    } else {
+                        callback();
+                    }
+
+
+
+                }
+            }
+        },
+        computed: {
+            menuOpen() {
+                return this.$store.state.ui.menu;
             }
         }
     }
@@ -59,29 +94,32 @@
     <div class="topbar">
         <!--<logo/>-->
 
-        <history/>
 
-        <md-menu md-size="small">
-            <div class="md-menu__trigger" md-menu-trigger>
-                <i class="fas fa-bars"></i>
+        <div
+            @click="toggleMenu()"
+            class="hamburger">
+            <div class="burger"></div>
+            <div class="burger"></div>
+            <div class="burger"></div>
+        </div>
+
+        <div
+            v-show="menuOpen"
+            class="top-bar-menu">
+            <div class="menu-item">
+                <input
+                    @change="openFile()"
+                    type="file"
+                    name="open-file"
+                    id="open-file"
+                    class="md-menu-item__button custom-file-input">
             </div>
+            <div @click="exportToFile()"
+                class="menu-item">
+                Export to file
+            </div>
+        </div>
 
-            <md-menu-content>
-                <md-menu-item>
-                    <input
-                        @change="openFile()"
-                        type="file"
-                        name="open-file"
-                        id="open-file"
-                        class="md-menu-item__button custom-file-input">
-                </md-menu-item>
-                <md-menu-item>
-                    <div
-                        @click="exportToFile()"
-                        class="md-menu-item__button">Export to file</div>
-                </md-menu-item>
-            </md-menu-content>
-        </md-menu>
     </div>
 </template>
 
@@ -89,22 +127,43 @@
 <style lang="scss">
     @import '@styles/variables.scss';
 
-    .md-menu-content {
+
+    .hamburger {
+        float: right;
+        cursor: pointer;
+        padding: 6px 10px;
+
+        .burger {
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            margin-bottom: 3px;
+            background: #000;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .top-bar-menu {
+        position: absolute;
+        top: 45px;
+        right: 0;
         width: 200px;
+        background: #fff;
+        box-shadow: -2px 2px 20px rgba(0,0,0,0.2);
+        z-index: 100;
 
-        .md-list-item-content {
-            //padding: 0!important;
+        .menu-item {
+            cursor: pointer;
+            width: 200px;
+            height: 100%;
+            padding: 10px;
+            border-bottom: $generalBorder;
 
-            .md-menu-item__button {
-                cursor: pointer;
-                width: 200px;
-                height: 100%;
-                padding: 10px;
-                font-size: 12px;
-
-                &:hover {
-                    background: $grey-10;
-                }
+            &:hover {
+                background: $grey-10;
             }
 
             .custom-file-input {
@@ -113,10 +172,16 @@
                 border: 0;
                 background: transparent;
                 outline: none;
+                padding: 0;
+                font-family: inherit;
+                font-weight: inherit;
+                cursor: pointer;
             }
+
             .custom-file-input::-webkit-file-upload-button {
                 visibility: hidden;
             }
+
             .custom-file-input::before {
                 content: 'Open';
                 color: #000;
@@ -125,19 +190,14 @@
                 white-space: nowrap;
                 -webkit-user-select: none;
             }
-            .custom-file-input:hover::before {
-                //border-color: black;
-            }
+
             .custom-file-input:active {
                 outline: 0;
             }
-            .custom-file-input:active::before {
-                //background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-            }
         }
-
-
     }
+
+
 
     .topbar {
         box-shadow: 0 2px 8px rgba(0,0,0,0.2);

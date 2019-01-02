@@ -1,5 +1,6 @@
-@import '../../../node_modules/vue-material/dist/vue-material.min.css';
-@import '../../../node_modules/vue2-dropzone/dist/vue2Dropzone.min.css';
+@import '../../node_modules/vue-material/dist/vue-material.min.css';
+@import '../../node_modules/vue2-dropzone/dist/vue2Dropzone.min.css';
+@import './variables';
 
 
 
@@ -25,9 +26,9 @@ body {
             left: 0;
             top: 0;
             width: 100%;
-            height: @topbar-height;
+            height: $topbar-height;
             border-bottom: 1px solid #ddd;
-            padding: @general-padding;
+            padding: $general-padding;
 
             .avatar {
                 position: absolute;
@@ -39,18 +40,18 @@ body {
         .content {
             position: absolute;
             left: 0;
-            top: @topbar-height;
+            top: $topbar-height;
             width: 100%;
-            height: calc(100% - @topbar-height);
+            height: calc(100% - #{$topbar-height});
 
             .menu {
                 position: absolute;
                 left: 0;
                 top: 0;
                 height: 100%;
-                width: @menu-width;
+                width: $menu-width;
                 overflow: auto;
-                border-right: @generalBorder;
+                border-right: $generalBorder;
             }
 
             .view-frame {
@@ -58,7 +59,7 @@ body {
                 right: 0;
                 top: 0;
                 height: 100%;
-                width: calc(100% - @menu-width);
+                width: calc(100% - #{$menu-width});
                 overflow: auto;
             }
         }
@@ -67,14 +68,11 @@ body {
 
 
 
-@import "variables";
-@import "issue/index";
 @import "details";
 @import "input";
 @import "buttons/icon-button";
 @import "buttons/button";
 @import "buttons/tool-button";
-@import "milestone";
 @import "view-frame";
 @import "scrim";
 @import "unselectable";
