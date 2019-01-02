@@ -10,6 +10,16 @@
         components: {
             projectCard, searchBox, projectsFilter, viewModus
         },
+        // todo make dry with project-details
+        mounted () {
+            if (this.$route.query.document) {
+                const getItem = this.$store.getters['documents/getItemById'];
+                const document = getItem(this.$route.query.document);
+                if (document) {
+                    this.$store.commit('documents/setCurrent', document);
+                }
+            }
+        },
         data() {
             return {
                 search: {
