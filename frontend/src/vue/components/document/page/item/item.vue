@@ -16,7 +16,7 @@
             let document = this.page.document;
             let page = this.page;
             let documentIdFormatter = this.$root.$options.filters.documentIdFormatter;
-            let documentIdFormat = this.$store.state.settings.documentIdFormat;
+            let documentIdFormat = this.$store.state.settings.all.documentIdFormat;
             let dateFormatter = this.$root.$options.filters.dateFormatter;
             let template = this.template;
             let store = this.$store;

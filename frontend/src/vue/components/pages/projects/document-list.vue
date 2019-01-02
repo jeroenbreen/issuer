@@ -48,7 +48,7 @@
                 let client, document, hasTemplate, hasClient, router, projectId, fullName;
                 client = this.$store.getters['clients/getItemById'](this.project.client_id);
                 router = this.$router;
-                hasTemplate = this.$store.state.settings['template_' + this.type + '_id'] !== '';
+                hasTemplate = this.$store.state.settings.all['template_' + this.type + '_id'] !== '';
                 hasClient = Boolean(client);
                 projectId = this.project._id;
                 fullName = this.$store.state.users.current ? this.$store.state.users.current.getFullName() : '';

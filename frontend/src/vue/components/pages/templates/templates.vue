@@ -3,11 +3,15 @@
     import docPage from '@components/document/page';
     import {Document} from "@models/Document";
     import {Template} from "@models/Template";
+    import autoSaver from '@components/shared/auto-saver';
+    import requiredItems from './template-required-items';
+    import quickStartTemplate from './quick-start-template';
+
 
     export default {
         name: 'templates',
         components: {
-            docPage, templateEditor
+            docPage, templateEditor, autoSaver
         },
         data() {
             function getRandomLine() {
@@ -42,7 +46,7 @@
             doc.createPage();
             doc.userName = this.$store.state.users.current ? this.$store.state.users.current.getFullName() : '...';
             doc.currency = 'EUR';
-            doc.rate = this.$store.state.settings.standardRate;
+            doc.rate = this.$store.state.settings.all.standardRate;
             doc.clientCompanyName = 'The Company Name';
             doc.clientContactName = 'M. Jones-Gonzalez';
             doc.clientStreet = 'East Street 1230';
@@ -52,10 +56,7 @@
             doc.pages[1].importLines(getRandomSet());
 
             return {
-                standardTemplate: {
-                    invoice: this.$store.state.settings.template_invoice_id,
-                    quotation: this.$store.state.settings.template_quotation_id
-                },
+                settings: {...this.$store.state.settings.all},
                 document: doc,
                 currentTemplate: null
             }
@@ -65,7 +66,25 @@
                 return this.$store.state.templates.all;
             },
             create: function() {
-                let template = new Template();
+                let templateData, template;
+
+                templateData = {
+                    items: requiredItems
+                };
+
+                template = new Template(templateData);
+
+
+
+
+                this.$store.dispatch('templates/create', template.toBackend()).then((response) => {
+                    let createdTemplate = this.$store.getters['templates/getItemById'](response._id);
+                    this.$store.commit('templates/setCurrent', createdTemplate);
+                });
+            },
+            useQuickStart: function() {
+                let template = new Template(quickStartTemplate);
+
                 this.$store.dispatch('templates/create', template.toBackend()).then((response) => {
                     let createdTemplate = this.$store.getters['templates/getItemById'](response._id);
                     this.$store.commit('templates/setCurrent', createdTemplate);
@@ -138,17 +157,7 @@
                 });
             },
             isCurrentTemplate(template, type) {
-                return this.$store.state.settings['template_' + type + '_id'] === template._id;
-            },
-            setTemplate(template) {
-                const settings = {...this.$store.state.settings};
-                settings.template_id = template._id;
-                this.$store.commit('settings/update', settings);
-            },
-            setTemplateViaSelect(type){
-                const settings = {...this.$store.state.settings};
-                settings['template_' + type + '_id'] = this.standardTemplate[type];
-                this.$store.commit('settings/update', settings);
+                return this.$store.state.settings.all['template_' + type + '_id'] === template._id;
             }
         }
     }
@@ -168,8 +177,7 @@
                     <md-field>
                         <label>Standard quotation template</label>
                         <md-select
-                                @md-selected="setTemplateViaSelect('quotation')"
-                                v-model="standardTemplate.quotation"
+                                v-model="settings.template_quotation_id"
                                 placeholder="Standard quotation template">
                             <md-option
                                     v-for="(template, index) in getAll()"
@@ -183,8 +191,7 @@
                     <md-field>
                         <label>Standard invoice template</label>
                         <md-select
-                                @md-selected="setTemplateViaSelect('invoice')"
-                                v-model="standardTemplate.invoice"
+                                v-model="settings.template_invoice_id"
                                 placeholder="Standard invoice template">
                             <md-option
                                     v-for="(template, index) in getAll()"
@@ -198,6 +205,7 @@
         </div>
         <div class="view-frame-section">
             <md-button @click="create()" class="md-primary">Create Template</md-button>
+            <md-button @click="useQuickStart()" class="md-primary">Use Quick Start Template</md-button>
         </div>
         <div class="view-frame-section">
             <div class="templates">
@@ -241,6 +249,11 @@
             v-if="getCurrentTemplate()"
             :template="getCurrentTemplate()"
             :document="document"/>
+
+        <auto-saver
+                :watch="settings"
+                :store-get="'settings/getAll'"
+                :store-update="'settings/update'"/>
     </div>
 </template>
 

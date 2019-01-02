@@ -1,17 +1,19 @@
 <script>
     import viewModus from '@components/shared/view-modus';
+    import autoSaver from '@components/shared/auto-saver';
+
 
     export default {
         name: 'settings',
         components: {
-            viewModus
+            viewModus, autoSaver
         },
         data() {
             return {
-                settings: {...this.$store.state.settings},
+                settings: {...this.$store.state.settings.all},
                 formats: ['3zeros', 'roman'],
                 localState: {
-                    compact: this.$store.state.settings.viewModusCompact__overall
+                    compact: this.$store.state.settings.all.viewModusCompact__overall
                 }
             }
         },
@@ -34,9 +36,6 @@
             <h1>
                 Settings
             </h1>
-        </div>
-        <div class="view-frame-section">
-            <i>(Settings aren't saved yet)</i>
         </div>
         <div class="view-frame-section">
             <div class="view-frame-section__content">
@@ -90,6 +89,11 @@
                 </div>
             </div>
         </div>
+
+        <auto-saver
+            :watch="settings"
+            :store-get="'settings/getAll'"
+            :store-update="'settings/update'"/>
     </div>
 </template>
 

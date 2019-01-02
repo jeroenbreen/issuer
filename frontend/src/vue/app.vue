@@ -23,7 +23,7 @@
                 return this.$store.state.modal.show;
             },
             isViewModusCompact() {
-                return this.$store.state.settings.viewModusCompact__overall;
+                return this.$store.state.settings.all.viewModusCompact__overall;
             }
         },
     }

@@ -16,7 +16,7 @@
                     value: ''
                 },
                 localState: {
-                    compact: this.$store.state.settings.viewModusCompact__clients
+                    compact: this.$store.state.settings.all.viewModusCompact__clients
                 }
             }
         },

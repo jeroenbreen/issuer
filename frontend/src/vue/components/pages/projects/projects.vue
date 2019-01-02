@@ -22,7 +22,7 @@
                     user_id: 0
                 },
                 localState: {
-                    compact: this.$store.state.settings.viewModusCompact__projects
+                    compact: this.$store.state.settings.all.viewModusCompact__projects
                 }
             }
         },
@@ -57,7 +57,7 @@
                 return total;
             },
             mixedCurrency() {
-                let standardCurrency = this.$store.state.settings.standardCurrency;
+                let standardCurrency = this.$store.state.settings.all.standardCurrency;
                 for (let project of this.projects) {
                     if (project.currency !== standardCurrency) {
                         return true;
@@ -78,7 +78,7 @@
                 this.$router.push('projects/new');
             },
             getCurrency() {
-                return this.$store.state.settings.standardCurrency;
+                return this.$store.state.settings.all.standardCurrency;
             }
         }
     }

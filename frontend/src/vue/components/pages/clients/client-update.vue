@@ -28,7 +28,7 @@
         },
         methods: {
             getFullLabel: function() {
-                return this.client.getFullLabel(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.clientIdFormat);
+                return this.client.getFullLabel(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.all.clientIdFormat);
             },
             deleteItem: function() {
                 this.$_crudMixin_delete(this.client, 'clients', 'clients');

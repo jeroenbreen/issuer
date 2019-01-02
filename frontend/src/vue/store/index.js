@@ -18,7 +18,7 @@ Vue.use(Vuex);
 const getters = {
     template: (state, getters, rootState) => (type) => {
         const getTemplate = getters['templates/getItemById'];
-        return getTemplate(rootState.settings['template_' + type + '_id']);
+        return getTemplate(rootState.settings.all['template_' + type + '_id']);
     },
     company: (state) => () => {
         return state.company

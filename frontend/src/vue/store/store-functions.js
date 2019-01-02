@@ -27,6 +27,7 @@ const storeToFile = function (theState) {
 
 
 const dataToStore = function (store, data, commitFixed) {
+    store.commit('settings/init', data.settings);
     store.commit('initCompany', data.company);
     store.commit('users/init', data.users);
     store.commit('clients/init', data.clients);

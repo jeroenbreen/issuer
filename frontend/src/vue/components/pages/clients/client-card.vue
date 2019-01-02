@@ -7,7 +7,7 @@
                 this.$router.push('clients/' + this.client._id)
             },
             documentIdFormatter: function() {
-                return this.client.getCustomCode(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.clientIdFormat);
+                return this.client.getCustomCode(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.all.clientIdFormat);
             }
         }
     }

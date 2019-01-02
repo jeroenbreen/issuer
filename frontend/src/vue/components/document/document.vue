@@ -19,7 +19,7 @@
             let company = this.$store.state.company;
             let template = this.$store.getters.template(document.type);
             let documentIdFormatter = this.$root.$options.filters.documentIdFormatter;
-            let documentIdFormat = this.$store.state.settings.documentIdFormat;
+            let documentIdFormat = this.$store.state.settings.all.documentIdFormat;
             let dateFormatter = this.$root.$options.filters.dateFormatter;
             let store = this.$store;
             let documentPropertyHandler = new DocumentPropertyHandler();
@@ -86,7 +86,7 @@
                 });
             },
             getDocumentId() {
-                return this.document.getFormattedId(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.documentIdFormat);
+                return this.document.getFormattedId(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.all.documentIdFormat);
             },
             closeScreen() {
                 this.$store.commit('documents/unsetCurrent');
@@ -105,14 +105,14 @@
                 };
                 console.log(data);
                 $.ajax({
-                    'url': config.printLocation + 'document/print.php',
+                    'url': config.library + 'print/document/print.php',
                     'type': 'POST',
                     'data': JSON.stringify(data),
                     'headers': {
                         'Accept': 'application/json'
                     }
                 }).done(function(response){
-                    window.open(config.printLocation + 'pdf/' + response);
+                    window.open(config.library + 'print/pdf/' + response);
                 });
             }
         }

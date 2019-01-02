@@ -14,7 +14,12 @@
                 type: Object,
                 required: true,
                 validator: function (value) {
-                    return value.constructor === Company || value.constructor === Client || value.constructor === Project || value.constructor === Template || value.constructor === User;
+                    return value.constructor === Company ||
+                        value.constructor === Client ||
+                        value.constructor === Project ||
+                        value.constructor === Template ||
+                        value.constructor === User ||
+                        value.constructor === Object; // this one is for settings. Todo, create a Class for it
                 }
             },
             storeGet: {
@@ -48,8 +53,17 @@
                     // if we get the corresponding element via the store,
                     // we get the state before the update we are going to commit
                     // we can use this state for the undo
-                    oldObject = this.$store.getters[this.storeGet](this.watch._id).toBackend();
-                    newObject = this.watch.toBackend();
+
+                    // this is a hardcoded switch
+                    // todo, make a class for settings, with a toBackend function !!
+                    if (this.storeGet === 'settings/getAll') {
+                        oldObject = this.$store.getters[this.storeGet];
+                        newObject = this.watch;
+                    } else {
+                        oldObject = this.$store.getters[this.storeGet](this.watch._id).toBackend();
+                        newObject = this.watch.toBackend();
+                    }
+
 
                     saveBuffer = setTimeout(() => {
 
@@ -58,17 +72,31 @@
                                 // the edit directly to the watched object, triggers
                                 // this watch function again,
                                 // which will handle the dispatch already itself
-                                this.watch.updateAllPropertiesByClone(oldObject);
+                                if (this.storeGet === 'settings/getAll') {
+                                    this.watch = {...oldObject};
+                                } else {
+                                    this.watch.updateAllPropertiesByClone(oldObject);
+                                }
+
                                 // this shouldn't create a new history frame
                                 this.watch.$$watchIgnore = true;
                             };
 
                             frame.redo = () => {
-                                this.watch.updateAllPropertiesByClone(newObject);
+                                if (this.storeGet === 'settings/getAll') {
+                                    this.watch = {...newObject};
+                                } else {
+                                    this.watch.updateAllPropertiesByClone(newObject);
+                                }
                                 this.watch.$$watchIgnore = true;
                             };
 
-                            frame.action = 'Update ' + this.watch.getActionTitle();
+                            if (this.storeGet === 'settings/getAll') {
+                                frame.action = 'Update settings';
+                            } else {
+                                frame.action = 'Update ' + this.watch.getActionTitle();
+                            }
+
 
                             this.$history.addFrame(frame);
                         } else {
@@ -76,7 +104,7 @@
                         }
 
 
-                        this.$store.dispatch(this.storeUpdate, this.watch.toBackend()).then(() => {
+                        this.$store.dispatch(this.storeUpdate, (this.storeGet === 'settings/getAll' ? this.watch : this.watch.toBackend())).then(() => {
                             this.localState.showSnackbar = true;
                         });
                     }, 500);

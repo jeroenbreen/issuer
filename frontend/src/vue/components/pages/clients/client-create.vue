@@ -11,7 +11,7 @@
         mixins: [crudMixin],
         data() {
             const client = new Client();
-            client.rate = this.$store.state.settings.standardRate;
+            client.rate = this.$store.state.settings.all.standardRate;
             client.clientId = this.$store.getters['clients/getClientId']();
             return {
                 client: client

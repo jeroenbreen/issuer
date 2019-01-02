@@ -106,13 +106,13 @@
             client() {
                 let client = this.$store.getters['clients/getItemById'](this.project.client_id);
                 if (client) {
-                    return client.getFullLabel(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.clientIdFormat);
+                    return client.getFullLabel(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.all.clientIdFormat);
                 } else {
                     return '-';
                 }
             },
             viewModusCompact() {
-                return this.$store.state.settings.viewModusCompact__projects;
+                return this.$store.state.settings.all.viewModusCompact__projects;
             }
         }
     }

@@ -12,14 +12,15 @@ class Image extends _Draggable {
     // getters
 
     getSrc() {
-        return config.imageUploaderLocation + 'uploads/' + this.src;
+        return config.library + 'uploads/' + this.src;
     }
 
     //
 
     toPrint() {
         let obj = {...this};
-        obj.src = config.imageUploaderLocation + 'uploads/' + this.src;
+        //obj.src = config.library + 'uploads/' + this.src;
+        obj.src = './../../' + 'uploads/' + this.src;
         return obj;
     }
 }

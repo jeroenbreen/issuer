@@ -122,6 +122,7 @@ const bootstrapVue = function(response) {
         }).done(function(response){
             console.log(response);
             dataToStore(store, response, true);
+            console.log(store);
         });
     } else {
 

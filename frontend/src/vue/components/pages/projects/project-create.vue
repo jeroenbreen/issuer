@@ -10,7 +10,7 @@
         data() {
             const project = new Project();
             project.status_id = this.$store.state.statuses.all[0]._id;
-            project.currency = this.$store.state.settings.standardCurrency;
+            project.currency = this.$store.state.settings.all.standardCurrency;
             if (this.$store.state.users.current) {
                 project.user_id = this.$store.state.users.current._id;
             }

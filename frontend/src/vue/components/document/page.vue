@@ -70,7 +70,7 @@
                 return value * this.factor;
             },
             getDocumentId() {
-                return this.page.document.getFormattedId(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.documentIdFormat);
+                return this.page.document.getFormattedId(this.$root.$options.filters.documentIdFormatter, this.$store.state.settings.all.documentIdFormat);
             },
 
             // template
