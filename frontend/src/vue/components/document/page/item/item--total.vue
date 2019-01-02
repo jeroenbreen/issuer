@@ -14,21 +14,21 @@
             getStyleObject() {
                 if (this.item.position === 'bottom') {
                     let pageTemplateSettings = this.template.getLinesItem(this.page.getType()),
-                        linePosition = pageTemplateSettings.y + pageTemplateSettings.height;
+                        linePosition = Number(pageTemplateSettings.y) + Number(pageTemplateSettings.height);
                     return {
-                        bottom: this.scale(pageHeight - linePosition - this.template.margin.top - this.template.margin.bottom) + 'px'
+                        bottom: this.scale(pageHeight - linePosition - Number(this.template.margin.top) - Number(this.template.margin.bottom)) + 'px'
                     };
                 } else {
-                    if (this.documentLines) {
-                        let thisPageLines = this.template.getLinesItem(this.page.getType());
-                        return {
-                            top: this.scale(thisPageLines.y + 20) + Number($(this.documentLines).outerHeight()) + 'px'
-                        }
-                    } else {
-                        return {
-                            top: this.scale(100) + 'px'
-                        }
-                    }
+                    // if (this.documentLines) {
+                    //     let thisPageLines = this.template.getLinesItem(this.page.getType());
+                    //     return {
+                    //         top: this.scale(thisPageLines.y + 20) + Number($(this.documentLines).outerHeight()) + 'px'
+                    //     }
+                    // } else {
+                    //     return {
+                    //         top: this.scale(100) + 'px'
+                    //     }
+                    // }
                 }
             },
 
