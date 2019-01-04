@@ -14,7 +14,7 @@
             </div>
             <div class="tool-box__content">
                 <md-field>
-                    <md-input v-model="template.margin.top" placeholder="Margin top" type="number"/>
+                    <md-input v-model.number="template.margin.top" placeholder="Margin top" type="number"/>
                 </md-field>
             </div>
         </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="tool-box__content">
                 <md-field>
-                    <md-input v-model="template.margin.right" placeholder="Margin right" type="number"/>
+                    <md-input v-model.number="template.margin.right" placeholder="Margin right" type="number"/>
                 </md-field>
             </div>
         </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="tool-box__content">
                 <md-field>
-                    <md-input v-model="template.margin.bottom" placeholder="Margin bottom" type="number"/>
+                    <md-input v-model.number="template.margin.bottom" placeholder="Margin bottom" type="number"/>
                 </md-field>
             </div>
         </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="tool-box__content">
                 <md-field>
-                    <md-input v-model="template.margin.left" placeholder="Margin left" type="number"/>
+                    <md-input v-model.number="template.margin.left" placeholder="Margin left" type="number"/>
                 </md-field>
             </div>
         </div>

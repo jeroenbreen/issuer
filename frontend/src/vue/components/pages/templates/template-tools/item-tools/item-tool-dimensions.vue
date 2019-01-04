@@ -19,7 +19,7 @@
             </div>
             <div class="tool-box__content">
                 <md-field>
-                    <md-input v-model="item.x" placeholder="left" type="number"/>
+                    <md-input v-model.number="item.x" placeholder="left" type="number"/>
                 </md-field>
             </div>
         </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="tool-box__content">
                 <md-field>
-                    <md-input v-model="item.y" placeholder="top" type="number"/>
+                    <md-input v-model.number="item.y" placeholder="top" type="number"/>
                 </md-field>
             </div>
         </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="tool-box__content">
                 <md-field>
-                    <md-input v-model="item.width" placeholder="width" type="number"/>
+                    <md-input v-model.number="item.width" placeholder="width" type="number"/>
                 </md-field>
             </div>
         </div>
@@ -51,7 +51,7 @@
             </div>
             <div class="tool-box__content">
                 <md-field>
-                    <md-input v-model="item.height" placeholder="height" type="number"/>
+                    <md-input v-model.number="item.height" placeholder="height" type="number"/>
                 </md-field>
             </div>
         </div>
