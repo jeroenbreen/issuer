@@ -7,7 +7,7 @@
 
 <template>
     <div class="branding-logo">
-        <img src="assets/img/logo-doculator.svg">
+        <img src="assets/img/doculator-icon.png">
     </div>
 </template>
 
@@ -16,9 +16,5 @@
     @import '@styles/variables.scss';
 
     .branding-logo {
-        img {
-            border: 1px solid #ddd;
-            border-radius: 2px;
-        }
     }
 </style>
